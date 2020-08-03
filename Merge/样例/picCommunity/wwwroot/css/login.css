@@ -1,0 +1,179 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 1600px;
+    height: 800px;
+    background-image: url(../image/bg.png);
+    background-size:270px,450px;
+}
+/* topColumn */
+.topBg {
+    background-color: rgb(40,40,40);
+    height: 40px;
+    width: 1600px;
+}
+
+.top-left {
+    background-color: rgb(120,120,120);
+    height: 25xp;
+    width: 100px;
+    float: left;
+    margin-left: 100px;
+    margin-top: 8px;
+    font-size: 12px;
+}
+
+    .top-left a {
+        color: rgb(255,255,255);
+        text-decoration: none;
+    }
+
+        .top-left a:hover {
+            text-decoration: underline;
+        }
+
+    .top-left p {
+        margin: 5px 2px;
+        text-align: center;
+        color: rgb(255,255,255);
+    }
+
+.top-right {
+    float: right;
+    clear: both;
+    margin-right: 105px;
+    color: rgb(120,120,120);
+}
+
+    .top-right ul {
+        margin-top: -28px;
+        width: 300px;
+        height: 30px;
+    }
+
+        .top-right ul li {
+            margin: 5px;
+            list-style: none;
+            display: inline-block;
+        }
+
+            .top-right ul li a {
+                font-size: 20x;
+                color: rgb(120,120,120);
+                text-decoration: none;
+            }
+
+    .top-right a:hover {
+        color: rgb(180,180,180);
+    }
+
+    .top-right p {
+        color: rgb(120,120,120);
+    }
+/*------ end topColumn-------*/
+/*------loginContent-----*/
+.loginFrame {
+    background-color: rgb(30,30,30,0.9);
+    position: relative;
+    top: 100px;
+    left: 480px;
+    height: 630px;
+    width: 500px;
+}
+
+.icon {
+    position: relative;
+    left: 220px;
+    top: 25px;
+    width: 60px;
+    height: 60px;
+}
+.icon img{
+    width:60px;
+    height:60px;
+}
+
+.loginTitle {
+    position: relative;
+    color: white;
+    font-style: italic;
+    font-size: 30px;
+    font-weight: 800;
+    left: 190px;
+    top: 30px;
+}
+
+.loginInput {
+    background-color: rgb(200,200,200,0.9);
+    position: relative;
+    left: 50px;
+    top: 60px;
+    width: 400px;
+    height: 350px;
+}
+
+    .loginInput texttitle {
+        color: black;
+        position: relative;
+        left: 180px;
+        top: 30px;
+        font-size: 20px;
+        font-weight: 900;
+        text-decoration: center;
+    }
+
+    .loginInput p {
+        position: relative;
+        top: 200px;
+        left: 280px;
+    }
+
+    .loginInput a {
+        color: white;
+        font-style: italic;
+        text-decoration: none;
+        font-weight: 200;
+    }
+
+        .loginInput a:hover {
+            color: rgb(50,50,50);
+        }
+
+.textinput {
+    position: relative;
+    font-size: 20px;
+    width: 280px;
+    height: 50px;
+    top: 90px;
+}
+
+.enterButton {
+    display: block;
+    position: relative;
+    left: 185px;
+    top: 100px;
+}
+
+    .enterButton a {
+        text-decoration: none;
+        color: white;
+        font-size: 30px;
+    }
+
+        .enterButton a:hover {
+            background-color: rgb(150,150,150);
+        }
+
+/*------ bottomColumn-------*/
+.bottomBg {
+    background-color: rgb(40,40,40);
+    height: 40px;
+    width: 1600px;
+}
+
+    .bottomBg p {
+        text-align: center;
+        color: rgb(160,160,160);
+        font-size: 18px;
+    }
+/*------end bottomColumn-------*/

@@ -21,10 +21,6 @@ td>a:hover{
 	text-decoration: none;
 	color: white;
 }
-input::-webkit-input-placeholder{text-align: left;}
-input{
-	outline: none;
-}
 .title-style{
 	
 	height: 40px;

@@ -20,11 +20,11 @@
 	<!--CSS样式-->
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/page.css">
+	<link rel="stylesheet" type="text/css" href="css/conciseStyle.css">
 </head>
 
 <body>
-<!-- <body style="background: url(img/darling.jpg);background-size: cover;background-attachment: fixed;"> -->
-	<!--本段是顶部页面插入，后面只用修改new.html就行了-->
+
 <!--=====================================================header==================================================-->
 	<div class="title-style">
 		<div class="nav-style">
@@ -88,41 +88,37 @@
 	</div>
 
 <!--====================================================content==================================================-->
-	<div id="chooseLoginOrRegisterFrame" style="background-color: azure;height: 500px;width: 400px;margin: auto;">
-		<!--第一层：登录注册选择按钮-->
-		<div id="chooseLoginOrRegister" style="text-align: center;">
-			<a href="loginPage.html">登录</a>
-			<a href="registerPage.html">Join</a>
-		</div>
-		<div class="signup_form new" style="text-align: center;">
-			<p> 
-				<input type="text" name="userName" data-autofocus="" placeholder="用户名" class="data" maxlength="25" required id="">
-			</p>
-			<p> 
-				<input type="text" name="email" placeholder="电子邮箱地址" class="data" required id="">
-			</p>
-			<p> 
-				<input type="password" name="password1" placeholder="密码" autocomplete="new-password" class="data" required id=""><input type="hidden" name="source" value="main_nav" class="data" id="">
-			</p>
-		<p> 
-			<input type="password" name="password1" placeholder="新密码" autocomplete="new-password" class="data" required id=""><input type="hidden" name="source" value="main_nav" class="data" id="">
-		</p>
-		</div>
-		<div style="text-align: center;">
-			<input style="text-align:center" class="sign_up_button g-recaptcha pure-button button-green" data-sitekey="6Lf8Bg4UAAAAAJ9KPbr_AoCbQ5l9jDqcuaLAgBDM" data-callback="onCheckRobot" type="submit" value='Join'>
-		</div>
-	</div>	
-
-
-
 	
-	
-  
-
-  	
-
-	
-
+	<div class="contentbox">
+		<div class="chooseLoginOrRegisterTable">
+			<!--第一层：登录注册选择按钮-->
+			<div class="chooseLoginOrRegister">
+				<a href="loginPage.html">登录</a>
+				<a href="registerPage.html">Join</a>
+			</div>
+			<div style="color: #1B6D85;height: 10px;"></div>
+			<div class="signup_form new" style="text-align: center;">
+				<form action="">
+					<p>
+						<input type="text" name="userName" data-autofocus="" placeholder="用户名" class="data" maxlength="25" required id="">
+					</p>
+					<p> 
+						<input type="text" name="email" placeholder="电子邮箱地址" class="data" required id="">
+					</p>
+					<p> 
+						<input type="password" name="password1" placeholder="密码" autocomplete="new-password" class="data" required id=""><input type="hidden" name="source" value="main_nav" class="data" id="">
+					</p>
+					<p> 
+						<input type="password" name="password1" placeholder="新密码" autocomplete="new-password" class="data" required id=""><input type="hidden" name="source" value="main_nav" class="data" id="">
+					</p>
+				</form>
+			</div>
+			<div style="text-align: center;">
+				<input style="text-align:center" class="sign_up_button g-recaptcha pure-button button-green" data-sitekey="6Lf8Bg4UAAAAAJ9KPbr_AoCbQ5l9jDqcuaLAgBDM" data-callback="onCheckRobot" type="submit" value='Join'>
+			</div>
+		</div>	
+		
+	</div>
 
 	<!--=================================================footer===================================================-->
 	<footer>
@@ -136,5 +132,5 @@
 
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-</body>
+</body
 </html>

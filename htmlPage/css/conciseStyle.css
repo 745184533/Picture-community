@@ -1,0 +1,39 @@
+/*滚动条*/
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(transparent, #e4305dd0);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(transparent, #00c6ff);
+}
+/*背景*/
+.contentbox{
+	height: 600px;
+	background: #ffffff;
+	background-size: cover;
+	background-attachment: fixed;
+	margin: auto;
+}
+.chooseLoginOrRegisterTable{
+	background-color: azure;
+	height: 500px;
+	width: 400px;
+	margin: 100px auto auto auto;
+}
+.chooseLoginOrRegisterTable>input{
+	height: 56px;
+}
+/*登录注册按钮*/
+.chooseLoginOrRegister{
+	height: 100px;
+	text-align: center;
+	line-height: 100px;
+}
+.chooseLoginOrRegister>a{
+	border-top:50px;
+	font-size:20px;
+	margin-left: 40px;
+	margin-right: 40px;
+}

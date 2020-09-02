@@ -10,92 +10,122 @@
 <title>加入橘子派对</title>
 
 	<!--CSS样式-->
-	<link rel="stylesheet" type="text/css" href="styleOfCSS/conciseStyle.css">
-	
-	
-	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-	<script type="text/javascript">
-		//alert();
-		console.log();
-	</script>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/page.css">
 </head>
 
-<!--第一层：背景图搭建-->	
-<body style="background: url(img/darling.jpg);background-size: cover;background-attachment: fixed;">
-	<!--本段是顶部页面插入，后面只用修改top.html就行了-->
-	<iframe src="top.html" width="100%" height="60px" frameborder="no" scrolling="auto" name="navigation">
-	</iframe>
-	
-	<div id="chooseLoginOrRegisterFrame" style="background-color: azure;height: 600px;width: 400px;margin: auto;">
+<body>
+<!-- <body style="background: url(img/darling.jpg);background-size: cover;background-attachment: fixed;"> -->
+<!--=====================================================header==================================================-->
+	<div class="title-style">
+		<div class="nav-style">
+			<div class="navbar-nav">
+				<ul class="nav nav-tabs" role="tablist">
+					<li role="presentation" class="navtitle">
+						<span class="navlogo">图片社区</span>
+						</li>
+				    <li role="presentation" class="active" style="margin: 0 40px 0 0;" >
+						<a href="#照片" aria-controls="home" role="tab" data-toggle="tab"style="color: black;">照片</a>
+						</li>
+				    <li role="presentation" class="navtitle">
+						<a href="#插画" aria-controls="home" role="tab" data-toggle="tab"style="color: black;">插画</a>
+						</li>
+					<li role="presentation" class="navtitle">
+						<a href="#向量" aria-controls="home" role="tab" data-toggle="tab"style="color: black;">向量</a>
+						</li>
+					<li role="presentation" class="dropdown">
+					    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+					      aria-haspopup="true" aria-expanded="true">探索<span class="caret"></span>
+					    </button>
+						<table class="dropdown-menu" aria-labelledby="dropdownMenu1">
+							<tr>
+								<th>Media</th>
+								<th>Community</th>
+								<th>About</th>
+							</tr>
+							<tr>
+								<td><a>小编精选</a></td>
+								<td><a>博客</a></td>
+								<td><a>服务条款</a></td>
+							</tr>
+							<tr>
+								<td><a>Popular Images</a></td>
+								<td><a>论坛</a></td>
+								<td><a>隐私政策</a></td>
+							</tr>
+							<tr>
+								<td><a>Popular Videos</a></td>
+								<td><a>Artists</a></td>
+								<td><a>关于我们</a></td>
+							</tr>
+						</table>
+					</li>
+					<li class="navtitle" style="margin: 0 40px 0 0;">
+						<a href="#登录" style="color: black;">登录</a>
+					</li>
+					<li class="navtitle" style="margin: 0 40px 0 0;">
+						<a href="#注册" style="color: black;">注册</a>
+					</li>
+					<li style="margin: 0 20px 0 0;">
+						<a href="#上传" style="color: black;">
+						<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-upload" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+						    <path fill-rule="evenodd" d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+						    <path fill-rule="evenodd" d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+					    </svg>上传</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+<!--====================================================content==================================================-->
+	<div id="chooseLoginOrRegisterFrame" style="background-color: azure;height: 500px;width: 400px;margin: auto;">
 		<!--第一层：登录注册选择按钮-->
 		<div id="chooseLoginOrRegister" style="text-align: center;">
 			<a href="loginPage.html">登录</a>
 			<a href="registerPage.html">Join</a>
 		</div>
-		
+		<div class="signup_form new" style="text-align: center;">
+			<p> 
+				<input type="text" name="userName" data-autofocus="" placeholder="用户名" class="data" maxlength="25" required id="">
+			</p>
+			<p> 
+				<input type="text" name="email" placeholder="电子邮箱地址" class="data" required id="">
+			</p>
+			<p> 
+				<input type="password" name="password1" placeholder="密码" autocomplete="new-password" class="data" required id=""><input type="hidden" name="source" value="main_nav" class="data" id="">
+			</p>
+		<p> 
+			<input type="password" name="password1" placeholder="新密码" autocomplete="new-password" class="data" required id=""><input type="hidden" name="source" value="main_nav" class="data" id="">
+		</p>
+		</div>
+		<div style="text-align: center;">
+			<input style="text-align:center" class="sign_up_button g-recaptcha pure-button button-green" data-sitekey="6Lf8Bg4UAAAAAJ9KPbr_AoCbQ5l9jDqcuaLAgBDM" data-callback="onCheckRobot" type="submit" value='Join'>
+		</div>
 	</div>	
 
-	<div>
-						<b>Media</b>
-						<a href="/zh/photos/">照片</a>
-						<a href="/zh/illustrations/">插画</a>
-						<a href="/zh/vectors/">向量</a>
-						<a href="/zh/videos/">視頻</a>
-						<hr>
-						<a href="/zh/editors_choice/">小编精选</a>
-						<a href="/zh/images/search/">Popular Images</a>
-						<a href="/zh/videos/search/">Popular Videos</a>
-	</div>
 
-	<div>
-						<b>Community</b>
-						<a href="/zh/blog/">博客</a>
-						<a href="/zh/forum/">论坛</a>
-						<a href="/zh/users/">Artists</a>
-						<a href="/zh/cameras/">相机</a>
-	</div>
-
-	<div>
-						<div class="last-column">
-							<div>
-								<b>About</b>
-								<a href="">常见问题解答</a>
-								<a href="">服务条款</a>
-								<a href="">隐私政策</a>
-								<a href="">关于我们</a>
-								<a href="">API</a>
-</div>
-
-<div class="signup_form new">
-	<p> 
-		<input type="text" name="userName" data-autofocus="" placeholder="用户名" class="data" maxlength="25" required id="">
-	</p>
-	<p> 
-		<input type="text" name="email" placeholder="电子邮箱地址" class="data" required id="">
-	</p>
-	<p> 
-		<input type="password" name="password1" placeholder="密码" autocomplete="new-password" class="data" required id=""><input type="hidden" name="source" value="main_nav" class="data" id="">
-	</p>
-	<p> 
-		<input type="password" name="password1" placeholder="新密码" autocomplete="new-password" class="data" required id=""><input type="hidden" name="source" value="main_nav" class="data" id="">
-	</p>
-</div>
-	
-</div>
-	<div>
-		<input style="text-align:center" class="sign_up_button g-recaptcha pure-button button-green" data-sitekey="6Lf8Bg4UAAAAAJ9KPbr_AoCbQ5l9jDqcuaLAgBDM" data-callback="onCheckRobot" type="submit" value='Join'>
-	</div>
-</form>
-	</div>
-	<div style="margin:1px;padding:20px 25px;background:#f7f7f7;font-size:13px;line-height:1.7;text-align:center">
-	完成此注册，即表明您同意了我们的<a href='' target='_blank'>使用条款和隐私策略</a>。
-	</div>
 
 	
-	<!--底层信息显示-->
-	<div id="footer" style="background-color: darkgrey;clear: both ;text-align: center;">
-		<a>▲版权所有，翻版必究 &copy;2020-2050 桔子柿饼</a>
-	</div>
+	
+  
 
+  	
+
+	
+
+
+	<!--=================================================footer===================================================-->
+	<footer>
+		<div style="margin:1px;padding:20px 25px;background:#f7f7f7;font-size:13px;line-height:1.7;text-align:center">
+		完成此注册，即表明您同意了我们的<a href='#' target='_blank'>使用条款和隐私策略</a>。
+		</div>
+		<div id="footer" style="background-color: darkgrey;clear: both ;text-align: center;">
+			<a>▲版权所有，翻版必究 &copy;2020-2050 桔子柿饼</a>
+		</div>
+	</footer>
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

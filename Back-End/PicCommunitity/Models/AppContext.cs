@@ -11,11 +11,24 @@ namespace PicCommunitity.Models
         public AppContext(DbContextOptions<AppContext> options) : base(options)
         {
         }
+        public DbSet<users> users { get; set; }
+        public DbSet<payment> payment { get; set; }
+        public DbSet<picComment> picComment { get; set; }
+        public DbSet<picture> picture { get; set; }
+        public DbSet<publishPicture> publishPicture { get; set; }
+        public DbSet<tag> tag { get; set; }
+        public DbSet<TotalInfo> TotalInfo { get; set; }
+        public DbSet<userInfo> userInfo { get; set; }
+        public DbSet<wallet> wallet { get; set; }
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-           // modelBuilder.Entity<buyhistory>().HasKey(t => new { t.u_id, t.E_id, t.buy_time });
+            modelBuilder.Entity<payment>().HasKey(t => new { t.u_id, t.pay_time });
 
-            //modelBuilder.Entity<shopcart>().HasKey(t => new { t.u_id, t.E_id });
+            modelBuilder.Entity<picComment>().HasKey(t => new { t.u_id, t.p_id});
+
+            modelBuilder.Entity<publishPicture>().HasKey(t => new { t.u_id, t.p_id });
 
             base.OnModelCreating(modelBuilder);
         }

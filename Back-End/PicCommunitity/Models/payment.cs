@@ -13,7 +13,7 @@ namespace PicCommunitity.Models
         [Key, Column(Order = 1)]
         public string u_id { get; set; }
 
-        [Key, Column(Order = 1)]
+        [Key, Column(Order = 2)]
         public DateTime pay_time { get; set; }
 
         public int money { get; set; }

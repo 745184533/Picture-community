@@ -7,17 +7,15 @@ using System.Threading.Tasks;
 
 namespace PicCommunitity.Models
 {
-    public class picComment
+    public class publishPicture
     {
-       
+
         [Key, Column(Order = 1)]
         public string u_id { get; set; }
 
         [Key, Column(Order = 2)]
         public string p_id { get; set; }
 
-        public string p_comment { get; set; }
-        public int likes { get; set; }
-
+        public DateTime publish_time { get; set; }
     }
 }

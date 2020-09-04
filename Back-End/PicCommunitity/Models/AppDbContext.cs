@@ -6,11 +6,24 @@ using System.Threading.Tasks;
 
 namespace PicCommunitity.Models
 {
-    public class AppContext:DbContext
+    public class AppDbContext:DbContext
     {
-        public AppContext(DbContextOptions<AppContext> options) : base(options)
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
         }
+
+        public DbSet<blog> blog { get; set; }
+        public DbSet<checkInfo> checkInfo { get; set; }
+        public DbSet<checks> checks { get; set; }
+        public DbSet<commentLike> commentLike { get; set; }
+        public DbSet<favoritePicture> favoritePicture { get; set; }
+        public DbSet<follow> follow { get; set; }
+        public DbSet<likespicture> likesPicture { get; set; }
+        public DbSet<orderInfo> orderInfo { get; set; }
+        public DbSet<orderPic> orderPic { get; set; }
+        public DbSet<orders> orders { get; set; }
+        public DbSet<ownBlog> ownBlog { get; set; }
+        public DbSet<ownTag> ownTag { get; set; }
         public DbSet<users> users { get; set; }
         public DbSet<payment> payment { get; set; }
         public DbSet<picComment> picComment { get; set; }
@@ -24,6 +37,15 @@ namespace PicCommunitity.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<checks>().HasKey(t => new { t.u_id, t.c_id });
+            modelBuilder.Entity<commentLike>().HasKey(t => new{ t.u_id,t.p_id,t.comm_u_id});
+            modelBuilder.Entity<favoritePicture>().HasKey(t => new { t.u_id, t.p_id });
+            modelBuilder.Entity<follow>().HasKey(t => new { t.fans_id,t.follow_id });
+            modelBuilder.Entity<likespicture>().HasKey(t => new { t.u_id,t.p_id });
+            modelBuilder.Entity<orderPic>().HasKey(t => new { t.o_id, t.p_id });
+            modelBuilder.Entity<orders>().HasKey(t => new { t.u_id, t.o_id });
+            modelBuilder.Entity<ownBlog>().HasKey(t => new { t.u_id, t.b_id });
+            modelBuilder.Entity<ownTag>().HasKey(t => new { t.p_id, t.tag_name });
             modelBuilder.Entity<payment>().HasKey(t => new { t.u_id, t.pay_time });
 
             modelBuilder.Entity<picComment>().HasKey(t => new { t.u_id, t.p_id});

@@ -7,15 +7,17 @@
 	<meta name="author" content="YangShiji">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--屏幕上能用来显示我们网页的那一块区域-->
-<title>加入橘子派对</title>
+<title>图片社区</title>
 
 	<!--CSS样式-->
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/page.css">
+	<link rel="stylesheet" type="text/css" href="css/conciseStyle.css">
+	<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script><![endif]-->
 </head>
 
 <body>
-<!-- <body style="background: url(img/darling.jpg);background-size: cover;background-attachment: fixed;"> -->
+
 <!--=====================================================header==================================================-->
 	<div class="title-style">
 		<div class="nav-style">
@@ -79,41 +81,54 @@
 	</div>
 
 <!--====================================================content==================================================-->
-	<div id="chooseLoginOrRegisterFrame" style="background-color: azure;height: 500px;width: 400px;margin: auto;">
-		<!--第一层：登录注册选择按钮-->
-		<div id="chooseLoginOrRegister" style="text-align: center;">
-			<a href="loginPage.html">登录</a>
-			<a href="registerPage.html">Join</a>
+	<div id="content" class="clearfix">
+		<!--作为背景图，后面在补全这个功能-->
+		<!-- <img src="" alt=""> -->
+		
+		<!-- 中间输入框 -->
+		<div id="sign_in_out" style="padding: 10px;">
+			<div class="window" style="max-width: 400px;">
+				<div style="padding: 20px 25px;">
+					<!-- 登录注册选择按钮 -->
+					<div class="tab-menu" style="border-top: 0;margin: 0 0 35px;font-size: 20px;">
+						<a href="#登录" class="selected">登录</a>
+						<a href="#Join">Join</a>
+					</div>
+					<!-- 微信或者QQ关联登录 -->
+					<div class="social_auth" style="margin: 0 0 30px;">
+						<a href="#WeChat" class="pure-button" style="background-color:#d73d32">
+							<i class="icon icon_google_fff"></i>
+							微信
+						</a>
+						<a href="#QQ" class="pure-button" style="background-color:#3b5998;float: right;">
+							<i class="icon icon_google_fff"></i>
+							QQ
+						</a>
+					</div>
+					<!-- 输入账户和密码的表单 -->
+					<form id="login_form" spellcheck="false" class="right_side pure-form" action="." method="post">
+						<p>
+							<input type="text" name="username" data-autofocus placeholder="用户名" maxlength="50" required="" id="id_username">
+						</p>
+						<p>
+							<input type="password" name="password" placeholder="密码" required="" id="id_password">
+						</p>
+						<!-- 登录按钮 -->
+						<div>
+							<div></div>
+							<input style="text-align:center" class="pure-button button-green" data-sitekey="" data-callback="" type="submit" value="登录">
+						</div>
+					</form>
+				</div>
+				
+				<div style="padding:20px 25px;background:#f7f7f7;font-size:13px;line-height:1.7;text-align:center">
+				<a href="#">重设你的密码</a>
+				</div>
+			</div>
 		</div>
-		<div class="signup_form new" style="text-align: center;">
-			<p> 
-				<input type="text" name="userName" data-autofocus="" placeholder="用户名" class="data" maxlength="25" required id="">
-			</p>
-			<p> 
-				<input type="text" name="email" placeholder="电子邮箱地址" class="data" required id="">
-			</p>
-			<p> 
-				<input type="password" name="password1" placeholder="密码" autocomplete="new-password" class="data" required id=""><input type="hidden" name="source" value="main_nav" class="data" id="">
-			</p>
-		<p> 
-			<input type="password" name="password1" placeholder="新密码" autocomplete="new-password" class="data" required id=""><input type="hidden" name="source" value="main_nav" class="data" id="">
-		</p>
-		</div>
-		<div style="text-align: center;">
-			<input style="text-align:center" class="sign_up_button g-recaptcha pure-button button-green" data-sitekey="6Lf8Bg4UAAAAAJ9KPbr_AoCbQ5l9jDqcuaLAgBDM" data-callback="onCheckRobot" type="submit" value='Join'>
-		</div>
-	</div>	
-
-
-
+	</div>
 	
 	
-  
-
-  	
-
-	
-
 
 	<!--=================================================footer===================================================-->
 	<footer>
@@ -127,5 +142,5 @@
 
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-</body>
+</body
 </html>

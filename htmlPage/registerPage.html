@@ -16,7 +16,7 @@
 	<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script><![endif]-->
 </head>
 
-<body>
+<body class="registerBody">
 
 <!--=====================================================header==================================================-->
 	<div class="title-style">
@@ -91,8 +91,8 @@
 				<div style="padding: 20px 25px;">
 					<!-- 登录注册选择按钮 -->
 					<div class="tab-menu" style="border-top: 0;margin: 0 0 35px;font-size: 20px;">
-						<a href="#登录" class="selected">登录</a>
-						<a href="#Join">Join</a>
+						<a href="#登录">登录</a>
+						<a href="#Join"  class="selected">Join</a>
 					</div>
 					<!-- 微信或者QQ关联登录 -->
 					<div class="social_auth" style="margin: 0 0 30px;">
@@ -111,6 +111,9 @@
 							<input type="text" name="username" data-autofocus placeholder="用户名" maxlength="50" required="" id="id_username">
 						</p>
 						<p>
+							<input type="text" name="email" placeholder="电子邮箱地址" class="data" required="" id="id_email">
+						</p>
+						<p>
 							<input type="password" name="password" placeholder="密码" required="" id="id_password">
 						</p>
 						<!-- 登录按钮 -->
@@ -120,9 +123,8 @@
 						</div>
 					</form>
 				</div>
-				
 				<div style="padding:20px 25px;background:#f7f7f7;font-size:13px;line-height:1.7;text-align:center">
-				<a href="#">重设你的密码</a>
+				完成此注册，即表明您同意了我们的<a href='#' target='_blank'>使用条款和隐私策略</a>。
 				</div>
 			</div>
 		</div>
@@ -132,9 +134,7 @@
 
 	<!--=================================================footer===================================================-->
 	<footer>
-		<div style="margin:1px;padding:20px 25px;background:#f7f7f7;font-size:13px;line-height:1.7;text-align:center">
-		完成此注册，即表明您同意了我们的<a href='#' target='_blank'>使用条款和隐私策略</a>。
-		</div>
+		
 		<div id="footer" style="background-color: darkgrey;clear: both ;text-align: center;">
 			<a>▲版权所有，翻版必究 &copy;2020-2050 桔子柿饼</a>
 		</div>

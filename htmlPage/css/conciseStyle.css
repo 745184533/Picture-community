@@ -34,7 +34,6 @@ input{
 	-webkit-rtl-ordering: logical;
 	cursor: text;
 }
-
 :invalid{
 	color: #555!important;
 }
@@ -122,6 +121,25 @@ input{
     color: #fff!important;
     background-color: #02be6e!important;
 }
+#footer{
+	position: fixed;
+	width: 100%;
+	height: 25px;
+	top: 100%;
+	margin-top: -25px;
+}
+.registerBody{
+	margin: 0;
+	height: 100%;
+	min-width: 320px;
+}
+
+
+
+
+
+
+
 
 /*滚动条*/
 ::-webkit-scrollbar {

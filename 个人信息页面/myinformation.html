@@ -8,199 +8,752 @@
 		<title></title>
 	</head>
 	<body>
-		<div class="title-style">
-					<div class="nav-style">
-						<div class="navbar-nav">
-							<ul class="nav nav-tabs" role="tablist">
-								<li role="presentation" style="margin: 0 40px 0 0;" ><span style="height: 40px;line-height: 40px;font-weight: bold;font-size: 18px;">图片社区</span></li>
-							    <li role="presentation" style="margin: 0 40px 0 0;" ><a href="#">照片</a></li>
-							    <li role="presentation" style="margin: 0 40px 0 0;" ><a href="#">插画</a></li>
-								<li role="presentation" style="margin: 0 40px 0 0;"><a href="#">向量</a></li>
-								<li role="presentation" class="dropdown" style="margin: 0 40px 0 630px;">
-								    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
-								      aria-haspopup="true" aria-expanded="true">探索<span class="caret"></span>
-								    </button>
-									<table class="dropdown-menu" aria-labelledby="dropdownMenu1">
-										<tr>
-											<th>Media</th>
-											<th>Community</th>
-											<th>About</th>
-										</tr>
-										<tr>
-											<td><a>小编精选</a></td>
-											<td><a>博客</a></td>
-											<td><a>服务条款</a></td>
-										</tr>
-										<tr>
-											<td><a>Popular Images</a></td>
-											<td><a>论坛</a></td>
-											<td><a>隐私政策</a></td>
-										</tr>
-										<tr>
-											<td><a>Popular Videos</a></td>
-											<td><a>Artists</a></td>
-											<td><a>关于我们</a></td>
-										</tr>
-									</table>
-								</li>
-								<li style="margin: 0 40px 0 0;"><a href="" style="color: black;">登录</a></li>
-								<li style="margin: 0 40px 0 0;"><a href="" style="color: black;">注册</a></li>
-								<li style="margin: 0 20px 0 0;"><a href="" style="color: black;">
-									<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-upload" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-									    <path fill-rule="evenodd" d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
-									    <path fill-rule="evenodd" d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
-								    </svg>上传</a></li>
-							</ul>
+		<div id="wrapper">
+			<!-- 导航栏 -->
+			<div class="title-style">
+				<div class="nav-style">
+					<div class="navbar-nav">
+						<ul class="nav nav-tabs" role="tablist">
+							<li role="presentation" style="margin: 0 40px 0 0;" ><span style="height: 40px;line-height: 40px;font-weight: bold;font-size: 18px;">图片社区</span></li>
+						    <li role="presentation" style="margin: 0 40px 0 0;" ><a href="#">照片</a></li>
+						    <li role="presentation" style="margin: 0 40px 0 0;" ><a href="#">插画</a></li>
+							<li role="presentation" style="margin: 0 40px 0 0;"><a href="#">向量</a></li>
+							<li role="presentation" class="dropdown" style="margin: 0 40px 0 630px;">
+							    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+							      aria-haspopup="true" aria-expanded="true">探索<span class="caret"></span>
+							    </button>
+								<table class="dropdown-menu" aria-labelledby="dropdownMenu1">
+									<tr>
+										<th>Media</th>
+										<th>Community</th>
+										<th>About</th>
+									</tr>
+									<tr>
+										<td><a>小编精选</a></td>
+										<td><a>博客</a></td>
+										<td><a>服务条款</a></td>
+									</tr>
+									<tr>
+										<td><a>Popular Images</a></td>
+										<td><a>论坛</a></td>
+										<td><a>隐私政策</a></td>
+									</tr>
+									<tr>
+										<td><a>Popular Videos</a></td>
+										<td><a>Artists</a></td>
+										<td><a>关于我们</a></td>
+									</tr>
+								</table>
+							</li>
+							<li style="margin: 0 40px 0 0;"><a href="" style="color: black;">登录</a></li>
+							<li style="margin: 0 40px 0 0;"><a href="" style="color: black;">注册</a></li>
+							<li style="margin: 0 20px 0 0;"><a href="" style="color: black;">
+								<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-upload" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+								    <path fill-rule="evenodd" d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+								    <path fill-rule="evenodd" d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+							    </svg>上传</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			
+			<!-- 内容展示页面 -->
+			<div id="content" class="clearfix">
+				<!-- 显示选择栏的内容 -->
+				<div style="margin: 30px auto;">
+					<div id="account_tabs" class="tab_menu hide-xs hide-sm hide-md" style="margin:auto;border-top:0">
+						<div style="max-width:1440px;margin:auto;padding:0 5px;text-align:left">
+							<a style="float:right" href="/users/ORANGEyasi-17444614/">
+								<font style="vertical-align: inherit;">
+									<font style="vertical-align: inherit;">我的简历
+									</font>
+								</font>
+							</a>
+							<a href="#我的图片">
+								<font style="vertical-align: inherit;">
+									<font style="vertical-align: inherit;">图片
+									</font>
+								</font>
+							</a>
+							<a href="#我的博客">
+								<font style="vertical-align: inherit;">
+									<font style="vertical-align: inherit;">博客
+									</font>
+								</font>
+							</a>
+							<a href="#我的收藏">
+								<font style="vertical-align: inherit;">
+									<font style="vertical-align: inherit;">收藏
+									</font>
+								</font>
+							</a>
+							<a href="#我的设置" class="selected">
+								<font style="vertical-align: inherit;">
+									<font style="vertical-align: inherit;">设置
+									</font>
+								</font>
+							</a>
 						</div>
 					</div>
 				</div>
-
-		<div class="sec-head">
-			<div class="nav-style">
-				<div class="navbar-nav">
-					<ul class="nav nav-tabs" role="tablist">
-						<li role="presentation" style="margin: 0 40px 0 0;" ><a href="#upload" aria-controls="home" role="tab" data-toggle="tab"style="color: black;">上传</a></li>
-						<li role="presentation" style="margin: 0 40px 0 0;" ><a href="#collection" aria-controls="home" role="tab" data-toggle="tab"style="color: black;">收藏</a></li>
-						<li role="presentation" style="margin: 0 40px 0 0;" ><a href="#concern" aria-controls="home" role="tab" data-toggle="tab"style="color: black;">关注</a></li>
-						<li role="presentation" style="margin: 0 650px 0 0;" ><a href="#setting" aria-controls="home" role="tab" data-toggle="tab"style="color: black;">设置</a></li>
-						<li role="presentation" style="margin: 0 20px 0 0;" ><a href="edit_infor.html">我的资料</a></li>
-					</ul>
+				<!-- 显示表单内容 -->
+				<div style="max-width:1408px;margin:auto;padding:0 20px">
+					<!-- 表单格式 -->
+					<form action="." method="post" enctype="multipart/form-data" class="profile_form pure-form pure-form-aligned">
+						<div class="pure-g">
+							<!-- 表单左侧 -->
+							<div class="pure-u-1 pure-u-lg-1-2">
+								<!-- 个人资料 -->
+								<h2 style="margin:0 0 20px;padding:0 0 8px;border-bottom:2px solid #ddd">
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;">个人资料
+										</font>
+									</font>
+								</h2>
+								<!-- 用户名 -->
+								<div class="pure-control-group">
+									<label for="id_username">
+									<font style="vertical-align: inherit;">
+										<font style="vertical-align: inherit;">用户名
+										</font>
+									</font>
+								</label>
+									<input type="text" name="username" value="" maxlength="25" required="" id="id_username">
+								</div>
+								<!-- 个人资料图片 -->
+								<div class="pure-control-group">
+									<label style="vertical-align:top">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">个人资料图片
+											</font>
+										</font>
+									</label>
+									
+									<label for="id_image" class="image_container" style="display:inline-block;width:250px !important;height:250px;position:relative;cursor:pointer">
+										<i style="display:inline-block;width:250px;height:250px;position:absolute;top:0;left:0;background:url(./img/profile_image.png);">
+										</i>
+											<a href="#上传头像" class="profile_image_button ajax pure-button buttdon-red button-md" data-confirm="">
+												上传个人资料照片
+											</a>
+											<span class="profile_image_button pure-button button-md">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">上载个人资料图片
+													</font>
+												</font>
+											</span>
+											<input id="id_image" name="image" type="file" accept="image/jpeg, image/png" style="position:absolute;left:-9999px">
+									</label>
+								</div>
+								<!-- 性别 -->
+								<div class="pure-control-group">
+									<label for="id_gender">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">请选择
+											</font>
+										</font>
+									</label>
+									<select name="gender" id="id_gender">
+										<option value=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">---------</font></font></option>
+										<option value="m" selected=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">男</font></font></option>
+										<option value="f"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">女</font></font></option>
+									</select>
+								</div>
+								 <!-- 姓名 -->
+								<div class="pure-control-group">
+									<label for="id_first_name">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">名字
+											</font>
+										</font>
+									</label>
+									<input type="text" name="first_name" value="" maxlength="30" id="id_first_name">
+								</div>
+								<!-- 国家 -->
+								<div class="pure-control-group">
+									<label for="id_country">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">国家
+											</font>
+										</font>
+									</label>
+									<input type="text" name="country" value="" maxlength="30" id="id_country">
+									</div>
+								<!-- 出生日期 -->
+								<div class="pure-control-group">
+									<label for="id_date_of_birth">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">出生日期
+											</font>
+										</font>
+									</label>
+									<select name="date_of_birth_month" id="id_date_of_birth_month">
+										<option value="">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">---
+												</font>
+											</font>
+										</option>
+										<option value="1">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">一月
+												</font>
+											</font>
+										</option>
+										<option value="2">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">二月
+												</font>
+											</font>
+										</option>
+										<option value="3">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">三月
+												</font>
+											</font>
+										</option>
+										<option value="4">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">四月
+												</font>
+											</font>
+										</option>
+										<option value="5">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">五月
+												</font>
+											</font>
+										</option>
+										<option value="6">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">六月
+												</font>
+											</font>
+										</option>
+										<option value="7">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">七月
+												</font>
+											</font>
+										</option>
+										<option value="8">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">八月
+												</font>
+											</font>
+										</option>
+										<option value="9" selected="">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">九月
+												</font>
+											</font>
+										</option>
+										<option value="10">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">十月
+												</font>
+											</font>
+										</option>
+										<option value="11">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">十一月
+												</font>
+												</font>
+											</option>
+											<option value="12">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">十二月
+													</font>
+												</font>
+											</option>
+										</select>
+										<select name="date_of_birth_day" id="id_date_of_birth_day">
+											<option value="">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">---
+													</font>
+												</font>
+											</option>
+											<option value="1">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">1
+													</font>
+												</font>
+											</option>
+											<option value="2">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">2
+													</font>
+												</font>
+											</option>
+											<option value="3">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">3
+													</font>
+												</font>
+											</option>
+											<option value="4" selected="">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">4
+													</font>
+												</font>
+											</option>
+											<option value="5">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">5
+													</font>
+												</font>
+											</option>
+											<option value="6">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">6
+													</font>
+												</font>
+											</option>
+											<option value="7">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">7
+													</font>
+												</font>
+											</option>
+											<option value="8">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">8
+													</font>
+												</font>
+											</option>
+											<option value="9">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">9
+													</font>
+												</font>
+											</option>
+											<option value="10">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">10
+													</font>
+												</font>
+											</option>
+											<option value="11">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">11
+													</font>
+												</font>
+											</option>
+											<option value="12">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">12
+													</font>
+												</font>
+											</option>
+											<option value="13">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">13
+													</font>
+												</font>
+											</option>
+											<option value="14">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">14
+													</font>
+												</font>
+											</option>
+											<option value="15">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">15
+													</font>
+												</font>
+											</option>
+											<option value="16">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">16
+													</font>
+												</font>
+											</option>
+											<option value="17">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">17
+													</font>
+												</font>
+											</option>
+											<option value="18">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">18
+													</font>
+												</font>
+											</option>
+											<option value="19">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">19
+													</font>
+												</font>
+											</option>
+											<option value="20">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">20
+													</font>
+												</font>
+											</option>
+											<option value="21">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">21
+													</font>
+												</font>
+											</option>
+											<option value="22">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">22
+													</font>
+												</font>
+											</option>
+											<option value="23">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">23
+													</font>
+												</font>
+											</option>
+											<option value="24">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">24
+													</font>
+												</font>
+											</option>
+											<option value="25">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">25
+													</font>
+												</font>
+											</option>
+											<option value="26">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">26
+													</font>
+												</font>
+											</option>
+											<option value="27">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">27
+													</font>
+												</font>
+											</option>
+											<option value="28">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">28
+													</font>
+												</font>
+											</option>
+											<option value="29">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">29
+													</font>
+												</font>
+											</option>
+											<option value="30">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">30
+													</font>
+												</font>
+											</option>
+											<option value="31">
+												<font style="vertical-align: inherit;">
+													<font style="vertical-align: inherit;">31
+													</font>
+												</font>
+											</option>
+										</select>
+										<select name="date_of_birth_year" id="id_date_of_birth_year">
+											<option value=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">---</font></font></option>
+											<option value="1930"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1930年</font></font></option>
+											<option value="1931"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1931年</font></font></option>
+											<option value="1932"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1932年</font></font></option>
+											<option value="1933"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1933年</font></font></option>
+											<option value="1934"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1934年</font></font></option>
+											<option value="1935"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1935年</font></font></option>
+											<option value="1936"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1936年</font></font></option>
+											<option value="1937"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1937年</font></font></option>
+											<option value="1938"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1938年</font></font></option>
+											<option value="1939"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1939年</font></font></option>
+											<option value="1940"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1940年</font></font></option>
+											<option value="1941"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1941年</font></font></option>
+											<option value="1942"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1942年</font></font></option>
+											<option value="1943"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1943年</font></font></option>
+											<option value="1944"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1944年</font></font></option>
+											<option value="1945"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1945年</font></font></option>
+											<option value="1946"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1946年</font></font></option>
+											<option value="1947"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1947年</font></font></option>
+											<option value="1948"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1948年</font></font></option>
+											<option value="1949"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1949年</font></font></option>
+											<option value="1950"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1950年</font></font></option>
+											<option value="1951"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1951年</font></font></option>
+											<option value="1952"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1952年</font></font></option>
+											<option value="1953"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1953年</font></font></option>
+											<option value="1954"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1954年</font></font></option>
+											<option value="1955"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1955年</font></font></option>
+											<option value="1956"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1956年</font></font></option>
+											<option value="1957"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1957年</font></font></option>
+											<option value="1958"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1958年</font></font></option>
+											<option value="1959"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1959年</font></font></option>
+											<option value="1960"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1960年</font></font></option>
+											<option value="1961"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1961年</font></font></option>
+											<option value="1962"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1962年</font></font></option>
+											<option value="1963"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1963年</font></font></option>
+											<option value="1964"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1964年</font></font></option>
+											<option value="1965"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1965年</font></font></option>
+											<option value="1966"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1966年</font></font></option>
+											<option value="1967"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1967年</font></font></option>
+											<option value="1968"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1968年</font></font></option>
+											<option value="1969"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1969年</font></font></option>
+											<option value="1970"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1970年</font></font></option>
+											<option value="1971"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1971年</font></font></option>
+											<option value="1972"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1972年</font></font></option>
+											<option value="1973"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1973年</font></font></option>
+											<option value="1974"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1974年</font></font></option>
+											<option value="1975"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1975年</font></font></option>
+											<option value="1976"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1976年</font></font></option>
+											<option value="1977"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1977年</font></font></option>
+											<option value="1978"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1978年</font></font></option>
+											<option value="1979"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1979年</font></font></option>
+											<option value="1980"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1980年</font></font></option>
+											<option value="1981"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1981年</font></font></option>
+											<option value="1982"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1982年</font></font></option>
+											<option value="1983"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1983年</font></font></option>
+											<option value="1984"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1984年</font></font></option>
+											<option value="1985"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1985年</font></font></option>
+											<option value="1986"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1986年</font></font></option>
+											<option value="1987"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1987年</font></font></option>
+											<option value="1988"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1988年</font></font></option>
+											<option value="1989"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1989年</font></font></option>
+											<option value="1990"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1990年</font></font></option>
+											<option value="1991"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1991年</font></font></option>
+											<option value="1992"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1992年</font></font></option>
+											<option value="1993"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1993年</font></font></option>
+											<option value="1994"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1994年</font></font></option>
+											<option value="1995"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1995年</font></font></option>
+											<option value="1996"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1996年</font></font></option>
+											<option value="1997"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1997年</font></font></option>
+											<option value="1998"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1998年</font></font></option>
+											<option value="1999" selected=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1999年</font></font></option>
+											<option value="2000"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2000年</font></font></option>
+											<option value="2001"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2001年</font></font></option>
+											<option value="2002"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2002年</font></font></option>
+											<option value="2003"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2003年</font></font></option>
+											<option value="2004"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2004年</font></font></option>
+											<option value="2005"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2005年</font></font></option>
+											<option value="2006"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2006年</font></font></option>
+											<option value="2007"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2007年</font></font></option>
+										</select>
+								</div>
+								<!-- 关于我 -->
+								<div class="pure-control-group">
+									<label for="id_about_me"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">关于我</font></font></label>
+									<textarea name="about_me" cols="40" rows="10" placeholder="简而言之，请介绍一下您自己" class="autosize autosized" style="height: 66px; overflow: hidden; overflow-wrap: break-word;" maxlength="500" id="id_about_me"></textarea>
+								</div>
+							</div>
+							
+							
+							<!-- 表单右侧 -->
+							<div class="pure-u-1 pure-u-lg-1-2">
+								<div style="width:40px;float:left;" class="hide-xs hide-sm hide-md">
+									&nbsp;
+								</div>
+								<div style="overflow:hidden">
+									<!-- 在线资料 -->
+									<h2 style="margin:0 0 20px;padding:0 0 8px;border-bottom:2px solid #ddd">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">在线资料
+											</font>
+										</font>
+									</h2>
+									<!-- 微信 -->
+									<div class="pure-control-group">
+										<label for="id_weixin">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">微信
+												</font>
+											</font>
+										</label>
+										<input type="url" name="weixin" placeholder="" id="id_weixin">
+									</div>
+									<!-- QQ -->
+									<div class="pure-control-group">
+										<label for="id_qq">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">QQ
+												</font>
+											</font>
+										</label>
+										<input type="url" name="qq" placeholder="https：//qq.com / ..." id="id_qq">
+									</div>
+									<!-- 选件 -->
+									<h2 style="margin:50px 0 20px;padding:0 0 8px;border-bottom:2px solid #ddd">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">选件
+											</font>
+										</font>
+									</h2>
+									<!-- 电子邮件地址 -->
+									<div class="pure-control-group">
+										<label for="id_email">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">电子邮件地址
+												</font>
+											</font>
+										</label>
+										<input type="email" name="email" value="" required="" id="id_email">
+									</div>
+									<!-- 登录使用 -->
+									<div id="connect_with" class="pure-control-group">
+										<label style="vertical-align:top">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">登陆使用
+												</font>
+											</font>
+										</label>
+										<a class="pure-button button-sm" href="#微信">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">微信
+												</font>
+											</font>
+										</a>
+										<a class="pure-button button-sm" href="#QQ">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">QQ
+												</font>
+											</font>
+										</a>
+									</div>
+									<!-- 通讯 -->
+									<div class="pure-control-group">
+										<label style="vertical-align:top;padding-top:5px;padding-right:4px;float:left">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">通讯
+												</font>
+											</font>
+										</label>
+										<div style="overflow:hidden;padding:1px">
+											<ul id="id_communication_options">
+												<li>
+													<label for="id_communication_options_0">
+														<input type="checkbox" name="communication_options" value="MESSAGES_DISABLED" id="id_communication_options_0">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">禁用私人消息
+															</font>
+														</font>
+													</label>
+												</li>
+												<li>
+													<label for="id_communication_options_1">
+														<input type="checkbox" name="communication_options" value="COMMENTS_DISABLED" id="id_communication_options_1">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">禁用评论
+															</font>
+														</font>
+													</label>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<!-- 邮件通知 -->
+									<div class="pure-control-group">
+										<label style="vertical-align:top;padding-top:5px;padding-right:4px;float:left">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">邮件通知
+												</font>
+											</font>
+										</label>
+										<div style="overflow:hidden;padding:1px">
+											<ul id="id_options">
+												<li>
+													<label for="id_options_0">
+														<input type="checkbox" name="options" value="MESSAGES" id="id_options_0" checked="">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">私人信息
+															</font>
+														</font>
+													</label>
+												</li>
+												<li>
+													<label for="id_options_1">
+														<input type="checkbox" name="options" value="NEWSLETTER" id="id_options_1" checked="">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">给我发送最新消息和提示
+															</font>
+														</font>
+													</label>
+												</li>
+												<li>
+													<label for="id_options_2">
+														<input type="checkbox" name="options" value="IMPORTANT" id="id_options_2" checked="">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">向我发送重要通知
+															</font>
+														</font>
+													</label>
+												</li>
+												<li>
+													<label for="id_options_3">
+														<input type="checkbox" name="options" value="COMMENTS" id="id_options_3" checked="">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">有新评论时通知我
+															</font>
+														</font>
+													</label>
+												</li>
+												<li>
+													<label for="id_options_4">
+														<input type="checkbox" name="options" value="FOLLOWING" id="id_options_4" checked="">
+														<font style="vertical-align: inherit;">
+															<font style="vertical-align: inherit;">朋友上传的新图片通知我
+															</font>
+														</font>
+													</label>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<!-- 更多 -->
+								<!-- 	<div class="pure-control-group">
+									<label style="vertical-align:top;text-transform:capitalize">
+										<font style="vertical-align: inherit;">
+											<font style="vertical-align: inherit;">更多
+											</font>
+										</font>
+									</label>
+									<span style="display:inline-block;margin:3px 0 0">
+										<a class="modal" data-w="320" href="/accounts/change_password/">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">更改密码
+												</font>
+											</font>
+										</a>
+										<a style="margin:8px 0 0;display:block" class="modal" href="#">
+											<font style="vertical-align: inherit;">
+												<font style="vertical-align: inherit;">删除帐户
+												</font>
+											</font>
+										</a>
+										</span>
+									</div>
+								 -->
+								</div>
+							</div>
+						</div>
+						<hr style="margin:20px 0 30px">
+						<!-- 保存按钮 -->
+						<div style="text-align:center">
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;">
+									<input type="submit" class="pure-button button-green" style="padding-left:120px;padding-right:120px" value="保存">
+								</font>
+							</font>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
-<div class="tab-content">
-	<div role="tabpanel" class="tab-pane" id="upload">
-		<h2>上传记录</h2>
-	</div>
-	<div role="tabpanel" class="tab-pane" id="collection">
-		<h2>收藏</h2>
-	</div>
-	<div role="tabpanel" class="tab-pane" id="concern">
-		<h2>关注</h2>
-	</div>
-	<div role="tabpanel" class="tab-pane active" id="setting">
-		<div class="infor">
-			<form>
-							<div class="sub-entry" style="margin-right:60px">
-								<p style="text-align:left;width:100%;font-size:30px;border-bottom:2px solid #ddd;margin:0 0 30px 50px;">个人档案</p>
-								<div class="con-line">
-									<label for="user_id">用户名</label><input type="text" name="username" value="" maxlength="25" id="user_id">
-								</div>
-								<div class="con-line">
-									<label for="user_name">姓名</label><input type="text" name="username" value="" maxlength="25" id="user_name">
-								</div>
-								
-								<div class="con-line">
-								<label for="id_gender">请选择</label>
-								<select name="gender" id="id_gender">
-								<option value="">---------</option>
-								<option value="m" selected>男</option>
-								<option value="f">女</option>
-								</select>
-								</div>
-								<div class="con-line">
-									<label for="country">国家</label>
-									<input type="text" name="username" value="" maxlength="25" id="country">
-								</div>
-								<div class="con-line">
-									<label for="city">省/市</label>
-									<input type="text" name="username" value="" maxlength="25" id="city">
-								</div>
-								<div class="con-line">
-								<label for="id_date_of_birth">出生日期</label>
-								<select name="date_of_birth_month" id="id_date_of_birth_month"><option value="">---</option>
-								<option value="1">January</option><option value="2" selected>February</option>
-								<option value="3">March</option><option value="4">April</option>
-								<option value="5">May</option><option value="6">June</option>
-								<option value="7">July</option><option value="8">August</option>
-								<option value="9">September</option><option value="10">October</option>
-								<option value="11">November</option><option value="12">December</option>
-								</select>
-								<select name="date_of_birth_day" id="id_date_of_birth_day"><option value="">---</option>
-								<option value="1">1</option><option value="2">2</option><option value="3">3</option>
-								<option value="4">4</option><option value="5">5</option><option value="6">6</option>
-								<option value="7">7</option><option value="8">8</option><option value="9">9</option>
-								<option value="10">10</option><option value="11">11</option><option value="12">12</option>
-								<option value="13">13</option><option value="14">14</option><option value="15">15</option>
-								<option value="16">16</option><option value="17">17</option><option value="18">18</option>
-								<option value="19">19</option><option value="20">20</option><option value="21">21</option>
-								<option value="22">22</option><option value="23">23</option><option value="24">24</option>
-								<option value="25">25</option><option value="26">26</option><option value="27">27</option>
-								<option value="28" selected>28</option><option value="29">29</option><option value="30">30</option>
-								<option value="31">31</option></select>
-								<select name="date_of_birth_year" id="id_date_of_birth_year"><option value="">---</option>
-								<option value="1930">1930</option><option value="1931">1931</option><option value="1932">1932</option><option value="1933">1933</option><option value="1934">1934</option>
-								<option value="1935">1935</option><option value="1936">1936</option><option value="1937">1937</option><option value="1938">1938</option><option value="1939">1939</option>
-								<option value="1940">1940</option><option value="1941">1941</option><option value="1942">1942</option><option value="1943">1943</option><option value="1944">1944</option>
-								<option value="1945">1945</option><option value="1946">1946</option><option value="1947">1947</option><option value="1948">1948</option><option value="1949">1949</option>
-								<option value="1950">1950</option><option value="1951">1951</option><option value="1952">1952</option><option value="1953">1953</option><option value="1954">1954</option>
-								<option value="1955">1955</option><option value="1956">1956</option><option value="1957">1957</option><option value="1958">1958</option><option value="1959">1959</option>
-								<option value="1960">1960</option><option value="1961">1961</option><option value="1962">1962</option><option value="1963">1963</option><option value="1964">1964</option>
-								<option value="1965">1965</option><option value="1966">1966</option><option value="1967">1967</option><option value="1968">1968</option><option value="1969">1969</option>
-								<option value="1970">1970</option><option value="1971">1971</option><option value="1972">1972</option><option value="1973">1973</option><option value="1974">1974</option>
-								<option value="1975">1975</option><option value="1976">1976</option><option value="1977">1977</option><option value="1978">1978</option><option value="1979">1979</option>
-								<option value="1980">1980</option><option value="1981">1981</option><option value="1982">1982</option><option value="1983">1983</option><option value="1984">1984</option>
-								<option value="1985">1985</option><option value="1986">1986</option><option value="1987">1987</option><option value="1988">1988</option><option value="1989">1989</option>
-								<option value="1990">1990</option><option value="1991">1991</option><option value="1992">1992</option><option value="1993">1993</option><option value="1994">1994</option>
-								<option value="1995">1995</option><option value="1996">1996</option><option value="1997">1997</option><option value="1998">1998</option><option value="1999">1999</option>
-								<option value="2000" selected>2000</option><option value="2001">2001</option><option value="2002">2002</option><option value="2003">2003</option><option value="2004">2004</option>
-								<option value="2005">2005</option><option value="2006">2006</option><option value="2007">2007</option></select>
-								</div>
-								<div class="con-line">
-								<label for="id_about_me">个人简介</label>
-								<textarea name="about_me" cols="40" rows="10" placeholder="请简单介绍你自己" class="autosize" style="height:80px;font-size:18px;vertical-align:top;" maxlength="500" id="id_about_me"></textarea>
-								</div>
-							</div>
-							<div class="sub-entry">
-								<p style="text-align:left;width:100%;font-size:30px;border-bottom:2px solid #ddd;margin:0 0 30px 50px;">在线文件夹</p>
-								<div class="con-line">
-									<label for="dir">website</label>
-									<input type="text" name="username" value="" maxlength="25" id="dir" placeholder="http://">
-								</div>
-								<p style="text-align:left;width:100%;font-size:30px;border-bottom:2px solid #ddd;margin:30px 0 30px 50px;">选项</p>
-								<div class="con-line">
-									<label for="mailbox">电子邮箱</label>
-									<input type="text" name="username" value="" maxlength="25" id="mailbox">
-								</div>
-								<div class="con-line">
-									<label style="vertical-align:top;padding-top:5px;padding-right:4px;float:left">交流</label>
-									<div style="overflow:hidden;padding:1px"><ul id="id_communication_options">
-									<li><label for="id_communication_options_0" style="font-size:20px;width:300px;text-align:left;"><input type="checkbox" name="communication_options" value="MESSAGES_DISABLED" id="id_communication_options_0">
-									禁用私人消息</label>
-									</li>
-									<li><label for="id_communication_options_1" style="font-size:20px;width:300px;text-align:left;"><input type="checkbox" name="communication_options" value="COMMENTS_DISABLED" id="id_communication_options_1">
-									禁用评论</label>
-									</li>
-									</ul></div>
-								</div>
-								<div class="con-line">
-									<label style="vertical-align:top;padding-top:5px;padding-right:4px;float:left">邮件通知</label>
-									<div style="overflow:hidden;padding:1px"><ul id="id_options">
-									<li><label for="id_options_0" style="font-size:20px;width:300px;text-align:left;"><input type="checkbox" name="options" value="MESSAGES" id="id_options_0">
-									重要通知</label>
-									</li>
-									<li><label for="id_options_1" style="font-size:20px;width:300px;text-align:left;"><input type="checkbox" name="options" value="FOLLOW" id="id_options_1">
-									朋友新照片提醒</label>
-									</li>
-									<li><label for="id_options_2" style="font-size:20px;width:300px;text-align:left;"><input type="checkbox" name="options" value="COMMENTS" id="id_options_2">
-									新评论</label>
-									</li>
-									</ul></div>
-								</div>
-								<p style="text-align:left;width:100%;font-size:30px;border-bottom:2px solid #ddd;margin:30px 0 30px 50px;">更多</p>
-								<div class="con-line">
-									<a href="#" style="font-size:22px;margin-left:100px">修改密码</a><br>
-									<a href="#" style="font-size:22px;margin-left:100px">删除账户</a>
-								</div>
-							</div>
-							<div style="text-align:center">
-							<input type="button" name="" onclick="" style="padding-left:120px;padding-right:120px;height:40px;margin-top:30px;" value="保存">
-							</div>
-						</form>
-		</div> 
-	</div>
-</div>
-<script src="js/jquery.min.js"></script>
+		
+		
+		
+		<script src="js/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 	</body>
 </html>

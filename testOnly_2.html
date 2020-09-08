@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>上传图片</title>
+    <script src="jquery.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <style>
+        /*背景层*/
+        #popLayer {
+            display: none;
+            background-color: #B3B3B3;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 10;/* 设置背景层和弹出层的上下位置，值越大越靠上显示 */
+            -moz-opacity: 0.8;/* 提供给mozilla firefox的css属性，用来控制透明度 */
+            opacity:.80;/* 控制透明度 */
+            filter: alpha(opacity=80);/* 只支持IE6、7、8、9 */
+        }
+
+        /*弹出层*/
+        .popBox {
+            display: none;
+            background-color: #FFFFFF;
+            z-index: 11;
+            width: 450px;
+            height: 500px;
+            position:fixed;
+            overflow: auto; /*当内容在可显示内容之外，生产自用的滚动条，与position: fixed一起用*/
+            top:0;
+            right:0;
+            left:0;
+            bottom:0;
+            margin:auto;
+            border:10px solid rgba(255,255,255,.5);
+            background-clip:padding-box;
+        }
+
+        .popBox .close{
+            text-align: right;
+            margin-right: 5px;
+            background-color: #F8F8F8;
+        }
+
+        /*关闭按钮*/
+        .popBox .close a {
+            text-decoration: none;
+            color: #2D2C3B;
+        }
+    </style>
+</head>
+<body>
+<!--弹出按钮-->
+<input type="button" name="popBox" value="上传图片" onclick="popBox()">
+<input type="button" name="popBox" value="搜索相似图片" onclick="popBox_search()">
+<!--背景层-->
+<div id="popLayer"></div>
+<!--弹出框-->
+<div class="popBox" id="popBox_upload">
+    <!--关闭按钮-->
+    <div class="close">
+        <a href="javascript:void(0)" onclick="closeBox()">关闭</a>
+    </div>
+    <!--上传图片标题-->
+    <div class="content" style="text-align: center">上传图片到图库系统</div>
+    <br>
+    <!--给上传的图片添加标签-->
+    <form class="layui-form">
+        <div style="padding: 10px;">
+            <div class="layui-form-item">
+                <label class="layui-input-inline">标签1(必填)：</label>
+                <input type="text" class="layui-input" id="tag1">
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-input-inline">标签2(选填)：</label>
+                <input type="text" class="layui-input" id="tag2">
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-input-inline">标签3(选填)：</label>
+                <input type="text" class="layui-input" id="tag3">
+            </div>
+        </div>
+    </form>
+    <br>
+    <!--复选框，遵循上传图片协议-->
+    <form style="padding-left:10px;padding-right:10px">
+        <input type="checkbox" name="agreement" value="agree_1" id="agree_1" onclick="checkAgree()">我同意放弃所上传图片的所有权，图片归图库系统所有。<br>
+        <input type="checkbox" name="agreement" value="agree_2" id="agree_2" onclick="checkAgree()">我保证所上传的图片并非盗用或涉及其他非法行为。
+    </form>
+    <br>
+    <!--上传图片-->
+    <div class="layui-form-item" style="padding-left:10px;padding-right:10px">
+        <div class="layui-input-block">
+            <input type="hidden" id="img_url">
+            <input type="file" onchange="showImg()" id="img_file">
+            <br><img src="" alt="" id="img_id" style="height: 150px">
+        </div>
+    </div>
+    <br>
+    <!--提交图片按钮-->
+    <div style="text-align: center">
+        <button id="submit" disabled="disabled" onclick="check()">提交图片</button>
+    </div>
+
+</div>
+
+<!--弹出框_搜索相似图片-->
+<div class="popBox" id="popBox_search" style="width:450px;height:330px;">
+    <!--关闭按钮-->
+    <div class="close">
+        <a href="javascript:void(0)" onclick="closeBox_search()">关闭</a>
+    </div>
+    <!--上传图片标题-->
+    <div class="content" style="text-align: center">上传图片以搜索相似图片</div>
+    <br>
+    <!--上传图片-->
+    <div class="layui-form-item" style="padding-left:10px;padding-right:10px">
+        <div class="layui-input-block">
+            <input type="hidden" id="img_url_search">
+            <input type="file" onchange="showImg_search()" id="img_file_search">
+            <br><img src="" alt="" id="img_id_search" style="height: 150px">
+        </div>
+    </div>
+    <br>
+    <!--提交图片按钮-->
+    <div style="text-align: center">
+        <button id="submit_search"  onclick="check_search()">提交图片</button>
+    </div>
+
+</div>
+<script>
+    /*点击弹出按钮*/
+    function popBox() {
+        var popBox = document.getElementById("popBox_upload");
+        var popLayer = document.getElementById("popLayer");
+        popBox.style.display = "block";
+        popLayer.style.display = "block";
+    }
+
+    /*点击关闭按钮*/
+    function closeBox() {
+        var popBox = document.getElementById("popBox_upload");
+        var popLayer = document.getElementById("popLayer");
+        popBox.style.display = "none";
+        popLayer.style.display = "none";
+    }
+
+    /*上传图片并展示*/
+    function showImg(){
+        //判断是否支持FileReader
+        if (window.FileReader) {
+            var re = new FileReader();
+        } else {
+            alert("您的设备不支持图片预览功能，如需该功能请升级您的设备！");
+        }
+        //获取文件
+        var file =  document.getElementById('img_file').files[0];
+        if(!/\.(jpg)$/.test(file.name)){
+            alert("系统只接受jpg格式的图片！请重新上传！");
+            $('#img_id').attr("src", '');
+            return;
+        }
+
+        re.readAsDataURL(file);
+        re.onload = function(re){
+            $('#img_id').attr("src", re.target.result);//图片路径设置为读取的图片
+        }
+    }
+
+    /*监听遵循协议按钮，若两者都选，则提交按钮可用*/
+    function checkAgree(){
+        if(document.getElementById('agree_1').checked==true &&
+            document.getElementById('agree_2').checked==true)
+            document.getElementById("submit").removeAttribute("disabled");
+        else
+            document.getElementById("submit").setAttribute("disabled", true);
+    }
+
+    /*提交后检查，图片格式是否为jpg,标签1是否为空*/
+    function check(){
+        var file =  document.getElementById('img_file').files[0];
+        if(!/\.(jpg)$/.test(file.name)){
+            alert("提交失败！图片格式必须为jpg！");
+            return;
+        }
+        var tag=$("#tag1").val();
+        if(tag == null || tag ==""){
+            alert("提交失败！标签1不能为空！");
+            return;
+        }
+        else{
+            alert("提交成功！");
+            closeBox();
+        }
+    }
+
+    /*相似图片上传，全部类似的js部分*/
+    /*点击弹出按钮*/
+    function popBox_search() {
+        var popBox = document.getElementById("popBox_search");
+        var popLayer = document.getElementById("popLayer");
+        popBox.style.display = "block";
+        popLayer.style.display = "block";
+    }
+
+    /*点击关闭按钮*/
+    function closeBox_search() {
+        var popBox = document.getElementById("popBox_search");
+        var popLayer = document.getElementById("popLayer");
+        popBox.style.display = "none";
+        popLayer.style.display = "none";
+    }
+    /*上传图片并展示*/
+    function showImg_search(){
+        //判断是否支持FileReader
+        if (window.FileReader) {
+            var re = new FileReader();
+        } else {
+            alert("您的设备不支持图片预览功能，如需该功能请升级您的设备！");
+        }
+        //获取文件
+        var file =  document.getElementById('img_file_search').files[0];
+        if(!/\.(jpg)$/.test(file.name)){
+            alert("系统只接受jpg格式的图片！请重新上传！");
+            $('#img_id_search').attr("src", '');
+            return;
+        }
+
+        re.readAsDataURL(file);
+        re.onload = function(re){
+            $('#img_id_search').attr("src", re.target.result);//图片路径设置为读取的图片
+        }
+    }
+
+    /*提交后检查，图片格式是否为jpg*/
+    function check_search(){
+        var file =  document.getElementById('img_file_search').files[0];
+        if(!/\.(jpg)$/.test(file.name)){
+            alert("提交失败！图片格式必须为jpg！");
+            return;
+        }
+        else{
+            alert("提交成功！");
+            closeBox_search();
+        }
+    }
+
+</script>
+</body>
+</html>

@@ -150,4 +150,3 @@ D:\github\Picture-community\Back-End\PicCommunitity\obj\Debug\netcoreapp3.1\PicC
 D:\github\Picture-community\Back-End\PicCommunitity\obj\Debug\netcoreapp3.1\PicCommunitity.genruntimeconfig.cache
 D:\github\Picture-community\Back-End\PicCommunitity\obj\Debug\netcoreapp3.1\Razor\Views\Account\login.cshtml.g.cs
 D:\github\Picture-community\Back-End\PicCommunitity\obj\Debug\netcoreapp3.1\Razor\Views\Account\register.cshtml.g.cs
-D:\github\Picture-community\Back-End\PicCommunitity\obj\Debug\netcoreapp3.1\Razor\Views\Personal\Picture.cshtml.g.cs

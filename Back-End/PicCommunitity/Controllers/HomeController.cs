@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PicCommunitity.Models;
 
 namespace PicCommunitity.Controllers
 {
-    [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class HomeController : Controller
     {
 
@@ -17,9 +18,15 @@ namespace PicCommunitity.Controllers
         }
         [Route("Index")]
         [HttpGet]
-        public blog Index()
+        public IActionResult Index()
         {
-            return null;
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                ViewBag.UserName = HttpContext.User.Claims.First().Value;
+                ViewBag.logined = true;
+            }
+            else ViewBag.logined = false;
+            return View();
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿@page
-@model PicCommunitity.Views.Account.registerModel
+﻿@model PicCommunitity.ViewsModels.registerUser
     <!DOCTYPE html>
     <html lang="zh">
     <head>
@@ -109,20 +108,21 @@
                             </a>
                         </div>
                         <!-- 输入账户和密码的表单 -->
-                        <form id="login_form" spellcheck="false" class="right_side pure-form" action="." method="post">
+                        <form id="login_form" spellcheck="false" class="right_side pure-form" method="post">
                             <p>
-                                <input type="text" name="username" data-autofocus placeholder="用户名" maxlength="50" required="" id="id_username">
+                                <input asp-for="userName" type="text" data-autofocus placeholder="用户名" maxlength="50">
                             </p>
                             <p>
-                                <input type="password" name="password" placeholder="密码" required="" id="id_password">
+                                <input asp-for="userPassword" type="password" placeholder="密码">
                             </p>
-                            <!-- 登录按钮 -->
-                            <div>
-                                <div></div>
-                                <input style="text-align:center" class="pure-button button-green" data-sitekey="" data-callback="" type="submit" value="登录">
-                            </div>
-                        </form>
+                            <div asp-validation-summary="All" style="color:red"></div>
+                    <!-- 登录按钮 -->
+                    <div>
+                        <div></div>
+                        <input style="text-align:center" class="pure-button button-green" type="submit" value="注册">
                     </div>
+                    </form>
+                </div>
 
                     <div style="padding:20px 25px;background:#f7f7f7;font-size:13px;line-height:1.7;text-align:center">
                         <a href="#">重设你的密码</a>

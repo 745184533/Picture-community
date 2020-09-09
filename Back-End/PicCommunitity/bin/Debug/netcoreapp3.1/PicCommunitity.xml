@@ -16,6 +16,7 @@
             </summary>
             <returns></returns>
         </member>
+        <!-- Badly formed XML comment ignored for member "M:PicCommunitity.Controllers.PicturesController.DownLoad(System.String)" -->
         <member name="T:PicCommunitity.Tools.CorsMiddleware">
             <summary>
             CORS 中间件 【解决跨域问题】

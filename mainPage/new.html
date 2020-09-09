@@ -221,6 +221,7 @@
 			for(var i=0;i<6;i++)
 			{
 				var photoNode=createPhoto(i);
+				var photoA=document.createElement("a");
 				var image=document.createElement("img");
 				var btnZ=document.createElement("button");
 				var btnS=document.createElement("button");
@@ -228,12 +229,14 @@
 				var spanS=document.createElement("span");
 				var aaa=document.createElement("a");
 				var spanCn=document.createElement("span");
+				photoA.href="#";
+				photoNode.appendChild(photoA);
 				image.style.width="430px";
 				image.style.height="280px";
 				image.src=paths[i];
 				image.style.padding='10px';
 				image.style.zIndex="2";
-				photoNode.appendChild(image);
+				photoA.appendChild(image);
 				btnZ.style.position="absolute";
 				btnZ.style.top=240+"px";
 				btnZ.style.left=220+"px";
@@ -285,164 +288,40 @@
 			btn.style.letterSpacing="2px";
 			var arraySpan=document.querySelectorAll("span");
 			console.log(arraySpan);
-			arrayZ[0].onclick=function(){
-					if(markZs[0]==0)
+			arrayS.forEach(function(item,index){
+				item.onclick=function(){
+					if(markSs[index]==0)
 					{
-						arrayZn[0]++;
-						markZs[0]=1;
+						arraySn[index]++;
+						markSs[index]=1;
+						console.log(arraySn[index]);					
 					}
-					else if(markZs[0]==1)
+					else if(markSs[index]==1)
 					{
-						arrayZn[0]--;
-						markZs[0]=0;
+						arraySn[index]--;
+						markSs[index]=0;
+						console.log(arraySn[index]);
 					}
-					arraySpan[2].innerHTML=arrayZn[0];
+					arraySpan[3+3*index].innerHTML=arraySn[index];
 				}
-				arrayZ[1].onclick=function(){
-					if(markZs[1]==0)
+			});
+			arrayZ.forEach(function(item,index){
+				item.onclick=function(){
+					if(markZs[index]==0)
 					{
-						arrayZn[1]++;
-						markZs[1]=1;
+						arrayZn[index]++;
+						markZs[index]=1;
+						console.log(arrayZn[index]);					
 					}
-					else if(markZs[1]==1)
+					else if(markZs[index]==1)
 					{
-						arrayZn[1]--;
-						markZs[1]=0;
+						arrayZn[index]--;
+						markZs[index]=0;
+						console.log(arrayZn[index]);
 					}
-					arraySpan[5].innerHTML=arrayZn[1];
-				}	
-				arrayZ[2].onclick=function(){
-					if(markZs[2]==0)
-					{
-						arrayZn[2]++;
-						markZs[2]=1;
-					}
-					else if(markZs[2]==1)
-					{
-						arrayZn[2]--;
-						markZs[2]=0;
-					}
-					arraySpan[8].innerHTML=arrayZn[2];
+					arraySpan[2+3*index].innerHTML=arrayZn[index];
 				}
-				arrayZ[3].onclick=function(){
-					if(markZs[3]==0)
-					{
-						arrayZn[3]++;
-						markZs[3]=1;
-					}
-					else if(markZs[3]==1)
-					{
-						arrayZn[3]--;
-						markZs[3]=0;
-					}
-					arraySpan[11].innerHTML=arrayZn[3];
-				}
-				arrayZ[4].onclick=function(){
-					if(markZs[4]==0)
-					{
-						arrayZn[4]++;
-						markZs[4]=1;
-					}
-					else if(markZs[4]==1)
-					{
-						arrayZn[4]--;
-						markZs[4]=0;
-					}
-					arraySpan[14].innerHTML=arrayZn[4];
-				}
-				arrayZ[5].onclick=function(){
-					if(markZs[5]==0)
-					{
-						arrayZn[5]++;
-						markZs[5]=1;
-					}
-					else if(markZs[5]==1)
-					{
-						arrayZn[5]--;
-						markZs[5]=0;
-					}
-					arraySpan[17].innerHTML=arrayZn[5];
-				}
-				arrayS[0].onclick=function(){
-					if(markSs[0]==0)
-					{
-						arraySn[0]++;
-						markSs[0]=1;
-						console.log(arraySn[0]);					
-					}
-					else if(markSs[0]==1)
-					{
-						arraySn[0]--;
-						markSs[0]=0;
-						console.log(arraySn[0]);
-					}
-					arraySpan[3].innerHTML=arraySn[0];
-				}
-				arrayS[1].onclick=function(){
-					if(markSs[1]==0)
-					{
-						arraySn[1]++;
-						markSs[1]=1;						
-					}
-					else if(markSs[1]==1)
-					{
-						arraySn[1]--;
-						markSs[1]=0;
-					}
-					arraySpan[6].innerHTML=arraySn[1];
-				}
-				arrayS[2].onclick=function(){
-					if(markSs[2]==0)
-					{
-						arraySn[2]++;
-						markSs[2]=1;						
-					}
-					else if(markSs[2]==1)
-					{
-						arraySn[2]--;
-						markSs[2]=0;
-					}
-					arraySpan[9].innerHTML=arraySn[2];
-				}
-				arrayS[3].onclick=function(){
-					if(markSs[3]==0)
-					{
-						arraySn[3]++;
-						markSs[3]=1;						
-					}
-					else if(markSs[3]==1)
-					{
-						arraySn[3]--;
-						markSs[3]=0;
-					}
-					arraySpan[12].innerHTML=arraySn[3];
-				}
-				arrayS[4].onclick=function(){
-					if(markSs[4]==0)
-					{
-						arraySn[4]++;
-						markSs[4]=1;						
-					}
-					else if(markSs[4]==1)
-					{
-						arraySn[4]--;
-						markSs[4]=0;
-					}
-					arraySpan[15].innerHTML=arraySn[4];
-				}
-				arrayS[5].onclick=function(){
-					if(markSs[5]==0)
-					{
-						arraySn[5]++;
-						markSs[5]=1;						
-					}
-					else if(markSs[5]==1)
-					{
-						arraySn[5]--;
-						markSs[5]=0;
-					}
-					arraySpan[18].innerHTML=arraySn[5];
-				}
+			});
 		</script>
 	</body>
 </html>

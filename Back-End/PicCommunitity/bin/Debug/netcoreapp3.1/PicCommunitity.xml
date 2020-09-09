@@ -4,5 +4,36 @@
         <name>PicCommunitity</name>
     </assembly>
     <members>
+        <member name="M:PicCommunitity.Controllers.AccountController.login(PicCommunitity.ViewsModel.LoginUser)">
+            <summary>
+            用户登录
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PicCommunitity.Controllers.AccountController.register(System.String,System.String)">
+            <summary>
+            用户注册
+            </summary>
+            <param name="userName"></param>
+            <param name="userPassword"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PicCommunitity.Controllers.AccountController.getAllUsers">
+            <summary>
+            获取当前所有用户信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:PicCommunitity.ViewsModel.LoginUser.userName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:PicCommunitity.ViewsModel.LoginUser.userPassword">
+            <summary>
+            登陆密码
+            </summary>
+        </member>
     </members>
 </doc>

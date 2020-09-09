@@ -58,7 +58,6 @@ namespace PicCommunitity
             //        options.LoginPath = "/Account/Login";
             //        options.Cookie.HttpOnly = true;
             //    });
-            services.AddScoped<IDBRepository, SQLDBRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

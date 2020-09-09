@@ -11,18 +11,15 @@ namespace PicCommunitity.Controllers
     [Route("[controller]")]
     public class HomeController : Controller
     {
-        private IDBRepository dbRepository;
 
-        public HomeController(IDBRepository dbRepository)
+        public HomeController()
         {
-            this.dbRepository = dbRepository;
         }
         [Route("Index")]
         [HttpGet]
         public blog Index()
         {
-            var textBlog = dbRepository.GetFirstBlog();
-            return textBlog;
+            return null;
         }
     }
 }

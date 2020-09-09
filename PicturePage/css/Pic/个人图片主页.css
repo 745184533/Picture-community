@@ -89,10 +89,9 @@ header {
 /* More info */
 .intro {
 	/*background-color: #FFFFFF;*/
-	background-image:url(Ink Cloud.jpg);
+	background-image:url(../../Yosemite 4.jpg);
 	background-size:cover;
 	background-repeat: no-repeat;
-	background-attachment: fixed;
 	padding-bottom: 50px;
 	overflow: hidden;
 }

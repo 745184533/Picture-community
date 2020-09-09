@@ -182,6 +182,10 @@ hr {
 	width: 10em;
 	margin: 0 1em 0 0;
 }
+form ul label {
+    text-align: left!important;
+    white-space: nowrap;
+}
 .image_container:not(.has_profile_image) a, .image_container.has_profile_image span {
     display: none;
 }

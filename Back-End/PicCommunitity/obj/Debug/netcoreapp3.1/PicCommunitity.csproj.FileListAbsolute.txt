@@ -164,3 +164,14 @@ E:\Github\Picture-community\Back-End\PicCommunitity\obj\Debug\netcoreapp3.1\PicC
 E:\Github\Picture-community\Back-End\PicCommunitity\obj\Debug\netcoreapp3.1\PicCommunitity.MvcApplicationPartsAssemblyInfo.cache
 E:\Github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\Microsoft.DotNet.PlatformAbstractions.dll
 E:\Github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll
+D:\github\Picture-community\Back-End\PicCommunitity\obj\Debug\netcoreapp3.1\PicCommunitity.MvcApplicationPartsAssemblyInfo.cs
+D:\github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+D:\github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\Microsoft.DotNet.PlatformAbstractions.dll
+D:\github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll
+D:\github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+D:\github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+D:\github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+D:\github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+D:\github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll

@@ -26,6 +26,13 @@
 </head>
 
 <body>
+    <!-- 背景图设置 -->
+    <svg id="bg_svg" viewBox="0 0 640 427" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
+        <filter id="blur">
+            <feGaussianBlur stdDeviation="5"></feGaussianBlur>
+        </filter>
+        <image xlink:href="https://cdn.pixabay.com/photo/2020/05/26/13/22/puffins-5223057_640.jpg" width="640" height="427" filter="url(#blur)"></image>
+    </svg>
 
     <!--=====================================================header==================================================-->
     <div class="title-style">
@@ -118,15 +125,15 @@
                     <!-- 输入账户和密码的表单 -->
                     <form id="login_form" spellcheck="false" class="right_side pure-form" method="post">
                         <p>
-                            <input asp-for="userName" type="text"  data-autofocus placeholder="用户名" maxlength="50">
+                            <input asp-for="userName" type="text" data-autofocus placeholder="用户名" maxlength="50">
                         </p>
                         <p>
-                            <input asp-for="userPassword" type="password"  placeholder="密码" >
+                            <input asp-for="userPassword" type="password" placeholder="密码">
                         </p>
                         <!-- 登录按钮 -->
                         <div>
                             <div></div>
-                            <input style="text-align:center" class="pure-button button-green" type="submit" value="登录"/>
+                            <input style="text-align:center" class="pure-button button-green" type="submit" value="登录" />
                         </div>
                     </form>
                 </div>

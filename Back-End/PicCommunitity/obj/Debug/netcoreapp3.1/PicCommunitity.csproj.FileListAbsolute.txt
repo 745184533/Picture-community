@@ -158,7 +158,9 @@ E:\Github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\Micr
 E:\Github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 E:\Github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 E:\Github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+E:\Github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\PicCommunitity.xml
 E:\Github\Picture-community\Back-End\PicCommunitity\obj\Debug\netcoreapp3.1\PicCommunitity.csproj.CoreCompileInputs.cache
 E:\Github\Picture-community\Back-End\PicCommunitity\obj\Debug\netcoreapp3.1\PicCommunitity.MvcApplicationPartsAssemblyInfo.cs
 E:\Github\Picture-community\Back-End\PicCommunitity\obj\Debug\netcoreapp3.1\PicCommunitity.MvcApplicationPartsAssemblyInfo.cache
-E:\Github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\PicCommunitity.xml
+E:\Github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\Microsoft.DotNet.PlatformAbstractions.dll
+E:\Github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll

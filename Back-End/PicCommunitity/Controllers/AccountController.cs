@@ -56,6 +56,16 @@ namespace PicCommunitity.Controllers
             return user;
         }
         /// <summary>
+        /// 测试Swagger
+        /// </summary>
+        /// <returns></returns>
+        [Route("test")]
+        [HttpGet]
+        public bool test()
+        {
+            return true;
+        }
+        /// <summary>
         /// 获取当前所有用户信息
         /// </summary>
         /// <returns></returns>

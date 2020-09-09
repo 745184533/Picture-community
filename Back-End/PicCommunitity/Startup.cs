@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PicCommunitity.Models;
+using PicCommunitity.Tools;
 
 namespace PicCommunitity
 {
@@ -27,6 +28,12 @@ namespace PicCommunitity
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("any",
+                builder =>  builder.WithOrigins("http://localhost:44362").AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
+
+            });
             services.AddControllersWithViews().AddNewtonsoftJson();
             services.AddDbContextPool<AppDbContext>(options =>
                 options.UseMySQL(_config.GetConnectionString("DBConnection"))
@@ -75,10 +82,15 @@ namespace PicCommunitity
 
 
             app.UseStaticFiles();
-            app.UseHttpsRedirection();
+
             app.UseRouting();
-            app.UseCors();
+
+            app.UseCors("any");
+
+            //app.UseHttpsRedirection();
+
             app.UseAuthentication();
+
             app.UseAuthorization();
             //app.UseMvc(routes =>
             //{

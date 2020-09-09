@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -6,7 +6,7 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <NoWarn>1701;1702;1591;</NoWarn>
-    <DocumentationFile>E:\Github\Picture-community\Back-End\PicCommunitity\PicCommunitity.xml</DocumentationFile>
+    <DocumentationFile>D:\MyTools\WorkPages\项目\Picture-community2.0\Back-End\PicCommunitity\PicCommunitity.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

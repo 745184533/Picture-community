@@ -6,18 +6,21 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace PicCommunitity.Controllers
 {
-    [Route("[controller]/[action]")]
+    [ApiController]
+    [Route("[controller]")]
     public class AccountController : Controller
     {
-        [Route("/Account/login")]
-        public IActionResult login()
+        [Route("login")]
+        [HttpGet]
+        public JsonResult login()
         {
-            return View();
+            return Json(new { name="test"});
         }
-        [Route("/Account/register")]
+        [Route("register")]
+        [HttpGet]
         public IActionResult register()
         {
-            return View();
+            return Json(new { status="创建成功"});
         }
     }
 }

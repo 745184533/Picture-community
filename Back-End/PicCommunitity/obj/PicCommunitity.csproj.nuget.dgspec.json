@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\github\\Picture-community\\Back-End\\PicCommunitity\\PicCommunitity.csproj": {}
+    "E:\\Github\\Picture-community\\Back-End\\PicCommunitity\\PicCommunitity.csproj": {}
   },
   "projects": {
-    "D:\\github\\Picture-community\\Back-End\\PicCommunitity\\PicCommunitity.csproj": {
+    "E:\\Github\\Picture-community\\Back-End\\PicCommunitity\\PicCommunitity.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\github\\Picture-community\\Back-End\\PicCommunitity\\PicCommunitity.csproj",
+        "projectUniqueName": "E:\\Github\\Picture-community\\Back-End\\PicCommunitity\\PicCommunitity.csproj",
         "projectName": "PicCommunitity",
-        "projectPath": "D:\\github\\Picture-community\\Back-End\\PicCommunitity\\PicCommunitity.csproj",
-        "packagesPath": "C:\\Users\\Lee\\.nuget\\packages\\",
-        "outputPath": "D:\\github\\Picture-community\\Back-End\\PicCommunitity\\obj\\",
+        "projectPath": "E:\\Github\\Picture-community\\Back-End\\PicCommunitity\\PicCommunitity.csproj",
+        "packagesPath": "C:\\Users\\89254\\.nuget\\packages\\",
+        "outputPath": "E:\\Github\\Picture-community\\Back-End\\PicCommunitity\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Lee\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\89254\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -49,6 +46,10 @@
               "target": "Package",
               "version": "[3.1.7, )"
             },
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[3.1.8, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[3.1.7, )"
@@ -70,6 +71,10 @@
             "SapientGuardian.EntityFrameworkCore.MySql": {
               "target": "Package",
               "version": "[7.1.23, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[5.5.1, )"
             }
           },
           "imports": [
@@ -90,7 +95,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

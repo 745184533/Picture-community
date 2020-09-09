@@ -1,0 +1,44 @@
+/*背景层*/
+#popLayer {
+    display: none;
+    background-color: #B3B3B3;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10;/* 设置背景层和弹出层的上下位置，值越大越靠上显示 */
+    -moz-opacity: 0.8;/* 提供给mozilla firefox的css属性，用来控制透明度 */
+    opacity:.80;/* 控制透明度 */
+    filter: alpha(opacity=80);/* 只支持IE6、7、8、9 */
+}
+
+/*弹出层*/
+.popBox {
+    display: none;
+    background-color: #FFFFFF;
+    z-index: 11;
+    width: 450px;
+    height: 500px;
+    position:fixed;
+    overflow: auto; /*当内容在可显示内容之外，生产自用的滚动条，与position: fixed一起用*/
+    top:0;
+    right:0;
+    left:0;
+    bottom:0;
+    margin:auto;
+    border:10px solid rgba(255,255,255,.5);
+    background-clip:padding-box;
+}
+
+.popBox .close{
+    text-align: right;
+    margin-right: 5px;
+    background-color: #F8F8F8;
+}
+
+/*关闭按钮*/
+.popBox .close a {
+    text-decoration: none;
+    color: #2D2C3B;
+}

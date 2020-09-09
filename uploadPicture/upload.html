@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>上传图片</title>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/uploadPicture.css">
+    <script type="text/javascript" src="js/uploadPicture.js"></script>
+</head>
+<body>
+<!--弹出按钮-->
+<input type="button" name="popBox" value="上传图片" onclick="popBox()">
+<input type="button" name="popBox" value="搜索相似图片" onclick="popBox_search()">
+<!--背景层-->
+<div id="popLayer"></div>
+<!--弹出框-->
+<div class="popBox" id="popBox_upload">
+    <!--关闭按钮-->
+    <div class="close">
+        <a href="javascript:void(0)" onclick="closeBox()">关闭</a>
+    </div>
+    <!--上传图片标题-->
+    <div class="content" style="text-align: center">上传图片到图库系统</div>
+    <br>
+    <!--给上传的图片添加标签-->
+    <form class="layui-form">
+        <div style="padding: 10px;">
+            <div class="layui-form-item">
+                <label class="layui-input-inline">标签1(必填)：</label>
+                <input type="text" class="layui-input" id="tag1">
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-input-inline">标签2(选填)：</label>
+                <input type="text" class="layui-input" id="tag2">
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-input-inline">标签3(选填)：</label>
+                <input type="text" class="layui-input" id="tag3">
+            </div>
+        </div>
+    </form>
+    <br>
+    <!--复选框，遵循上传图片协议-->
+    <form style="padding-left:10px;padding-right:10px">
+        <input type="checkbox" name="agreement" value="agree_1" id="agree_1" onclick="checkAgree()">我同意放弃所上传图片的所有权，图片归图库系统所有。<br>
+        <input type="checkbox" name="agreement" value="agree_2" id="agree_2" onclick="checkAgree()">我保证所上传的图片并非盗用或涉及其他非法行为。
+    </form>
+    <br>
+    <!--上传图片-->
+    <div class="layui-form-item" style="padding-left:10px;padding-right:10px">
+        <div class="layui-input-block">
+            <input type="hidden" id="img_url">
+            <input type="file" onchange="showImg()" id="img_file">
+            <br><img src="" alt="" id="img_id" style="height: 150px">
+        </div>
+    </div>
+    <br>
+    <!--提交图片按钮-->
+    <div style="text-align: center">
+        <button id="submit" disabled="disabled" onclick="check()">提交图片</button>
+    </div>
+
+</div>
+
+<!--弹出框_搜索相似图片-->
+<div class="popBox" id="popBox_search" style="width:450px;height:330px;">
+    <!--关闭按钮-->
+    <div class="close">
+        <a href="javascript:void(0)" onclick="closeBox_search()">关闭</a>
+    </div>
+    <!--上传图片标题-->
+    <div class="content" style="text-align: center">上传图片以搜索相似图片</div>
+    <br>
+    <!--上传图片-->
+    <div class="layui-form-item" style="padding-left:10px;padding-right:10px">
+        <div class="layui-input-block">
+            <input type="hidden" id="img_url_search">
+            <input type="file" onchange="showImg_search()" id="img_file_search">
+            <br><img src="" alt="" id="img_id_search" style="height: 150px">
+        </div>
+    </div>
+    <br>
+    <!--提交图片按钮-->
+    <div style="text-align: center">
+        <button id="submit_search"  onclick="check_search()">提交图片</button>
+    </div>
+
+</div>
+
+</body>
+</html>

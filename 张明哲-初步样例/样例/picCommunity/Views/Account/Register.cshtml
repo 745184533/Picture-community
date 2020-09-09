@@ -1,0 +1,27 @@
+﻿@model picCommunity.ViewModels.RegisterViewModel;
+<div class="loginFrame">
+    <div class="icon">
+        <img src="wwwroot/images/icon.png"></img>
+    </div>
+    <div class="loginTitle">账号注册</div>
+    <form class="loginInput" method="post">
+        <texttitle>账号</texttitle><br />
+        <input asp-for="u_name" placeholder="用户名"><br />
+        <span asp-validation-for="u_name" style="color:red"></span>
+        <texttitle style="top:60px;">密码</texttitle><br />
+        <input asp-for="u_password" type="password" placeholder="输入6-18位密码" style="top:70px;"><br />
+        <span asp-validation-for="u_password" style="color:red"></span>
+        <texttitle style="top:110px;left:160px">确认密码</texttitle><br />
+        <input asp-for="confirm_u_password" placeholder="确认密码" style="top:120px;"><br />
+        <span asp-validation-for="confirm_u_password" style="color:red"></span>
+        <texttitle style="top:110px;left:160px">用户类型</texttitle><br />
+        <input asp-for="u_type" placeholder="（AD/US）" style="top:170px;"><br />
+        <span asp-validation-for="u_type" style="color:red"></span>
+        <p><a href="./login.html" target="_top">已有帐户？登陆</a></p>
+        <div class="enterButton">
+            <button type="submit">
+                现在注册
+            </button>
+        </div>
+    </form>
+</div>

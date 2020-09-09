@@ -1,0 +1,18 @@
+﻿@model IEnumerable<picCommunity.Models.Users>
+
+<h1>HelloWorld!</h1>
+<div>
+    @foreach (var user in Model)
+    {
+    <div style="background-color:lightblue">
+        <h4>u_id=@user.u_id</h4>
+        <h4>u_name=@user.u_name</h4>
+        <h4>u_status=@user.u_status</h4>
+        <h4>u_type=@user.u_type</h4>
+    </div>
+    }
+    <div class="operation">
+        <a asp-action="Register" asp-controller="Account">注册用户</a>
+    </div>
+
+</div>

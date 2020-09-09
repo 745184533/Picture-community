@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Github\\Picture-community\\Back-End\\PicCommunitity\\PicCommunitity.csproj": {}
+    "D:\\github\\Picture-community\\Back-End\\PicCommunitity\\PicCommunitity.csproj": {}
   },
   "projects": {
-    "E:\\Github\\Picture-community\\Back-End\\PicCommunitity\\PicCommunitity.csproj": {
+    "D:\\github\\Picture-community\\Back-End\\PicCommunitity\\PicCommunitity.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Github\\Picture-community\\Back-End\\PicCommunitity\\PicCommunitity.csproj",
+        "projectUniqueName": "D:\\github\\Picture-community\\Back-End\\PicCommunitity\\PicCommunitity.csproj",
         "projectName": "PicCommunitity",
-        "projectPath": "E:\\Github\\Picture-community\\Back-End\\PicCommunitity\\PicCommunitity.csproj",
-        "packagesPath": "C:\\Users\\89254\\.nuget\\packages\\",
-        "outputPath": "E:\\Github\\Picture-community\\Back-End\\PicCommunitity\\obj\\",
+        "projectPath": "D:\\github\\Picture-community\\Back-End\\PicCommunitity\\PicCommunitity.csproj",
+        "packagesPath": "C:\\Users\\Lee\\.nuget\\packages\\",
+        "outputPath": "D:\\github\\Picture-community\\Back-End\\PicCommunitity\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\89254\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Lee\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -99,7 +102,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,0 +1,74 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <a class="navbar-brand">
+                <img src="~/images/untitled.png" height="30" width="30" />
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" date-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a asp-action="index" asp-controller="home" class="nav-link">List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-action="create" asp-controller="home" class="nav-link">Create</a>
+                    </li>
+                    @*@if (signInManager.IsSignedIn(User) && User.IsInRole("admin"))
+                    {
+                        <li class="nav-item">
+                            <a asp-action="ListRoles" asp-controller="Administration" class="nav-link">
+                                Manage Roles
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-action="ListUsers" asp-controller="Administration" class="nav-link">
+                                Manage Users
+                            </a>
+                        </li>
+                    }*@
+                </ul>
+                <u1 class="navbar-nav ml-auto">
+                    @*@if (signInManager.IsSignedIn(User))
+                    {
+                        <li class="nav-item">
+                            <form method="post" asp-action="logout" asp-controller="account">
+                                <button type="submit" class="nav-link btn btn-link py-0"
+                                        style="width:auto">
+                                    Logout @User.Identity.Name
+                                </button>
+                            </form>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a asp-action="Register" asp-controller="Account" class="nav-link">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-action="Login" asp-controller="Account" class="nav-link">Login</a>
+                        </li>
+                    }*@
+
+                </u1>
+            </div>
+        </nav>
+    </div>
+    <div class="container">
+        @RenderBody()
+    </div>
+    @if (IsSectionDefined("Scripts"))
+    {
+        @RenderSection("Scripts", required: true)
+    }
+</body>
+</html>

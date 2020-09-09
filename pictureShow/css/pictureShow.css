@@ -1,25 +1,25 @@
 
 
-table{
+.dropdown-menu table{
 	width: 390px;
 	background-color: #101010;
 }
-th{
+.dropdown-menu th{
 	width: 130px;
 	padding: 10px;
 	color: white;
 	background-color: #222222;
 }
-td{
+.dropdown-menu td{
 	width: 130px;
 	padding: 10px;
 	color: #D9EDF7;
 	background-color: #222222;
 }
-td>a{
+.dropdown-menu td>a{
 	color: #CCCCCC;
 }
-td>a:hover{
+.dropdown-menu td>a:hover{
 	text-decoration: none;
 	color: white;
 }
@@ -256,36 +256,58 @@ input{
 .good_collect{
 	width: 440px;
 	height:100px;
-	margin-left: 60px;
+	margin-left: 30px;
 	margin-top: 30px;
+
+}
+
+.label1{
+	float:left;
+	font-size: 28px;
+	margin-right: 40px;
 
 }
 
 .good_label{
 	float:left;
-	font-size:25px;
-	margin-right: 30px;
+	font-size:35px;
+	margin-right: 10px;
+	color:#a8a2a2;
+	cursor: pointer;
+	text-align: center;
+	height:50px;
 }
 
 #good{
 	background-color: #3ad9f7;
-	width: 50px;
+	
+	width: 40px;
 	height:40px;
 	border-radius: 5px;
 	border: 2px solid #000;
 	font-size:20px;
-	margin-right:100px;
+	margin-right:80px;
 	float:left;
+}
+
+.label2{
+	float:left;
+	font-size: 28px;
+	margin-right: 40px;
 }
 .collect_label{
 	float:left;
-	font-size:25px;
-	margin-right: 30px;
+	font-size:38px;
+	margin-right: 10px;
+	color:#a8a2a2;
+	cursor: pointer;
+	text-align: center;
+	height:50px;
 }
 
 #collect{
 	background-color: #3ad9f7;
-	width: 50px;
+	width: 40px;
 	height:40px;
 	border-radius: 5px;
 	border: 2px solid #000;
@@ -297,20 +319,43 @@ input{
 .download{
 	width: 380px;
 	height:100px;
-	margin-left: 60px;
-	margin-right:60px;
+	margin-left: 70px;
+	
 	text-align: center;
+	
+}
+
+.download img{
+	height:50px;
+	width: 50px;
+	
+	
+}
+
+.download label{
+	font-size: 28px;
+	color:#000;
+	letter-spacing: 2px;
+	cursor: pointer;
+	background-color: #fbe5a1;
+	width: 320px;
+	height:60px;
+	text-align: center;
+	border-radius: 10px;
+	border: 2px solid #000;
 }
 
 #download{
-	width: 200px;
-	height:50px;
-	border-radius: 5px;
-	border: 2px solid #000;
-	font-size:20px;
-	background-color: #3ad9f7;
-	letter-spacing: 5px;
+	
+	font-size:25px;
+	
+	background-color: #fbe5a1;
+	margin-left: 20px;
+	border-style: none;
+	color:#e8af44;
+	
 	font-weight: bolder;
+	text-align: center;
 }
 
 .picture_info{
@@ -362,6 +407,11 @@ input{
 
 .comment button{
 	display: none;
+	width:80px;
+	height: 40px;
+	font-size: 20px;
+	border-radius: 10%;
+	border: 1px solid #000;
 }
 
 .other_comment{
@@ -372,6 +422,71 @@ input{
 	margin-top: 20px;
 }
 
-table{
-	background-color: #80e5f8;
+.picture_info table{
+	background-color: #fff;
+	font-weight: bolder;
+	font-size:20px;
+	width:398px;
+	height:250px;
+
+
+}
+
+.pop_up{
+	position: absolute;
+	top:350px;
+	left:550px;
+	width: 500px;
+	height: 250px;
+	z-index: 200;
+	background-color: #f8ee83;
+	border: 2px solid #000;
+	border-radius: 5%;
+	display: none;
+	
+}
+
+.pop_up1{
+	width: 450px;
+	height: 200px;
+	margin-top: 25px;
+	margin-left:25px; 
+	border: 2px dashed #000;
+	border-radius: 5%;
+	background-color: #f6f3cd;
+	
+}
+
+.txt{
+	width: 450px;
+	font-size:25px;
+	text-align: center;
+	margin-top: 20px;
+
+
+}
+
+#confirm{
+	width:80px;
+	height:40px;
+	font-size: 22px;
+	background-color: #f8f7e6;
+	border-radius: 10%;
+	border: 1px solid #000;
+	letter-spacing: 5px;
+	margin-top: 50px;
+	margin-left: 60px;
+
+}
+
+#cancel{
+	width:80px;
+	height:40px;
+	font-size: 22px;
+	background-color: #f8f7e6;
+	border-radius: 10%;
+	border: 1px solid #000;
+	letter-spacing: 5px;
+	margin-top: 50px;
+	margin-left: 160px;
 }

@@ -82,7 +82,15 @@
 			</div>
 		</div>
 		<div class="clear"></div>
-		
+		<div class="pop_up">
+			<div class="pop_up1">
+				<div class="txt">
+					您是否确定用0个硬币购买本图片？
+				</div>
+				<button class="btn btn-default" id="confirm">确定</button>
+				<button class="btn btn-default" id="cancel">取消</button>
+			</div>
+		</div>
 		<div class="pictureShow">
 			<img src="img/star.png" class="picture">
 		</div>
@@ -95,40 +103,48 @@
 			</div>
 			<div class="line"></div>
 			<div class="good_collect">
-				<label for="good" class="good_label">点赞</label>
+				<label class="label1">点赞</label>
+				<label for="good" class="good_label">&#10084</label>
 				<input type="button" class="btn btn-default" id="good" value="0">
-				<label for="collect" class="collect_label">收藏</label>
+				<label class="label2">收藏</label>
+				<label for="collect" class="collect_label">&#9733</label>
 				<input type="button" class="btn btn-default" id="collect" value="0">
 				<div class="clear"></div>
 			</div>
 			<div class="download">
-				<button type="button" class="btn btn-default" id="download">免费下载</button>
+				<label for="download">
+					购买并下载<input type="button" name="pay" value="10" class="btn btn-default" id="download">
+					<img src="img/coin.png">
+				</label>
+				
+				
+				
 			</div>
 			
 		</div>
 		<div class="clear"></div>
 		<div class="picture_info">
 			<label>此处显示图片信息，包括图片类型、图片尺寸(像素)、上传时间、下载量、类别(标签)，以下皆为示范。</label>
-			<table width="300" border="0">
+			<table border="2">
                 <tr>
-                    <td align="left">图片类型</td>
-                    <td align="right">JPG</td>
+                    <td align="center">图片类型</td>
+                    <td align="center">JPG</td>
                 </tr>
                 <tr>
-                    <td align="left">图片尺寸(像素)</td>
-                    <td align="right">1200*800</td>
+                    <td align="center">图片尺寸(像素)</td>
+                    <td align="center">1200*800</td>
                 </tr>
                 <tr>
-                    <td align="left">类别</td>
-                    <td align="right">自然风景</td>
+                    <td align="center">类别</td>
+                    <td align="center">自然风景</td>
                 </tr>
                 <tr>
-                    <td align="left">上传时间</td>
-                    <td align="right">2020-09-07</td>
+                    <td align="center">上传时间</td>
+                    <td align="center">2020-09-07</td>
                 </tr>
                 <tr>
-                    <td align="left">下载量</td>
-                    <td align="right">0</td>
+                    <td align="center">下载量</td>
+                    <td align="center">0</td>
                 </tr>
             </table>
 		</div>

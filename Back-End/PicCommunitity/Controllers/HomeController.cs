@@ -7,22 +7,19 @@ using PicCommunitity.Models;
 
 namespace PicCommunitity.Controllers
 {
-    [Route("[controller]/[action]")]
+    [ApiController]
+    [Route("[controller]")]
     public class HomeController : Controller
     {
-        private IDBRepository dbRepository;
 
-        public HomeController(IDBRepository dbRepository)
+        public HomeController()
         {
-            this.dbRepository = dbRepository;
         }
-        [Route("~/")]
-        [Route("~/Home")]
-        [Route("/Home/Index")]
-        public IActionResult Index()
+        [Route("Index")]
+        [HttpGet]
+        public blog Index()
         {
-            var textBlog = dbRepository.GetFirstBlog();
-            return View(textBlog);
+            return null;
         }
     }
 }

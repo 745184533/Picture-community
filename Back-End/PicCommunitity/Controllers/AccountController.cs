@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace PicCommunitity.Controllers
 {
+    
     [Route("[controller]/[action]")]
     public class AccountController : Controller
     {

@@ -17,6 +17,8 @@ namespace PicCommunitity.Controllers
         {
             this.dbRepository = dbRepository;
         }
+        
+
         [Route("~/")]
         [Route("~/Home")]
         [Route("/Home/Index")]

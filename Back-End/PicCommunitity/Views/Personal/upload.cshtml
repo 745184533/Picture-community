@@ -1,0 +1,67 @@
+﻿@page
+@model PicCommunitity.Views.Personal.uploadModel
+@*<head>
+</head>
+<title></title>*@
+
+<body>
+    <article>
+        <header>
+            <h2>article-form</h2>
+
+        </header>
+        <p>
+            <form id="uploadForm" enctype="multipart/form-data">
+                <input type="file" id="files" name="files" placeholder="file" multiple>file-multiple属性可以选择多项<br><br>
+                <input type="button" id="btn_fileUpload" value="fileUpload">
+            </form>
+        </p>
+
+        @*<form method="post">
+            <button type="submit" asp-page-handler="down" class="btn">下载</button>
+            <button type="submit" asp-page-handler="down01" class="btn">下载01</button>
+            <button type="submit" asp-page-handler="down02" class="btn">下载02</button>
+        </form>*@
+        <br /><br /><br />
+        <input type="text" id="filename" /><button onclick="downLoad()">下载</button>
+
+    </article>
+
+</body>
+
+<script src="~/jquery/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+            var appDomain = "https://localhost:44362/";
+            $("#btn_fileUpload").click(function () {
+                var fileUpload = $("#files").get(0);
+                var files = fileUpload.files;
+                var data = new FormData();
+                for (var i = 0; i < files.length; i++) {
+                    data.append(files[i].name, files[i]);
+                }
+                $.ajax({
+                    type: "POST",
+                    url: appDomain + 'api/Pictures',
+                    contentType: false,
+                    processData: false,
+                    data: data,
+                    success: function (data) {
+                        console.log(JSON.stringify(data));
+                    },
+                    error: function () {
+                        console.log(JSON.stringify(data));
+                    }
+                });
+            });
+            //end click
+    })
+    function downLoad() {
+            var filename = $("#filename").val();
+            window.location.href = "@Url.Action("DownLoad")?file=" + filename;
+
+    }
+
+
+</script>

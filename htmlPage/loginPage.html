@@ -1,0 +1,154 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-23 15:32:04
+ * @LastEditTime: 2020-08-23 18:27:39
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \登录注册页面\htmlPage\loginPage.html
+-->
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="utf-8">
+	<meta name="keywords" content="Photos">
+	<meta name="description" content="Show and share photos with human">
+	<meta name="author" content="YangShiji">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--屏幕上能用来显示我们网页的那一块区域-->
+<title>图片社区</title>
+
+	<!--CSS样式-->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/page.css">
+	<link rel="stylesheet" type="text/css" href="css/conciseStyle.css">
+	<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script><![endif]-->
+</head>
+
+<body>
+
+<!--=====================================================header==================================================-->
+	<div class="title-style">
+		<div class="nav-style">
+			<div class="navbar-nav">
+				<ul class="nav nav-tabs" role="tablist">
+					<li role="presentation" class="navtitle">
+						<span class="navlogo">图片社区</span>
+						</li>
+				    <li role="presentation" class="active" style="margin: 0 40px 0 0;" >
+						<a href="#照片" aria-controls="home" role="tab" data-toggle="tab"style="color: black;">照片</a>
+						</li>
+				    <li role="presentation" class="navtitle">
+						<a href="#插画" aria-controls="home" role="tab" data-toggle="tab"style="color: black;">插画</a>
+						</li>
+					<li role="presentation" class="navtitle">
+						<a href="#向量" aria-controls="home" role="tab" data-toggle="tab"style="color: black;">向量</a>
+						</li>
+					<li role="presentation" class="dropdown">
+					    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+					      aria-haspopup="true" aria-expanded="true">探索<span class="caret"></span>
+					    </button>
+						<table class="dropdown-menu" aria-labelledby="dropdownMenu1">
+							<tr>
+								<th>Media</th>
+								<th>Community</th>
+								<th>About</th>
+							</tr>
+							<tr>
+								<td><a>小编精选</a></td>
+								<td><a>博客</a></td>
+								<td><a>服务条款</a></td>
+							</tr>
+							<tr>
+								<td><a>Popular Images</a></td>
+								<td><a>论坛</a></td>
+								<td><a>隐私政策</a></td>
+							</tr>
+							<tr>
+								<td><a>Popular Videos</a></td>
+								<td><a>Artists</a></td>
+								<td><a>关于我们</a></td>
+							</tr>
+						</table>
+					</li>
+					<li class="navtitle" style="margin: 0 40px 0 0;">
+						<a href="#登录" style="color: black;">登录</a>
+					</li>
+					<li class="navtitle" style="margin: 0 40px 0 0;">
+						<a href="#注册" style="color: black;">注册</a>
+					</li>
+					<li style="margin: 0 20px 0 0;">
+						<a href="#上传" style="color: black;">
+						<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-upload" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+						    <path fill-rule="evenodd" d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+						    <path fill-rule="evenodd" d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+					    </svg>上传</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+<!--====================================================content==================================================-->
+	<div id="content" class="clearfix">
+		<!--作为背景图，后面在补全这个功能-->
+		<!-- <img src="" alt=""> -->
+		
+		<!-- 中间输入框 -->
+		<div id="sign_in_out" style="padding: 10px;">
+			<div class="window" style="max-width: 400px;">
+				<div style="padding: 20px 25px;">
+					<!-- 登录注册选择按钮 -->
+					<div class="tab-menu" style="border-top: 0;margin: 0 0 35px;font-size: 20px;">
+						<a href="#登录" class="selected">登录</a>
+						<a href="#Join">Join</a>
+					</div>
+					<!-- 微信或者QQ关联登录 -->
+					<div class="social_auth" style="margin: 0 0 30px;">
+						<a href="#WeChat" class="pure-button" style="background-color:#d73d32">
+							<i class="icon icon_google_fff"></i>
+							微信
+						</a>
+						<a href="#QQ" class="pure-button" style="background-color:#3b5998;float: right;">
+							<i class="icon icon_google_fff"></i>
+							QQ
+						</a>
+					</div>
+					<!-- 输入账户和密码的表单 -->
+					<form id="login_form" spellcheck="false" class="right_side pure-form" action="." method="post">
+						<p>
+							<input type="text" name="username" data-autofocus placeholder="用户名" maxlength="50" required="" id="id_username">
+						</p>
+						<p>
+							<input type="password" name="password" placeholder="密码" required="" id="id_password">
+						</p>
+						<!-- 登录按钮 -->
+						<div>
+							<div></div>
+							<input style="text-align:center" class="pure-button button-green" data-sitekey="" data-callback="" type="submit" value="登录">
+						</div>
+					</form>
+				</div>
+				
+				<div style="padding:20px 25px;background:#f7f7f7;font-size:13px;line-height:1.7;text-align:center">
+				<a href="#">重设你的密码</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+
+	<!--=================================================footer===================================================-->
+	<footer>
+		<div style="margin:1px;padding:20px 25px;background:#f7f7f7;font-size:13px;line-height:1.7;text-align:center">
+		完成此注册，即表明您同意了我们的<a href='#' target='_blank'>使用条款和隐私策略</a>。
+		</div>
+		<div id="footer" style="background-color: darkgrey;clear: both ;text-align: center;">
+			<a>▲版权所有，翻版必究 &copy;2020-2050 桔子柿饼</a>
+		</div>
+	</footer>
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+</body
+</html>

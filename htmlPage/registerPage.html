@@ -17,7 +17,14 @@
 </head>
 
 <body class="registerBody">
-
+	<!-- 背景图设置 -->
+	<svg id="bg_svg" viewBox="0 0 640 427" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
+		<filter id="blur">
+			<feGaussianBlur stdDeviation="5"></feGaussianBlur>
+		</filter>
+		<image xlink:href="https://cdn.pixabay.com/photo/2020/05/26/13/22/puffins-5223057_640.jpg" width="640" height="427" filter="url(#blur)"></image>
+	</svg>
+	
 <!--=====================================================header==================================================-->
 	<div class="title-style">
 		<div class="nav-style">
@@ -82,17 +89,15 @@
 
 <!--====================================================content==================================================-->
 	<div id="content" class="clearfix">
-		<!--作为背景图，后面在补全这个功能-->
-		<!-- <img src="" alt=""> -->
-		
+
 		<!-- 中间输入框 -->
 		<div id="sign_in_out" style="padding: 10px;">
 			<div class="window" style="max-width: 400px;">
 				<div style="padding: 20px 25px;">
 					<!-- 登录注册选择按钮 -->
 					<div class="tab-menu" style="border-top: 0;margin: 0 0 35px;font-size: 20px;">
-						<a href="#登录">登录</a>
-						<a href="#Join"  class="selected">Join</a>
+						<a href="loginPage.html">登录</a>
+						<a href="registerPage.html"  class="selected">Join</a>
 					</div>
 					<!-- 微信或者QQ关联登录 --> 
 					<div class="social_auth" style="margin: 0 0 30px;">

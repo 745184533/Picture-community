@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using PicCommunitity.Models;
 using PicCommunitity.Services;
 using PicCommunitity.ViewsModel;
@@ -15,10 +16,10 @@ namespace PicCommunitity.Controllers
     {
         private AppDbContext context;
         private AccountServices services;
-        public AccountController(AppDbContext context)
+        public AccountController(AppDbContext context,IOptions<JwtSetting> options)
         {
             this.context = context;
-            this.services = new AccountServices(context);
+            this.services = new AccountServices(context,options);
         }
         /// <summary>
         /// 用户登录
@@ -27,12 +28,24 @@ namespace PicCommunitity.Controllers
         /// <returns></returns>
         [Route("login")]
         [HttpPost]
-        public JsonResult login([FromBody]LoginUser user)
+        public IActionResult login([FromBody]LoginUser user)
         {
-            return Json(new { 
-                status=services.checkExist(user.userName,user.userPassword),
-                msg="你好，用户"+user.userName+"欢迎回到图片社区"
-            });
+            if (services.checkExist(user.userName, user.userPassword))
+            {//登录成功
+
+                //颁发Token
+                var token = services.GetToken(user);
+                return Ok(new
+                {
+                    Success = true,
+                    Token = token,
+                    Type= "Bearer"
+                });
+            }
+            return Ok(new
+            {
+                Success = false
+            }) ;
         }
         /// <summary>
         /// 用户注册

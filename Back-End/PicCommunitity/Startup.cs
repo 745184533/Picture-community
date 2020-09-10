@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -11,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using PicCommunitity.Models;
 using PicCommunitity.Tools;
 
@@ -55,16 +58,32 @@ namespace PicCommunitity
             services.AddMvc(options =>
             {
             }).AddXmlSerializerFormatters();
-            //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(
-            //    options =>
-            //    {
-            //        options.Cookie.Name = "MyApplicationTokenCookie";//设置存储用户登录信息（用户Token信息）的Cookie名称
-            //        options.Cookie.HttpOnly = true;//设置存储用户登录信息（用户Token信息）的Cookie，
-            //                                       //无法通过客户端浏览器脚本(如JavaScript等)访问到
-            //        options.Cookie.SecurePolicy = Microsoft.AspNetCore.Http.CookieSecurePolicy.Always;
-            //        options.LoginPath = "/Account/Login";
-            //        options.Cookie.HttpOnly = true;
-            //    });
+
+            //配置Jwt验证
+            services.Configure<JwtSetting>(_config.GetSection("JwtSetting"));
+            var jwtSetting = new JwtSetting();
+            _config.Bind("JwtSetting", jwtSetting);
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(o => {
+                o.TokenValidationParameters = new TokenValidationParameters
+                {
+                    //是否验证发行人
+                    ValidateIssuer = true,
+                    ValidIssuer = jwtSetting.Issuer,//发行人
+                                                    //是否验证受众人
+                    ValidateAudience = true,
+                    ValidAudience = jwtSetting.Audience,//受众人
+                                                        //是否验证密钥
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSetting.SecurityKey)),
+
+                    ValidateLifetime = true, //验证生命周期
+                    RequireExpirationTime = true //过期时间
+                };
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -10,14 +10,14 @@
       "NETCOREAPP",
       "NETCOREAPP3_1"
     ],
-    "languageVersion": "",
+    "languageVersion": "8.0",
     "platform": "",
     "allowUnsafe": false,
     "warningsAsErrors": false,
     "optimize": false,
     "keyFile": "",
     "emitEntryPoint": true,
-    "xmlDoc": true,
+    "xmlDoc": false,
     "debugType": "portable"
   },
   "targets": {

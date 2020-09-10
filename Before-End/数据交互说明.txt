@@ -1,0 +1,23 @@
+上传图片到图库
+1. 一共发送两种类型的数据：标签，jpg图片
+
+2. 具体交互如下：
+（1）new.html中28-43行：标签的输入
+通过var tag=$("#tag1").val();//jquery获取tag1信息
+上面的代码在uploadPicture.js的55行
+思路：通过每个标签的id来获取value（分别为tag1,tag2,tag3;其中tag1必填，其他可为空）
+
+（2）new.html中52-58行：图片上传
+通过var file =  document.getElementById('img_file').files[0];//js获取图片文件
+上面的代码在uploadPicture.js的26行
+
+（3）提交之后打包数据上传的部分还未写，之后会写在uploadPicture.js的check()函数中
+具体位置在uploadPicture.js的49-64行
+
+上传图片找相似
+1. 和上面类似，不过只发送一种数据：jpg图片
+
+2. 具体交互位置：new.html76-82行：图片上传
+uploadPicture.js的91行：js获取图片文件
+uploadPicture.js的105-115行：后续加提交后的数据上传部分位置
+

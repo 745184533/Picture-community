@@ -13,7 +13,6 @@
 		<title></title>
 	</head>
 	<body>
-
 	<!--背景层-->
 	<div id="popLayer"></div>
 	<!--弹出框-->
@@ -62,7 +61,30 @@
 		<div style="text-align: center">
 			<button id="submit" disabled="disabled" onclick="check()">提交图片</button>
 		</div>
+	</div>
 
+	<!--弹出框_搜索相似图片-->
+	<div class="popBox" id="popBox_search" style="width:450px;height:330px;">
+		<!--关闭按钮-->
+		<div class="close">
+			<a href="javascript:void(0)" onclick="closeBox_search()">关闭</a>
+		</div>
+		<!--上传图片标题-->
+		<div class="content" style="text-align: center">上传图片找相似</div>
+		<br>
+		<!--上传图片-->
+		<div class="layui-form-item" style="padding-left:10px;padding-right:10px">
+			<div class="layui-input-block">
+				<input type="hidden" id="img_url_search">
+				<input type="file" onchange="showImg_search()" id="img_file_search">
+				<br><img src="" alt="" id="img_id_search" style="height: 150px">
+			</div>
+		</div>
+		<br>
+		<!--提交图片按钮-->
+		<div style="text-align: center">
+			<button id="submit_search"  onclick="check_search()">提交图片</button>
+		</div>
 	</div>
 
 		<div class="title-style">
@@ -126,6 +148,8 @@
 						<form action="" method="post">
 							<input type="search" placeholder="照片" style="outline: none; width: 440px; height: 60px; font-size: 20px; margin-top: 50px;border: none;"/>
 						</form>
+						<button class="btn-success" onclick="popBox_search()" style="height: 60px;width: 100px; margin-top: 50px; border:none; font-size: 18px; letter-spacing: 2px;">相似图片</button>
+
 					</div>
 				</div>
 			</div>
@@ -143,6 +167,7 @@
 						<form action="" method="post">
 							<input type="search" placeholder="插画" style="outline: none; width: 440px; height: 60px; font-size: 20px; margin-top: 50px;border: none;"/>
 						</form>
+						<button class="btn-success" onclick="popBox_search()" style="height: 60px;width: 100px; margin-top: 50px; border:none; font-size: 18px; letter-spacing: 2px;">相似图片</button>
 					</div>
 				</div>
 			</div>
@@ -160,6 +185,7 @@
 						<form action="" method="post">
 							<input type="search" placeholder="向量" style="outline: none; width: 440px; height: 60px; font-size: 20px; margin-top: 50px;border: none;"/>
 						</form>
+						<button class="btn-success" onclick="popBox_search()" style="height: 60px;width: 100px; margin-top: 50px; border:none; font-size: 18px; letter-spacing: 2px;">相似图片</button>
 					</div>
 				</div>
 			</div>	
@@ -379,3 +405,4 @@
 		</script>
 	</body>
 </html>
+

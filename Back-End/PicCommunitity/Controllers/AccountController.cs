@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using PicCommunitity.Models;
 using PicCommunitity.Services;
 using PicCommunitity.ViewsModel;
+using PicCommunitity.ViewsModels;
 
 namespace PicCommunitity.Controllers
 {
@@ -47,6 +49,7 @@ namespace PicCommunitity.Controllers
                 Success = false
             }) ;
         }
+
         /// <summary>
         /// 用户注册
         /// </summary>
@@ -55,29 +58,66 @@ namespace PicCommunitity.Controllers
         /// <returns></returns>
         [Route("register")]
         [HttpPost]
-        public users register(string userName,string userPassword)
+        public async Task<IActionResult> register([FromBody]RegisterUser RUser)
         {
-            var user = new users { };
-            user.u_id = (context.users.Count() + 1).ToString();
-            user.u_name = userName;
-            user.u_password = userPassword;
-            user.u_status = "AC";
-            user.u_type = "US";
-            user.create_time = DateTime.Now;
-            context.users.Add(user);
-            context.SaveChanges();
-            return user;
+            if (!services.checkExist(RUser.userName, RUser.userPassword))
+            {//没有该账号密码存在
+                //创建user
+                var user = new users { };
+                user.u_id = (context.users.Count() + 1).ToString();
+                user.u_name = RUser.userName;
+                user.u_password = RUser.userPassword;
+                user.u_status = "AC";
+                user.u_type = "US";
+                user.create_time = DateTime.Now;
+                context.users.Add(user);
+                await context.SaveChangesAsync();
+
+                //创建相应userInfo
+                var newUserInfo = new userInfo
+                { 
+                    u_id = user.u_id,
+                    u_name = user.u_name,
+                    birthday = Convert.ToDateTime("1800-01-01 00:00:00"),
+                    mail = RUser.Email,
+                    phone_number = "0",
+                    message=""
+                };
+                context.userInfo.Add(newUserInfo);
+                await context.SaveChangesAsync();
+
+                //创建相应钱包
+                var newUserWallet = new wallet
+                {
+                    u_id = user.u_id,
+                    buy_num = 0,
+                    coin = 0,
+                    fund = 0,
+                    publish_num = 0
+                };
+                context.wallet.Add(newUserWallet);
+                await context.SaveChangesAsync();
+
+                //完成了注册赋予Token
+                var token = services.GetToken(
+                    new LoginUser { userName = user.u_name, userPassword = user.u_password });
+                return Ok(new
+                {
+                    Success = true,
+                    Token=token,
+                    msg="New User Registered"
+                });
+            }
+            else
+            {//已有该账号密码存在
+                return Ok(new
+                {
+                    Success = false,
+                    msg = "Same UserName&Password"
+                });
+            }
         }
-        /// <summary>
-        /// 测试Swagger
-        /// </summary>
-        /// <returns></returns>
-        [Route("test")]
-        [HttpGet]
-        public bool test()
-        {
-            return true;
-        }
+
         /// <summary>
         /// 获取当前所有用户信息
         /// </summary>
@@ -87,6 +127,70 @@ namespace PicCommunitity.Controllers
         public IEnumerable<users> getAllUsers()
         {
             return context.users.ToArray();
+        }
+
+
+        /// <summary>
+        /// 获得对应id的用户详细信息
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        //[Authorize]
+        [Route("getUserInfo")]
+        [HttpGet]
+        public IActionResult getUserInfo(string userId)
+        {
+            //首先判断是否存在该Id
+            var user = services.GetUserById(userId);
+            if (user != null)
+            {//用户存在
+                var userInfo = services.GetUserInfoById(userId);
+                if (userInfo == null)
+                {//如果此时没有userInfo
+                    return Ok(new
+                    {
+                        Success = false,
+                        msg = "No such User"
+                    });
+                }
+                return Ok(new
+                {
+                    Sucess = true,
+                    //Picture=
+                    UserName=user.u_name,
+                    Name = userInfo.u_name,
+                    Birthday = userInfo.birthday,
+                    Email = userInfo.mail,
+                    Message = userInfo.message,
+                });
+            }
+            else
+            {//用户不存在
+                return Ok(new
+                {
+                    Success = false,
+                    msg = "No such User"
+                });
+            }
+        }
+
+        /// <summary>
+        /// 获得用户个人图片主页信息，点赞数等
+        /// </summary>
+        //[Authorize]
+        [Route("getProfileInfo")]
+        [HttpGet]
+        public IActionResult getProfileInfo(string userId)
+        {
+            var info = services.GetProfileInfoById(userId);
+            return Ok(new
+            {
+                Success=true,
+                StarNum=info.starNum,
+                LikeNum=info.likeNum,
+                CommentNum=info.commentNum,
+                FollowNum=info.followNum
+            });
         }
     }
 }

@@ -11,7 +11,7 @@
             <param name="user"></param>
             <returns></returns>
         </member>
-        <member name="M:PicCommunitity.Controllers.AccountController.register(System.String,System.String)">
+        <member name="M:PicCommunitity.Controllers.AccountController.register(PicCommunitity.ViewsModels.RegisterUser)">
             <summary>
             用户注册
             </summary>
@@ -19,17 +19,23 @@
             <param name="userPassword"></param>
             <returns></returns>
         </member>
-        <member name="M:PicCommunitity.Controllers.AccountController.test">
-            <summary>
-            测试Swagger
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:PicCommunitity.Controllers.AccountController.getAllUsers">
             <summary>
             获取当前所有用户信息
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:PicCommunitity.Controllers.AccountController.getUserInfo(System.String)">
+            <summary>
+            获得对应id的用户详细信息
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PicCommunitity.Controllers.AccountController.getProfileInfo(System.String)">
+            <summary>
+            获得用户个人图片主页信息，点赞数等
+            </summary>
         </member>
         <member name="P:PicCommunitity.Models.JwtSetting.Issuer">
             <summary>
@@ -67,6 +73,21 @@
             </summary>
         </member>
         <member name="P:PicCommunitity.ViewsModel.LoginUser.userPassword">
+            <summary>
+            登陆密码
+            </summary>
+        </member>
+        <member name="P:PicCommunitity.ViewsModels.RegisterUser.userName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:PicCommunitity.ViewsModels.RegisterUser.Email">
+            <summary>
+            电子邮箱
+            </summary>
+        </member>
+        <member name="P:PicCommunitity.ViewsModels.RegisterUser.userPassword">
             <summary>
             登陆密码
             </summary>

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Options;
 using PicCommunitity.Models;
 using PicCommunitity.ViewsModel;
+using PicCommunitity.ViewsModels;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -50,7 +51,52 @@ namespace PicCommunitity.Services
             );
             string jwtToken = new JwtSecurityTokenHandler().WriteToken(token);
             return jwtToken;
+        }
+        //获取对应id的User，不存在则返回Null
+        public users GetUserById(string userId)
+        {
+            return context.users.FirstOrDefault(u => u.u_id == userId);
+        }
+        
+        //根据id取得对应User详细信息
+        public userInfo GetUserInfoById(string userId)
+        {
+            
+            return context.userInfo.FirstOrDefault(u => u.u_id == userId);
+        }
 
+        //根据id对应的钱包
+        public wallet GetWalletById(string userId)
+        {
+            return context.wallet.FirstOrDefault(w => w.u_id == userId);
+        }
+
+        //获取个人图片主页的数据信息
+        public ProfileInfo GetProfileInfoById(string userId)
+        {
+            
+            var StarNum = 0;var LikeNum = 0;var CommentNum = 0;var FollowNum = 0;
+
+            #region 获取图片相关各类数据
+            var picGroup = context.publishPicture.ToLookup(p => p.u_id)[userId].ToList();
+            foreach (var pic in picGroup)
+            {
+                StarNum += context.favoritePicture.Count(f => f.p_id == pic.p_id);
+                LikeNum += context.likesPicture.Count(l => l.p_id == pic.p_id && l.like_type == "LK");
+            }
+            #endregion
+
+            #region 获取个人相关各类数据
+            CommentNum += context.picComment.Count(p => p.u_id == userId);
+            FollowNum += context.follow.Count(f => f.follow_id == userId);
+            #endregion
+
+            return new ProfileInfo {
+                starNum=StarNum,
+                likeNum=LikeNum,
+                followNum=FollowNum,
+                commentNum=CommentNum
+            };
         }
     }
 }

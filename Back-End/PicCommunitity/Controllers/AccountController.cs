@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using PicCommunitity.Models;
 using PicCommunitity.Services;
 using PicCommunitity.ViewsModel;
-using PicCommunitity.ViewsModels;
 
 namespace PicCommunitity.Controllers
 {
+    [ApiController]
     [Route("[controller]")]
     public class AccountController : Controller
     {
@@ -25,92 +23,57 @@ namespace PicCommunitity.Controllers
         /// <summary>
         /// 用户登录
         /// </summary>
+        /// <param name="user"></param>
         /// <returns></returns>
         [Route("login")]
-        [HttpGet]
-        public IActionResult login()
-        {
-            return View();
-        }
-        [Route("login")]
         [HttpPost]
-        public async Task<IActionResult> login(LoginUser Luser,string returnUrl)
+        public JsonResult login([FromBody]LoginUser user)
         {
-            if (services.checkExist(Luser.userName, Luser.userPassword))
-            {
-                var claims = new[] { new Claim("UserName", Luser.userName) };
-                var claimsIdentity = new ClaimsIdentity(claims, "Cookies");
-                ClaimsPrincipal user = new ClaimsPrincipal(claimsIdentity);
-                await HttpContext.SignInAsync("Cookies",
-                       user, new AuthenticationProperties()
-                       {
-                           IsPersistent = true,
-                           ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(60),
-                           AllowRefresh = true
-                       });
-                ViewBag.logined = true;
-                if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
-                {
-                    return Redirect(returnUrl);
-                }
-                return RedirectToAction("Index", "Home");
-            }
-            else
-            {
-                return View(Luser);
-            }
-        }
-        [Route("logout")]
-        [HttpGet]
-        public async Task<IActionResult> logout()
-        {
-            await HttpContext.SignOutAsync("Cookies");
-            ViewBag.logined = false;
-            return RedirectToAction("Index", "Home");
+            return Json(new { 
+                status=services.checkExist(user.userName,user.userPassword),
+                msg="你好，用户"+user.userName+"欢迎回到图片社区"
+            });
         }
         /// <summary>
         /// 用户注册
         /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="userPassword"></param>
         /// <returns></returns>
         [Route("register")]
-        [HttpGet]
-        public IActionResult register()
-        {
-            return View();
-        }
-
-        [Route("register")]
         [HttpPost]
-        public async Task<IActionResult> register(registerUser Ruser)
+        public users register(string userName,string userPassword)
         {
-            if (!services.checkExist(Ruser.userName, Ruser.userPassword))
-            {
-                var newUser = new users { };
-                newUser.u_id = (context.users.Count() + 1).ToString();
-                newUser.u_name = Ruser.userName;
-                newUser.u_password = Ruser.userPassword;
-                newUser.u_status = "AC";
-                newUser.u_type = "US";
-                newUser.create_time = DateTime.Now;
-                context.users.Add(newUser);
-                context.SaveChanges();
-                var claims = new[] { new Claim("UserName", Ruser.userName) };
-                var claimsIdentity = new ClaimsIdentity(claims, "Cookies");
-                ClaimsPrincipal user = new ClaimsPrincipal(claimsIdentity);
-                await HttpContext.SignInAsync("Cookies",
-                       user, new AuthenticationProperties()
-                       {
-                           IsPersistent = true,
-                           ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(60),
-                           AllowRefresh = true
-                       });
-                return RedirectToAction("Index", "Home");
-            }
-            else
-            {
-                ModelState.AddModelError(string.Empty, "已有相同账号密码存在");
-                return View(Ruser);
-            }
+            var user = new users { };
+            user.u_id = (context.users.Count() + 1).ToString();
+            user.u_name = userName;
+            user.u_password = userPassword;
+            user.u_status = "AC";
+            user.u_type = "US";
+            user.create_time = DateTime.Now;
+            context.users.Add(user);
+            context.SaveChanges();
+            return user;
+        }
+        /// <summary>
+        /// 测试Swagger
+        /// </summary>
+        /// <returns></returns>
+        [Route("test")]
+        [HttpGet]
+        public bool test()
+        {
+            return true;
+        }
+        /// <summary>
+        /// 获取当前所有用户信息
+        /// </summary>
+        /// <returns></returns>
+        [Route("getAllUsers")]
+        [HttpGet]
+        public IEnumerable<users> getAllUsers()
+        {
+            return context.users.ToArray();
         }
     }
 }

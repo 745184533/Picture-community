@@ -13,12 +13,14 @@
     <input type="button" value="Submit" onclick="submit()" />
     <p id="msg">信息在此处出现</p>
 </body>
+
+</html>
 <script>
     function submit() {
-    var userName = $('#username').val();
-    var userPassword = $('#password').val();
+        var userName = $('#username').val();
+        var userPassword = $('#password').val();
         var settings = {
-            "url": "https://localhost:44362/Account/login",
+            "url": "https://172.81.239.44:80/Account/login",
             "method": "POST",
             "timeout": 0,
             "headers": {
@@ -35,4 +37,3 @@
         });
     }
 </script>
-</html>

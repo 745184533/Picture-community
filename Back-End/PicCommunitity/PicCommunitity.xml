@@ -4,19 +4,33 @@
         <name>PicCommunitity</name>
     </assembly>
     <members>
-        <member name="M:PicCommunitity.Controllers.AccountController.login">
+        <member name="M:PicCommunitity.Controllers.AccountController.login(PicCommunitity.ViewsModel.LoginUser)">
             <summary>
             用户登录
             </summary>
+            <param name="user"></param>
             <returns></returns>
         </member>
-        <member name="M:PicCommunitity.Controllers.AccountController.register">
+        <member name="M:PicCommunitity.Controllers.AccountController.register(System.String,System.String)">
             <summary>
             用户注册
             </summary>
+            <param name="userName"></param>
+            <param name="userPassword"></param>
             <returns></returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:PicCommunitity.Controllers.PicturesController.DownLoad(System.String)" -->
+        <member name="M:PicCommunitity.Controllers.AccountController.test">
+            <summary>
+            测试Swagger
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PicCommunitity.Controllers.AccountController.getAllUsers">
+            <summary>
+            获取当前所有用户信息
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:PicCommunitity.Tools.CorsMiddleware">
             <summary>
             CORS 中间件 【解决跨域问题】

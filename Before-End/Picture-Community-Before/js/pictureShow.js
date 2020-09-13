@@ -1,30 +1,34 @@
 var is_login=true;
 var is_follow=false;
-var image=$(".picture");
-var imageSize=new Image();
-imageSize.src=image.attr("src");
-var imageHeight=imageSize.height;
-var imageWidth=imageSize.width;
-var rate2=imageWidth/imageHeight;
-var rate1=1000/600;
-
+var source=localStorage.getItem("src");
 $(document).ready(function(){
+  $("<img />").attr("src", source).on("load", function () {   
+      var imageWidth = this.width;                    
+      var imageHeight = this.height;
+      var rate2=imageWidth/imageHeight;
+      var rate1=1000/600;
+      $(".picture").attr("src",source);  
+      $(".pixel").html(String(imageWidth)+"*"+String(imageHeight));
+      if(rate1>=rate2){
+        $(".picture").css("width",600*rate2);
+      }
+     else{
+        $(".picture").css("height",1000/rate2);
+      }
+            
+  });
+  
   if(is_login==true){
   	$("#login").css("display", "none");
-	$("#register").css("display", "none");
-	$(".headimg").css("display","inline")
+	  $("#register").css("display", "none");
+	  $(".headimg").css("display","inline")
   }
   else{
   	$("#login").css("display", "inline");
-	$("#register").css("display", "inline");
-	$(".headimg").css("display","none")
+	  $("#register").css("display", "inline");
+	  $(".headimg").css("display","none")
   }
-  if(rate1>=rate2){
-  	$(".picture").css("width",600*rate2);
-  }
-  else{
-  	$(".picture").css("height",1000/rate2);
-  }
+  
   
 
 });

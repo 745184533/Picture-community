@@ -10,6 +10,7 @@
 
 		<link rel="stylesheet" type="text/css" href="css/uploadPicture.css">
 		<script type="text/javascript" src="js/uploadPicture.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<title></title>
 	</head>
 	<body>
@@ -22,7 +23,7 @@
 			<a href="javascript:void(0)" onclick="closeBox()">关闭</a>
 		</div>
 		<!--上传图片标题-->
-		<div class="content" style="text-align: center;font-size: large">上传图片到图库系统</div>
+		<div class="content" style="text-align: center;font-size: 25px">上传图片到图库系统</div>
 		<br>
 		<!--给上传的图片添加标签-->
 		<form class="layui-form">
@@ -53,7 +54,7 @@
 			<div class="layui-input-block">
 				<input type="hidden" id="img_url">
 				<input type="file" onchange="showImg()" id="img_file">
-				<br><img src="" alt="" id="img_id" style="height: 150px">
+				<img src="" alt="" id="img_id" style="height: 150px">
 			</div>
 		</div>
 		<br>
@@ -70,14 +71,14 @@
 			<a href="javascript:void(0)" onclick="closeBox_search()">关闭</a>
 		</div>
 		<!--上传图片标题-->
-		<div class="content" style="text-align: center">上传图片找相似</div>
+		<div class="content" style="text-align: center;font-size: 25px">上传图片找相似</div>
 		<br>
 		<!--上传图片-->
 		<div class="layui-form-item" style="padding-left:10px;padding-right:10px">
 			<div class="layui-input-block">
 				<input type="hidden" id="img_url_search">
 				<input type="file" onchange="showImg_search()" id="img_file_search">
-				<br><img src="" alt="" id="img_id_search" style="height: 150px">
+				<img src="" alt="" id="img_id_search" style="height: 150px">
 			</div>
 		</div>
 		<br>
@@ -190,8 +191,8 @@
 				</div>
 			</div>	
 		</div>
-		<div style="display: flexbox;">
-			<div id="photo">	
+		<div style="display:flexbox;">
+			<div id="picture">
 			</div>
 		</div>
 		
@@ -276,6 +277,7 @@
 				}
 
 			}
+			
 			var arrayZ=new Array;
 			var arrayS=new Array;
 			var arrayP=new Array;
@@ -310,12 +312,18 @@
 				var aaa=document.createElement("a");
 				var spanCn=document.createElement("span");
 				photoA.href="#";
+				
 				photoNode.appendChild(photoA);
 				image.style.width="430px";
 				image.style.height="280px";
 				image.src=paths[i];
 				image.style.padding='10px';
 				image.style.zIndex="2";
+				image.onclick=function(){
+					window.location.href="pictureShow.html";
+					localStorage.setItem('src',$(this).attr("src"));
+				}
+				
 				photoA.appendChild(image);
 				btnZ.style.position="absolute";
 				btnZ.style.top=240+"px";
@@ -353,6 +361,7 @@
 				arrayS.push(btnS);
 				arrayZ.push(btnZ);
 			}
+
 			var btn=document.createElement("button");
 			btn.innerText="获取更多";
 			btn.style.top=parseInt(photoNode.style.top)+330+"px";
@@ -405,4 +414,3 @@
 		</script>
 	</body>
 </html>
-

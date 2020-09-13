@@ -189,12 +189,12 @@ input{
 
 .pictureShow{
 	
-	width: 1000px;
+	/*width: 1000px;
 	height:600px;
-	border:1px solid #000;
+	border:1px solid #000;*/
 	margin-left: 60px;
 	margin-top: 40px;
-	text-align: center;
+	/*text-align: center;*/
 	float: left;
 
 }
@@ -205,8 +205,8 @@ input{
 }
 
 .picture{
-	width: 100%;
-	height:100%;
+	/*width: 100%;
+	height:100%;*/
 }
 
 .publisher_info{

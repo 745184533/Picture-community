@@ -155,7 +155,7 @@ namespace PicCommunitity.Controllers
                 }
                 return Ok(new
                 {
-                    Sucess = true,
+                    Success = true,
                     //Picture=
                     UserName=user.u_name,
                     Name = userInfo.u_name,

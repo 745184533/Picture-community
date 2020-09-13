@@ -112,11 +112,16 @@ namespace PicCommunitity.Controllers
         public IActionResult comment([FromBody]comment Comment)
         {
             var nowComment = context.picComment.
-                FirstOrDefault(c => c.u_id == Comment.userId && c.p_comment == Comment.picId);
+                FirstOrDefault(c => c.u_id == Comment.userId && c.p_id == Comment.picId);
             if (nowComment != null)
             {//当前评论已经存在，可更改评论内容
-                nowComment.p_comment = Comment.content;
-                context.picComment.Attach(nowComment);
+                context.Entry(nowComment).CurrentValues.SetValues(new picComment
+                {
+                    u_id = nowComment.u_id,
+                    p_id = nowComment.p_id,
+                    likes = nowComment.likes,
+                    p_comment = Comment.content
+                });
                 context.SaveChanges();
             }
             else
@@ -170,6 +175,11 @@ namespace PicCommunitity.Controllers
             //获取图片Tag
             var pictag = context.ownTag.ToLookup(t => t.p_id)[picId].ToArray();
 
+            //获取评论信息
+            var piccomment = "";
+            var tmpComment = context.picComment.FirstOrDefault(c => c.u_id == userId && c.p_id == picId);
+            if (tmpComment != null) { piccomment = tmpComment.p_comment; }
+
             //组织返回信息
             return Ok(new
             {
@@ -182,7 +192,8 @@ namespace PicCommunitity.Controllers
                 picHeight = pic.p_height,
                 picWidth = pic.p_width,
                 picInfo = pic.p_info,
-                picTags = pictag
+                picTags = pictag,
+                nowComment=piccomment
             }) ;
         }
 
@@ -192,14 +203,16 @@ namespace PicCommunitity.Controllers
         /// </summary>
         /// <param name="picId"></param>
         /// <returns></returns>
-        [Route("getComment")]
+        [Route("getAllComment")]
         [HttpGet]
-        public IActionResult getComment(string picId)
+        public IActionResult getAllComment(string picId)
         {
+            var commentNum = context.picComment.Count(c => c.p_id == picId);
             var comments = context.picComment.ToLookup(c => c.p_id)[picId].ToList();
             //返回列表
             return Ok(new
             {
+                CommentNum=commentNum,
                 Comments=comments
             });
         }

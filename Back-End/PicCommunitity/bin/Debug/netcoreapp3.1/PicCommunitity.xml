@@ -84,7 +84,7 @@
             <param name="picId"></param>
             <returns></returns>
         </member>
-        <member name="M:PicCommunitity.Controllers.PictureController.getComment(System.String)">
+        <member name="M:PicCommunitity.Controllers.PictureController.getAllComment(System.String)">
             <summary>
             获取当前图片所有评论
             </summary>

@@ -119,7 +119,7 @@
 										</font>
 									</font>
 								</label>
-									<input type="text" name="username" value="" maxlength="25" required="" id="id_username">
+									<input type="text" name="username"  id="id_username">
 								</div>
 								<!-- 个人资料图片 -->
 								<div class="pure-control-group">
@@ -743,11 +743,12 @@
 						<div style="text-align:center">
 							<font style="vertical-align: inherit;">
 								<font style="vertical-align: inherit;">
-									<input type="submit" class="pure-button button-green" style="padding-left:120px;padding-right:120px" value="保存" >
+									<input type="submit" class="pure-button button-green" style="padding-left:120px;padding-right:120px" value="保存" onclick="saveInfo()">
 								</font>
 							</font>
 						</div>
 						<input type="button" value="获取后端数据" onclick="getInfo()"/>
+						<input type="button" value="保存后端数据" onclick="saveInfo()" />
 					</form>
 				</div>
 			</div>
@@ -775,11 +776,37 @@
 
 		$.ajax(settings).done(function (response) {
 			var obj = eval('(' + response + ')');
+
 			$('#id_username').val(obj.userName);
 			$('#id_first_name').val(obj.name);
 			$('#id_email').val(obj.email);
+			$('#id_about_me').val(obj.message);
+			console.log("开始装填");
+            $('#id_about_me').text(obj.message);
+            console.log("结束装填");
 			console.log(obj.userName);
+            console.log(obj);
+        });
+	}
+	function saveInfo() {
+		var userName = $('#id_username').val();
+		console.log(userName);
+        var name = $('#id_first_name').val();
+        var email = $('#id_email').val();
+        var message = $('#id_about_me').val();
+        var settings = {
+            "url": "https://localhost:44362/Account/saveUserInfo",
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+                "Content-Type": "application/json"
+			},
+			"data": JSON.stringify({ "UserId": "3", "UserName": userName, "Name": name, "BirthDay": "2020-9-13", "Email": email, "Message": message }),
+        };
+
+        $.ajax(settings).done(function (response) {
 			console.log(response);
+			
         });
     }
 </script>

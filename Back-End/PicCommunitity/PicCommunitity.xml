@@ -32,6 +32,13 @@
             <param name="userId"></param>
             <returns></returns>
         </member>
+        <member name="M:PicCommunitity.Controllers.AccountController.saveUserInfo(PicCommunitity.ViewsModels.UserInfo)">
+            <summary>
+            保存填写后用户详细信息
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
         <member name="M:PicCommunitity.Controllers.AccountController.getProfileInfo(System.String)">
             <summary>
             获得用户个人图片主页信息，点赞数等
@@ -59,6 +66,28 @@
             进行收藏或已有收藏取消收藏
             </summary>
             <param name="userId"></param>
+            <param name="picId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PicCommunitity.Controllers.PictureController.comment(PicCommunitity.ViewsModels.comment)">
+            <summary>
+            创建评论或修改已有评论
+            </summary>
+            <param name="Comment"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PicCommunitity.Controllers.PictureController.getPicViewInfo(System.String,System.String)">
+            <summary>
+            返回图片页面所需信息  图片来源及信息/关注/点赞/收藏
+            </summary>
+            <param name="userId"></param>
+            <param name="picId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PicCommunitity.Controllers.PictureController.getComment(System.String)">
+            <summary>
+            获取当前图片所有评论
+            </summary>
             <param name="picId"></param>
             <returns></returns>
         </member>
@@ -92,16 +121,6 @@
             CORS 中间件 【解决跨域问题】
             </summary>
         </member>
-        <member name="P:PicCommunitity.ViewsModel.LoginUser.userName">
-            <summary>
-            用户名
-            </summary>
-        </member>
-        <member name="P:PicCommunitity.ViewsModel.LoginUser.userPassword">
-            <summary>
-            登陆密码
-            </summary>
-        </member>
         <member name="P:PicCommunitity.ViewsModels.RegisterUser.userName">
             <summary>
             用户名
@@ -113,6 +132,16 @@
             </summary>
         </member>
         <member name="P:PicCommunitity.ViewsModels.RegisterUser.userPassword">
+            <summary>
+            登陆密码
+            </summary>
+        </member>
+        <member name="P:PicCommunitity.ViewsModel.LoginUser.userName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:PicCommunitity.ViewsModel.LoginUser.userPassword">
             <summary>
             登陆密码
             </summary>

@@ -174,6 +174,33 @@ namespace PicCommunitity.Controllers
             }
         }
 
+
+        /// <summary>
+        /// 保存填写后用户详细信息
+        /// </summary>
+        /// <param name="info"></param>
+        /// <returns></returns>
+        [Route("saveUserInfo")]
+        [HttpPost]
+        public IActionResult saveUserInfo([FromBody] UserInfo info)
+        {
+            var user = services.GetUserById(info.UserId);
+            var userInfo = services.GetUserInfoById(info.UserId);
+            user.u_name = info.UserName;
+            context.users.Attach(user);
+            userInfo.u_name = info.Name;
+            userInfo.mail = info.Email;
+            userInfo.message = info.Message;
+            context.userInfo.Attach(userInfo);
+            context.SaveChanges();
+            return Ok(new
+            {
+                Success = true,
+                msg = "Operation Done"
+            });
+        }
+        
+
         /// <summary>
         /// 获得用户个人图片主页信息，点赞数等
         /// </summary>

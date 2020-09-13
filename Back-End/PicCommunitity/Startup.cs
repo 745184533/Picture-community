@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using PicCommunitity.Models;
@@ -22,9 +23,15 @@ namespace PicCommunitity
     public class Startup
     {
         private IConfiguration _config;
-
-        public Startup(IConfiguration config)
+        public IConfigurationRoot Configuration { get; }
+        public Startup(IConfiguration config,IWebHostEnvironment env)
         {
+            var builder = new ConfigurationBuilder()
+                           .SetBasePath(env.ContentRootPath)
+                           .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                           .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                           .AddEnvironmentVariables();
+            Configuration = builder.Build();
             _config = config;
         }
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -98,9 +105,14 @@ namespace PicCommunitity
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "ApiHelp V1");
                 });
             }
-           
 
-            app.UseStaticFiles();
+
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"C://")),
+                RequestPath = new PathString("/src"),
+
+            });
 
             app.UseRouting();
 

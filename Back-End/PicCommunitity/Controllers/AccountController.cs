@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Primitives;
 using PicCommunitity.Models;
 using PicCommunitity.Services;
 using PicCommunitity.ViewsModel;
@@ -18,10 +23,17 @@ namespace PicCommunitity.Controllers
     {
         private AppDbContext context;
         private AccountServices services;
-        public AccountController(AppDbContext context,IOptions<JwtSetting> options)
+
+        private IWebHostEnvironment hostingEnv;
+
+        string[] pictureFormatArray = { "png", "jpg", "jpeg", "bmp", "gif",
+            "ico", "PNG", "JPG", "JPEG", "BMP", "GIF", "ICO" };
+
+        public AccountController(AppDbContext context,IOptions<JwtSetting> options, IWebHostEnvironment env)
         {
             this.context = context;
             this.services = new AccountServices(context,options);
+            this.hostingEnv = env;
         }
         /// <summary>
         /// 用户登录
@@ -251,6 +263,119 @@ namespace PicCommunitity.Controllers
                 Success = true,
                 msg = "Operation Done"
             });
+        }
+
+        ///<summary>
+        ///下载图片
+        /// </summary>
+        //[Authorize]
+
+        //async Task<
+        [Route("Upload")]
+        [HttpPost]
+        public async Task<IActionResult> Upload([FromForm] IFormCollection forms)
+        {
+            //只选取文件
+            FormFileCollection Lifile = (FormFileCollection)forms.Files;
+
+            //需要绑定图片名和图片id
+            StringValues[] temp = { "", "", "" };
+            //int[5] a;
+            for (int i = 0; i < 3; ++i)
+            {
+                forms.TryGetValue("tag1", out temp[i]);
+            }
+
+            StringValues information = "";
+            forms.TryGetValue("p_Info", out information);
+
+
+            var files = Request.Form.Files;
+
+
+
+            long size = files.Sum(f => f.Length);
+
+            //size > 100MB refuse upload !
+            if (size > 104857600)
+            {
+                return Ok(new
+                {
+                    Success = false,
+                    Message = "pictures total size > 100MB , server refused !"
+                });
+            }
+
+            List<string> filePathResultList = new List<string>();
+
+            //只能上传一张图片顺便贴标签
+            var file = files[0];
+
+            var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+
+            //@
+            string filePath = "C://" + @"\Picks\";
+
+            if (!Directory.Exists(filePath))
+            {
+                Directory.CreateDirectory(filePath);
+            }
+
+            string suffix = fileName.Split('.')[1];
+
+
+            //检查文件后缀名确保是图片而不是其他文件。
+            if (!pictureFormatArray.Contains(suffix))
+            {
+                return Ok(new
+                {
+                    Success = false,
+                    Message = "the picture format not support ! you must upload files " +
+                    "that suffix like 'png','jpg','jpeg','bmp','gif','ico'.",
+                    Name = fileName
+                });
+            }
+            //文件名命名？
+            //存取图片的时候以id为准
+            //context.picture.Count();
+
+
+            fileName = Guid.NewGuid() + "." + suffix;
+
+            string fileFullName = filePath + fileName;
+
+
+            await using (FileStream fs = System.IO.File.Create(fileFullName))
+            {
+                file.CopyTo(fs);
+                fs.Flush();
+
+            }
+
+            filePathResultList.Add($"/src/Picks/{fileName}");
+
+            picture tempPicture = new picture
+            {
+                p_id = (context.picture.Count() + 1).ToString(),
+                p_url = fileFullName,
+                p_info = information,//
+                //p_height
+
+            };
+
+
+
+            string message = $"{files.Count} file(s) /{size} bytes uploaded successfully!";
+
+            return Ok(new
+            {
+                Success = true,
+                Message = message,
+                fileList = filePathResultList
+            });
+
+
+            //return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode(message, filePathResultList, filePathResultList.Count));
         }
 
 

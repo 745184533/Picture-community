@@ -52,6 +52,11 @@
             <param name="followId"></param>
             <returns></returns>
         </member>
+        <member name="M:PicCommunitity.Controllers.AccountController.Upload(Microsoft.AspNetCore.Http.IFormCollection)">
+            <summary>
+            下载图片
+             </summary>
+        </member>
         <member name="M:PicCommunitity.Controllers.PictureController.likePicute(System.String,System.String,System.String)">
             <summary>
             点击进行赞或者已有赞取消赞

@@ -270,3 +270,11 @@ E:\Github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\Micr
 E:\Github\Picture-community\Back-End\PicCommunitity\obj\Debug\netcoreapp3.1\PicCommunitity.csproj.CoreCompileInputs.cache
 E:\Github\Picture-community\Back-End\PicCommunitity\obj\Debug\netcoreapp3.1\PicCommunitity.MvcApplicationPartsAssemblyInfo.cs
 E:\Github\Picture-community\Back-End\PicCommunitity\obj\Debug\netcoreapp3.1\PicCommunitity.MvcApplicationPartsAssemblyInfo.cache
+D:\github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\PicCommunitity.xml
+D:\github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+D:\github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+D:\github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+D:\github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll

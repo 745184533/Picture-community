@@ -37,6 +37,31 @@
             获得用户个人图片主页信息，点赞数等
             </summary>
         </member>
+        <member name="M:PicCommunitity.Controllers.AccountController.followUser(System.String,System.String)">
+            <summary>
+            关注用户或已关注取消关注用户
+            </summary>
+            <param name="fansId"></param>
+            <param name="followId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PicCommunitity.Controllers.PictureController.likePicute(System.String,System.String,System.String)">
+            <summary>
+            点击进行赞或者已有赞取消赞
+            </summary>
+            <param name="userId"></param>
+            <param name="picId"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PicCommunitity.Controllers.PictureController.favoritePicture(System.String,System.String)">
+            <summary>
+            进行收藏或已有收藏取消收藏
+            </summary>
+            <param name="userId"></param>
+            <param name="picId"></param>
+            <returns></returns>
+        </member>
         <member name="P:PicCommunitity.Models.JwtSetting.Issuer">
             <summary>
             颁发者

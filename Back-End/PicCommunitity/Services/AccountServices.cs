@@ -82,7 +82,7 @@ namespace PicCommunitity.Services
             foreach (var pic in picGroup)
             {
                 StarNum += context.favoritePicture.Count(f => f.p_id == pic.p_id);
-                LikeNum += context.likesPicture.Count(l => l.p_id == pic.p_id && l.like_type == "LK");
+                LikeNum += context.picture.Find(pic.p_id).likes;
             }
             #endregion
 

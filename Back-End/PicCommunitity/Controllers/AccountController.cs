@@ -192,5 +192,40 @@ namespace PicCommunitity.Controllers
                 FollowNum=info.followNum
             });
         }
+
+        /// <summary>
+        /// 关注用户或已关注取消关注用户
+        /// </summary>
+        /// <param name="fansId"></param>
+        /// <param name="followId"></param>
+        /// <returns></returns>
+        [Route("followUser")]
+        [HttpPost]
+        public IActionResult followUser(string fansId, string followId)
+        {
+            var follow = context.follow.FirstOrDefault(f => f.fans_id == fansId && f.follow_id == followId);
+            if (follow != null)
+            {//已经关注，则取消关注
+                context.follow.Remove(follow);
+                context.SaveChanges();
+            }
+            else
+            {
+                follow = new follow
+                {
+                    fans_id = fansId,
+                    follow_id = followId
+                };
+                context.follow.Add(follow);
+                context.SaveChanges();
+            }
+            return Ok(new
+            {
+                Success = true,
+                msg = "Operation Done"
+            });
+        }
+
+
     }
 }

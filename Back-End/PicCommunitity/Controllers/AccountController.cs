@@ -280,18 +280,21 @@ namespace PicCommunitity.Controllers
 
             //需要绑定图片名和图片id
             StringValues[] temp = { "", "", "" };
+            string[] thagTag = { "tag", "tag1", "tag2" };
             //int[5] a;
             for (int i = 0; i < 3; ++i)
             {
-                forms.TryGetValue("tag1", out temp[i]);
+                forms.TryGetValue(thagTag[i], out temp[i]);
             }
 
             StringValues information = "";
             forms.TryGetValue("p_Info", out information);
 
+            StringValues userID = "";
+            forms.TryGetValue("userId", out userID);
+
 
             var files = Request.Form.Files;
-
 
 
             long size = files.Sum(f => f.Length);
@@ -314,7 +317,7 @@ namespace PicCommunitity.Controllers
             var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
 
             //@
-            string filePath = "C://" + @"\Picks\";
+            string filePath = "C:" + @"\Pics\";
 
             if (!Directory.Exists(filePath))
             {
@@ -344,38 +347,96 @@ namespace PicCommunitity.Controllers
 
             string fileFullName = filePath + fileName;
 
+            int height = 0;
+            int width = 0;
+
 
             await using (FileStream fs = System.IO.File.Create(fileFullName))
             {
                 file.CopyTo(fs);
+                System.Drawing.Image image = System.Drawing.Image.FromStream(fs);
+                height = image.Height;
+                width = image.Width;
                 fs.Flush();
-
             }
 
-            filePathResultList.Add($"/src/Picks/{fileName}");
+            filePathResultList.Add($"/src/Pics/{fileName}");
+
+            string message = $"{files.Count} file(s) /{size} bytes uploaded successfully!";
+
+            //Json("tag1", temp[0].ToString());
+            string OwnTags = "tag1:"+temp[0].ToString() + ",tag2:" + temp[1].ToString() + ",tag3:" + temp[2].ToString();
 
             picture tempPicture = new picture
             {
                 p_id = (context.picture.Count() + 1).ToString(),
                 p_url = fileFullName,
-                p_info = information,//
-                //p_height
-
+                p_info = information,//还是要能用http访问，不是https
+                p_height=height,
+                p_width=width,
+                p_status="OK",//图片状态不确定。
+                likes=0,
+                dislikes=0,
+                comm_num=0
             };
 
+            //承接前一步异步保存。
+            context.picture.Add(tempPicture);
+            await context.SaveChangesAsync();
 
 
-            string message = $"{files.Count} file(s) /{size} bytes uploaded successfully!";
+            //List<tag> contextTag = context.tag.ToList();
+            for(int i=0;i<3;++i)
+            {
+                if(temp[i]!="")
+                {
+                    tag isLegal=context.tag.FirstOrDefault(p => p.tag_name == temp[i]);
+
+                    if(isLegal==null)
+                    {
+                        //表示这是用户新增的tag
+                        isLegal = new tag
+                        {
+                            tag_name = temp[i]
+                        };
+                        //因为外码依赖要先增加tag
+                        context.tag.Add(isLegal);
+                        await context.SaveChangesAsync();
+                    }
+
+                    ownTag tempTag = new ownTag
+                    {
+                        p_id = tempPicture.p_id,
+                        tag_name = temp[i]
+                    };
+                    context.ownTag.Add(tempTag);
+                }
+            }
+            await context.SaveChangesAsync();
+
+
+
+            publishPicture tempPublish = new publishPicture
+            {
+                u_id=userID,
+                p_id=tempPicture.p_id,
+                publish_time=DateTime.Now
+            };
+            context.publishPicture.Add(tempPublish);
+            await context.SaveChangesAsync();
+
+
 
             return Ok(new
             {
                 Success = true,
                 Message = message,
-                fileList = filePathResultList
+                PictureHeight=tempPicture.p_height,
+                PictureWidth=tempPicture.p_width,
+                PictureURL=tempPicture.p_url,
+                //fileList = filePathResultList,
+                OwnTag=OwnTags
             });
-
-
-            //return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode(message, filePathResultList, filePathResultList.Count));
         }
 
 

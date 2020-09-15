@@ -44,6 +44,12 @@
             获得用户个人图片主页信息，点赞数等
             </summary>
         </member>
+        <member name="M:PicCommunitity.Controllers.AccountController.getProfilePicture(System.String)">
+            <summary>
+            获取用户个人图片主页的图片信息
+             
+             </summary>
+        </member>
         <member name="M:PicCommunitity.Controllers.AccountController.followUser(System.String,System.String)">
             <summary>
             关注用户或已关注取消关注用户
@@ -55,6 +61,11 @@
         <member name="M:PicCommunitity.Controllers.AccountController.Upload(Microsoft.AspNetCore.Http.IFormCollection)">
             <summary>
             下载图片
+             </summary>
+        </member>
+        <member name="M:PicCommunitity.Controllers.AccountController.Download">
+            <summary>
+            收费并且下载图片。
              </summary>
         </member>
         <member name="M:PicCommunitity.Controllers.PictureController.likePicute(System.String,System.String,System.String)">

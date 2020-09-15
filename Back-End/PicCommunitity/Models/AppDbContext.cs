@@ -34,6 +34,8 @@ namespace PicCommunitity.Models
         public DbSet<userInfo> userInfo { get; set; }
         public DbSet<wallet> wallet { get; set; }
 
+        public DbSet<download> download { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -47,7 +49,7 @@ namespace PicCommunitity.Models
             modelBuilder.Entity<ownBlog>().HasKey(t => new { t.u_id, t.b_id });
             modelBuilder.Entity<ownTag>().HasKey(t => new { t.p_id, t.tag_name });
             modelBuilder.Entity<payment>().HasKey(t => new { t.u_id, t.pay_time });
-
+            modelBuilder.Entity<download>().HasKey(t => new { t.u_id, t.p_id });
             modelBuilder.Entity<picComment>().HasKey(t => new { t.u_id, t.p_id});
 
             modelBuilder.Entity<publishPicture>().HasKey(t => new { t.u_id, t.p_id });

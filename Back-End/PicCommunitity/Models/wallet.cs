@@ -12,7 +12,6 @@ namespace PicCommunitity.Models
         [Key]
         public string u_id { get; set; }
 
-        public int fund { get; set; }
         public int coin { get; set; }
         public int publish_num { get; set; }
         public int buy_num { get; set; }

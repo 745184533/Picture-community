@@ -7,17 +7,13 @@ using System.Threading.Tasks;
 
 namespace PicCommunitity.Models
 {
-    public class payment
+    public class download
     {
-        
-        [Key, Column(Order = 1)]
+        [Key,Column(Order =1)]
         public string u_id { get; set; }
-
         [Key, Column(Order = 2)]
-        public DateTime pay_time { get; set; }
-
-        public int coin { get; set; }
-        
-        public string source_typepicture { get; set; }
+        public string p_id { get; set; }
+        public int price { get; set; }
+        public DateTime downloadTime { get; set; }
     }
 }

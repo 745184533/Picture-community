@@ -18,5 +18,7 @@ namespace PicCommunitity.Models
         public int likes { get; set; }
         public int dislikes { get; set; }
         public int comm_num { get; set; }
+
+        public int price { get; set; }
     }
 }

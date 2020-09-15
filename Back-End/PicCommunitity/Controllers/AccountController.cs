@@ -23,16 +23,19 @@ namespace PicCommunitity.Controllers
     {
         private AppDbContext context;
         private AccountServices services;
+        private PictureServices PictureServices;
 
         private IWebHostEnvironment hostingEnv;
 
         string[] pictureFormatArray = { "png", "jpg", "jpeg", "bmp", "gif",
             "ico", "PNG", "JPG", "JPEG", "BMP", "GIF", "ICO" };
 
-        public AccountController(AppDbContext context,IOptions<JwtSetting> options, IWebHostEnvironment env)
+        public AccountController(AppDbContext context,IOptions<JwtSetting> options, 
+            IWebHostEnvironment env)
         {
             this.context = context;
             this.services = new AccountServices(context,options);
+            this.PictureServices = new PictureServices(context);
             this.hostingEnv = env;
         }
         /// <summary>
@@ -104,7 +107,6 @@ namespace PicCommunitity.Controllers
                     u_id = user.u_id,
                     buy_num = 0,
                     coin = 0,
-                    fund = 0,
                     publish_num = 0
                 };
                 context.wallet.Add(newUserWallet);
@@ -232,6 +234,75 @@ namespace PicCommunitity.Controllers
             });
         }
 
+        ///<summary>
+        ///获取用户个人图片主页的图片信息
+        /// 
+        /// </summary>
+        [Route("getProfilePicture")]
+        [HttpGet]
+        public IActionResult getProfilePicture(string userId)
+        {
+            //我的上传
+            var info = context.publishPicture.ToLookup(p => p.u_id)[userId].ToList();
+            //我的收藏
+            var infos = context.favoritePicture.ToLookup(p => p.u_id)[userId].ToList();
+            int count1 = info.Count();
+            int count2 = infos.Count();
+            //?初始化局部list?
+            //int[] a = new []int;
+            var tempPicture = new List<ProfilePicture> { };
+
+            var tempPictures = new List<ProfilePicture> { };
+
+            ///ProfilePicture[] tempPictures = new ProfilePicture[count2];
+            ///ProfilePicture[] tempPictures = new ProfilePicture[count2];
+
+            //int[] a = new int[10] ;
+            int i = 0;
+
+            foreach(var Picture in info)
+            {
+                //上传图片信息
+                var temp1 = new ProfilePicture
+                {
+                    like = context.likesPicture.Count(p => p.p_id == Picture.p_id),
+                    favorite = context.favoritePicture.Count(p => p.p_id == Picture.p_id),
+                    comment = context.picComment.Count(p => p.p_id == Picture.p_id),
+                    thatpicture = context.picture.FirstOrDefault(p => p.p_id == Picture.p_id)
+                };
+                tempPicture.Add(temp1);
+                ++i;
+            }
+            i = 0;
+            foreach(var Picture in infos)
+            {
+                //收藏图片信息
+                var temp1 = new ProfilePicture
+                {
+                    like = context.likesPicture.Count(p => p.p_id == Picture.p_id),
+                    favorite = context.favoritePicture.Count(p => p.p_id == Picture.p_id),
+                    comment = context.picComment.Count(p => p.p_id == Picture.p_id),
+                    thatpicture = context.picture.FirstOrDefault(p => p.p_id == Picture.p_id)
+                };
+                tempPictures.Add(temp1);
+                ++i;
+            }
+            return Ok(new
+            {
+                Success=true,
+                Upload=tempPicture,
+                favorite=tempPictures
+            }
+            );
+        }
+
+
+
+
+
+
+
+
         /// <summary>
         /// 关注用户或已关注取消关注用户
         /// </summary>
@@ -269,8 +340,6 @@ namespace PicCommunitity.Controllers
         ///下载图片
         /// </summary>
         //[Authorize]
-
-        //async Task<
         [Route("Upload")]
         [HttpPost]
         public async Task<IActionResult> Upload([FromForm] IFormCollection forms)
@@ -367,6 +436,9 @@ namespace PicCommunitity.Controllers
             //Json("tag1", temp[0].ToString());
             string OwnTags = "tag1:"+temp[0].ToString() + ",tag2:" + temp[1].ToString() + ",tag3:" + temp[2].ToString();
 
+            //刷新为服务器的图片。
+            fileFullName = "http://172.81.239.44:8002/" + fileName;
+
             picture tempPicture = new picture
             {
                 p_id = (context.picture.Count() + 1).ToString(),
@@ -439,6 +511,14 @@ namespace PicCommunitity.Controllers
             });
         }
 
-
+        ///<summary>
+        ///收费并且下载图片。
+        /// </summary>
+        [Route("Download")]
+        [HttpGet]
+        public async Task<IActionResult> Download()
+        {
+            return PhysicalFile(@"D:\QQ文件\validation\forest.jpg", "image/jpeg");
+        }
     }
 }

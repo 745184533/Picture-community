@@ -154,6 +154,8 @@ namespace PicCommunitity.Controllers
         [HttpGet]
         public IActionResult getPicViewInfo(string userId,string picId)
         {
+            //是否下载
+            var HasDownload = false;
             //获取关注状态
             var publisherfollow = false;
             var publishUserId = context.publishPicture.FirstOrDefault(p => p.p_id == picId).u_id;
@@ -169,8 +171,15 @@ namespace PicCommunitity.Controllers
             if (context.favoritePicture.FirstOrDefault
                 (f => f.u_id == userId && f.p_id == picId) != null) { picstar = true; }
 
-            //获取图片信息
+            //获取图片信息、图片下载量、图片作者、上传时间。
             var pic = services.getPicture(picId);
+            var Download = context.download.Count(i => i.p_id == picId);
+            var LiUp=context.publishPicture.FirstOrDefault(i => i.p_id == picId);
+
+
+            var uploadTime = LiUp.publish_time;
+            var LiName = context.users.FirstOrDefault(i => i.u_id == LiUp.u_id);
+
 
             //获取图片Tag
             var pictag = context.ownTag.ToLookup(t => t.p_id)[picId].ToArray();
@@ -180,19 +189,36 @@ namespace PicCommunitity.Controllers
             var tmpComment = context.picComment.FirstOrDefault(c => c.u_id == userId && c.p_id == picId);
             if (tmpComment != null) { piccomment = tmpComment.p_comment; }
 
+            //是否下载
+            if(context.download.FirstOrDefault(c=>c.p_id==picId&&c.u_id==userId)!=null)
+            {
+                HasDownload = true;
+            }
+
+
+
             //组织返回信息
             return Ok(new
             {
                 Success=true,
-                picUrl = "url",
+                picUrl = pic.p_url,
+
                 publisherFollow = publisherfollow,
                 publisherId=publishUserId,
+
                 picLike = piclike,
                 picStar = picstar,
+
                 picHeight = pic.p_height,
                 picWidth = pic.p_width,
                 picInfo = pic.p_info,
+
                 picTags = pictag,
+                hasDownload=HasDownload,
+
+                uploadtime=uploadTime,
+                uploadName=LiName.u_name,
+                pirce=pic.price,
                 nowComment=piccomment
             }) ;
         }
@@ -209,11 +235,25 @@ namespace PicCommunitity.Controllers
         {
             var commentNum = context.picComment.Count(c => c.p_id == picId);
             var comments = context.picComment.ToLookup(c => c.p_id)[picId].ToList();
+            var returnComment = new List<OtherComment> { };
+            foreach(var temp in comments)
+            {
+                users tempuser=context.users.FirstOrDefault(predicate => predicate.u_id == temp.u_id);
+                var add = new OtherComment
+                {
+                    userId = tempuser.u_id,
+                    userName = tempuser.u_name,
+                    content = temp
+                };
+                returnComment.Add(add);
+            }
+
+
             //返回列表
             return Ok(new
             {
                 CommentNum=commentNum,
-                Comments=comments
+                Comments=returnComment
             });
         }
     }

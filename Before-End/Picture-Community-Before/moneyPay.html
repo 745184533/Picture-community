@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/page.css"/>
+		<link rel="stylesheet" type="text/css" href="css/moneyPay.css"/>
+		<link rel="stylesheet" type="text/css" href="css/information.css"/>
+		<script src="js/jquery.min.js"></script>
+		<style>
+			.mark-style{
+				border: 1px solid darkgrey;
+				margin-top: 5px;
+				padding: 0 31.5px;
+				align-content: center;
+				border-radius: 5px;
+			}
+			.header-style{
+				font-size:20px;
+				margin: 20px 254px;
+				color: #000000;
+				font-weight: 500;
+				letter-spacing: 3px;
+			}
+		</style>
+		<title></title>
+	</head>
+	<body>
+		<div id="wrapper">
+			<!-- 导航栏 -->
+			<div class="title-style">
+				<div class="nav-style">
+					<div class="navbar-nav">
+						<ul class="nav nav-tabs" role="tablist">
+							<li role="presentation" style="margin: 0 40px 0 0;" ><span style="height: 40px;line-height: 40px;font-weight: bold;font-size: 18px;">图片社区</span></li>
+						    <li role="presentation" style="margin: 0 40px 0 0;" ><a href="new凯.html">照片</a></li>
+						    <li role="presentation" style="margin: 0 40px 0 0;" ><a href="new凯.html">插画</a></li>
+							<li role="presentation" style="margin: 0 40px 0 0;"><a href="new凯.html">向量</a></li>
+							<li role="presentation" class="dropdown" style="margin: 0 40px 0 630px;">
+							    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+							      aria-haspopup="true" aria-expanded="true">探索<span class="caret"></span>
+							    </button>
+								<table class="dropdown-menu" aria-labelledby="dropdownMenu1">
+									<tr>
+										<th>Media</th>
+										<th>Community</th>
+										<th>About</th>
+									</tr>
+									<tr>
+										<td><a>小编精选</a></td>
+										<td><a>博客</a></td>
+										<td><a>服务条款</a></td>
+									</tr>
+									<tr>
+										<td><a>Popular Images</a></td>
+										<td><a>论坛</a></td>
+										<td><a>隐私政策</a></td>
+									</tr>
+									<tr>
+										<td><a>Popular Videos</a></td>
+										<td><a>Artists</a></td>
+										<td><a>关于我们</a></td>
+									</tr>
+								</table>
+							</li>
+							<li style="margin: 0 40px 0 0;"><a href="" style="color: black;">登录</a></li>
+							<li style="margin: 0 40px 0 0;"><a href="" style="color: black;">注册</a></li>
+							<li style="margin: 0 20px 0 0;"><a href="" style="color: black;">
+								<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-upload" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+								    <path fill-rule="evenodd" d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+								    <path fill-rule="evenodd" d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+							    </svg>上传</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			
+			
+			<!-- 内容展示页面 -->
+			<div id="content" class="clearfix">
+				
+				<!-- 显示选择栏的内容 -->
+				<div style="margin: 30px auto;">
+					<div id="account_tabs" class="tab_menu hide-xs hide-sm hide-md" style="margin:auto;border-top:0">
+						<div style="max-width:1440px;margin:auto;padding:0 5px;text-align:left">
+							<a style="float:right" href="个人图片主页.html">
+								<font style="vertical-align: inherit;">
+									<font style="vertical-align: inherit;">我的简历
+									</font>
+								</font>
+							</a>
+							<a href="pictureShow.html">
+								<font style="vertical-align: inherit;">
+									<font style="vertical-align: inherit;">图片
+									</font>
+								</font>
+							</a>
+							<a href="#我的博客">
+								<font style="vertical-align: inherit;">
+									<font style="vertical-align: inherit;">博客
+									</font>
+								</font>
+							</a>
+							<a href="moneyPay.html"  class="selected">
+								<font style="vertical-align: inherit;">
+									<font style="vertical-align: inherit;">钱包
+									</font>
+								</font>
+							</a>
+							<a href="myinformation.html">
+								<font style="vertical-align: inherit;">
+									<font style="vertical-align: inherit;">设置
+									</font>
+								</font>
+							</a>
+						</div>
+					</div>
+				</div>
+				
+				<!-- 显示钱包内容 -->
+				<div id="app">
+					<!-- 蓝条 -->
+					<div class="top-bp">
+					</div>
+					
+					<div id="content" class="clearfix">
+					
+						<!-- 中间输入框 -->
+						<div id="sign_in_out" style="padding: 10px;">
+							<div class="window" style="max-width: 600px;">
+								<div style="padding: 20px 25px;">
+									<!-- 用户名以及头像 -->
+									<div class="tab-menu" style="border-top: 0;margin: 0 0 35px;font-size: 20px;">
+										<span style="background-image: url(&quot;http://i0.hdslb.com/bfs/face/01dbc13793a683bf25de3b63c7c175c10f95dfc7.jpg&quot;);"></span>
+										<p>桔子柿饼</p>
+									</div>
+									<!-- 账户余额 -->
+									<div class="social_auth" style="margin: 0 0 30px;text-align: center;">
+										当前账户余额：<a>0</a>币
+									</div>
+									<form id="login_form" spellcheck="false" class="right_side pure-form">
+										<!-- 充值按钮 -->
+										<div style="text-align: center;">
+											<div></div>
+											<input style="text-align:center;width: 300px;" class="pure-button button-green" type="submit" value="B币充值">
+										</div>
+									</form>
+									
+								</div>
+								
+								<!-- 充值记录 -->
+								<div id="mark" style="color: #000000;">
+									
+								</div>
+								
+								
+								<div style="padding:20px 25px;background:#f7f7f7;font-size:13px;line-height:1.7;text-align:center">
+								<a href="#">充值注意事项</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script>
+			var arr=[
+				{
+					data:"data",
+					number:"number"
+				},
+				{
+					data:"data",
+					number:"number"
+				},
+				{
+					data:"data",
+					number:"number"
+				},
+				{
+					data:"data",
+					number:"number"
+				},
+				{
+					data:"data",
+					number:"number"
+				},
+				{
+					data:"data",
+					number:"number"
+				}
+			];
+			var header=$("<span></span>").text("充值记录");
+			header.css("color","black");
+			header.css("font-size","20px");
+			header.attr("class","header-style");
+			$("#mark").append(header);
+			arr.forEach(function(item,index){
+				var jilu=$("<div></div>");
+				jilu.css("height","80px");
+				jilu.css("width","90%");
+				jilu.css("margin-left","31.5px");
+				jilu.attr("class","mark-style");
+				$("#mark").append(jilu);
+				var data=$("<div></div>").text("时间: "+"item.data");
+				data.css("height","30px");
+				data.css("padding-left","40px");
+				data.css("color","black");
+				data.css("padding-top","10px")
+				var number=$("<div></div>").text("充值金额"+"item.number");
+				number.css("padding-left","40px");
+				number.css("margin-top","10px");
+				number.css("height","30px");
+				number.css("color","black");
+				jilu.append(data);
+				jilu.append(number);
+			});
+		</script>
+		
+		
+		<script src="js/bootstrap.min.js"></script>
+	</body>
+</html>

@@ -21,6 +21,7 @@ namespace PicCommunitity.Controllers
             this.context = context;
             this.services = new BlogServices(context);
         }
+
         [Route("getTen")]
         [HttpGet]
         public IActionResult getTen(int times)
@@ -29,7 +30,7 @@ namespace PicCommunitity.Controllers
             var list = context.blog.ToList();
             var returnList = new List<blog> { };
             var blogNum = context.blog.Count();
-            for (var i = blogNum - 1 - 10 * times; i >= blogNum - 1 - 20 * times && i >= 0; ++i)
+            for (var i = blogNum - 1 - 10 * times; i >= blogNum -11- 10* times && i >= 0; --i)
             {
                 returnList.Add(list[i]);
             }
@@ -37,11 +38,12 @@ namespace PicCommunitity.Controllers
             return Ok(new
             {
                 Success = true,
-                times = times,
+                Times = times,
                 List = returnList,
                 msg = "Operation Done"
             });
         }
+
         [Route("writeBlog")]
         [HttpPost]
         public IActionResult writeBlog([FromBody] BlogInfo Blog)

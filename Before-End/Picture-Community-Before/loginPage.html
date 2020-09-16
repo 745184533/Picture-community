@@ -13,7 +13,6 @@
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/page.css">
 	<link rel="stylesheet" type="text/css" href="css/conciseStyle.css">
-	<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script><![endif]-->
 </head>
 
 <body>
@@ -70,10 +69,10 @@
 						</table>
 					</li>
 					<li class="navtitle" style="margin: 0 40px 0 0;">
-						<a href="#登录" style="color: black;">登录</a>
+						<a href="loginPage.html" style="color: black;">登录</a>
 					</li>
 					<li class="navtitle" style="margin: 0 40px 0 0;">
-						<a href="#注册" style="color: black;">注册</a>
+						<a href="registerPage.html" style="color: black;">注册</a>
 					</li>
 					<li style="margin: 0 20px 0 0;">
 						<a href="#上传" style="color: black;">
@@ -111,7 +110,7 @@
 						</a>
 					</div>
 					<!-- 输入账户和密码的表单 -->
-					<form id="login_form" spellcheck="false" class="right_side pure-form" action="." method="post">
+					<form id="login_form" spellcheck="false" class="right_side pure-form">
 						<p>
 							<input type="text" name="username" data-autofocus placeholder="用户名" maxlength="50" required="" id="id_username">
 						</p>
@@ -121,7 +120,7 @@
 						<!-- 登录按钮 -->
 						<div>
 							<div></div>
-							<input style="text-align:center" class="pure-button button-green" data-sitekey="" data-callback="" type="submit" value="登录">
+							<input style="text-align:center" class="pure-button button-green" onclick="Login()" value="登录">
 						</div>
 					</form>
 				</div>
@@ -143,6 +142,34 @@
 	</footer>
 
 	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-</body
+ 	<script src="js/bootstrap.min.js"></script>
+	<script>
+		function Login(){
+		var username=$('#id_username').val();
+		var userpassword=$('#id_password').val();
+		console.log(username,userpassword);
+		$.ajax({
+			"url": "http://172.81.239.44/Account/login",
+			"method": "POST",
+			"timeout": 0,
+			"headers": {
+				"Content-Type": "application/json"
+			},
+			"data": JSON.stringify({"userName":username,"userPassword":userpassword}),
+			success:function(response){
+				console.log(response);
+				localStorage.setItem('Token',response.token);
+				localStorage.setItem('username',username);
+				localStorage.setItem('userpassword',userpassword);
+				window.location.href="个人图片主页.html";
+			},
+			error:function(response){
+			  	window.location.href="loginPage.html"
+			  	alert("密码错误");
+			}
+			});
+		}
+	</script>
+
+</body>
 </html>

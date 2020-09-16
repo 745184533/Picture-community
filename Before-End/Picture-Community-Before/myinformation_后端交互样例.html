@@ -764,7 +764,7 @@
 	function getInfo(){
         var form = new FormData();
         var settings = {
-            "url": "https://localhost:44362/Account/getUserInfo?userId=3",
+            "url": "http://172.81.239.44/Home/test",
             "method": "GET",
             "timeout": 0,
             "processData": false,
@@ -774,12 +774,14 @@
         };
 
 		$.ajax(settings).done(function (response) {
-			var obj = eval('(' + response + ')');
-			$('#id_username').val(obj.userName);
-			$('#id_first_name').val(obj.name);
-			$('#id_email').val(obj.email);
-			console.log(obj.userName);
 			console.log(response);
+			console.log("?");
+			//var obj = eval('(' + response + ')');
+			//$('#id_username').val(obj.userName);
+			//$('#id_first_name').val(obj.name);
+			//$('#id_email').val(obj.email);
+			//console.log(obj.userName);
+			//console.log(response);
         });
     }
 </script>

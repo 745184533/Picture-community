@@ -114,6 +114,13 @@
             收费并且下载图片。
              </summary>
         </member>
+        <member name="M:PicCommunitity.Controllers.PictureController.get3Pic(System.Int32)">
+            <summary>
+            根据请求次数获取最新的三张图片
+            </summary>
+            <param name="requestTimes"></param>
+            <returns></returns>
+        </member>
         <member name="P:PicCommunitity.Models.JwtSetting.Issuer">
             <summary>
             颁发者

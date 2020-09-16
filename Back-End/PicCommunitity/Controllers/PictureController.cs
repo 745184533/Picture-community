@@ -305,7 +305,7 @@ namespace PicCommunitity.Controllers
         public IActionResult Download(string userId,string picId)
         {
             var nowPic = services.getPicture(picId);
-            
+            var publisher = services.GetUserById(context.publishPicture.FirstOrDefault(p => p.p_id == picId).u_id);
             if (context.download.FirstOrDefault(d => d.u_id == userId && d.p_id == picId) == null
                 && context.publishPicture.FirstOrDefault(p => p.u_id == userId && p.p_id == picId) == null)
             {//表示第一次下载且图片不是本人发布
@@ -326,6 +326,11 @@ namespace PicCommunitity.Controllers
                     };
                     context.download.Add(newDownload);
                     context.SaveChanges();
+                    //为图片发布者增加硬币
+                    var publisherWallet = context.wallet.Find(publisher.u_id);
+                    publisherWallet.coin += nowPic.price;
+                    context.wallet.Attach(publisherWallet);
+                    context.SaveChanges();
                 }
                 else
                 {
@@ -343,6 +348,47 @@ namespace PicCommunitity.Controllers
                 Success = true,
                 downloadUrl = nowPic.p_url,
                 msg = "请右键图片进行手动下载"
+            });
+        }
+
+
+        /// <summary>
+        /// 根据请求次数获取最新的三张图片
+        /// </summary>
+        /// <param name="requestTimes"></param>
+        /// <returns></returns>
+        [Route("get3Pic")]
+        [HttpGet]
+        public IActionResult get3Pic(int requestTimes)
+        {
+            var returnList = new List<picInfo> { };
+            
+            var picList = context.picture.ToList();
+            int nowPici = context.picture.Count() - 3 * requestTimes - 1;
+            for (int i = 0; i < 3 && nowPici >= 0; ++i)
+            {//返回三张pic
+                var pic = picList[nowPici];
+                var publisher = services.GetUserById(context.publishPicture
+                    .FirstOrDefault(p => p.p_id == picList[nowPici].p_id).u_id);
+                var picInfo = new picInfo
+                {
+                    picId = pic.p_id,
+                    picUrl = pic.p_url,
+                    publisherId = publisher.u_id,
+                    publisherName = publisher.u_name,
+                    info = pic.p_info,
+                    starNum = context.favoritePicture.Count(f => f.p_id == pic.p_id),
+                    likeNum = context.likesPicture.Count(l => l.p_id == pic.p_id),
+                    commNum = context.picComment.Count(c => c.p_id == pic.p_id)
+                };
+                returnList.Add(picInfo);
+                nowPici--;
+            }
+            return Ok(new
+            {
+                Success = true,
+                ReturnList = returnList,
+                msg = "Operation Done"
             });
         }
 

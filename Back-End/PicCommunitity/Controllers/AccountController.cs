@@ -297,12 +297,6 @@ namespace PicCommunitity.Controllers
         }
 
 
-
-
-
-
-
-
         /// <summary>
         /// 关注用户或已关注取消关注用户
         /// </summary>
@@ -361,6 +355,12 @@ namespace PicCommunitity.Controllers
 
             StringValues userID = "";
             forms.TryGetValue("userId", out userID);
+
+            StringValues price = "";
+            forms.TryGetValue("price", out price);
+            string tempsd = price;
+            int Prices = int.Parse(tempsd);
+            
 
 
             var files = Request.Form.Files;
@@ -447,6 +447,7 @@ namespace PicCommunitity.Controllers
                 p_height=height,
                 p_width=width,
                 p_status="OK",//图片状态不确定。
+                price=Prices,
                 likes=0,
                 dislikes=0,
                 comm_num=0
@@ -505,6 +506,7 @@ namespace PicCommunitity.Controllers
                 Message = message,
                 PictureHeight=tempPicture.p_height,
                 PictureWidth=tempPicture.p_width,
+                Price=Prices,
                 PictureURL=tempPicture.p_url,
                 //fileList = filePathResultList,
                 OwnTag=OwnTags

@@ -9242,23 +9242,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Lee\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\10852\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\github\\Picture-community\\Back-End\\PicCommunitity\\PicCommunitity.csproj",
+      "projectUniqueName": "D:\\MyTools\\WorkPages\\项目\\Picture-communityStart\\Back-End\\PicCommunitity\\PicCommunitity.csproj",
       "projectName": "PicCommunitity",
-      "projectPath": "D:\\github\\Picture-community\\Back-End\\PicCommunitity\\PicCommunitity.csproj",
-      "packagesPath": "C:\\Users\\Lee\\.nuget\\packages\\",
-      "outputPath": "D:\\github\\Picture-community\\Back-End\\PicCommunitity\\obj\\",
+      "projectPath": "D:\\MyTools\\WorkPages\\项目\\Picture-communityStart\\Back-End\\PicCommunitity\\PicCommunitity.csproj",
+      "packagesPath": "C:\\Users\\10852\\.nuget\\packages\\",
+      "outputPath": "D:\\MyTools\\WorkPages\\项目\\Picture-communityStart\\Back-End\\PicCommunitity\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Lee\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\10852\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9355,7 +9351,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
       }
     }
   }

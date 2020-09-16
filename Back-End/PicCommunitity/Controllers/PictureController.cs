@@ -295,6 +295,7 @@ namespace PicCommunitity.Controllers
             });
         }
 
+        //string[]Tags=PictureServices.getTag("C:/Pics/3aa89eb2-fc41-476c-99ad-8420705106d9.jpg");
 
 
         ///<summary>

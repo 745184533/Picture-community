@@ -510,15 +510,5 @@ namespace PicCommunitity.Controllers
                 OwnTag=OwnTags
             });
         }
-
-        ///<summary>
-        ///收费并且下载图片。
-        /// </summary>
-        [Route("Download")]
-        [HttpGet]
-        public async Task<IActionResult> Download()
-        {
-            return PhysicalFile(@"D:\QQ文件\validation\forest.jpg", "image/jpeg");
-        }
     }
 }

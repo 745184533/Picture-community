@@ -63,11 +63,6 @@
             下载图片
              </summary>
         </member>
-        <member name="M:PicCommunitity.Controllers.AccountController.Download">
-            <summary>
-            收费并且下载图片。
-             </summary>
-        </member>
         <member name="M:PicCommunitity.Controllers.PictureController.likePicute(System.String,System.String,System.String)">
             <summary>
             点击进行赞或者已有赞取消赞
@@ -106,6 +101,18 @@
             </summary>
             <param name="picId"></param>
             <returns></returns>
+        </member>
+        <member name="M:PicCommunitity.Controllers.PictureController.searchByTag(System.String)">
+            <summary>
+            根据tag返回相关图片信息列表
+            </summary>
+            <param name="tag"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PicCommunitity.Controllers.PictureController.Download(System.String,System.String)">
+            <summary>
+            收费并且下载图片。
+             </summary>
         </member>
         <member name="P:PicCommunitity.Models.JwtSetting.Issuer">
             <summary>

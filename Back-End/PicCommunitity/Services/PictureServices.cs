@@ -16,6 +16,12 @@ namespace PicCommunitity.Services
             this.context = context;
         }
 
+        //获取对应id的User，不存在则返回Null
+        public users GetUserById(string userId)
+        {
+            return context.users.FirstOrDefault(u => u.u_id == userId);
+        }
+
         //获取某个用户对应的点赞信息
         public likespicture getLikes(string userId,string picId)
         {

@@ -256,6 +256,98 @@ namespace PicCommunitity.Controllers
                 Comments=returnComment
             });
         }
+
+        /// <summary>
+        /// 根据tag返回相关图片信息列表
+        /// </summary>
+        /// <param name="tag"></param>
+        /// <returns></returns>
+        [Route("searchByTag")]
+        [HttpGet]
+        public IActionResult searchByTag(string tag)
+        {
+            var returnList = new List<picInfo> { };
+            var picList = context.ownTag.ToLookup(t => t.tag_name)[tag].ToList();
+            foreach (var pic in picList)
+            {
+                var nowPic = services.getPicture(pic.p_id);
+                var pubulisher = services.GetUserById(context.publishPicture
+                    .FirstOrDefault(p => p.p_id == nowPic.p_id).u_id);
+                var newPicInfo = new picInfo
+                {
+
+                    picId = nowPic.p_id,
+                    picUrl = nowPic.p_url,
+                    publisherId = pubulisher.u_id,
+                    publisherName = pubulisher.u_name,
+                    info = nowPic.p_info,
+                    starNum = context.favoritePicture.Count(f => f.p_id == nowPic.p_id),
+                    likeNum = context.likesPicture.Count(l => l.p_id == nowPic.p_id),
+                    commNum = context.picComment.Count(c => c.p_id == nowPic.p_id)
+                };
+                returnList.Add(newPicInfo);
+            }
+            return Ok(new
+            {
+                Success = true,
+                picList = returnList,
+                msg = "Operation Done"
+            });
+        }
+
+
+
+        ///<summary>
+        ///收费并且下载图片。
+        /// </summary>
+        [Route("Download")]
+        [HttpGet]
+        public IActionResult Download(string userId,string picId)
+        {
+            var nowPic = services.getPicture(picId);
+            
+            if (context.download.FirstOrDefault(d => d.u_id == userId && d.p_id == picId) == null
+                && context.publishPicture.FirstOrDefault(p => p.u_id == userId && p.p_id == picId) == null)
+            {//表示第一次下载且图片不是本人发布
+                //进行购买
+                var wallet = context.wallet.Find(userId);
+                if (wallet.coin >= nowPic.price)
+                {//能够支付
+                    wallet.coin = wallet.coin-nowPic.price;
+                    wallet.buy_num=wallet.buy_num+1;
+                    context.wallet.Attach(wallet);
+                    context.SaveChanges();
+                    var newDownload = new download
+                    {
+                        u_id = userId,
+                        p_id = picId,
+                        downloadTime = DateTime.Now,
+                        price = nowPic.price
+                    };
+                    context.download.Add(newDownload);
+                    context.SaveChanges();
+                }
+                else
+                {
+                    return Ok(new
+                    {
+                        Success = false,
+                        msg = "Lack of Coin"
+                    }); 
+                    
+                }
+            }
+            //已经购买进行下载
+            return Ok(new
+            {
+                Success = true,
+                downloadUrl = nowPic.p_url,
+                msg = "请右键图片进行手动下载"
+            });
+        }
+
+
     }
+
 
 }

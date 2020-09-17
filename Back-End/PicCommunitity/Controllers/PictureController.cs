@@ -171,6 +171,10 @@ namespace PicCommunitity.Controllers
             if (context.favoritePicture.FirstOrDefault
                 (f => f.u_id == userId && f.p_id == picId) != null) { picstar = true; }
 
+            //点赞数、收藏数
+            var numberlike = context.likesPicture.Count(predicate => predicate.p_id == picId);
+            var numberfavorite = context.favoritePicture.Count(predicate => predicate.p_id == picId);
+
             //获取图片信息、图片下载量、图片作者、上传时间。
             var pic = services.getPicture(picId);
             var Download = context.download.Count(i => i.p_id == picId);
@@ -201,6 +205,7 @@ namespace PicCommunitity.Controllers
             return Ok(new
             {
                 Success=true,
+                Message="numberLike,numberFavorite,Downloads分别是点赞量，收藏量，下载量",
                 picUrl = pic.p_url,
 
                 publisherFollow = publisherfollow,
@@ -209,12 +214,17 @@ namespace PicCommunitity.Controllers
                 picLike = piclike,
                 picStar = picstar,
 
+                numberLike=numberlike,
+                numberFavorite=numberfavorite,
+
                 picHeight = pic.p_height,
                 picWidth = pic.p_width,
                 picInfo = pic.p_info,
 
                 picTags = pictag,
                 hasDownload=HasDownload,
+                Downloads=Download,
+
 
                 uploadtime=uploadTime,
                 uploadName=LiName.u_name,

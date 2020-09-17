@@ -160,11 +160,11 @@
 				console.log(response);
 				localStorage.setItem('Token',response.token);
 				localStorage.setItem('username',username);
-				localStorage.setItem('userpassword',userpassword);
+				localStorage.setItem('userId',response.userId);
 				window.location.href="个人图片主页.html";
 			},
 			error:function(response){
-			  	window.location.href="loginPage.html"
+			  	window.location.href="loginPage.html";
 			  	alert("密码错误");
 			}
 			});

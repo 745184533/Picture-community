@@ -3,7 +3,6 @@ E:\Github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\apps
 E:\Github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\libman.json
 E:\Github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 E:\Github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\PicCommunitity.exe
-E:\Github\Picture-community\Back-End\PicCommunitity\obj\Debug\netcoreapp3.1\PicCommunitity.csprojAssemblyReference.cache
 E:\Github\Picture-community\Back-End\PicCommunitity\obj\Debug\netcoreapp3.1\PicCommunitity.AssemblyInfoInputs.cache
 E:\Github\Picture-community\Back-End\PicCommunitity\obj\Debug\netcoreapp3.1\PicCommunitity.AssemblyInfo.cs
 E:\Github\Picture-community\Back-End\PicCommunitity\obj\Debug\netcoreapp3.1\PicCommunitity.RazorTargetAssemblyInfo.cache
@@ -278,3 +277,4 @@ D:\github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\Syst
 D:\github\Picture-community\Back-End\PicCommunitity\obj\Debug\netcoreapp3.1\PicCommunitity.csproj.CoreCompileInputs.cache
 D:\github\Picture-community\Back-End\PicCommunitity\obj\Debug\netcoreapp3.1\PicCommunitity.MvcApplicationPartsAssemblyInfo.cs
 D:\github\Picture-community\Back-End\PicCommunitity\obj\Debug\netcoreapp3.1\PicCommunitity.MvcApplicationPartsAssemblyInfo.cache
+E:\Github\Picture-community\Back-End\PicCommunitity\obj\Debug\netcoreapp3.1\PicCommunitity.csprojAssemblyReference.cache

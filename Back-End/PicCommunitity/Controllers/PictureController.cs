@@ -378,6 +378,9 @@ namespace PicCommunitity.Controllers
             for (int i = 0; i < 3 && nowPici >= 0; ++i)
             {//返回三张pic
                 var pic = picList[nowPici];
+                var pub = context.publishPicture
+                    .FirstOrDefault(p => p.p_id == picList[nowPici].p_id);
+                var pubId = pub.u_id;
                 var publisher = services.GetUserById(context.publishPicture
                     .FirstOrDefault(p => p.p_id == picList[nowPici].p_id).u_id);
                 var picInfo = new picInfo

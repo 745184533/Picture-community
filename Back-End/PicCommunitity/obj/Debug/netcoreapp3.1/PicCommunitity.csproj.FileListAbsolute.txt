@@ -384,3 +384,8 @@ E:\Github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\View
 E:\Github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\Views\kartik-v-bootstrap-fileinput-8c23b07\bower.json
 E:\Github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\Views\kartik-v-bootstrap-fileinput-8c23b07\composer.json
 E:\Github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\Views\kartik-v-bootstrap-fileinput-8c23b07\package.json
+D:\github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\Views\javanto-jquery-fileinput-c94c693\bower.json
+D:\github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\Views\javanto-jquery-fileinput-c94c693\fileinput.jquery.json
+D:\github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\Views\kartik-v-bootstrap-fileinput-8c23b07\bower.json
+D:\github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\Views\kartik-v-bootstrap-fileinput-8c23b07\composer.json
+D:\github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\Views\kartik-v-bootstrap-fileinput-8c23b07\package.json

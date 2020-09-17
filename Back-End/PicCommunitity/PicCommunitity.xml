@@ -63,6 +63,24 @@
             下载图片
              </summary>
         </member>
+        <member name="M:PicCommunitity.Controllers.AccountController.SimilarPicture(Microsoft.AspNetCore.Http.IFormCollection)">
+            <summary>
+            搜索相似图片
+             
+             </summary>
+        </member>
+        <member name="M:PicCommunitity.Controllers.AccountController.Upload1(Microsoft.AspNetCore.Http.IFormCollection)">
+            <summary>
+            第一回合上传
+             
+             </summary>
+        </member>
+        <member name="M:PicCommunitity.Controllers.AccountController.Upload2(Microsoft.AspNetCore.Http.IFormCollection)">
+            <summary>
+            第二回合上传
+             
+             </summary>
+        </member>
         <member name="M:PicCommunitity.Controllers.PictureController.likePicute(System.String,System.String,System.String)">
             <summary>
             点击进行赞或者已有赞取消赞

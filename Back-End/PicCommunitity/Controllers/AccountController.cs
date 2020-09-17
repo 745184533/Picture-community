@@ -517,5 +517,288 @@ namespace PicCommunitity.Controllers
                 OwnTag=OwnTags
             });
         }
+
+        ///<summary>
+        ///搜索相似图片
+        /// 
+        /// </summary>
+        [Route("SimilarPicture")]
+        [HttpPost]
+        public async Task<IActionResult> SimilarPicture([FromForm] IFormCollection forms)
+        {
+            var files = Request.Form.Files;
+
+            long size = files.Sum(f => f.Length);
+
+            //size > 100MB refuse upload !
+            if (size > 104857600)
+            {
+                return Ok(new
+                {
+                    Success = false,
+                    Message = "pictures total size > 100MB , server refused !"
+                });
+            }
+            var file = files[0];
+            var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+
+
+
+            string filePath = "C:" + @"\Pics\";
+
+            if (!Directory.Exists(filePath))
+            {
+                Directory.CreateDirectory(filePath);
+            }
+
+            string suffix = fileName.Split('.')[1];
+
+
+            //检查文件后缀名确保是图片而不是其他文件。
+            if (!pictureFormatArray.Contains(suffix))
+            {
+                return Ok(new
+                {
+                    Success = false,
+                    Message = "the picture format not support ! you must upload files " +
+                    "that suffix like 'png','jpg','jpeg','bmp','gif','ico'.",
+                    Name = fileName
+                });
+            }
+
+
+            fileName = Guid.NewGuid() + "." + suffix;
+
+            string fileFullName = filePath + fileName;
+
+            int height = 0;
+            int width = 0;
+
+
+            await using (FileStream fs = System.IO.File.Create(fileFullName))
+            {
+                file.CopyTo(fs);
+                System.Drawing.Image image = System.Drawing.Image.FromStream(fs);
+                height = image.Height;
+                width = image.Width;
+                fs.Flush();
+            }
+
+            string message = $"{files.Count} file(s) /{size} bytes uploaded successfully!";
+
+            //刷新为服务器的图片。
+            fileFullName = "http://172.81.239.44:8002/" + fileName;
+
+
+            string[] ReturnTag = PictureServices.getTag(fileFullName);
+
+            var returnList = new List<picInfo> { };
+
+            //循环10个tag
+            for(int i=0;i<10;++i)
+            {
+                var picList = context.ownTag.ToLookup(t => t.tag_name)[ReturnTag[0]].ToList();
+                //循环每个tag里面的图片
+                foreach (var pic in picList)
+                {
+                    var nowPic = PictureServices.getPicture(pic.p_id);
+                    var pubulisher = services.GetUserById(context.publishPicture
+                        .FirstOrDefault(p => p.p_id == nowPic.p_id).u_id);
+                    var newPicInfo = new picInfo
+                    {
+
+                        picId = nowPic.p_id,
+                        picUrl = nowPic.p_url,
+                        publisherId = pubulisher.u_id,
+                        publisherName = pubulisher.u_name,
+                        info = nowPic.p_info,
+                        starNum = context.favoritePicture.Count(f => f.p_id == nowPic.p_id),
+                        likeNum = context.likesPicture.Count(l => l.p_id == nowPic.p_id),
+                        commNum = context.picComment.Count(c => c.p_id == nowPic.p_id)
+                    };
+                    returnList.Add(newPicInfo);
+                }
+            }
+
+            return Ok(new
+            {
+                Success = true,
+                picList = returnList,
+                msg = "Operation Done"
+            });
+
+
+        }
+
+        ///<summary>
+        ///第一回合上传
+        /// 
+        /// </summary>
+        [Route("Upload1")]
+        [HttpPost]
+        public async Task<IActionResult> Upload1([FromForm] IFormCollection forms)
+        {
+            StringValues userID = "";
+            forms.TryGetValue("userId", out userID);
+
+            var PictureId = context.picture.Count() + 1;
+ 
+            var files = Request.Form.Files;
+            long size = files.Sum(f => f.Length);
+
+            //size > 100MB refuse upload !
+            if (size > 104857600)
+            {
+                return Ok(new
+                {
+                    Success = false,
+                    Message = "pictures total size > 100MB , server refused !"
+                });
+            }
+
+            //只能上传一张图片顺便贴标签
+            var file = files[0];
+
+            var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+
+            //@
+            string filePath = "C:" + @"\Pics\";
+
+            if (!Directory.Exists(filePath))
+            {
+                Directory.CreateDirectory(filePath);
+            }
+
+            string suffix = fileName.Split('.')[1];
+
+
+            //检查文件后缀名确保是图片而不是其他文件。
+            if (!pictureFormatArray.Contains(suffix))
+            {
+                return Ok(new
+                {
+                    Success = false,
+                    Message = "the picture format not support ! you must upload files " +
+                    "that suffix like 'png','jpg','jpeg','bmp','gif','ico'.",
+                    Name = fileName
+                });
+            }
+
+            fileName = Guid.NewGuid() + "." + suffix;
+
+            string fileFullName = filePath + fileName;
+            int height = 0;
+            int width = 0;
+
+
+            await using (FileStream fs = System.IO.File.Create(fileFullName))
+            {
+                file.CopyTo(fs);
+                System.Drawing.Image image = System.Drawing.Image.FromStream(fs);
+                height = image.Height;
+                width = image.Width;
+                fs.Flush();
+            }
+            //刷新为服务器的图片。
+            fileFullName = "http://172.81.239.44:8002/" + fileName;
+
+            picture tempPicture = new picture
+            {
+                p_id = (context.picture.Count() + 1).ToString(),
+                p_url = fileFullName,
+                p_height = height,
+                p_width = width,
+                p_status = "OK",//图片状态不确定。
+                likes = 0,
+                dislikes = 0,
+                comm_num = 0
+            };
+
+            //承接前一步异步保存。
+            context.picture.Add(tempPicture);
+            await context.SaveChangesAsync();
+
+            publishPicture tempPublish = new publishPicture
+            {
+                u_id = userID,
+                p_id = tempPicture.p_id,
+                publish_time = DateTime.Now
+            };
+            context.publishPicture.Add(tempPublish);
+            await context.SaveChangesAsync();
+
+
+
+            string[] AITag = PictureServices.getTag(fileFullName);
+            string message = $"{files.Count} file(s) /{size} bytes uploaded successfully!";
+
+            return Ok(new
+            {
+                Success = true,
+                Tags=AITag,
+                pictureHeight=height,
+                pictureWidth=width,
+                Message=message,
+                pictureURL=fileFullName,
+                pictureId= PictureId
+            });
+        }
+
+
+        ///<summary>
+        ///第二回合上传
+        /// 
+        /// </summary>
+        [Route("Upload2")]
+        [HttpPost]
+        public async Task<IActionResult> Upload2([FromForm] IFormCollection forms)
+        {
+            StringValues pid = "";
+            StringValues userID = "";
+            StringValues information = "";
+            StringValues sPrice = "";
+
+            //需要绑定图片名和图片id
+            StringValues[] temp = { "", "", "" };
+            string[] thagTag = { "tag", "tag1", "tag2" };
+            //int[5] a;
+            for (int i = 0; i < 3; ++i)
+            {
+                forms.TryGetValue(thagTag[i], out temp[i]);
+            }
+
+            forms.TryGetValue("userId",out userID);
+            forms.TryGetValue("pictureId", out pid);
+            forms.TryGetValue("p_info", out information);
+            forms.TryGetValue("price", out sPrice);
+            int prices = int.Parse(sPrice);
+
+            var LiPicture = context.picture.Find(pid);
+            LiPicture.price = prices;
+            LiPicture.p_info = information;
+            context.picture.Attach(LiPicture);
+            for(int i=0;i<3;++i)
+            {
+                var tagPicture = new ownTag
+                {
+                    p_id = pid,
+                    tag_name = temp[i]
+                };
+                context.ownTag.Add(tagPicture);
+            }
+            
+                
+
+
+
+            return Ok(new
+            {
+                Success = true,
+                ownTag=temp,
+                price=prices,
+                p_info=information
+            }) ;
+        }
+
     }
 }

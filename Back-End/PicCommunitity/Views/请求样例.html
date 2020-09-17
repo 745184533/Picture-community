@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>GET、POST</title>
     <script src="../wwwroot/js/jquery.min.js"></script>
+    <script src="kartik-v-bootstrap-fileinput-8c23b07/js/fileinput.min.js"></script>
+    <script src="kartik-v-bootstrap-fileinput-8c23b07/js/fileinput.js"></script>
 </head>
 <body>
     <input type="text" name="username" id="username" />
@@ -17,23 +19,27 @@
 </html>
 <script>
     function submit() {
-        var userName = $('#username').val();
-        var userPassword = $('#password').val();
+        var form = new FormData();
+        form.append("", fileInput.files[0], "/C:/Users/89254/Desktop/ba0cb9bb2ff0a255b670a936c952ac4.jpg");
+        form.append("tag", "simple");
+        form.append("tag1", "flamine");
+        form.append("userId", "1");
+        form.append("tag2", "Navi");
+        form.append("p_info", "new");
+        form.append("price", "20");
+
         var settings = {
-            "url": "https://172.81.239.44:80/Account/login",
+            "url": "http://172.81.239.44/Account/Upload",
             "method": "POST",
             "timeout": 0,
-            "headers": {
-                "Content-Type": "application/json"
-            },
-            "data": JSON.stringify({ "userName": userName, "userPassword": userPassword }),
+            "processData": false,
+            "mimeType": "multipart/form-data",
+            "contentType": false,
+            "data": form
         };
 
         $.ajax(settings).done(function (response) {
-            var msg = JSON.stringify(response);
-            var obj = eval('(' + msg + ')');
-            $('#msg').text(obj.status);
-            $('#msg').append(obj.msg);
+            console.log(response);
         });
     }
 </script>

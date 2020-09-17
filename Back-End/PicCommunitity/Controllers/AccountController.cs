@@ -167,7 +167,6 @@ namespace PicCommunitity.Controllers
                         msg = "No such User"
                     });
                 }
-                
                 return Ok(new
                 {
                     Success = true,
@@ -442,7 +441,7 @@ namespace PicCommunitity.Controllers
 
             picture tempPicture = new picture
             {
-                p_id = (context.picture.Count() + 20).ToString(),
+                p_id = (context.picture.Count() + 1).ToString(),
                 p_url = fileFullName,
                 p_info = information,//还是要能用http访问，不是https
                 p_height=height,

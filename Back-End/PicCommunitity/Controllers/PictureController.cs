@@ -295,7 +295,6 @@ namespace PicCommunitity.Controllers
             });
         }
 
-        //string[]Tags=PictureServices.getTag("C:/Pics/3aa89eb2-fc41-476c-99ad-8420705106d9.jpg");
 
 
         ///<summary>
@@ -369,6 +368,9 @@ namespace PicCommunitity.Controllers
             for (int i = 0; i < 3 && nowPici >= 0; ++i)
             {//返回三张pic
                 var pic = picList[nowPici];
+                var pub = context.publishPicture
+                    .FirstOrDefault(p => p.p_id == picList[nowPici].p_id);
+                var pubId = pub.u_id;
                 var publisher = services.GetUserById(context.publishPicture
                     .FirstOrDefault(p => p.p_id == picList[nowPici].p_id).u_id);
                 var picInfo = new picInfo

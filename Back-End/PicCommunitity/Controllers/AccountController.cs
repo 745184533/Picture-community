@@ -587,17 +587,18 @@ namespace PicCommunitity.Controllers
             string message = $"{files.Count} file(s) /{size} bytes uploaded successfully!";
 
             //刷新为服务器的图片。
-            fileFullName = "http://172.81.239.44:8002/" + fileName;
+            fileFullName = "C:/Pics/" + fileName;
+            
 
-
+            //string[] ReturnTag = PictureServices.getTag("D:/Entertainment/Entertainment/MechineLearning/Data/test/5.jpg");
             string[] ReturnTag = PictureServices.getTag(fileFullName);
 
             var returnList = new List<picInfo> { };
 
-            //循环10个tag
-            for(int i=0;i<10;++i)
+            //循环3个tag
+            for(int i=0;i<3;++i)
             {
-                var picList = context.ownTag.ToLookup(t => t.tag_name)[ReturnTag[0]].ToList();
+                var picList = context.ownTag.ToLookup(t => t.tag_name)[ReturnTag[i]].ToList();
                 //循环每个tag里面的图片
                 foreach (var pic in picList)
                 {
@@ -701,6 +702,7 @@ namespace PicCommunitity.Controllers
             }
             //刷新为服务器的图片。
             fileFullName = "http://172.81.239.44:8002/" + fileName;
+            var Tanfile = "C:/Pics/" + fileName;
 
             picture tempPicture = new picture
             {
@@ -709,6 +711,8 @@ namespace PicCommunitity.Controllers
                 p_height = height,
                 p_width = width,
                 p_status = "OK",//图片状态不确定。
+                price=0,
+                p_info="NULL",
                 likes = 0,
                 dislikes = 0,
                 comm_num = 0
@@ -729,7 +733,7 @@ namespace PicCommunitity.Controllers
 
 
 
-            string[] AITag = PictureServices.getTag(fileFullName);
+            string[] AITag = PictureServices.getTag(Tanfile);
             string message = $"{files.Count} file(s) /{size} bytes uploaded successfully!";
 
             return Ok(new
@@ -773,7 +777,7 @@ namespace PicCommunitity.Controllers
             forms.TryGetValue("price", out sPrice);
             int prices = int.Parse(sPrice);
 
-            var LiPicture = context.picture.Find(pid);
+            var LiPicture = context.picture.FirstOrDefault(s=>s.p_id==pid);
             LiPicture.price = prices;
             LiPicture.p_info = information;
             context.picture.Attach(LiPicture);

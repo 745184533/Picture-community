@@ -49,15 +49,18 @@ namespace PicCommunitity.Controllers
         {
             if (services.checkExist(user.userName, user.userPassword))
             {//登录成功
-
+                var User = context.users
+                    .FirstOrDefault(u => u.u_name == user.userName && u.u_password == user.userPassword);
                 //颁发Token
                 var token = services.GetToken(user);
                 return Ok(new
                 {
                     Success = true,
+                    userId = User.u_id,
+                    userName=User.u_name,
                     Token = token,
-                    Type= "Bearer"
-                });
+                    Type = "Bearer"
+                }) ;
             }
             return Ok(new
             {
@@ -118,6 +121,8 @@ namespace PicCommunitity.Controllers
                 return Ok(new
                 {
                     Success = true,
+                    userId=user.u_id,
+                    userName=user.u_name,
                     Token=token,
                     msg="New User Registered"
                 });

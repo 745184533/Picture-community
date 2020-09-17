@@ -336,6 +336,17 @@ namespace PicCommunitity.Controllers
                     };
                     context.download.Add(newDownload);
                     context.SaveChanges();
+                    //在payment中增加消费记录
+                    var newPayment = new payment
+                    {
+                        pay_id = (context.payment.Count() + 1).ToString(),
+                        u_id = userId,
+                        pay_time = DateTime.Now,
+                        coin = nowPic.price,
+                        type = "CS"
+                    };
+                    context.payment.Attach(newPayment);
+                    context.SaveChanges();
                     //为图片发布者增加硬币
                     var publisherWallet = context.wallet.Find(publisher.u_id);
                     publisherWallet.coin += nowPic.price;

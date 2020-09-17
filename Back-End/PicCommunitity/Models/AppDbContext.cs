@@ -48,7 +48,6 @@ namespace PicCommunitity.Models
             modelBuilder.Entity<orders>().HasKey(t => new { t.u_id, t.o_id });
             modelBuilder.Entity<ownBlog>().HasKey(t => new { t.u_id, t.b_id });
             modelBuilder.Entity<ownTag>().HasKey(t => new { t.p_id, t.tag_name });
-            modelBuilder.Entity<payment>().HasKey(t => new { t.u_id, t.pay_time });
             modelBuilder.Entity<download>().HasKey(t => new { t.u_id, t.p_id });
             modelBuilder.Entity<picComment>().HasKey(t => new { t.u_id, t.p_id});
 

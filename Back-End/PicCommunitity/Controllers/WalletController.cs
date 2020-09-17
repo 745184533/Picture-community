@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualBasic;
@@ -53,16 +54,65 @@ namespace PicCommunitity.Controllers
             //
             var nowPayment = new payment
             {
+                pay_id = (context.payment.Count() + 1).ToString(),
                 u_id = userId,
                 pay_time = DateTime.Now,
                 coin = amount,
-                source_typepicture = "ol"
+                type = "DP"
             };
             context.payment.Add(nowPayment);
             context.SaveChanges();
             return Ok(new
             {
                 Success = true,
+                msg = "Operation Done"
+            });
+        }
+        [Route("getDepositRecord")]
+        [HttpGet]
+        public IActionResult getDepositRecord(string userId)
+        {
+            //得到用户所有充值记录
+            var list = context.payment.ToList();
+            var returnList = new List<payment> { };
+            var totalPayment = context.payment.Count();
+            for (var i = 0; i < totalPayment; i++) 
+            {
+                if (list[i].u_id == userId && list[i].type == "DP") 
+                {
+                    returnList.Add(list[i]);
+                }
+            }
+
+            return Ok(new
+            {
+                Success = true,
+                DepositNum=returnList.Count(),
+                List = returnList,
+                msg = "Operation Done"
+            });
+        }
+        [Route("getConsumeRecord")]
+        [HttpGet]
+        public IActionResult getConsumeRecord(string userId)
+        {
+            //得到用户所有充值记录
+            var list = context.payment.ToList();
+            var returnList = new List<payment> { };
+            var totalPayment = context.payment.Count();
+            for (var i = 0; i < totalPayment; i++)
+            {
+                if (list[i].u_id == userId && list[i].type == "CS") 
+                {
+                    returnList.Add(list[i]);
+                }
+            }
+
+            return Ok(new
+            {
+                Success = true,
+                ConsumeNum = returnList.Count(),
+                List = returnList,
                 msg = "Operation Done"
             });
         }

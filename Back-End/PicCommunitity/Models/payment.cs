@@ -10,14 +10,13 @@ namespace PicCommunitity.Models
     public class payment
     {
         
-        [Key, Column(Order = 1)]
+        [Key]
+        public string pay_id { get; set; }
         public string u_id { get; set; }
 
-        [Key, Column(Order = 2)]
         public DateTime pay_time { get; set; }
 
         public int coin { get; set; }
-        
-        public string source_typepicture { get; set; }
+        public string type { get; set; }
     }
 }

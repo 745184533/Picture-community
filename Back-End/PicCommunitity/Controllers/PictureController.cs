@@ -345,7 +345,7 @@ namespace PicCommunitity.Controllers
                         coin = nowPic.price,
                         type = "CS"
                     };
-                    context.payment.Attach(newPayment);
+                    context.payment.Add(newPayment);
                     context.SaveChanges();
                     //为图片发布者增加硬币
                     var publisherWallet = context.wallet.Find(publisher.u_id);

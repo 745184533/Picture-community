@@ -1,0 +1,50 @@
+
+body{
+	background:url(../img/back.jpg) no-repeat center 0 fixed;
+}
+
+.csdn-box{
+	position:relative; 
+	width:40%;
+	margin:10px auto;
+	background-color:#ddd;
+	border-radius:20px;
+	border:2px solid #717171;
+}
+.csdn-con{
+	height:110px;
+	margin:10px 10px 5px 10px;
+	border-radius:20px;
+	background-color:#ffffff;
+	border:2px solid #989898;
+}
+.csdn-article{
+	font-size:22px;
+	margin:3px 10px 3px 10px;
+	height:75px;
+	position: absolute;
+}
+.csdn-time{
+	margin-left:10px;
+
+	height:25px;
+	color:#a5a2a1;
+	position:absolute;
+	
+}
+.csdn-text{
+	height:200px;
+	width:100%;
+}
+.csdn-btn{
+	width:60px;
+	height:30px;
+	border-radius:10px;
+	 font-size: 18px; 
+	 letter-spacing: 2px;
+	 margin:0 10px 10px 10px;
+	 background-color:#55ff00;
+	float:right;
+	text-align: center;
+}
+

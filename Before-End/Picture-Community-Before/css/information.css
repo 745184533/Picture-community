@@ -134,6 +134,9 @@ hr {
 	color: #0a88d3;
 	border-bottom: 2px solid #0a88d3;
 }
+.pure-control-group ul{
+	list-style: none;
+}
 
 .pure-g [class*=pure-u], button, h1, h2, h3, html, input, select, textarea {
     color: #191b26;
@@ -275,3 +278,92 @@ textarea, input[type="url"], textarea, input[type="email"], input[type="text"] {
 }
 
 
+#hero {
+    position: relative;
+    background-position: 50%;
+    background-size: cover;
+    background-color: #555;
+    margin: 0 0 20px;
+    text-align: center;
+    transition: .8s;
+}
+#hero h1 {
+    padding: 130px 0 0;
+    font: 700 26px Open Sans,sans-serif;
+}
+#hero h1, #hero h2 {
+    margin: auto;
+    max-width: 400px;
+    color: #fff;
+    text-shadow: 0 0 1px rgba(0,0,0,.6);
+    line-height: 1.5!important;
+}
+#stats a, #stats span {
+    white-space: nowrap;
+    margin: 0 10px;
+    color: #fff;
+    font-size: 14px;
+    line-height: 1.5;
+}
+#stats span i {
+    cursor: default;
+}
+.icon_images {
+    background-position: -150px -350px;
+    width: 14px;
+    height: 12px;
+}
+
+.edit_profile_links {
+    opacity: 0;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    transition: .2s;
+}
+.pure-button-primary, .pure-button-selected, a.pure-button-primary, a.pure-button-selected {
+    background-color: #0078e7;
+    color: #fff;
+}
+.button-sm {
+    padding: 6px 12px;
+    font-size: 12px;
+    position: relative;
+    top: -2px;
+}
+.pure-button-primary {
+    color: #fff!important;
+    background-color: #008ddf!important;
+}
+.pure-button {
+    padding: 10px 22px;
+    text-decoration: none!important;
+    border-radius: 50px!important;
+}
+.pure-button {
+    display: inline-block;
+    zoom: 1;
+    line-height: normal;
+    white-space: nowrap;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 100%;
+    padding: .5em 1em;
+    color: #444;
+    color: rgba(0,0,0,.8);
+    border: 0 transparent;
+    background-color: #e6e6e6;
+    text-decoration: none;
+    border-radius: 2px;
+}
+a, input, select, textarea {
+    outline: none!important;
+}

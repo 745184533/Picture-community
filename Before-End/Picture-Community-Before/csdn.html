@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/page.css"/>
+		<script src="js/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/csdn.css"/>
+		<title>博客</title>
+	</head>
+	<body>
+		<div class="title-style">
+			<div class="nav-style">
+				<div class="navbar-nav">
+					<ul class="nav nav-tabs" role="tablist">
+						<li role="presentation" style="margin: 0 40px 0 0;" ><span style="height: 40px;line-height: 40px;font-weight: bold;font-size: 18px;" id="mainPage">图片社区</span></li>
+					    <li role="presentation" class="active" style="margin: 0 60px 0 0;" ><a href="#photo" aria-controls="home" role="tab" data-toggle="tab"style="color: black;">照片</a></li>
+						<li role="presentation" class="dropdown" style="margin: 0 200px 0 810px;">
+						    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+						      aria-haspopup="true" aria-expanded="true">探索<span class="caret"></span>
+						    </button>
+							<table class="dropdown-menu" aria-labelledby="dropdownMenu1">
+								<tr>
+									<th>About</th>
+								</tr>
+								<tr>
+									
+									<td id="blog">博客</td>
+									
+								</tr>
+								<tr>
+									
+									<td id="exit">注销</td>
+								</tr>
+								<tr>
+									
+									<td id="us">关于我们</td>
+								</tr>
+							</table>
+						</li>
+						<div id="navbar" style="position: absolute;left: 1200px; top:10px; display: flex;">
+							<li style="margin: 0 40px 0 20px;"><a id="login" style="color: black;">登录</a></li>
+							<li style="margin: 0 40px 0 20px;"><a id="register" style="color: black;">注册</a></li>
+						</div>
+						<li style="margin: 0 10px 0 0; padding-top: 10px;"><font id="#" style="color: black;" onclick="popBox()">
+							<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-upload" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+							    <path fill-rule="evenodd" d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+							    <path fill-rule="evenodd" d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+						    </svg>上传</font></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div style="clear:both"></div>
+		<div class="csdn-box" id="csdnbox1">
+		</div>
+
+		<center style="width:100%">
+			<button class="btn-success" onclick="writtingblog()" style="width:100px;height:60px;border-radius:5px; font-size: 18px; letter-spacing: 2px;margin: 20px auto;">写博客</button>
+		</center>
+				
+							<div id="writting"></div>
+						
+				<script>
+			localStorage.id=5;
+				var username;
+				username=localStorage.id;
+				username=""+username;
+			
+				
+				function getblog(){
+					$.ajax({
+					  "url": "http://172.81.239.44/Blog/getTen?times=0",
+					  "method": "GET",
+					  "timeout": 0,
+					  success:function(data){
+						  console.log(data);
+						  var arr=data.list;
+					arr.forEach(function(item,index){
+						//console.log(data.returnList);
+						var arr=data.returnList;
+						//console.log(arr);
+						var box=$("<div></div>");
+						var article=$("<div></div>");
+						var writter=$("<span></span>").text(item.b_id+": ");
+						var content=$("<span></span>").text(item.b_text);
+						var datediv=$("<div></div>");
+						datediv.attr("class","csdn-time");
+						var date=$("<span></span>").text(item.b_date);
+						datediv.css("position","absolute");
+						datediv.css("margin-top","70px");
+						datediv.append(date);
+						box.attr("class","csdn-con");
+						article.attr("class","csdn-article");
+						article.append(writter);
+						article.append(content);
+						box.append(article);
+						box.append(datediv);
+						$("#csdnbox1").append(box);
+					});
+					},
+					});
+					}
+					getblog();
+					function writtingblog(){
+								$("#writ-blog").remove();
+								var textbox=$("<form></form>");
+								textbox.attr("id","writ-blog");
+								textbox.attr("class","csdn-box");
+								textbox.css("background-color","#fff");
+								textbox.css("height","270px");
+								var user=$("<p></p>").text(localStorage.id);
+								user.hide();
+								var textdiv=$("<div></div>");
+								textdiv.css("margin","10px");
+								
+								var text=$("<textarea></textarea>");
+								text.attr("class","csdn-text");
+								
+								var btn=$("<span></span>").text("取消");
+								btn.attr("class","csdn-btn");
+								btn.click(function(){
+									$("#writ-blog").remove();
+								});
+								
+								//btn.attr("onclick","cancel();");
+								
+								
+								var subbtn=$("<span></span>").text("提交");
+								subbtn.click(
+								function(){
+									var value=text.val();
+									console.log(value);
+									console.log("sccess");
+										var settings = {
+										  "url": "http://172.81.239.44/Blog/writeBlog",
+										  "method": "POST",
+										  "timeout": 0,
+										  "headers": {
+										    "Content-Type": "application/json"
+										  },
+										  "data": JSON.stringify({"userId":username,"content":value}),
+										};
+										
+										$.ajax(settings).done(function (response) {
+										  console.log(response);
+										});
+								
+									
+								
+									
+									}<!--function-->
+								);<!--click-->
+								
+								
+								subbtn.attr("class","csdn-btn");
+								textdiv.append(text);
+								textbox.append(user);
+								textbox.append(textdiv);
+								textbox.append(btn);
+								textbox.append(subbtn);
+								$("#writting").append(textbox);
+							}
+							
+					var change=$("<p></p>").text("换一批");
+					change.css("text-align","right");
+					change.css("font-size","10px");
+					change.css("margin-right","15px");
+					change.click(function(){
+						$(".csdn-con").remove();
+					//	t=t+1;
+						getblog();	
+					});
+					change.attr("id","changement");
+					$("#csdnbox1").append(change);
+				//function getinformation(){};<!--获取blog信息-->
+				</script>
+				
+			</body>
+		</html>
+		

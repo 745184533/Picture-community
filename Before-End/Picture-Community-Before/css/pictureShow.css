@@ -209,7 +209,9 @@ input{
 }
 
 .body{
-	background-color: #fefefe;
+	/*background-color: #fefefe;*/
+	background-image: url("../img/body_bg.png");
+	background-size: cover;
 
 }
 
@@ -222,7 +224,7 @@ input{
 	width: 450px;
 	height:600px;
 	border:2px dashed #000;
-	border-radius: 90px 90px;
+	border-radius: 30px 30px;
 	float: left;
 	margin-left: 25px;
 	margin-top: 20px;

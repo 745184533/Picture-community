@@ -22,7 +22,7 @@ var token;
 token=localStorage.Token;//获取token
 
 //localStorage.setItem('picId','2');
-localStorage.setItem('userId','5');
+//localStorage.setItem('userId','5');
 
 if(localStorage.getItem("userId")!=null){//判断用户是否登录
   is_login=true;
@@ -69,7 +69,10 @@ $.ajax(settings).done(function (response) {
    var tags=response.picTags;//图片标签
    if(tags.length!=0){
       tags.forEach( function(item){//显示图片标签
-        $(".tag").append(item.tag_name+" ");
+        if(item.tag_name!="1"&&item.tag_name!="2"){
+          $(".tag").append(item.tag_name+" ");
+        }
+        
       });
     }
    else{

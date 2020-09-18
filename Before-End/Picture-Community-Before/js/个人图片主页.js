@@ -35,6 +35,7 @@ $.ajax(settings).done(function (response) {
 	$("#icon4").append("<span>"+response.commentNum+"</span>");
 });
 
+/*
 	var settings = {
   "url": "http://172.81.239.44/Account/getProfilePicture?userId=1",
   "method": "GET",
@@ -49,18 +50,22 @@ $.ajax(settings).done(function(response) {
 		var div=document.createElement('div');
 		div.setAttribute("class","thumbnail");
 		var img=document.createElement('img');
-		var pictitle=document.createElement('h4');
-		pictitle.setAttribute("title",item.thatpicture.p_info);
-		//pictitle.value=item.thatpicture.p_info;
+		var pictitle=document.createElement('p');
+		pictitle.innerHTML="<h4>"+item.thatpicture.p_info+"</h4>";
+		pictitle.setAttribute("margin-top","10px");
+		pictitle.setAttribute("tag","h4");
+		//pictitle.setAttribute("size","6");
+		//pictitle.setAttribute("color","#52BAD5");
 		console.log(item.thatpicture.p_info);
 		img.src=item.thatpicture.p_url;
 		img.setAttribute("class","cards");
+		img.setAttribute("id","img1");
 		div.appendChild(img);
 		div.appendChild(pictitle);
 		container.appendChild(div);
 })
 });
-
+*/
 	var settings = {
   "url": "http://172.81.239.44/Account/getProfilePicture?userId=1",
   "method": "GET",

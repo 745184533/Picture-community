@@ -158,8 +158,9 @@ header {
 .cards {
 	width: 100%;
 	height: auto;
-	max-width: 400px;
-	max-height: 200px;
+	/*width: 300px;*/
+	max-height: 180px;
+	overflow:hidden;
 	opacity: 0.8;
 }
 .intro .column p {

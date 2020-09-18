@@ -126,7 +126,7 @@
 						<!-- 登录按钮 -->
 						<div>
 							<div></div>
-							<input type="button" style="text-align:center" class="pure-button button-green" onclick="Login()" value="登录">
+							<input type="button" style="text-align:center" class="pure-button button-green" onclick="Login()" value="注册">
 						</div>
 					</form>
 				</div>
@@ -168,7 +168,7 @@
 					localStorage.setItem('Token',response.token);
 					localStorage.setItem('username',username);
 					localStorage.setItem('userId',response.userId);		
-					window.location.href="个人图片主页.html";
+					window.location.href="loginPage.html";
 				}
 				else
 				{

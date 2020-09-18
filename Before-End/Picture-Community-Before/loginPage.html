@@ -147,6 +147,7 @@
 		function Login(){
 		var username=$('#id_username').val();
 		var userpassword=$('#id_password').val();
+		console.log(username,userpassword);
 		$.ajax({
 			"url": "http://172.81.239.44/Account/login",
 			"method": "POST",
@@ -156,14 +157,23 @@
 			},
 			"data": JSON.stringify({"userName":username,"userPassword":userpassword}),
 			success:function(response){
-				localStorage.setItem('Token',response.token);
-				localStorage.setItem('username',username);
-				localStorage.setItem('userId',response.userId);
-				window.location.href="个人图片主页.html";
+				if(response.success==true)
+				{
+					localStorage.setItem('Token',response.token);
+					localStorage.setItem('username',username);
+					localStorage.setItem('userId',response.userId);
+					window.location.href="个人图片主页.html";
+				}
+				else
+				{
+					window.location.href="loginPage.html";
+					alert("密码错误或者用户不存在");
+				}
+				
 			},
 			error:function(response){
 			  	window.location.href="loginPage.html";
-			  	alert("密码错误");
+			  	alert("刷新重试");
 			}
 			});
 		}

@@ -21,7 +21,7 @@ var token;
 
 token=localStorage.Token;//获取token
 
-//localStorage.setItem('picId','2');
+localStorage.setItem('picId','2');
 localStorage.setItem('userId','5');
 
 if(localStorage.getItem("userId")!=null){//判断用户是否登录

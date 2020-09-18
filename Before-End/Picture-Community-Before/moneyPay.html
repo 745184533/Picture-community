@@ -135,7 +135,7 @@
 									<!-- 用户名以及头像 -->
 									<div class="tab-menu" style="border-top: 0;margin: 0 0 35px;font-size: 20px;">
 										<span style="background-image: url(&quot;http://i0.hdslb.com/bfs/face/01dbc13793a683bf25de3b63c7c175c10f95dfc7.jpg&quot;);"></span>
-										<p>桔子柿饼</p>
+										<p id="id_username">桔子柿饼</p>
 									</div>
 									<!-- 账户余额 -->
 									<div class="social_auth" style="margin: 0 0 30px;text-align: center;">
@@ -177,34 +177,34 @@
 			var userId=localStorage.userId;
 			var token=localStorage.Token;
 			
+			$('#id_username').text=userName;
 			
-			window.onload()=function(){
-				//账户余额显示
-				$.ajax({
-					"url": "http://172.81.239.44/Wallet/getWalletInfo",
-					"method": "GET",
-					"timeout": 0,
-					"headers": {
-					    "Authorization": "Bearer "+localStorage.token
-					},
-					"data": JSON.stringify({"userId":userId}),
-					success:function(response){
-						if(response.success==true)
-						{
-							$('userbalance').text=responce.nowCoin;
-						}
-						else
-						{
-							window.location.href="loginPage.html";
-						}
-					},
-					error:function(response){
-					  alert("刷新重试");
+			//账户余额显示
+			$.ajax({
+				"url": "http://172.81.239.44/Wallet/getWalletInfo",
+				"method": "GET",
+				"timeout": 0,
+				// "headers": {
+				//     "Authorization": "Bearer "+localStorage.token
+				// },
+				"data": JSON.stringify({"userId":userId}),
+				success:function(response){
+					if(response.success==true)
+					{
+						$('userbalance').text=responce.nowCoin;
 					}
-				});
-				//交易记录显示
-				
-			}
+					else
+					{
+						window.location.href="loginPage.html";
+					}
+				},
+				error:function(response){
+				  alert("未登录");
+				  window.location.href="loginPage.html";
+				}
+			});
+			
+			//充值记录
 			$.ajax({
 				"url": "http://172.81.239.44/Wallet/getDepositRecord",
 				"method": "GET",
@@ -212,7 +212,7 @@
 				// "headers": {
 				//     "Authorization": "Bearer "+localStorage.token
 				// },
-				"data": JSON.stringify({"userId":"2"}),
+				"data": JSON.stringify({"userId":userId}),
 				success:function(response){
 					if(response.success==true)
 					{
@@ -245,15 +245,70 @@
 					}
 					else
 					{
-						
+						var header=$("<span></span>").text("充值记录显示失败，请刷新");
+						header.css("color","black");
+						header.css("font-size","20px");
+						header.attr("class","header-style");
+						$("#mark").append(header);
 					}
 				},
 				error:function(response){
-				  
+				  alert("网络延迟，请刷新重试");
 				}
 			});
 			
-			
+			//交易记录
+			$.ajax({
+				"url": "http://172.81.239.44/Wallet/getDepositRecord",
+				"method": "GET",
+				"timeout": 0,
+				// "headers": {
+				//     "Authorization": "Bearer "+localStorage.token
+				// },
+				"data": JSON.stringify({"userId":"2"}),
+				success:function(response){
+					if(response.success==true)
+					{
+						// var arr=response.list;
+						var header=$("<span></span>").text("交易记录");
+						header.css("color","black");
+						header.css("font-size","20px");
+						header.attr("class","header-style");
+						$("#mark").append(header);
+						arr.forEach(function(item,index){
+							var jilu=$("<div></div>");
+							jilu.css("height","80px");
+							jilu.css("width","90%");
+							jilu.css("margin-left","31.5px");
+							jilu.attr("class","mark-style");
+							$("#mark").append(jilu);
+							var data=$("<div></div>").text("时间: "+"item.data");
+							data.css("height","30px");
+							data.css("padding-left","40px");
+							data.css("color","black");
+							data.css("padding-top","10px")
+							var number=$("<div></div>").text("交易金额"+"item.number");
+							number.css("padding-left","40px");
+							number.css("margin-top","10px");
+							number.css("height","30px");
+							number.css("color","black");
+							jilu.append(data);
+							jilu.append(number);
+						});
+					}
+					else
+					{
+						var header=$("<span></span>").text("充值记录显示失败，请刷新");
+						header.css("color","black");
+						header.css("font-size","20px");
+						header.attr("class","header-style");
+						$("#mark").append(header);
+					}
+				},
+				error:function(response){
+				  alert("网络延迟，请刷新重试");
+				}
+			});
 			
 			// 充值按钮实现
 			function payMoney(){
@@ -283,36 +338,8 @@
 					}
 				});
 			};
+
 			
-			
-			
-			
-			// var arr=[
-			// 	{
-			// 		data:"data",
-			// 		number:"number"
-			// 	},
-			// 	{
-			// 		data:"data",
-			// 		number:"number"
-			// 	},
-			// 	{
-			// 		data:"data",
-			// 		number:"number"
-			// 	},
-			// 	{
-			// 		data:"data",
-			// 		number:"number"
-			// 	},
-			// 	{
-			// 		data:"data",
-			// 		number:"number"
-			// 	},
-			// 	{
-			// 		data:"data",
-			// 		number:"number"
-			// 	}
-			// ];
 			
 		</script>
 		

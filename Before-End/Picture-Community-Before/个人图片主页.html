@@ -8,6 +8,7 @@
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
 <link href="css/个人图片主页王佳鸣.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="css/page王佳鸣.css"/>
+<script src="js/个人图片主页.js"></script>
 </head>
 <body>
 			<div class="title-style">
@@ -78,12 +79,12 @@
   <section class="intro">
     <div class="column">
     <img src="img/profile.png" alt="" class="profile">
-		     <h3>USERNAME</h3>
+		     <h3 id="user"> </h3>
    <div class="state">
-	   <img src="img/iconfinder_multimedia-19_2849817.png" alt="" class="icon" title="收藏数" style="vertical-align:middle"><font size="6" color="white">  0</font>
-	   <img src="img/iconfinder_multimedia-05_2849831.png" alt="" class="icon" title="关注者" style="vertical-align:middle"><font size="6" color="white">  0</font>
-	   <img src="img/iconfinder_multimedia-10_2849826.png" alt="" class="icon" title="获赞数" style="vertical-align:middle"><font size="6" color="white">  0</font>
-	   <img src="img/iconfinder_multimedia-14_2849822.png" alt="" class="icon" title="评论数" style="vertical-align:middle"><font size="6" color="white">  0</font>
+	   <img src="img/iconfinder_multimedia-19_2849817.png" alt="" class="icon" title="收藏数" style="vertical-align:middle"><font size="6" color="white" id=icon1></font>
+	   <img src="img/iconfinder_multimedia-05_2849831.png" alt="" class="icon" title="关注者" style="vertical-align:middle"><font size="6" color="white" id=icon2></font>
+	   <img src="img/iconfinder_multimedia-10_2849826.png" alt="" class="icon" title="获赞数" style="vertical-align:middle"><font size="6" color="white" id=icon3></font>
+	   <img src="img/iconfinder_multimedia-14_2849822.png" alt="" class="icon" title="评论数" style="vertical-align:middle"><font size="6" color="white" id=icon4></font>
 	   </div></div>
   </section>
   <!-- Stats Gallery Section -->
@@ -91,49 +92,39 @@
 	  <div class="layout">
 	  <input name="nav" type="radio" class="nav collection-radio" id="collection" checked="checked">
 	<div class="page collection">
-		<div class="page-contents">
-    <div class="thumbnail"> <a href="#"><img src="img/Sierra 2.jpg" alt="" width="2000" class="cards"/></a>
-      <h4>Sierra</h4>
-      <p class="tag"> </p>
-      <p class="text_column"> </p>
-    </div>
-    <div class="thumbnail"> <a href="#"><img src="img/Mojave Night.jpg" alt="" width="2000" class="cards"/></a>
-      <h4>Mojave Night</h4>
-      <p class="tag"> </p>
-      <p class="text_column"> </p>
-    </div>
-    <div class="thumbnail"> <a href="#"><img src="img/High Sierra.jpg" alt="" width="2000" class="cards"/></a>
-      <h4>High Sierra</h4>
-      <p class="tag"> </p>
-      <p class="text_column"> </p>
-    </div>
-    <div class="thumbnail"> <a href="#"><img src="img/Mojave Day.jpg" alt="" width="2000" class="cards"/></a>
-      <h4>Mojave Day</h4>
-      <p class="tag"> </p>
-      <p class="text_column"> </p>
-    </div>
-	<div class="thumbnail"> <a href="#"><img src="img/Sierra 2.jpg" alt="" width="2000" class="cards"/></a>
-      <h4>Sierra</h4>
-      <p class="tag"> </p>
-      <p class="text_column"> </p>
-    </div>
-    <div class="thumbnail"> <a href="#"><img src="img/Mojave Night.jpg" alt="" width="2000" class="cards"/></a>
-      <h4>Mojave Night</h4>
-      <p class="tag"> </p>
-      <p class="text_column"> </p>
-    </div>
-    <div class="thumbnail"> <a href="#"><img src="img/High Sierra.jpg" alt="" width="2000" class="cards"/></a>
-      <h4>High Sierra</h4>
-      <p class="tag"> </p>
-      <p class="text_column"> </p>
-    </div>
-    <div class="thumbnail"> <a href="#"><img src="img/Mojave Day.jpg" alt="" width="2000" class="cards"/></a>
-      <h4>Mojave Day</h4>
-      <p class="tag"> </p>
-      <p class="text_column"> </p>
-    </div>
-	</div>
-		</div>
+		<div class="page-contents" id="page1"> 
+			<script>
+	var settings = {
+  "url": "http://172.81.239.44/Account/getProfilePicture?userId=1",
+  "method": "GET",
+  "timeout": 0,
+  "headers":{"Authorization":"Bearer "+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI4NTRjZGZmOS03ODQ2LTRjYzAtOWNjMy01ZjhkOTJjMmY5NjAiLCJuYW1lIjoicm9vdCIsIm5iZiI6MTYwMDQxOTI1MiwiZXhwIjoxNjAwNDE5ODUyLCJpc3MiOiJqd3RJc3N1ZXJ0ZXN0IiwiYXVkIjoiand0QXVkaWVuY2V0ZXN0In0.e7tPDpt2RFxEsqL_cLsp8K32JJbQSAY-RGAeuw95R9w"},
+};
+$.ajax(settings).done(function(response) {
+  console.log(response);
+	var arr=response.upload;
+	var container=document.querySelector("#page1");
+	arr.forEach(function(item,index){
+		var div=document.createElement('div');
+		div.setAttribute("class","thumbnail");
+		var img=document.createElement('img');
+		var pictitle=document.createElement('p');
+		pictitle.innerHTML="<h4>"+item.thatpicture.p_info+"</h4>";
+		pictitle.setAttribute("margin-top","10px");
+		pictitle.setAttribute("tag","h4");
+		//pictitle.setAttribute("size","6");
+		//pictitle.setAttribute("color","#52BAD5");
+		console.log(item.thatpicture.p_info);
+		img.src=item.thatpicture.p_url;
+		img.setAttribute("class","cards");
+		img.setAttribute("id","img1");
+		div.appendChild(img);
+		div.appendChild(pictitle);
+		container.appendChild(div);
+})
+});
+				</script>
+		</div></div>
 	  	  <label class="nav" for="collection">
 		  <span>    我的收藏
 			  
@@ -141,8 +132,9 @@
 		  </label>
 	  <input name="nav" type="radio" class="upload-radio" id="upload">
 	  <div class="page upload">
-		  <div class="page-contents">
-    <div class="thumbnail"> <a href="#"><img src="img/Reflection 3.jpg" alt="" width="2000" class="cards"/></a>
+		  <div class="page-contents" id="page2">
+			  <!--
+    <div class="thumbnail"> <a href="#"><img src=" " alt="" width="2000" class="cards" id=picture1/></a>
       <h4>TITLE</h4>
       <p class="tag"> </p>
       <p class="text_column"> </p>
@@ -182,6 +174,7 @@
       <p class="tag"> </p>
       <p class="text_column"> </p>
     </div>
+-->
 			  </div>
 		  </div>
 	  <label class="nav" for="upload">
@@ -201,3 +194,27 @@
 <!-- Main Container Ends -->
 </body>
 </html>
+<!--
+<script>
+	var settings = {
+  "url": "http://172.81.239.44/Account/getProfilePicture?userId=1",
+  "method": "GET",
+  "timeout": 0,
+  "headers":{"Authorization":"Bearer "+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIzNWFlM2NiZS1lNTgyLTQyOGMtOGQzYS0yZWU3MzYxZjU3YjEiLCJuYW1lIjoicm9vdCIsIm5iZiI6MTYwMDQxNzMzNCwiZXhwIjoxNjAwNDE3OTM0LCJpc3MiOiJqd3RJc3N1ZXJ0ZXN0IiwiYXVkIjoiand0QXVkaWVuY2V0ZXN0In0.dEx3Jhi-y6efbwYCgJZwBFpxFR3hxVATvoytIp915VI"},
+};
+$.ajax(settings).done(function(response) {
+  console.log(response);
+	var arr=response.upload;
+	var container=document.querySelector(".page-contents");
+	arr.forEach(function(item,index){
+			var div=document.createElement('div');
+			div.setAttribute("class","thumbnail");
+			var img=document.createElement('img');
+				console.log(item.thatpicture.p_url);
+			img.src=item.thatpicture.p_url;
+			img.setAttribute("class","cards");
+			div.appendChild(img);
+			container.appendChild(div);
+})
+});
+			</script>

@@ -17,17 +17,9 @@
 </head>
 
 <body class="registerBody">
-	<!-- 背景图设置 -->
-	<svg id="bg_svg" viewBox="0 0 640 427" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
-		<filter id="blur">
-			<feGaussianBlur stdDeviation="5"></feGaussianBlur>
-		</filter>
-		<image xlink:href="https://cdn.pixabay.com/photo/2020/05/26/13/22/puffins-5223057_640.jpg" width="640" height="427" filter="url(#blur)"></image>
-	</svg>
-	
+
 <!--=====================================================header==================================================-->
 
-	
 	<div class="title-style">
 		<div class="nav-style">
 			<div class="navbar-nav">
@@ -91,48 +83,21 @@
 
 <!--====================================================content==================================================-->
 	<div id="content" class="clearfix">
-
-		<!-- 中间输入框 -->
-		<div id="sign_in_out" style="padding: 10px;">
-			<div class="window" style="max-width: 400px;">
-				<div style="padding: 20px 25px;">
-					<!-- 登录注册选择按钮 -->
-					<div class="tab-menu" style="border-top: 0;margin: 0 0 35px;font-size: 20px;">
-						<a href="loginPage.html">登录</a>
-						<a href="registerPage.html"  class="selected">Join</a>
-					</div>
-					<!-- 微信或者QQ关联登录 --> 
-					<div class="social_auth" style="margin: 0 0 30px;">
-						<a href="#WeChat" class="pure-button" style="background-color:#d73d32">
-							<i class="icon icon_google_fff"></i>
-							微信
-						</a>
-						<a href="#QQ" class="pure-button" style="background-color:#3b5998;float: right;">
-							<i class="icon icon_google_fff"></i>
-							QQ
-						</a>
-					</div>
-					<!-- 输入账户和密码的表单 -->
-					<form id="login_form" spellcheck="false" class="right_side pure-form">
-						<p>
-							<input type="text" name="username" data-autofocus placeholder="用户名" maxlength="50" id="id_username">
-						</p>
-						<p>
-							<input type="text" name="email" placeholder="电子邮箱地址" class="data" id="id_email">
-						</p>
-						<p>
-							<input type="password" name="password" placeholder="密码" id="id_password">
-						</p>
-						<!-- 登录按钮 -->
-						<div>
-							<div></div>
-							<input type="button" style="text-align:center" class="pure-button button-green" onclick="Login()" value="注册">
-						</div>
-					</form>
-				</div>
-				<div style="padding:20px 25px;background:#f7f7f7;font-size:13px;line-height:1.7;text-align:center">
-				完成此注册，即表明您同意了我们的<a href='termsOfPrivacy.html' target='_blank'>使用条款和隐私策略</a>。
-				</div>
+		<div class="pure-u-1 pure-u-md-3-4">
+			<h1>充值注意事项</h1>
+			<p>以下信息将帮助您了解我们在访问和使用图片社区时如何充值使用自己的钱包。</p>
+			<h2 style="margin:40px 0 10px">充值方式以及使用</h2>
+			<div>
+				<p>进入个人信息页面，然后点击钱包，就可以进入充值页面；</p>
+				<p>在文本框输入充值金额后，就会充值相应金额，充值记录就会进行刷新；</p>
+				<p>适当充值，有益身心健康。小充怡情，大充伤神，强充家破人亡；</p>
+				<p>图片社区通过合法途径从商业伙伴处取得的用户个人数据；</p>
+				<p>下载图片会花费账户金额，请合理选择账户信息。</p>
+			</div>
+			<h2 id="cookies">信息使用</h2>
+			<div>
+				<p>图片社区不会向任何无关第三方提供、出售、出租、分享或交易您的个人信息，除非事先得到您的许可，或该第三方和图片社区（含图片社区关联公司）单独或共同为您提供服务，且在该服务结束后，其将被禁止访问包括其以前能够访问的所有这些资料。</p>
+				<p>图片社区亦不允许任何第三方以任何手段收集、编辑、出售或者无偿传播您的个人信息。任何图片社区平台用户如从事上述活动，一经发现，图片社区有权立即终止与该用户的服务协议。</p>
 			</div>
 		</div>
 	</div>
@@ -149,38 +114,5 @@
 
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-	<script>
-		function Login(){
-		var username=$('#id_username').val();
-		var useremail=$('#id_email').val();
-		var userpassword=$('#id_password').val();
-		$.ajax({
-			"url": "http://172.81.239.44/Account/register",
-			"method": "POST",
-			"timeout": 0,
-			"headers": {
-				"Content-Type": "application/json"
-			},
-			"data": JSON.stringify({"userName":username,"email":useremail,"userPassword":userpassword}),
-			success:function(response){
-				if(response.success==true)
-				{
-					localStorage.setItem('Token',response.token);
-					localStorage.setItem('userName',username);
-					localStorage.setItem('userId',response.userId);		
-					window.location.href="loginPage.html";
-				}
-				else
-				{
-					window.location.href="registerPage.html";
-					alert("用户名重复");
-				}
-			},
-			error:function(response){
-			  alert("刷新重试");
-			}
-			});
-		}
-	</script>
-</body>
+	</body>
 </html>

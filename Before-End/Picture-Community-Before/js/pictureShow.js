@@ -100,7 +100,9 @@ $.ajax(settings).done(function (response) {
    pic_price=response.pirce;//当前图片价格
    publisher_id=response.publisherId;//当前图片发布者id
    publisher_name=response.uploadName;//当前图片发布者昵称
+   console.log("publisher_id:"+publisher_id);
    console.log("download?"+is_download);
+   console.log("is_follow?"+is_follow);
    $(".publisher_info1 label").html(publisher_name);//发布者昵称
    
    if(is_login==true){//设置导航栏
@@ -124,10 +126,10 @@ $.ajax(settings).done(function (response) {
         $(".collect_label").css("color","#f957be");
       }
       if(is_follow==false){//设置关注状态 
-        $(this).css("background-image","url(./img/follow.png)");
+        $(".publisher_info1 button").css("background-image","url(./img/follow.png)");
       }
       else{
-        $(this).css("background-image","url(./img/follow1.png)");
+        $(".publisher_info1 button").css("background-image","url(./img/follow1.png)");
       }
     }
     else{//未登录时
@@ -237,7 +239,7 @@ $("#good").click(function() {//点赞和取消点赞
    }
 
 });
-$("#collect").click(function() {
+$("#collect").click(function() {//收藏和取消收藏
     var $num = $(this);
     var number = $num.attr("value");
     if(is_login==true){
@@ -291,21 +293,54 @@ $("#collect").click(function() {
 })
 
 
-$(".publisher_info1 button").click(function(){
-    if(is_follow==false){ 
-        $(this).css("background-image","url(./img/follow1.png)");
-        is_follow=true;
-
+$(".publisher_info1 button").click(function(){//关注和取消关注
+  if(is_login==true){
+   if(is_follow==false){
+      var settings = {
+       "url": "http://172.81.239.44/Account/followUser?fansID="+user_id+"&followId="+publisher_id,
+       "method": "POST",
+       "timeout": 0,
+      };
+      $.ajax(settings).done(function (response) {
+        console.log(response);
+        if(response.success==true){
+          is_follow=true;
+          $(".publisher_info1 button").css("background-image","url(./img/follow1.png)");
+        }
+        else{
+          alert("failed!");
+        }
+        
+      });
     }
     else{
-       $(this).css("background-image","url(./img/follow.png)");
-        is_follow=false;
-
+      var settings = {
+       "url": "http://172.81.239.44/Account/followUser?fansID="+user_id+"&followId="+publisher_id,
+       "method": "POST",
+       "timeout": 0,
+      };
+      $.ajax(settings).done(function (response) {
+        console.log(response);
+        if(response.success==true){
+          is_follow=false;
+          $(".publisher_info1 button").css("background-image","url(./img/follow.png)");
+        }
+        else{
+          alert("failed!");
+        }
+        
+      });
     }
+    
+  }
+  else{
+    alert("请先登录！！！");
+  }
+   
 
 })
 
-$("#download").click(function(){
+$("#download").click(function(){//下载
     if(is_login==true){
       
       if(coins>=pic_price&&is_download==false&&publisher_id!=user_id){
@@ -354,7 +389,7 @@ $("#download").click(function(){
     
 })
 
-$("#confirm").click(function(){
+$("#confirm").click(function(){//确认下载
     var settings = {
       "url": "http://172.81.239.44/Picture/Download?userId=2&picId=2",
       "method": "GET",
@@ -385,7 +420,7 @@ $("#confirm").click(function(){
 
 })
 
-$("#cancel").click(function(){
+$("#cancel").click(function(){//取消下载
     $(".pop_up").css("display","none");
     $(".publisher_info").css("opacity","1.0");
     $(".title-style").css("opacity","1.0");
@@ -396,7 +431,7 @@ $("#cancel").click(function(){
 
 })
 
-$(".comment_submit button").click(function(){
+$(".comment_submit button").click(function(){//提交评论
   var user_comment=$("#comment").val();
   console.log(user_comment);
   console.log("length:"+user_comment.length);
@@ -437,7 +472,7 @@ else{
   
 })
 
-function showComments(){
+function showComments(){//展示评论
   settings = {
   "url": "http://172.81.239.44/Picture/getAllComment?picId="+pic_id,
   "method": "GET",
@@ -448,33 +483,31 @@ $.ajax(settings).done(function (response) {
   console.log(response);
   comment_num=response.commentNum;
   allComments=response.comments;
+  var count=0;
 
-  var pos=$(".other_comments").offset();
+  /*var pos=$(".other_comments").offset();
   console.log("left:"+pos.left);
   console.log("top:"+pos.top);
   console.log("width:"+$(".other_comments").width());
-  console.log("height:"+$(".other_comments").height());
+  console.log("height:"+$(".other_comments").height());*/
 
  
   if(comment_num==0){
-   //var label=("<label>该图片还没有评论呢！</label>");
+   
    var label=$("<label>该图片还没有评论呢！</label>");
    $(".other_comments").append(label);
 
-    /*var label=$("<label></label>");
-    label.html("该图片还没有评论呢！");
-    label.css("font-size","20px");
-    label.css("left",pos.left+"px");
-    label.css("top",pos.top+"px");*/
+    
   }
   else{
     for(var item of allComments){
       if(item.userId==user_id&&is_login==true){
+          count++;
           console.log("user_id:"+user_id);
           var line=$("<div></div>");
           line.css("width","928px");
           line.css("height","2px");
-          line.css("background-color","#e2e2e2");
+          line.css("background-color","#e8e9ea");
           //line.css("margin-left","5px");
           $(".other_comments").append(line);
           var divComment=$("<div></div>");
@@ -495,12 +528,17 @@ $.ajax(settings).done(function (response) {
       }
     }
     for(var item of allComments){
+      
       if(item.userId!=user_id||is_login==false){
-        console.log("user_id:"+user_id);
+          count++;
+          if(count==5){
+            $(".other_comment").css("overflow-y","scroll");
+          }
+          console.log("user_id:"+user_id);
           var line=$("<div></div>");
           line.css("width","928px");
           line.css("height","2px");
-          line.css("background-color","#e2e2e2");
+          line.css("background-color","#e8e9ea");
           //line.css("margin-left","5px");
           $(".other_comments").append(line);
           var divComment=$("<div></div>");

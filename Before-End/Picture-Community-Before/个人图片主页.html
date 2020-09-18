@@ -118,6 +118,10 @@ $.ajax(settings).done(function(response) {
 		img.src=item.thatpicture.p_url;
 		img.setAttribute("class","cards");
 		img.setAttribute("id","img1");
+		img.onclick=function(){
+					window.location.href="pictureShow.html";
+					localStorage.setItem('picId',item.thatpicture.p_id);
+				}
 		div.appendChild(img);
 		div.appendChild(pictitle);
 		container.appendChild(div);

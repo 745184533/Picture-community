@@ -60,7 +60,7 @@ header {
 	margin-bottom: 0px;
 }
 .thumbnail {
-	width: 23%;
+	width: 31%;
 	height: 260px;
 	text-align: center;
 	float: left;
@@ -161,6 +161,7 @@ header {
 	/*width: 300px;*/
 	max-height: 180px;
 	overflow:hidden;
+	cursor: pointer;
 	opacity: 0.8;
 }
 .intro .column p {

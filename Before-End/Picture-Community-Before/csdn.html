@@ -5,10 +5,12 @@
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
 		<link rel="stylesheet" type="text/css" href="css/page.css"/>
 		<script src="js/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/information.css" />
 		<link rel="stylesheet" type="text/css" href="css/csdn.css"/>
 		<title>博客</title>
 	</head>
 	<body>
+		<div class="wrapper"></div>
 		<div class="title-style">
 			<div class="nav-style">
 				<div class="navbar-nav">
@@ -51,6 +53,45 @@
 				</div>
 			</div>
 		</div>
+		<div id="content" class="clearfix">
+		<div style="margin: 30px auto;">
+			<div id="account_tabs" class="tab_menu hide-xs hide-sm hide-md" style="margin:auto;border-top:0">
+				<div style="max-width:1440px;margin:auto;padding:0 5px;text-align:left">
+					<a style="float:right" href="个人图片主页.html">
+						<font style="vertical-align: inherit;">
+							<font style="vertical-align: inherit;">我的简历
+							</font>
+						</font>
+					</a>
+					<a href="pictureShow.html">
+						<font style="vertical-align: inherit;">
+							<font style="vertical-align: inherit;">图片
+							</font>
+						</font>
+					</a>
+					<a href="#我的博客">
+						<font style="vertical-align: inherit;">
+							<font style="vertical-align: inherit;">博客
+							</font>
+						</font>
+					</a>
+					<a href="moneyPay.html"  class="selected">
+						<font style="vertical-align: inherit;">
+							<font style="vertical-align: inherit;">钱包
+							</font>
+						</font>
+					</a>
+					<a href="myinformation.html">
+						<font style="vertical-align: inherit;">
+							<font style="vertical-align: inherit;">设置
+							</font>
+						</font>
+					</a>
+				</div>
+			</div>
+		</div>
+		</div>
+		</div><!--wrapp-->
 		<div style="clear:both"></div>
 		<div class="csdn-box" id="csdnbox1">
 		</div>
@@ -62,9 +103,9 @@
 							<div id="writting"></div>
 						
 				<script>
-			
-				var username=5;
-				username=localStorage.username;
+			localStorage.id=5;
+				var username="gyq";
+				username=localStorage.userName;
 				username=""+username;
 			
 				
@@ -82,13 +123,16 @@
 						//console.log(arr);
 						var box=$("<div></div>");
 						var article=$("<div></div>");
-						var writter=$("<span></span>").text(item.b_id+": ");
-						var content=$("<span></span>").text(item.b_text);
+						var writter=$("<span></span>").text(item.userName+": ");
+						writter.css("color","#000000");
+						var content=$("<span></span>").text(item.content);
+						content.css("color","#000000");
 						var datediv=$("<div></div>");
 						datediv.attr("class","csdn-time");
-						var date=$("<span></span>").text(item.b_date);
+						var date=$("<span></span>").text(item.blogDate);
 						datediv.css("position","absolute");
 						datediv.css("margin-top","70px");
+						date.css("color","#acafa7");
 						datediv.append(date);
 						box.attr("class","csdn-con");
 						article.attr("class","csdn-article");
@@ -131,7 +175,7 @@
 								function(){
 									var value=text.val();
 									console.log(value);
-									console.log("sccess");
+									
 										var settings = {
 										  "url": "http://172.81.239.44/Blog/writeBlog",
 										  "method": "POST",
@@ -143,6 +187,7 @@
 										};
 										
 										$.ajax(settings).done(function (response) {
+										alert("提交成功！");
 										  console.log(response);
 										});
 								

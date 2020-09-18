@@ -33,7 +33,7 @@ else{
 }
 
 user_id=localStorage.userId;//取当前用户的id
-user_name=localStorage.username;//取当前用户昵称
+user_name=localStorage.userName;//取当前用户昵称
 pic_id=localStorage.getItem("picId");//取图片id
 console.log("islogin?"+is_login);
 console.log("userId:"+user_id);

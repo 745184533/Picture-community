@@ -108,9 +108,10 @@
 							</table>
                         </li>
                         <li class="headimg" >
-                        	<a href="#个人账户" class="account">
-                        		<img src="img/GoSick.jpg" class="head">
-                        	</a>
+                        	<label></label>
+                        	<!--<a href="#个人账户" class="account">
+                        		<img src="img/head.png" class="head">
+                        	</a>-->
                         </li>
 						<li class="navtitle" style="margin: 0 40px 0 0;" id="login">
 							<a href="#登录" style="color: black;">登录</a>
@@ -140,30 +141,31 @@
 			</div>
 	</div>
 	<div class="pictureShow">
-			<img src="img/star.png" class="picture">
+			<img src="" alt="img/loading.gif" class="picture">
 	</div>
 	<div class="publisher_info">
-			<label>此处展示发布者信息，包括头像、昵称、收藏、点赞，以下皆为示范。</label>
+			<!--<label>此处展示发布者信息，包括头像、昵称、收藏、点赞，以下皆为示范。</label>-->
 			<div class="publisher_info1">
-				<img src="img/GoSick.jpg">
-				<label>niannwuluo</label>
+				<img src="img/head.png">
+				<label></label>
 				<button type="button" class="btn btn-default"></button>
 			</div>
 			<div class="line"></div>
 			<div class="good_collect">
 				<label class="label1">点赞</label>
 				<label for="good" class="good_label">&#10084</label>
-				<input type="button" class="btn btn-default" id="good" value="0">
+				<input type="button" class="btn btn-default" id="good" value="">
 				<label class="label2">收藏</label>
 				<label for="collect" class="collect_label">&#9733</label>
-				<input type="button" class="btn btn-default" id="collect" value="0">
+				<input type="button" class="btn btn-default" id="collect" value="">
 				<div class="clear"></div>
 			</div>
 			<div class="download">
 				<label for="download">
-					购买并下载<input type="button" name="pay" value="10" class="btn btn-default" id="download">
+					购买&下载<input type="button" name="pay" value="0" class="btn btn-default" id="download">
 					<img src="img/coin.png">
-				</label>
+				</label><br>
+				<a class=download_img >下载图片</a>
 				
 				
 				
@@ -171,46 +173,62 @@
 			
 	</div>
 	<div class="clear"></div>
+	<div class="comment">
+	<div class="comments">
+			<div class="comment1">
+			<!--<label>此处为评论区</label><br>
+			<img src="img/head.png">-->
+			<div class="comment_publisher">
+			<label></label>
+			</div>
+
+			<div class="comment_submit">
+            <form>
+				<textarea type="text" name="comment" placeholder="请输入您的评论(不多于50字)..." id="comment"></textarea><br>
+				<button type="button" class="btn btn-default" id="submit">提交</button>
+			</form>
+			</div>
+			</div>
+	</div>
+	<div class="other_comment">
+		<div class="restrict">登录后可添加评论...</div>
+		<div class="tit">图片评论</div>
+		<div class="other_comments">
+			
+		</div>
+	</div>
+	</div>
 	<div class="picture_info">
-			<label>此处显示图片信息，包括图片类型、图片尺寸(像素)、上传时间、下载量、类别(标签)，以下皆为示范。</label>
-			<table border="2">
+			<!--<label>此处显示图片信息，包括图片类型、图片尺寸(像素)、上传时间、下载量、类别(标签)，以下皆为示范。</label>-->
+			<table border="3" width="450px">
+				<tr>
+                    <td align="center">图片简介</td>
+                    <td align="center" class="brief"></td>
+                </tr>
                 <tr>
                     <td align="center">图片类型</td>
                     <td align="center">JPG</td>
                 </tr>
                 <tr>
                     <td align="center">图片尺寸(像素)</td>
-                    <td align="center" class="pixel">1200*800</td>
+                    <td align="center" class="pixel"></td>
                 </tr>
                 <tr>
-                    <td align="center">类别</td>
-                    <td align="center">自然风景</td>
+                    <td align="center">标签</td>
+                    <td align="center" class="tag"></td>
                 </tr>
                 <tr>
                     <td align="center">上传时间</td>
-                    <td align="center">2020-09-07</td>
+                    <td align="center" class="time"></td>
                 </tr>
                 <tr>
                     <td align="center">下载量</td>
-                    <td align="center">0</td>
+                    <td align="center" class="downloads"></td>
                 </tr>
             </table>
 	</div>
-	<div class="comment">
-			<div class="comment1">
-			<label>此处为评论区</label><br>
-			<img src="img/GoSick.jpg">
-			<div class="comment_submit">
-			<form>
-				<textarea type="text" name="comment" placeholder="请输入您的评论" id="comment"></textarea><br>
-				<button type="button" class="btn btn-default" id="submit">提交</button>
-			</form>
-			</div>
-			</div>
-	</div>
-		<div class="other_comment">
-			<label>此处展示其他网友评论</label>
-		</div>
+	
+	
 
 	
 	<script type="text/javascript" src="js/pictureShow.js"></script>

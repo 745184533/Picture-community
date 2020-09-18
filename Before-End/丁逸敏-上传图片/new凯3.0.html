@@ -138,26 +138,30 @@
 						    </button>
 							<table class="dropdown-menu" aria-labelledby="dropdownMenu1">
 								<tr>
+									<th>Media</th>
+									<th>Community</th>
 									<th>About</th>
 								</tr>
 								<tr>
-									
-									<td id="blog">博客</td>
-									
+									<td><a>小编精选</a></td>
+									<td><a>博客</a></td>
+									<td><a>服务条款</a></td>
 								</tr>
 								<tr>
-									
-									<td id="exit">注销</td>
+									<td><a>Popular Images</a></td>
+									<td><a>论坛</a></td>
+									<td><a>隐私政策</a></td>
 								</tr>
 								<tr>
-									
-									<td id="us">关于我们</td>
+									<td><a>Popular Videos</a></td>
+									<td><a>Artists</a></td>
+									<td><a>关于我们</a></td>
 								</tr>
 							</table>
 						</li>
 						<div id="navbar" style="position: absolute;left: 1200px; top:10px; display: flex;">
-							<li style="margin: 0 40px 0 20px;"><a id="login" style="color: black;">登录</a></li>
-							<li style="margin: 0 40px 0 20px;"><a id="register" style="color: black;">注册</a></li>
+							<li style="margin: 0 40px 0 20px;"><a href="" style="color: black;">登录</a></li>
+							<li style="margin: 0 40px 0 20px;"><a href="" style="color: black;">注册</a></li>
 						</div>
 						<li style="margin: 0 10px 0 0; padding-top: 10px;"><font id="#" style="color: black;" onclick="popBox()">
 							<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-upload" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -170,7 +174,7 @@
 		</div>
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="photo">
-				<div class="search-style" style="background-image: url(https://cdn.pixabay.com/index/2020/09/17/09-04-49-829_1920x430.jpg);">
+				<div class="search-style" style="background-image: url(img/photo.webp);">
 					<h1 style="padding-top: 100px;padding-left:560px;color: white;align-content: center;">免费正版高清图片素材库</h1>
 					<h4 style="margin-top:30px; padding-left: 500px;color: white;">图片社区拥有超过许多优质图片素材，让你轻松应对各种设计场景</h4>
 					<div class="search" style="display: flex;">
@@ -201,7 +205,7 @@
 			  <a href="javascript:;" class="mfb-component__button--main" id="btn">
 			  </a>
 			</li>
-		</ul>
+		  </ul>
 		<script src="js/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/mfb.min.js"></script>
@@ -268,14 +272,10 @@
 				}
 
 			}
-			if(localStorage.id!=null)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+			if(localStorage.id!=null)
 			{
-				$("#login").hide();
-				$("#register").hide();
-				var username=$("<span></span>").text("您好！"+localStorage.userName);
-				username.css("position","absolute");
-				username.css("left","-15px");
-				username.css("top","-1px");
+				$("#navbar").empty();
+				var username=$("<span></span>").text("您好！"+"username");
 				$("#navbar").append(username);
 				username.click(function(){
 					//跳转
@@ -283,18 +283,19 @@
 				})
 			}
 			var head=0;
-			//localStorage.Token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIzZjQ2YTM4ZS00MWY5LTRlMmYtYThhMS03NWVmNGQzOTQ2NjAiLCJuYW1lIjoibGp5MDAxIiwibmJmIjoxNjAwNDE0MjM1LCJleHAiOjE2MDA0MTQ4MzUsImlzcyI6Imp3dElzc3VlcnRlc3QiLCJhdWQiOiJqd3RBdWRpZW5jZXRlc3QifQ.l1GkEOSqGeKvJd_jKRXdaONtrHCFg1MvWloQUs2CPTE"
+			localStorage.id=2;
 			var userid=localStorage.id;
 			function getpic(x){	
-				var x1=x-4;
 					$.ajax({
 					  "url": "http://172.81.239.44/Picture/get3Pic?requestTimes="+x,
+					  //"url":"http://172.81.239.44/Account/getUserInfo?userId=2",
 					  "method": "GET",
 					  "timeout": 0,
 					  success:function(data){
-						  
+						  //console.log(data);
 						  var arr=data.returnList;
-						  
+						  // console.log(arr);
+						  // console.log(arr[0].picUrl);
 						  arr.forEach(function(item,index){
 							  var picSpan=$("<span></span>");
 							  var btnZ=$("<span></span>").text("点赞");
@@ -304,9 +305,9 @@
 							  var spanZ=$("<span></span>").text(item.likeNum);
 							  var spanS=$("<span></span>").text(item.starNum);
 							  var spanC=$("<span></span>").text(item.commNum);
-							  var w=(x-4)%3;
+							  var w=index%3;
 							  var Left=60+w*480;
-							  var Top=510+(x-4)*300;
+							  var Top=510+x*300;
 							  picSpan.css("height","300px");
 							  picSpan.css("width","450px");
 							  picSpan.css("left",Left+"px");
@@ -358,35 +359,15 @@
 							  	btnZ.click(function(){
 							  		if(localStorage.id!=null)
 							  		{
-										
 										$.ajax({
 										  "url": "http://172.81.239.44/Picture/likePicture?userId="+userid+"&picId="+item.picId+"&type=LK",
 										  "method": "POST",
 										  "timeout": 0,
-										  "headers": {
-										      "Authorization": "bearer "+localStorage.Token
-										    },
 										  success:function(){
-											  var id1=localStorage.id
-											  $.ajax({
-											     "url": "http://172.81.239.44/Picture/getPicViewInfo?userID="+id1+"&picID="+item.picId,
-											     "method": "GET",
-											     "timeout": 0,
-												 "headers": {
-												     "Authorization": "bearer "+localStorage.Token
-												   },
-											     success:function(data){
-													 spanZ.text(data.numberLike);
-											     },
-												 error:function(e){
-													 if(e.status==401)
-													 window.location.href="loginPage.html";
-												 }
-											  });
+											  spanZ.text(item.likeNum);
 										  },
 										  error:function(e){
-											 if(e.status==401)
-											 window.location.href="loginPage.html";
+											  console.log(e);
 										  }
 										});
 			
@@ -404,32 +385,11 @@
 							  			  "url": "http://172.81.239.44/Picture/favoritePicture?userId="+userid+"&picId="+item.picId,
 							  			  "method": "POST",
 							  			  "timeout": 0,
-										 "headers": {
-										     "Authorization": "bearer "+localStorage.Token
-										   },
-							  			  success:function(){
-											  console.log("成功");
-							  				  var id1=localStorage.id
-							  				  $.ajax({
-							  				     "url": "http://172.81.239.44/Picture/getPicViewInfo?userID="+id1+"&picID="+item.picId,
-							  				     "method": "GET",
-							  				     "timeout": 0,
-												 "headers": {
-												     "Authorization": "bearer "+localStorage.Token
-												   },
-												  
-							  				     success:function(data){
-							  						 spanS.text(data.numberFavorite);
-							  				     },
-												 error:function(e){
-												 	if(e.status==401)
-												 	window.location.href="loginPage.html";
-												 }
-							  				  });
-							  			  },
+										  success:function(){
+											   spanS.text(item.starNum);
+										  },
 										  error:function(e){
-											  if(e.status==401)
-											  window.location.href="loginPage.html";
+											  console.log(e);
 										  }
 							  			});
 							  		}
@@ -476,16 +436,13 @@
 				  "contentType": false,
 				  "data": form,
 				  success:function(){
-					  console("成功");
 					  alert("上传成功");
 				  },
 				  error:function(e){
-					  console.log("失败");
 					  console.log(e.status);
 				  }
 				});
 			}
-
 			var button=$("<button></button>");
 			button.attr("class","Btn");
 			button.text("获取更多");
@@ -493,7 +450,7 @@
 			$("#btnblock").append(button);
 			for(var i=0;i<4;i++)
 				{
-					getpic(4+i+head);
+					getpic(i+head);
 					if(i==3)
 					{
 						head=head+4;
@@ -510,15 +467,14 @@
 						if(i==3)
 						{
 							head=head+4;
-							var top1=head*300;
 							$("#btnblock").css("top",top1+"px");
 							button.show();
 						}
 					}
 			});
 			$("#mainPage").click(function(){
-				window.location.href="new凯.html";
-			});
+				window.location.href="new凯.html"
+			})
 			$("#search").bind("keyup",function(event){
 				if(event.keyCode=="13")
 				{
@@ -527,23 +483,8 @@
 					window.location.href="loginPage.html";
 					document.getElementById("search").value="";
 				}
-			});
-			$("blog").click(function(){
-				window.location.href="blog.html";
-			});
-			$("#exit").click(function(){
-				localStorage.Token="";
-				localStorage.picId="";
-				localStorage.id="";
-				localStorage.tag="";
-				username.hide();
-				$("#login").show();
-				$("#register").show();
-				var Login=$("<")
-			});
-			$("us").click(function(){
-				window.location.href="us.html";
-			});
+			})
 		</script>
 	</body>
 </html>
+

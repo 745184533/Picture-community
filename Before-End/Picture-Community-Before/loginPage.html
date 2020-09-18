@@ -147,7 +147,6 @@
 		function Login(){
 		var username=$('#id_username').val();
 		var userpassword=$('#id_password').val();
-		console.log(username,userpassword);
 		$.ajax({
 			"url": "http://172.81.239.44/Account/login",
 			"method": "POST",
@@ -157,7 +156,6 @@
 			},
 			"data": JSON.stringify({"userName":username,"userPassword":userpassword}),
 			success:function(response){
-				console.log(response);
 				localStorage.setItem('Token',response.token);
 				localStorage.setItem('username',username);
 				localStorage.setItem('userId',response.userId);

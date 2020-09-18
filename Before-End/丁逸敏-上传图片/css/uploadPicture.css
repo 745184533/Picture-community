@@ -2,11 +2,12 @@
 #popLayer {
     display: none;
     background-color: #B3B3B3;
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
-    left: 0;
+    width:100%;
+    height:100%;
     z-index: 10;/* 设置背景层和弹出层的上下位置，值越大越靠上显示 */
     -moz-opacity: 0.8;/* 提供给mozilla firefox的css属性，用来控制透明度 */
     opacity:.80;/* 控制透明度 */

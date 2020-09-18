@@ -89,7 +89,7 @@ namespace PicCommunitity
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSetting.SecurityKey)),
 
                     ValidateLifetime = true, //验证生命周期
-                    RequireExpirationTime = true //过期时间
+                    RequireExpirationTime = false //过期时间
                 };
             });
         }

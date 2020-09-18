@@ -16,6 +16,31 @@ p{
 	margin-inline-start: 0px;
 	margin-inline-end: 0px;
 }
+h1 {
+    display: block;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+	font-size: 19px;
+	font-weight: bold;
+	margin: 0 0 20px;
+}
+h2 {
+    font-size: 15px;
+    font-weight: bold;
+	display: block;
+	margin-block-start: 0.83em;
+	margin-block-end: 0.83em;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+}
+h3 {
+    font-size: 19px;
+    font-weight: bold;
+    margin: 0 0 20px;
+}
+
 input{
 	border-radius: 2px!important;
 	resize: none;
@@ -34,7 +59,6 @@ input{
 	-webkit-rtl-ordering: logical;
 	cursor: text;
 }
-
 
 :invalid{
 	color: #555!important;
@@ -154,7 +178,7 @@ svg:not(:root) {
 
 /*滚动条*/
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 10px;
 }
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(transparent, #e4305dd0);

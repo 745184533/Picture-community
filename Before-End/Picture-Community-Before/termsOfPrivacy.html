@@ -13,18 +13,13 @@
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/page.css">
 	<link rel="stylesheet" type="text/css" href="css/conciseStyle.css">
+	<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script><![endif]-->
 </head>
 
-<body>
-	<!-- 背景图设置 -->
-	<svg id="bg_svg" viewBox="0 0 640 427" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
-		<filter id="blur">
-			<feGaussianBlur stdDeviation="5"></feGaussianBlur>
-		</filter>
-		<image xlink:href="https://cdn.pixabay.com/photo/2020/05/26/13/22/puffins-5223057_640.jpg" width="640" height="427" filter="url(#blur)"></image>
-	</svg>
-	
+<body class="registerBody">
+
 <!--=====================================================header==================================================-->
+
 	<div class="title-style">
 		<div class="nav-style">
 			<div class="navbar-nav">
@@ -88,46 +83,19 @@
 
 <!--====================================================content==================================================-->
 	<div id="content" class="clearfix">
-
-		<!-- 中间输入框 -->
-		<div id="sign_in_out" style="padding: 10px;">
-			<div class="window" style="max-width: 400px;">
-				<div style="padding: 20px 25px;">
-					<!-- 登录注册选择按钮 -->
-					<div class="tab-menu" style="border-top: 0;margin: 0 0 35px;font-size: 20px;">
-						<a href="loginPage.html" class="selected">登录</a>
-						<a href="registerPage.html">Join</a>
-					</div>
-					<!-- 微信或者QQ关联登录 -->
-					<div class="social_auth" style="margin: 0 0 30px;">
-						<a href="#WeChat" class="pure-button" style="background-color:#d73d32">
-							<i class="icon icon_google_fff"></i>
-							微信
-						</a>
-						<a href="#QQ" class="pure-button" style="background-color:#3b5998;float: right;">
-							<i class="icon icon_google_fff"></i>
-							QQ
-						</a>
-					</div>
-					<!-- 输入账户和密码的表单 -->
-					<form id="login_form" spellcheck="false" class="right_side pure-form">
-						<p>
-							<input type="text" name="username" data-autofocus placeholder="用户名" maxlength="50" id="id_username">
-						</p>
-						<p>
-							<input type="password" name="password" placeholder="密码" id="id_password">
-						</p>
-						<!-- 登录按钮 -->
-						<div>
-							<div></div>
-							<input type="button" style="text-align:center" class="pure-button button-green" onclick="Login()" value="登录">
-						</div>
-					</form>
-				</div>
-				
-				<div style="padding:20px 25px;background:#f7f7f7;font-size:13px;line-height:1.7;text-align:center">
-				完成此注册，即表明您同意了我们的<a href='termsOfPrivacy.html' target='_blank'>使用条款和隐私策略</a>。
-				</div>
+		<div class="pure-u-1 pure-u-md-3-4">
+			<h1>隐私政策</h1>
+			<p>以下信息将帮助您了解我们在访问和使用图片社区时如何收集、使用、传播和保护您提供的数据。</p>
+			<h2 style="margin:40px 0 10px">适用范围</h2>
+			<div>
+				<p>在您注册图片社区帐号时，您根据图片社区要求提供的个人注册信息（商家应法律法规要求需公示的企业名称及相关工商注册信息除外）；</p>
+				<p>在您使用图片社区网络服务，或访问 图片社区平台网页时，图片社区自动接收并记录的您的浏览器和计算机上的信息，包括但不限于您的 IP 地址、浏览器的类型、使用的语言、访问日期和时间、软硬件特征信息及您需求的网页记录等数据；</p>
+				<p>图片社区通过合法途径从商业伙伴处取得的用户个人数据。</p>
+			</div>
+			<h2 id="cookies">信息使用</h2>
+			<div>
+				<p>图片社区不会向任何无关第三方提供、出售、出租、分享或交易您的个人信息，除非事先得到您的许可，或该第三方和图片社区（含图片社区关联公司）单独或共同为您提供服务，且在该服务结束后，其将被禁止访问包括其以前能够访问的所有这些资料。</p>
+				<p>图片社区亦不允许任何第三方以任何手段收集、编辑、出售或者无偿传播您的个人信息。任何图片社区平台用户如从事上述活动，一经发现，图片社区有权立即终止与该用户的服务协议。</p>
 			</div>
 		</div>
 	</div>
@@ -136,40 +104,13 @@
 
 	<!--=================================================footer===================================================-->
 	<footer>
+		
 		<div id="footer" style="background-color: darkgrey;clear: both ;text-align: center;">
 			<a>▲版权所有，翻版必究 &copy;2020-2050 桔子柿饼</a>
 		</div>
 	</footer>
 
 	<script src="js/jquery.min.js"></script>
- 	<script src="js/bootstrap.min.js"></script>
-	<script>
-		function Login(){
-		var username=$('#id_username').val();
-		var userpassword=$('#id_password').val();
-		console.log(username,userpassword);
-		$.ajax({
-			"url": "http://172.81.239.44/Account/login",
-			"method": "POST",
-			"timeout": 0,
-			"headers": {
-				"Content-Type": "application/json"
-			},
-			"data": JSON.stringify({"userName":username,"userPassword":userpassword}),
-			success:function(response){
-				console.log(response);
-				localStorage.setItem('Token',response.token);
-				localStorage.setItem('username',username);
-				localStorage.setItem('userId',response.userId);
-				window.location.href="个人图片主页.html";
-			},
-			error:function(response){
-			  	window.location.href="loginPage.html";
-			  	alert("密码错误");
-			}
-			});
-		}
-	</script>
-
-</body>
+	<script src="js/bootstrap.min.js"></script>
+	</body>
 </html>

@@ -7,6 +7,7 @@
 		<link rel="stylesheet" type="text/css" href="css/moneyPay.css"/>
 		<link rel="stylesheet" type="text/css" href="css/information.css"/>
 		<script src="js/jquery.min.js"></script>
+		<title>图片社区</title>
 		<style>
 			.mark-style{
 				border: 1px solid darkgrey;
@@ -26,6 +27,8 @@
 		<title></title>
 	</head>
 	<body>
+		
+		
 		<div id="wrapper">
 			<!-- 导航栏 -->
 			<div class="title-style">
@@ -136,13 +139,18 @@
 									</div>
 									<!-- 账户余额 -->
 									<div class="social_auth" style="margin: 0 0 30px;text-align: center;">
-										当前账户余额：<a>0</a>币
+										当前账户余额：<a id="userbalance">0</a>币
 									</div>
 									<form id="login_form" spellcheck="false" class="right_side pure-form">
+										<!-- 充值金额 -->
+										<p>
+											请输入充值金额：
+											<input type="text" value="0" id="id_paymoney" oninput = "value=value.replace(/[^\d]/g,'')">
+										</p>
 										<!-- 充值按钮 -->
 										<div style="text-align: center;">
 											<div></div>
-											<input style="text-align:center;width: 300px;" class="pure-button button-green" type="submit" value="B币充值">
+											<input style="text-align:center;width: 300px;" class="pure-button button-green" type="submit" value="B币充值" onclick="payMoney()">
 										</div>
 									</form>
 									
@@ -165,61 +173,150 @@
 		</div>
 		
 		<script>
+			var userName=localStorage.username;
+			var userId=localStorage.userId;
+			var token=localStorage.Token;
 			
-			var arr=[
-				{
-					data:"data",
-					number:"number"
+			
+			window.onload()=function(){
+				//账户余额显示
+				$.ajax({
+					"url": "http://172.81.239.44/Wallet/getWalletInfo",
+					"method": "GET",
+					"timeout": 0,
+					"headers": {
+					    "Authorization": "Bearer "+localStorage.token
+					},
+					"data": JSON.stringify({"userId":userId}),
+					success:function(response){
+						if(response.success==true)
+						{
+							$('userbalance').text=responce.nowCoin;
+						}
+						else
+						{
+							window.location.href="loginPage.html";
+						}
+					},
+					error:function(response){
+					  alert("刷新重试");
+					}
+				});
+				//交易记录显示
+				
+			}
+			$.ajax({
+				"url": "http://172.81.239.44/Wallet/getDepositRecord",
+				"method": "GET",
+				"timeout": 0,
+				// "headers": {
+				//     "Authorization": "Bearer "+localStorage.token
+				// },
+				"data": JSON.stringify({"userId":"2"}),
+				success:function(response){
+					if(response.success==true)
+					{
+						var arr=response.list;
+						var header=$("<span></span>").text("充值记录");
+						header.css("color","black");
+						header.css("font-size","20px");
+						header.attr("class","header-style");
+						$("#mark").append(header);
+						arr.forEach(function(item,index){
+							var jilu=$("<div></div>");
+							jilu.css("height","80px");
+							jilu.css("width","90%");
+							jilu.css("margin-left","31.5px");
+							jilu.attr("class","mark-style");
+							$("#mark").append(jilu);
+							var data=$("<div></div>").text("时间: "+"item.data");
+							data.css("height","30px");
+							data.css("padding-left","40px");
+							data.css("color","black");
+							data.css("padding-top","10px")
+							var number=$("<div></div>").text("充值金额"+"item.number");
+							number.css("padding-left","40px");
+							number.css("margin-top","10px");
+							number.css("height","30px");
+							number.css("color","black");
+							jilu.append(data);
+							jilu.append(number);
+						});
+					}
+					else
+					{
+						
+					}
 				},
-				{
-					data:"data",
-					number:"number"
-				},
-				{
-					data:"data",
-					number:"number"
-				},
-				{
-					data:"data",
-					number:"number"
-				},
-				{
-					data:"data",
-					number:"number"
-				},
-				{
-					data:"data",
-					number:"number"
+				error:function(response){
+				  
 				}
-			];
-			var header=$("<span></span>").text("充值记录");
-			header.css("color","black");
-			header.css("font-size","20px");
-			header.attr("class","header-style");
-			$("#mark").append(header);
-			arr.forEach(function(item,index){
-				var jilu=$("<div></div>");
-				jilu.css("height","80px");
-				jilu.css("width","90%");
-				jilu.css("margin-left","31.5px");
-				jilu.attr("class","mark-style");
-				$("#mark").append(jilu);
-				var data=$("<div></div>").text("时间: "+"item.data");
-				data.css("height","30px");
-				data.css("padding-left","40px");
-				data.css("color","black");
-				data.css("padding-top","10px")
-				var number=$("<div></div>").text("充值金额"+"item.number");
-				number.css("padding-left","40px");
-				number.css("margin-top","10px");
-				number.css("height","30px");
-				number.css("color","black");
-				jilu.append(data);
-				jilu.append(number);
 			});
+			
+			
+			
+			// 充值按钮实现
+			function payMoney(){
+				var paymoney=$('#id_paymoney').val();
+				var balance=$('#userbalance').val();
+				$.ajax({
+					"url": "http://172.81.239.44/Wallet/depositWallet",
+					"method": "POST",
+					"timeout": 0,
+					"headers": {
+					    "Authorization": "Bearer "+localStorage.token
+					},
+					"data": JSON.stringify({"userId":userId,"content":paymoney}),
+					success:function(response){
+						if(response.success==true)
+						{
+							balance.text=responce.nowCoin;
+							
+						}
+						else
+						{
+							window.location.href="loginPage.html";
+						}
+					},
+					error:function(response){
+					  alert("刷新重试");
+					}
+				});
+			};
+			
+			
+			
+			
+			// var arr=[
+			// 	{
+			// 		data:"data",
+			// 		number:"number"
+			// 	},
+			// 	{
+			// 		data:"data",
+			// 		number:"number"
+			// 	},
+			// 	{
+			// 		data:"data",
+			// 		number:"number"
+			// 	},
+			// 	{
+			// 		data:"data",
+			// 		number:"number"
+			// 	},
+			// 	{
+			// 		data:"data",
+			// 		number:"number"
+			// 	},
+			// 	{
+			// 		data:"data",
+			// 		number:"number"
+			// 	}
+			// ];
+			
 		</script>
 		
-		
 		<script src="js/bootstrap.min.js"></script>
+		<script src="js/jquery.min.js"></script>
 	</body>
 </html>

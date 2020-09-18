@@ -26,6 +26,8 @@
 	</svg>
 	
 <!--=====================================================header==================================================-->
+
+	
 	<div class="title-style">
 		<div class="nav-style">
 			<div class="navbar-nav">
@@ -124,12 +126,12 @@
 						<!-- 登录按钮 -->
 						<div>
 							<div></div>
-							<input style="text-align:center" class="pure-button button-green" value="登录">
+							<input type="button" style="text-align:center" class="pure-button button-green" onclick="Login()" value="登录">
 						</div>
 					</form>
 				</div>
 				<div style="padding:20px 25px;background:#f7f7f7;font-size:13px;line-height:1.7;text-align:center">
-				完成此注册，即表明您同意了我们的<a href='#' target='_blank'>使用条款和隐私策略</a>。
+				完成此注册，即表明您同意了我们的<a href='termsOfPrivacy.html' target='_blank'>使用条款和隐私策略</a>。
 				</div>
 			</div>
 		</div>
@@ -152,7 +154,6 @@
 		var username=$('#id_username').val();
 		var useremail=$('#id_email').val();
 		var userpassword=$('#id_password').val();
-		console.log(username,userpassword);
 		$.ajax({
 			"url": "http://172.81.239.44/Account/register",
 			"method": "POST",
@@ -160,20 +161,26 @@
 			"headers": {
 				"Content-Type": "application/json"
 			},
-			"data": JSON.stringify({"userName":"username","email":"email","userPassword":"userpassword"}),
+			"data": JSON.stringify({"userName":username,"email":useremail,"userPassword":userpassword}),
 			success:function(response){
-				console.log(response);
-				localStorage.setItem('Token',response.token);
-				localStorage.setItem('username',username);
-				localStorage.setItem('userId',response.userId);
-				window.location.href="个人图片主页.html";
+				if(response.success==true)
+				{
+					localStorage.setItem('Token',response.token);
+					localStorage.setItem('username',username);
+					localStorage.setItem('userId',response.userId);		
+					window.location.href="个人图片主页.html";
+				}
+				else
+				{
+					window.location.href="registerPage.html";
+					alert("用户名重复");
+				}
 			},
 			error:function(response){
-			  	window.location.href="registerPage.html";
-				alert("用户名重复");
+			  alert("刷新重试");
 			}
 			});
 		}
 	</script>
-</body
+</body>
 </html>

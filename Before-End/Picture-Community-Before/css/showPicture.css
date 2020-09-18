@@ -7,13 +7,13 @@ section::after {
     content: '';
     flex-grow: 999999999;
 }
-div.show {
+.show {
     flex-grow: 1;
     position: relative;
     margin: 2px;
     height: 200px;
 }
-img.show {
+.content {
     height: 200px;
     min-width: 100%;
     max-width: 100%;
@@ -55,3 +55,15 @@ img.show {
     display: none;
     z-index: 11;
 }
+/*
+.divImg{
+
+    width:233px;
+    height:214px;
+    border:1px solid #e5e5e5;
+    overflow: hidden;
+    text-align: center;
+
+
+
+ */

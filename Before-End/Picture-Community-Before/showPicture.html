@@ -1,24 +1,42 @@
 <!DOCTYPE html>
-<html ng-app="App">
+<html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>JS Bin</title>
-
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
-    <script src="http://cdn.staticfile.org/jquery/1.11.1-rc2/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/page.css"/>
-    <script src="js/vue.js"></script>
-    <script src="js/modernizr.touch.js"></script>
-    <link href="css/mfb.min.css" rel="stylesheet">
-
-    <link rel="stylesheet" type="text/css" href="css/uploadPicture.css">
-    <script type="text/javascript" src="js/uploadPicture.js"></script>
-
+    <link rel="stylesheet" type="text/css" href="css/uploadPicture.css"/>
     <link rel="stylesheet" type="text/css" href="css/showPicture.css">
 
+    <script src="js/vue.js"></script>
+    <script src="js/modernizr.touch.js"></script>
+    <script src="js/uploadPicture.js"></script>
+
+    <link href="css/mfb.min.css" rel="stylesheet">
+    <style>
+        #picture>span{
+            font-size: 14px;
+            background-color: initial;
+            border: none;
+        }
+        .Btn{
+            align-items: center;
+            font-size: 20px;
+            color: white;
+            margin:20px auto;
+            letter-spacing: 4px;
+            position: absolute;
+            background-color: #02BE6E;
+            border: none;
+            border-radius: 5px;
+            margin-left: 710px;
+            height: 50px;
+            width: 120px;
+        }
+    </style>
+    <title></title>
 </head>
-<body >
+<body>
+<!--上拉到顶层的按钮-->
 <div id="back_top">
     <div class="arrow"></div>
     <div class="stick"></div>
@@ -31,9 +49,21 @@
     <div class="close">
         <a href="javascript:void(0)" onclick="closeBox()">关闭</a>
     </div>
+
     <!--上传图片标题-->
-    <div class="content" style="text-align: center;font-size: 25px">上传图片到图库</div>
+    <div  style="text-align: center;font-size: 25px">上传图片到图库</div>
     <br>
+
+    <!--给上传的图片添加图片简介-->
+    <form class="layui-form">
+        <div style="padding: 10px;">
+            <div class="layui-form-item">
+                <label class="layui-input-inline">图片简介(必填)：</label>
+                <input type="text" class="layui-input" id="intro">
+            </div>
+        </div>
+    </form>
+
     <!--给上传的图片添加标签-->
     <form class="layui-form">
         <div style="padding: 10px;">
@@ -51,7 +81,18 @@
             </div>
         </div>
     </form>
+
+    <!--给上传的图片添加定价-->
+    <form class="layui-form">
+        <div style="padding: 10px;">
+            <div class="layui-form-item">
+                <label class="layui-input-inline">定价(必填)：</label>
+                <input type="text" class="layui-input" id="price">
+            </div>
+        </div>
+    </form>
     <br>
+
     <!--复选框，遵循上传图片协议-->
     <form style="padding-left:10px;padding-right:10px">
         <input type="checkbox" name="agreement" value="agree_1" id="agree_1" onclick="checkAgree()">我同意放弃所上传图片的所有权，图片归图库系统所有。<br>
@@ -71,7 +112,9 @@
     <div style="text-align: center">
         <button id="submit" disabled="disabled" onclick="check()">提交图片</button>
     </div>
+    <br>
 </div>
+
 
 <!--弹出框_搜索相似图片-->
 <div class="popBox" id="popBox_search" style="width:450px;height:330px;">
@@ -80,7 +123,7 @@
         <a href="javascript:void(0)" onclick="closeBox_search()">关闭</a>
     </div>
     <!--上传图片标题-->
-    <div class="content" style="text-align: center;font-size: 25px">上传图片找相似</div>
+    <div  style="text-align: center;font-size: 25px">上传图片找相似</div>
     <br>
     <!--上传图片-->
     <div class="layui-form-item" style="padding-left:10px;padding-right:10px">
@@ -100,11 +143,9 @@
     <div class="nav-style">
         <div class="navbar-nav">
             <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" style="margin: 0 40px 0 0;" ><span style="height: 40px;line-height: 40px;font-weight: bold;font-size: 18px;">图片社区</span></li>
-                <li role="presentation" class="active" style="margin: 0 40px 0 0;" ><a href="photo" aria-controls="home" role="tab" data-toggle="tab"style="color: black;">照片</a></li>
-                <li role="presentation" style="margin: 0 40px 0 0;" ><a href="#illustration" aria-controls="home" role="tab" data-toggle="tab"style="color: black;">插画</a></li>
-                <li role="presentation" style="margin: 0 40px 0 0;"><a href="#vector" aria-controls="home" role="tab" data-toggle="tab"style="color: black;">向量</a></li>
-                <li role="presentation" class="dropdown" style="margin: 0 40px 0 630px;">
+                <li role="presentation" style="margin: 0 40px 0 0;" ><span style="height: 40px;line-height: 40px;font-weight: bold;font-size: 18px;" id="mainPage">图片社区</span></li>
+                <li role="presentation" class="active" style="margin: 0 60px 0 0;" ><a href="#photo" aria-controls="home" role="tab" data-toggle="tab"style="color: black;">照片</a></li>
+                <li role="presentation" class="dropdown" style="margin: 0 200px 0 810px;">
                     <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="true">探索<span class="caret"></span>
                     </button>
@@ -131,13 +172,15 @@
                         </tr>
                     </table>
                 </li>
-                <li style="margin: 0 40px 0 0;"><a href="" style="color: black;">登录</a></li>
-                <li style="margin: 0 40px 0 0;"><a href="" style="color: black;">注册</a></li>
-                <li style="margin: 0 20px 0 0;"><a href="#" style="color: black;" onclick="popBox()">
+                <div id="navbar" style="position: absolute;left: 1200px; top:10px; display: flex;">
+                    <li style="margin: 0 40px 0 20px;"><a href="" style="color: black;">登录</a></li>
+                    <li style="margin: 0 40px 0 20px;"><a href="" style="color: black;">注册</a></li>
+                </div>
+                <li style="margin: 0 10px 0 0; padding-top: 10px;"><font id="#" style="color: black;" onclick="popBox()">
                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-upload" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
                         <path fill-rule="evenodd" d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
-                    </svg>上传</a></li>
+                    </svg>上传</font></li>
             </ul>
         </div>
     </div>
@@ -154,86 +197,108 @@
                         <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
                     </svg>
                 </div>
-                <form action="" method="post">
-                    <input type="search" placeholder="照片" style="outline: none; width: 440px; height: 60px; font-size: 20px; margin-top: 50px;border: none;"/>
-                </form>
-                <button class="btn-success" onclick="popBox_search()" style="height: 60px;width: 100px; margin-top: 50px; border:none; font-size: 18px; letter-spacing: 2px;">相似图片</button>
 
+                <input id="search" type="search"  placeholder="搜索" style="outline: none; width: 440px; height: 60px; font-size: 20px; margin-top: 50px;border: none;"/>
+                <button class="btn-success"  onclick="popBox_search()" style="height: 60px;width: 100px; margin-top: 50px; border:none; font-size: 18px; letter-spacing: 2px;">相似图片</button>
             </div>
         </div>
     </div>
 </div>
+<div style="display: flexbox;">
+    <div id="picture">
+    </div>
+</div>
+<div id="btnblock" style="position: relative;margin-top: 20px;">
 
+</div>
 <section>
-    <div class="show">
-        <img class="show" src="img/001.jpg" />
-    </div>
-    <div class="show">
-        <img class="show" src="img/002.jpg"/>
-    </div>
-    <div class="show">
-        <img class="show" src="img/003.jpg"/>
-    </div>
-    <div class="show">
-        <img class="show" src="img/004.jpg"/>
-    </div>
-    <div class="show">
-        <img class="show" src="img/005.jpg"/>
-    </div>
-    <div class="show">
-        <img class="show" src="img/006.jpg"/>
-    </div>
-    <div class="show">
-        <img class="show" src="img/007.jpg"/>
-    </div>
-    <div class="show">
-        <img class="show" src="img/008.jpg"/>
-    </div>
-    <div class="show">
-        <img class="show" src="img/009.jpg"/>
-    </div>
-    <div class="show">
-        <img class="show" src="img/010.jpg"/>
-    </div>
-    <div class="show">
-        <img class="show" src="img/bg1.webp"/>
-    </div>
-    <div class="show">
-        <img class="show" src="img/001.jpg"/>
-    </div>
 
 </section>
-
+<!--
+<ul class="mfb-component--br mfb-zoomin" data-mfb-toggle="hover">
+    <li class="mfb-component__wrap">
+        <a href="javascript:;" class="mfb-component__button--main" id="btn">
+        </a>
+    </li>
+</ul>
+-->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/mfb.min.js"></script>
 <script>
-    $(function(){
+    //localStorage.setItem('tag', 'flamine');
+    var search_tag = localStorage.getItem("tag");
+    console.log(search_tag);
+    //当页面加载完成时开始执行
 
-        $(window).scroll(function(){  //只要窗口滚动,就触发下面代码
+    $('#search').val(localStorage.tag);
 
-            var scrollt = document.documentElement.scrollTop + document.body.scrollTop; //获取滚动后的高度
+        /*导航栏显示登陆状态*/
+        if (localStorage.id != null) {
+            $("#navbar").empty();
+            var username = $("<span></span>").text("您好！" + "username");
+            $("#navbar").append(username);
+            username.click(function () {
+                //跳转
+                window.location.href = "个人图片主页.html";
+            })
+        }
 
-            if( scrollt >200 ){  //判断滚动后高度超过200px,就显示
+        /*提供按钮使得页面到顶部*/
+        $(function () {
+            $(window).scroll(function () {  //只要窗口滚动,就触发下面代码
+                var scrollt = document.documentElement.scrollTop + document.body.scrollTop; //获取滚动后的高度
+                if (scrollt > 200) {  //判断滚动后高度超过200px,就显示
+                    $("#back_top").fadeIn(400); //淡入
+                } else {
+                    $("#back_top").stop().fadeOut(400); //如果返回或者没有超过,就淡出.必须加上stop()停止之前动画,否则会出现闪动
+                }
+            });
 
-                $("#back_top").fadeIn(400); //淡入
+            $("#back_top").click(function () { //当点击标签的时候,使用animate在200毫秒的时间内,滚到顶部
+                $("html,body").animate({scrollTop: "0px"}, 200);
+            });
+        });
+        /*图片点击进入图片详情页面*/
+        $("img.show").click(function () {
+            window.location.href = "pictureShow.html";
+            localStorage.setItem('src', $(this).attr("src"));
+        })
 
-            }else{
-
-                $("#back_top").stop().fadeOut(400); //如果返回或者没有超过,就淡出.必须加上stop()停止之前动画,否则会出现闪动
-
+        /*请求相应tag的图片数据*/
+        // var form = new FormData();
+        $.ajax({
+            "url": "http://172.81.239.44/Picture/searchByTag?tag=" + search_tag,
+            "method": "GET",
+            "timeout": 0,
+            success: function (data) {
+                console.log(data);
+                var arr = data.picList;
+                //console.log(arr);
+                //console.log(arr[0].picUrl);
+                var container = document.querySelector('section');
+                arr.forEach(function (item) {
+                    var div = document.createElement('div');
+                    div.setAttribute("class", "show");
+                    var img = document.createElement('img');
+                    img.src = item.picUrl;
+                    img.setAttribute("class", "content");
+                    div.appendChild(img);
+                    container.appendChild(div);
+                })
             }
+        })
 
-        });
+        $("#search").bind("keyup", function (event) {
+            if (event.keyCode == "13") {
+                localStorage.tag = $("#search").val();
+                console.log(localStorage.tag);
+                window.location.href = "showPicture.html";
+                document.getElementById("search").value = "";
+            }
+        })
 
-        $("#back_top").click(function(){ //当点击标签的时候,使用animate在200毫秒的时间内,滚到顶部
 
-            $("html,body").animate({scrollTop:"0px"},200);
-
-        });
-
-    });
-    $("img.show").click(function(){
-        window.location.href="pictureShow.html";
-        localStorage.setItem('src',$(this).attr("src"));
-    })
 </script>
 
 </body>

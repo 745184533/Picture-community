@@ -13,6 +13,7 @@
     <input type="text" name="username" id="username" />
     <input type="text" name="password" id="password" />
     <input type="button" value="Submit" onclick="submit()" />
+    <input type="file" value="选择文件" id="img_file" />
     <p id="msg">信息在此处出现</p>
 </body>
 
@@ -20,16 +21,12 @@
 <script>
     function submit() {
         var form = new FormData();
-        form.append("", fileInput.files[0], "/C:/Users/89254/Desktop/ba0cb9bb2ff0a255b670a936c952ac4.jpg");
-        form.append("tag", "simple");
-        form.append("tag1", "flamine");
+        var file = document.getElementById('img_file').files[0];
+        form.append("",file);
         form.append("userId", "1");
-        form.append("tag2", "Navi");
-        form.append("p_info", "new");
-        form.append("price", "20");
 
         var settings = {
-            "url": "http://172.81.239.44/Account/Upload",
+            "url": "http://172.81.239.44/Account/Upload1",
             "method": "POST",
             "timeout": 0,
             "processData": false,

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualBasic;
 using PicCommunitity.Models;
@@ -44,6 +45,8 @@ namespace PicCommunitity.Controllers
             });
         }
 
+
+        [Authorize]
         [Route("writeBlog")]
         [HttpPost]
         public IActionResult writeBlog([FromBody] BlogInfo Blog)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualBasic;
 using PicCommunitity.Models;
@@ -23,6 +24,8 @@ namespace PicCommunitity.Controllers
             this.context = context;
             this.services = new WalletServices(context);
         }
+
+        [Authorize]
         [Route("getWalletInfo")]
         [HttpGet]
         public IActionResult getWalletInfo(string userId)
@@ -38,6 +41,9 @@ namespace PicCommunitity.Controllers
                 msg = "Operation Done"
             });
         }
+
+
+        [Authorize]
         [Route("depositWallet")]
         [HttpPost]
         public IActionResult depositWallet(string userId, int amount)
@@ -68,6 +74,8 @@ namespace PicCommunitity.Controllers
                 msg = "Operation Done"
             });
         }
+
+        [Authorize]
         [Route("getDepositRecord")]
         [HttpGet]
         public IActionResult getDepositRecord(string userId)
@@ -92,6 +100,9 @@ namespace PicCommunitity.Controllers
                 msg = "Operation Done"
             });
         }
+
+
+        [Authorize]
         [Route("getConsumeRecord")]
         [HttpGet]
         public IActionResult getConsumeRecord(string userId)

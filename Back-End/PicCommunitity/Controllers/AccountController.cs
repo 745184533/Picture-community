@@ -154,7 +154,7 @@ namespace PicCommunitity.Controllers
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        //[Authorize]
+        [Authorize]
         [Route("getUserInfo")]
         [HttpGet]
         public IActionResult getUserInfo(string userId)
@@ -199,6 +199,7 @@ namespace PicCommunitity.Controllers
         /// </summary>
         /// <param name="info"></param>
         /// <returns></returns>
+        [Authorize]
         [Route("saveUserInfo")]
         [HttpPost]
         public IActionResult saveUserInfo([FromBody] UserInfo info)
@@ -223,7 +224,7 @@ namespace PicCommunitity.Controllers
         /// <summary>
         /// 获得用户个人图片主页信息，点赞数等
         /// </summary>
-        //[Authorize]
+        [Authorize]
         [Route("getProfileInfo")]
         [HttpGet]
         public IActionResult getProfileInfo(string userId)
@@ -243,6 +244,7 @@ namespace PicCommunitity.Controllers
         ///获取用户个人图片主页的图片信息
         /// 
         /// </summary>
+        [Authorize]
         [Route("getProfilePicture")]
         [HttpGet]
         public IActionResult getProfilePicture(string userId)
@@ -308,6 +310,7 @@ namespace PicCommunitity.Controllers
         /// <param name="fansId"></param>
         /// <param name="followId"></param>
         /// <returns></returns>
+        [Authorize]
         [Route("followUser")]
         [HttpPost]
         public IActionResult followUser(string fansId, string followId)
@@ -338,7 +341,7 @@ namespace PicCommunitity.Controllers
         ///<summary>
         ///下载图片
         /// </summary>
-        //[Authorize]
+        [Authorize]
         [Route("Upload")]
         [HttpPost]
         public async Task<IActionResult> Upload([FromForm] IFormCollection forms)
@@ -635,6 +638,7 @@ namespace PicCommunitity.Controllers
         ///第一回合上传
         /// 
         /// </summary>
+        [Authorize]
         [Route("Upload1")]
         [HttpPost]
         public async Task<IActionResult> Upload1([FromForm] IFormCollection forms)
@@ -753,6 +757,7 @@ namespace PicCommunitity.Controllers
         ///第二回合上传
         /// 
         /// </summary>
+        [Authorize]
         [Route("Upload2")]
         [HttpPost]
         public async Task<IActionResult> Upload2([FromForm] IFormCollection forms)

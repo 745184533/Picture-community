@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PicCommunitity.Models;
 using PicCommunitity.Services;
@@ -29,6 +30,7 @@ namespace PicCommunitity.Controllers
         /// <param name="picId"></param>
         /// <param name="type"></param>
         /// <returns></returns>
+        [Authorize]
         [Route("likePicture")]
         [HttpPost]
         public IActionResult likePicute(string userId,string picId,string type)
@@ -65,7 +67,7 @@ namespace PicCommunitity.Controllers
                 msg = "Operation Done"
             }) ;
         }
-        
+
 
         /// <summary>
         /// 进行收藏或已有收藏取消收藏
@@ -73,6 +75,7 @@ namespace PicCommunitity.Controllers
         /// <param name="userId"></param>
         /// <param name="picId"></param>
         /// <returns></returns>
+        [Authorize]
         [Route("favoritePicture")]
         [HttpPost]
         public IActionResult favoritePicture(string userId,string picId)
@@ -107,6 +110,7 @@ namespace PicCommunitity.Controllers
         /// </summary>
         /// <param name="Comment"></param>
         /// <returns></returns>
+        [Authorize]
         [Route("comment")]
         [HttpPost]
         public IActionResult comment([FromBody]comment Comment)
@@ -239,6 +243,7 @@ namespace PicCommunitity.Controllers
         /// </summary>
         /// <param name="picId"></param>
         /// <returns></returns>
+        
         [Route("getAllComment")]
         [HttpGet]
         public IActionResult getAllComment(string picId)
@@ -310,6 +315,7 @@ namespace PicCommunitity.Controllers
         ///<summary>
         ///收费并且下载图片。
         /// </summary>
+        [Authorize]
         [Route("Download")]
         [HttpGet]
         public IActionResult Download(string userId,string picId)

@@ -61,7 +61,7 @@ header {
 }
 .thumbnail {
 	width: 31%;
-	height: 260px;
+	height: 350px;
 	text-align: center;
 	float: left;
 	margin-top: 35px;
@@ -158,8 +158,8 @@ header {
 .cards {
 	width: 100%;
 	height: auto;
-	/*width: 300px;*/
-	max-height: 180px;
+	/*max-width: 550px;*/
+	max-height: 300px;
 	overflow:hidden;
 	cursor: pointer;
 	opacity: 0.8;

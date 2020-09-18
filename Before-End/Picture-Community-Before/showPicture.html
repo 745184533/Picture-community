@@ -260,10 +260,10 @@
             });
         });
         /*图片点击进入图片详情页面*/
-        $("img.show").click(function () {
+        /*$("img.show").click(function () {
             window.location.href = "pictureShow.html";
             localStorage.setItem('src', $(this).attr("src"));
-        })
+        })*/
 
         /*请求相应tag的图片数据*/
         // var form = new FormData();
@@ -285,6 +285,10 @@
                     img.setAttribute("class", "content");
                     div.appendChild(img);
                     container.appendChild(div);
+                    img.onclick=function(){
+                         window.location.href = "pictureShow.html";
+                         localStorage.setItem('picId', item.picId);
+                    }
                 })
             }
         })

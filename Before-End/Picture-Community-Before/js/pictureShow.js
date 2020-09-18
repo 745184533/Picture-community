@@ -394,7 +394,7 @@ $("#download").click(function(){//下载
 
 $("#confirm").click(function(){//确认下载
     var settings = {
-      "url": "http://172.81.239.44/Picture/Download?userId=2&picId=2",
+      "url": "http://172.81.239.44/Picture/Download?userId="+user_id+"&picId="+pic_id,
       "method": "GET",
       "timeout": 0,
     };

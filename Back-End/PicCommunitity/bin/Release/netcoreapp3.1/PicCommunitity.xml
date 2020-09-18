@@ -1,0 +1,198 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PicCommunitity</name>
+    </assembly>
+    <members>
+        <member name="M:PicCommunitity.Controllers.AccountController.login(PicCommunitity.ViewsModel.LoginUser)">
+            <summary>
+            用户登录
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PicCommunitity.Controllers.AccountController.register(PicCommunitity.ViewsModels.RegisterUser)">
+            <summary>
+            用户注册
+            </summary>
+            <param name="userName"></param>
+            <param name="userPassword"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PicCommunitity.Controllers.AccountController.getAllUsers">
+            <summary>
+            获取当前所有用户信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PicCommunitity.Controllers.AccountController.getUserInfo(System.String)">
+            <summary>
+            获得对应id的用户详细信息
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PicCommunitity.Controllers.AccountController.saveUserInfo(PicCommunitity.ViewsModels.UserInfo)">
+            <summary>
+            保存填写后用户详细信息
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PicCommunitity.Controllers.AccountController.getProfileInfo(System.String)">
+            <summary>
+            获得用户个人图片主页信息，点赞数等
+            </summary>
+        </member>
+        <member name="M:PicCommunitity.Controllers.AccountController.getProfilePicture(System.String)">
+            <summary>
+            获取用户个人图片主页的图片信息
+             
+             </summary>
+        </member>
+        <member name="M:PicCommunitity.Controllers.AccountController.followUser(System.String,System.String)">
+            <summary>
+            关注用户或已关注取消关注用户
+            </summary>
+            <param name="fansId"></param>
+            <param name="followId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PicCommunitity.Controllers.AccountController.Upload(Microsoft.AspNetCore.Http.IFormCollection)">
+            <summary>
+            下载图片
+             </summary>
+        </member>
+        <member name="M:PicCommunitity.Controllers.AccountController.SimilarPicture(Microsoft.AspNetCore.Http.IFormCollection)">
+            <summary>
+            搜索相似图片
+             
+             </summary>
+        </member>
+        <member name="M:PicCommunitity.Controllers.AccountController.Upload1(Microsoft.AspNetCore.Http.IFormCollection)">
+            <summary>
+            第一回合上传
+             
+             </summary>
+        </member>
+        <member name="M:PicCommunitity.Controllers.AccountController.Upload2(Microsoft.AspNetCore.Http.IFormCollection)">
+            <summary>
+            第二回合上传
+             
+             </summary>
+        </member>
+        <member name="M:PicCommunitity.Controllers.PictureController.likePicute(System.String,System.String,System.String)">
+            <summary>
+            点击进行赞或者已有赞取消赞
+            </summary>
+            <param name="userId"></param>
+            <param name="picId"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PicCommunitity.Controllers.PictureController.favoritePicture(System.String,System.String)">
+            <summary>
+            进行收藏或已有收藏取消收藏
+            </summary>
+            <param name="userId"></param>
+            <param name="picId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PicCommunitity.Controllers.PictureController.comment(PicCommunitity.ViewsModels.comment)">
+            <summary>
+            创建评论或修改已有评论
+            </summary>
+            <param name="Comment"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PicCommunitity.Controllers.PictureController.getPicViewInfo(System.String,System.String)">
+            <summary>
+            返回图片页面所需信息  图片来源及信息/关注/点赞/收藏
+            </summary>
+            <param name="userId"></param>
+            <param name="picId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PicCommunitity.Controllers.PictureController.getAllComment(System.String)">
+            <summary>
+            获取当前图片所有评论
+            </summary>
+            <param name="picId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PicCommunitity.Controllers.PictureController.searchByTag(System.String)">
+            <summary>
+            根据tag返回相关图片信息列表
+            </summary>
+            <param name="tag"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PicCommunitity.Controllers.PictureController.Download(System.String,System.String)">
+            <summary>
+            收费并且下载图片。
+             </summary>
+        </member>
+        <member name="M:PicCommunitity.Controllers.PictureController.get3Pic(System.Int32)">
+            <summary>
+            根据请求次数获取最新的三张图片
+            </summary>
+            <param name="requestTimes"></param>
+            <returns></returns>
+        </member>
+        <member name="P:PicCommunitity.Models.JwtSetting.Issuer">
+            <summary>
+            颁发者
+            </summary>
+        </member>
+        <member name="P:PicCommunitity.Models.JwtSetting.Audience">
+            <summary>
+            接收者
+            </summary>
+        </member>
+        <member name="P:PicCommunitity.Models.JwtSetting.SecurityKey">
+            <summary>
+            令牌密码
+            </summary>
+        </member>
+        <member name="P:PicCommunitity.Models.JwtSetting.ExpireSeconds">
+            <summary>
+             过期时间
+            </summary>
+        </member>
+        <member name="P:PicCommunitity.Models.JwtSetting.Credentials">
+            <summary>
+            签名
+            </summary>
+        </member>
+        <member name="T:PicCommunitity.Tools.CorsMiddleware">
+            <summary>
+            CORS 中间件 【解决跨域问题】
+            </summary>
+        </member>
+        <member name="P:PicCommunitity.ViewsModels.RegisterUser.userName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:PicCommunitity.ViewsModels.RegisterUser.Email">
+            <summary>
+            电子邮箱
+            </summary>
+        </member>
+        <member name="P:PicCommunitity.ViewsModels.RegisterUser.userPassword">
+            <summary>
+            登陆密码
+            </summary>
+        </member>
+        <member name="P:PicCommunitity.ViewsModel.LoginUser.userName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:PicCommunitity.ViewsModel.LoginUser.userPassword">
+            <summary>
+            登陆密码
+            </summary>
+        </member>
+    </members>
+</doc>

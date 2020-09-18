@@ -29,11 +29,22 @@ namespace PicCommunitity.Controllers
         {
             //得到最新的十条博客
             var list = context.blog.ToList();
-            var returnList = new List<blog> { };
+            var returnList = new List<ReturnBlogInfo> { };
             var blogNum = context.blog.Count();
             for (var i = blogNum - 1 - 10 * times; i >= blogNum -11- 10* times && i >= 0; --i)
             {
-                returnList.Add(list[i]);
+                var nowBlogUser = context.ownBlog.FirstOrDefault(b => b.b_id == list[i].b_id);
+                var nowBlogUserInfo = context.userInfo.FirstOrDefault(u => u.u_id == nowBlogUser.u_id);
+                var newReturnBlogInfo = new ReturnBlogInfo
+                {
+                    blogDate = list[i].b_date,
+                    blogId = list[i].b_id,
+                    content = list[i].b_text,
+                    blogType = list[i].b_type,
+                    userId = nowBlogUserInfo.u_id,
+                    userName = nowBlogUserInfo.u_name
+                };
+                returnList.Add(newReturnBlogInfo);
             }
 
             return Ok(new

@@ -9242,19 +9242,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\89254\\.nuget\\packages\\": {}
+    "C:\\Users\\AERO\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Github\\Picture-community\\Back-End\\PicCommunitity\\PicCommunitity.csproj",
+      "projectUniqueName": "D:\\Picture-community\\Back-End\\PicCommunitity\\PicCommunitity.csproj",
       "projectName": "PicCommunitity",
-      "projectPath": "E:\\Github\\Picture-community\\Back-End\\PicCommunitity\\PicCommunitity.csproj",
-      "packagesPath": "C:\\Users\\89254\\.nuget\\packages\\",
-      "outputPath": "E:\\Github\\Picture-community\\Back-End\\PicCommunitity\\obj\\",
+      "projectPath": "D:\\Picture-community\\Back-End\\PicCommunitity\\PicCommunitity.csproj",
+      "packagesPath": "C:\\Users\\AERO\\.nuget\\packages\\",
+      "outputPath": "D:\\Picture-community\\Back-End\\PicCommunitity\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\89254\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\AERO\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9351,7 +9351,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

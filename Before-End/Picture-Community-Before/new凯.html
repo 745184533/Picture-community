@@ -4,62 +4,173 @@
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
 		<link rel="stylesheet" type="text/css" href="css/page.css"/>
+		<link rel="stylesheet" type="text/css" href="css/uploadPicture.css"/>
 		<script src="js/vue.js"></script>
 		<script src="js/modernizr.touch.js"></script>
+		<script src="js/uploadPicture.js"></script>
         <link href="css/mfb.min.css" rel="stylesheet">
-	    
+	    <style>
+			#picture>span{
+				font-size: 14px;
+				background-color: initial;
+				border: none;
+			}
+			.Btn{
+				align-items: center;
+				font-size: 20px;
+				color: white;
+				margin:20px auto;
+				letter-spacing: 4px;
+				position: absolute;
+				background-color: #02BE6E;
+				border: none;
+				border-radius: 5px;
+				margin-left: 710px;
+				height: 50px;
+				width: 120px;
+			}
+		</style>
 		<title></title>
 	</head>
 	<body>
+		<!--背景层-->
+			<div id="popLayer"></div>
+			<!--弹出框-->
+			<div class="popBox" id="popBox_upload">
+				<!--关闭按钮-->
+				<div class="close">
+					<a href="javascript:void(0)" onclick="closeBox()">关闭</a>
+				</div>
+				<!--上传图片标题-->
+				<div style="text-align: center;font-size: 25px">上传图片到图库</div>
+				<br>
+				<!--给上传的图片添加图片简介-->
+				<form class="layui-form">
+					<div style="padding: 10px;">
+						<div class="layui-form-item">
+							<label class="layui-input-inline">图片简介(必填)：</label>
+							<input type="text" class="layui-input" id="intro">
+						</div>
+					</div>
+				</form>
+		
+				<!--给上传的图片添加标签-->
+				<form class="layui-form">
+					<div style="padding: 10px;">
+						<div class="layui-form-item">
+							<label class="layui-input-inline">标签1(必填)：</label>
+							<input type="text" class="layui-input" id="tag1">
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-input-inline">标签2(选填)：</label>
+							<input type="text" class="layui-input" id="tag2">
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-input-inline">标签3(选填)：</label>
+							<input type="text" class="layui-input" id="tag3">
+						</div>
+					</div>
+				</form>
+		
+				<!--给上传的图片添加定价-->
+				<form class="layui-form">
+					<label class="layui-input-inline">定价(必填)：</label>
+					<input type="text" class="layui-input" id="price">
+				</form>
+				<br>
+		
+				<!--复选框，遵循上传图片协议-->
+				<form style="padding-left:10px;padding-right:10px">
+					<input type="checkbox" name="agreement" value="agree_1" id="agree_1" onclick="checkAgree()">我同意放弃所上传图片的所有权，图片归图库系统所有。<br>
+					<input type="checkbox" name="agreement" value="agree_2" id="agree_2" onclick="checkAgree()">我保证所上传的图片并非盗用或涉及其他非法行为。
+				</form>
+				<br>
+				<!--上传图片-->
+				<div class="layui-form-item" style="padding-left:10px;padding-right:10px">
+					<div class="layui-input-block">
+						<input type="hidden" id="img_url">
+						<input type="file" onchange="showImg()" id="img_file">
+						<img src="" alt="" id="img_id" style="height: 150px">
+					</div>
+				</div>
+				<br>
+				<!--提交图片按钮-->
+				<div style="text-align: center">
+					<button id="submit" disabled="disabled" onclick="check()">提交图片</button>
+				</div>
+				<br>
+			</div>
+		
+		
+			<!--弹出框_搜索相似图片-->
+			<div class="popBox" id="popBox_search" style="width:450px;height:330px;">
+				<!--关闭按钮-->
+				<div class="close">
+					<a href="javascript:void(0)" onclick="closeBox_search()">关闭</a>
+				</div>
+				<!--上传图片标题-->
+				<div style="text-align: center;font-size: 25px">上传图片找相似</div>
+				<br>
+				<!--上传图片-->
+				<div class="layui-form-item" style="padding-left:10px;padding-right:10px">
+					<div class="layui-input-block">
+						<input type="hidden" id="img_url_search">
+						<input type="file" onchange="showImg_search()" id="img_file_search">
+						<img src="" alt="" id="img_id_search" style="height: 150px">
+					</div>
+				</div>
+				<br>
+				<!--提交图片按钮-->
+				<div style="text-align: center">
+					<button id="submit_search"  onclick="check_search()">提交图片</button>
+				</div>
+			</div>
+
 		<div class="title-style">
 			<div class="nav-style">
 				<div class="navbar-nav">
 					<ul class="nav nav-tabs" role="tablist">
-						<li role="presentation" style="margin: 0 40px 0 0;" ><span style="height: 40px;line-height: 40px;font-weight: bold;font-size: 18px;">图片社区</span></li>
-					    <li role="presentation" class="active" style="margin: 0 40px 0 0;" ><a href="#photo" aria-controls="home" role="tab" data-toggle="tab"style="color: black;">照片</a></li>
-					    <li role="presentation" style="margin: 0 40px 0 0;" ><a href="#illustration" aria-controls="home" role="tab" data-toggle="tab"style="color: black;">插画</a></li>
-						<li role="presentation" style="margin: 0 40px 0 0;"><a href="#vector" aria-controls="home" role="tab" data-toggle="tab"style="color: black;">向量</a></li>
-						<li role="presentation" class="dropdown" style="margin: 0 40px 0 630px;">
+						<li role="presentation" style="margin: 0 40px 0 0;" ><span style="height: 40px;line-height: 40px;font-weight: bold;font-size: 18px;" id="mainPage">图片社区</span></li>
+					    <li role="presentation" class="active" style="margin: 0 60px 0 0;" ><a href="#photo" aria-controls="home" role="tab" data-toggle="tab"style="color: black;">照片</a></li>
+						<li role="presentation" class="dropdown" style="margin: 0 200px 0 810px;">
 						    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
 						      aria-haspopup="true" aria-expanded="true">探索<span class="caret"></span>
 						    </button>
 							<table class="dropdown-menu" aria-labelledby="dropdownMenu1">
 								<tr>
-									<th>Media</th>
-									<th>Community</th>
 									<th>About</th>
 								</tr>
 								<tr>
-									<td><a>小编精选</a></td>
-									<td><a>博客</a></td>
-									<td><a>服务条款</a></td>
+									
+									<td id="blog">博客</td>
+									
 								</tr>
 								<tr>
-									<td><a>Popular Images</a></td>
-									<td><a>论坛</a></td>
-									<td><a>隐私政策</a></td>
+									
+									<td id="exit">注销</td>
 								</tr>
 								<tr>
-									<td><a>Popular Videos</a></td>
-									<td><a>Artists</a></td>
-									<td><a>关于我们</a></td>
+									
+									<td id="us">关于我们</td>
 								</tr>
 							</table>
 						</li>
-						<li style="margin: 0 40px 0 0;"><a href="" style="color: black;">登录</a></li>
-						<li style="margin: 0 40px 0 0;"><a href="" style="color: black;">注册</a></li>
-						<li style="margin: 0 20px 0 0;"><a href="" style="color: black;">
+						<div id="navbar" style="position: absolute;left: 1200px; top:10px; display: flex;">
+							<li style="margin: 0 40px 0 20px;"><a id="login" style="color: black;">登录</a></li>
+							<li style="margin: 0 40px 0 20px;"><a id="register" style="color: black;">注册</a></li>
+						</div>
+						<li style="margin: 0 10px 0 0; padding-top: 10px;"><font id="#" style="color: black;" onclick="popBox()">
 							<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-upload" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 							    <path fill-rule="evenodd" d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
 							    <path fill-rule="evenodd" d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
-						    </svg>上传</a></li>
+						    </svg>上传</font></li>
 					</ul>
 				</div>
 			</div>
 		</div>
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="photo">
-				<div class="search-style" style="background-image: url(img/photo.webp);">
+				<div class="search-style" style="background-image: url(https://cdn.pixabay.com/index/2020/09/17/09-04-49-829_1920x430.jpg);">
 					<h1 style="padding-top: 100px;padding-left:560px;color: white;align-content: center;">免费正版高清图片素材库</h1>
 					<h4 style="margin-top:30px; padding-left: 500px;color: white;">图片社区拥有超过许多优质图片素材，让你轻松应对各种设计场景</h4>
 					<div class="search" style="display: flex;">
@@ -69,65 +180,33 @@
 								<path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
 							  </svg>
 						</div>			
-						<form action="" method="post">
-							<input type="search" placeholder="照片" style="outline: none; width: 440px; height: 60px; font-size: 20px; margin-top: 50px;border: none;"/>
-						</form>
-						<button class="btn-success" style="height: 60px;width: 100px; margin-top: 50px; border:none; font-size: 18px; letter-spacing: 2px;">相似图片</button>
+						
+							<input id="search" type="search" placeholder="照片" style="outline: none; width: 440px; height: 60px; font-size: 20px; margin-top: 50px;border: none;"/>
+						<button class="btn-success"  onclick="popBox_search()" style="height: 60px;width: 100px; margin-top: 50px; border:none; font-size: 18px; letter-spacing: 2px;">相似图片</button>
 					</div>
 				</div>
 			</div>
-			<div role="tabpanel" class="tab-pane" id="illustration">
-				<div class="search-style" style="background-image: url(./img/bg1.webp);">
-					<h1 style="padding-top: 100px;padding-left:560px;color: white;align-content: center;">免费正版高清图片素材库</h1>
-					<h4 style="margin-top:30px; padding-left: 500px;color: white;">图片社区拥有超过许多优质图片素材，让你轻松应对各种设计场景</h4>
-					<div class="search" style="display: flex;">
-						<div style="height: 60px; width: 60px; background-color: #fff;margin-left: 500px;margin-top: 50px;">
-							<svg width="50px" height="50px" viewBox="0 0 16 16" class="bi bi-search" style="padding-left: 10px; padding-top:15px;" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-								<path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
-								<path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
-							  </svg>
-						</div>			
-						<form action="" method="post">
-							<input type="search" placeholder="插画" style="outline: none; width: 440px; height: 60px; font-size: 20px; margin-top: 50px;border: none;"/>
-						</form>
-						<button class="btn-success" style="height: 60px;width: 100px; margin-top: 50px; border:none; font-size: 18px; letter-spacing: 2px;">相似图片</button>
-					</div>
-				</div>
-			</div>
-			<div role="tabpanel" class="tab-pane" id="vector">
-				<div class="search-style" style="background-image: url(img/bg2.webp);">
-					<h1 style="padding-top: 100px;padding-left:560px;color: white;align-content: center;">免费正版高清图片素材库</h1>
-					<h4 style="margin-top:30px; padding-left: 500px;color: white;">图片社区拥有超过许多优质图片素材，让你轻松应对各种设计场景</h4>
-					<div class="search" style="display: flex;">
-						<div style="height: 60px; width: 60px; background-color: #fff;margin-left: 500px;margin-top: 50px;">
-							<svg width="50px" height="50px" viewBox="0 0 16 16" class="bi bi-search" style="padding-left: 10px; padding-top:15px;" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-								<path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
-								<path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
-							  </svg>
-						</div>			
-						<form action="" method="post">
-							<input type="search" placeholder="向量" style="outline: none; width: 440px; height: 60px; font-size: 20px; margin-top: 50px;border: none;"/>
-						</form>
-						<button class="btn-success" style="height: 60px;width: 100px; margin-top: 50px; border:none; font-size: 18px; letter-spacing: 2px;">相似图片</button>
-					</div>
-				</div>
-			</div>	
 		</div>
 		<div style="display: flexbox;">
 			<div id="picture">	
 			</div>
 		</div>
+		<div id="btnblock" style="position: relative;margin-top: 20px;">
+			
+		</div>
+		
 		
 		<ul class="mfb-component--br mfb-zoomin" data-mfb-toggle="hover">
 			<li class="mfb-component__wrap">
 			  <a href="javascript:;" class="mfb-component__button--main" id="btn">
 			  </a>
 			</li>
-		  </ul>
+		</ul>
 		<script src="js/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/mfb.min.js"></script>
 		<script>
+			//<div class="layui-form-item"><div>
 			window.onload = function() {
 
 				// 获取页面可视区的高度
@@ -149,16 +228,6 @@
 					window.onscroll = function() {
 
 						var osTop = document.documentElement.scrollTop || document.body.scrollTop;
-
-						if (osTop >= clientHeight) {
-
-							obtn.style.display = 'none'; // 显示
-
-						} else {
-
-							obtn.style.display = 'block'; // 隐藏
-
-						}
 
 						if (!isTop) {
 
@@ -199,131 +268,281 @@
 				}
 
 			}
-			var arrayZ=new Array;
-			var arrayS=new Array;
-			var arrayP=new Array;
-			var arrayZn=[0,0,0,0,0,0];
-			var arraySn=[0,0,0,0,0,0];
-			var markZs=[0,0,0,0,0,0];
-			var markSs=[0,0,0,0,0,0];
-			var photo=document.getElementById("picture");
-			var paths=["./img/001.jpg","./img/002.jpg","./img/003.jpg","./img/004.jpg","./img/005.jpg","./img/006.jpg"];
-			function createPhoto(i){
-				var photoNode=document.createElement("div");
-				photoNode.style.width="450px";
-				photoNode.style.height="300px";
-				photoNode.style.position="absolute";
-				var w=i%3;
-				var h=Math.floor(i/3);
-				photoNode.style.left=60+w*480+"px";
-				photoNode.style.top=510+h*300+'px';
-				photo.appendChild(photoNode);
-				photoNode.style.zIndex="1";
-				return photoNode;
-			}
-			for(var i=0;i<6;i++)
+			if(localStorage.id!=null)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
 			{
-				var photoNode=createPhoto(i);
-				var photoA=document.createElement("a");
-				var image=document.createElement("img");
-				var btnZ=document.createElement("button");
-				var btnS=document.createElement("button");
-				var spanZ=document.createElement("span");
-				var spanS=document.createElement("span");
-				var aaa=document.createElement("a");
-				var spanCn=document.createElement("span");
-				photoA.href="#";
-				photoNode.appendChild(photoA);
-				image.style.width="430px";
-				image.style.height="280px";
-				image.src=paths[i];
-				image.style.padding='10px';
-				image.style.zIndex="2";
-				photoA.appendChild(image);
-				btnZ.style.position="absolute";
-				btnZ.style.top=240+"px";
-				btnZ.style.left=220+"px";
-				btnS.style.position="absolute";
-				btnS.style.top=240+"px";
-				btnS.style.left=285+"px";
-				btnZ.innerText="赞";
-				btnZ.style.zIndex="3";
-				photoNode.appendChild(btnZ);
-				btnS.innerText="收藏";
-				btnS.style.zIndex="3";
-				photoNode.appendChild(btnS);
-				spanZ.style.position="absolute";
-				spanZ.style.top=240+"px";
-				spanZ.style.left=255+"px";
-				spanS.style.position="absolute";
-				spanS.style.top=240+"px";
-				spanS.style.left=330+"px";
-				spanS.innerHTML=arraySn[i];
-				spanZ.innerHTML=arrayZn[i];
-				photoNode.appendChild(spanZ);
-				photoNode.appendChild(spanS);
-				aaa.style.position="absolute";
-				aaa.style.top=240+"px";
-				aaa.style.left=350+"px";
-				aaa.innerHTML="评论";
-				aaa.href="#";
-				spanCn.style.position="absolute";
-				spanCn.style.top=240+"px";
-				spanCn.style.left=390+"px";
-				spanCn.innerHTML=0;
-				photoNode.appendChild(aaa);
-				photoNode.appendChild(spanCn);
-				arrayS.push(btnS);
-				arrayZ.push(btnZ);
+				$("#login").hide();
+				$("#register").hide();
+				var username=$("<span></span>").text("您好！"+localStorage.userName);
+				username.css("position","absolute");
+				username.css("left","-15px");
+				username.css("top","-1px");
+				$("#navbar").append(username);
+				username.click(function(){
+					//跳转
+					window.location.href="个人图片主页.html";
+				})
 			}
-			var btn=document.createElement("button");
-			btn.innerText="获取更多";
-			btn.style.top=parseInt(photoNode.style.top)+330+"px";
-			btn.style.left=650+"px";
-			btn.style.position="absolute";
-			photo.appendChild(btn);
-			btn.className="btn-success";
-			btn.style.height=50+"px";
-			btn.style.width=200+"px";
-			btn.style.fontSize="30px";
-			btn.style.borderRadius="5px";
-			btn.style.outline="none";
-			btn.style.letterSpacing="2px";
-			var arraySpan=document.querySelectorAll("span");
-			console.log(arraySpan);
-			arrayS.forEach(function(item,index){
-				item.onclick=function(){
-					if(markSs[index]==0)
+			var head=0;
+			//localStorage.Token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIzZjQ2YTM4ZS00MWY5LTRlMmYtYThhMS03NWVmNGQzOTQ2NjAiLCJuYW1lIjoibGp5MDAxIiwibmJmIjoxNjAwNDE0MjM1LCJleHAiOjE2MDA0MTQ4MzUsImlzcyI6Imp3dElzc3VlcnRlc3QiLCJhdWQiOiJqd3RBdWRpZW5jZXRlc3QifQ.l1GkEOSqGeKvJd_jKRXdaONtrHCFg1MvWloQUs2CPTE"
+			var userid=localStorage.id;
+			function getpic(x){	
+				var x1=x-4;
+					$.ajax({
+					  "url": "http://172.81.239.44/Picture/get3Pic?requestTimes="+x,
+					  "method": "GET",
+					  "timeout": 0,
+					  success:function(data){
+						  
+						  var arr=data.returnList;
+						  
+						  arr.forEach(function(item,index){
+							  var picSpan=$("<span></span>");
+							  var btnZ=$("<span></span>").text("点赞");
+							  var btnS=$("<span></span>").text("收藏");
+							  var btnC=$("<span></span>").text("评论");
+							  var btnU=$("<span></span>").text(item.publisherName);
+							  var spanZ=$("<span></span>").text(item.likeNum);
+							  var spanS=$("<span></span>").text(item.starNum);
+							  var spanC=$("<span></span>").text(item.commNum);
+							  var w=(x-4)%3;
+							  var Left=60+w*480;
+							  var Top=510+(x-4)*300;
+							  picSpan.css("height","300px");
+							  picSpan.css("width","450px");
+							  picSpan.css("left",Left+"px");
+							  picSpan.css("top",Top+"px");
+							  picSpan.css("position","absolute")
+							  var pic=$("<img></img>");
+							  pic.attr("src",item.picUrl);
+							  pic.css("height","280px");
+							  pic.css("width","430px");
+							  pic.css("padding","10px");
+							  btnZ.css("left","220px");
+							  btnZ.css("top","240px");
+							  btnZ.css("position","absolute");
+							  btnS.css("left","285px");
+							  btnS.css("top","240px");
+							  btnS.css("position","absolute");
+							  btnC.css("position","absolute");
+							  btnC.css("left","350px");
+							  btnC.css("top","240px");
+							  btnU.css("position","absolute");
+							  btnU.css("left","50px");
+							  btnU.css("top","240px");
+							  spanZ.css("position","absolute");
+							  spanZ.css("left","260px");
+							  spanZ.css("top","240px");
+							  spanS.css("position","absolute");
+							  spanS.css("left","325px");
+							  spanS.css("top","240px");
+							  spanC.css("position","absolute");
+							  spanC.css("left","390px");
+							  spanC.css("top","240px");
+							  picSpan.append(pic);
+							  picSpan.append(btnU);
+							  picSpan.append(btnZ);
+							  picSpan.append(spanZ);
+							  picSpan.append(btnS);
+							  picSpan.append(spanS);
+							  picSpan.append(btnC);
+							  picSpan.append(spanC);
+							  $("#picture").append(picSpan);
+							  pic.click(function(){
+							  		//跳转
+							  		window.location.href="pictureShow.html";
+							  	});
+							  	btnU.click(function(){
+							  		//跳转
+							  		window.location.href="个人图片主页.html";
+							  	})
+							  	btnZ.click(function(){
+							  		if(localStorage.id!=null)
+							  		{
+										
+										$.ajax({
+										  "url": "http://172.81.239.44/Picture/likePicture?userId="+userid+"&picId="+item.picId+"&type=LK",
+										  "method": "POST",
+										  "timeout": 0,
+										  "headers": {
+										      "Authorization": "bearer "+localStorage.Token
+										    },
+										  success:function(){
+											  var id1=localStorage.id
+											  $.ajax({
+											     "url": "http://172.81.239.44/Picture/getPicViewInfo?userID="+id1+"&picID="+item.picId,
+											     "method": "GET",
+											     "timeout": 0,
+												 "headers": {
+												     "Authorization": "bearer "+localStorage.Token
+												   },
+											     success:function(data){
+													 spanZ.text(data.numberLike);
+											     },
+												 error:function(e){
+													 if(e.status==401)
+													 window.location.href="loginPage.html";
+												 }
+											  });
+										  },
+										  error:function(e){
+											 if(e.status==401)
+											 window.location.href="loginPage.html";
+										  }
+										});
+			
+							  		}
+							  		else
+							  		{
+							  			//跳转
+							  			window.location.href="loginPage.html";
+							  		}
+							  	});
+							  	btnS.click(function(){
+							  		if(localStorage.id!=null)
+							  		{
+							  			$.ajax({
+							  			  "url": "http://172.81.239.44/Picture/favoritePicture?userId="+userid+"&picId="+item.picId,
+							  			  "method": "POST",
+							  			  "timeout": 0,
+										 "headers": {
+										     "Authorization": "bearer "+localStorage.Token
+										   },
+							  			  success:function(){
+											  console.log("成功");
+							  				  var id1=localStorage.id
+							  				  $.ajax({
+							  				     "url": "http://172.81.239.44/Picture/getPicViewInfo?userID="+id1+"&picID="+item.picId,
+							  				     "method": "GET",
+							  				     "timeout": 0,
+												 "headers": {
+												     "Authorization": "bearer "+localStorage.Token
+												   },
+												  
+							  				     success:function(data){
+							  						 spanS.text(data.numberFavorite);
+							  				     },
+												 error:function(e){
+												 	if(e.status==401)
+												 	window.location.href="loginPage.html";
+												 }
+							  				  });
+							  			  },
+										  error:function(e){
+											  if(e.status==401)
+											  window.location.href="loginPage.html";
+										  }
+							  			});
+							  		}
+							  		else
+							  		{
+							  			//跳转
+							  			window.location.href="loginPage.html";
+							  		}
+							  	});
+							  	btnC.click(function(){
+							  		//跳转
+									localStorage.picId=item.picId;
+							  		window.location.href="pictureShow.html";
+							  	});
+							  	$("#picture").append(picSpan);
+							  });
+							 
+					  }
+					});	
+			}
+
+			function check()
+			{
+				var intro=$("#intro").val();
+				var tag=$("#tag1").val();
+				var tag1=$("#tag2").val();
+				var tag2=$("#tag3").val();
+				var price=$("#price").val();
+				var file =  document.getElementById('img_file').files[0];
+				var form = new FormData();
+				form.append("",file);
+				form.append("tag", tag);
+				form.append("tag1", tag1);
+				form.append("tag2", tag2);
+				form.append("userId", "2");
+				form.append("p_info", intro);
+				
+				$.ajax({
+				  "url": "http://172.81.239.44/Account/Upload",
+				  "method": "POST",
+				  "timeout": 0,
+				  "processData": false,
+				  "mimeType": "multipart/form-data",
+				  "contentType": false,
+				  "data": form,
+				  success:function(){
+					  console("成功");
+					  alert("上传成功");
+				  },
+				  error:function(e){
+					  console.log("失败");
+					  console.log(e.status);
+				  }
+				});
+			}
+
+			var button=$("<button></button>");
+			button.attr("class","Btn");
+			button.text("获取更多");
+			//button.attr("class","btn-success");
+			$("#btnblock").append(button);
+			for(var i=0;i<4;i++)
+				{
+					getpic(4+i+head);
+					if(i==3)
 					{
-						arraySn[index]++;
-						markSs[index]=1;
-						console.log(arraySn[index]);					
+						head=head+4;
+						var top1=head*300;
+						$("#btnblock").css("top",top1+"px");
+						
 					}
-					else if(markSs[index]==1)
+				}
+			button.click(function(){
+				button.hide();
+				for(var i=0;i<4;i++)
 					{
-						arraySn[index]--;
-						markSs[index]=0;
-						console.log(arraySn[index]);
+						getpic(4+i+head);
+						if(i==3)
+						{
+							head=head+4;
+							var top1=head*300;
+							$("#btnblock").css("top",top1+"px");
+							button.show();
+						}
 					}
-					arraySpan[3+3*index].innerHTML=arraySn[index];
+			});
+			$("#mainPage").click(function(){
+				window.location.href="new凯.html";
+			});
+			$("#search").bind("keyup",function(event){
+				if(event.keyCode=="13")
+				{
+					localStorage.tag=$("#search").val();
+					
+					window.location.href="loginPage.html";
+					document.getElementById("search").value="";
 				}
 			});
-			arrayZ.forEach(function(item,index){
-				item.onclick=function(){
-					if(markZs[index]==0)
-					{
-						arrayZn[index]++;
-						markZs[index]=1;
-						console.log(arrayZn[index]);					
-					}
-					else if(markZs[index]==1)
-					{
-						arrayZn[index]--;
-						markZs[index]=0;
-						console.log(arrayZn[index]);
-					}
-					arraySpan[2+3*index].innerHTML=arrayZn[index];
-				}
+			$("blog").click(function(){
+				window.location.href="blog.html";
+			});
+			$("#exit").click(function(){
+				localStorage.Token="";
+				localStorage.picId="";
+				localStorage.id="";
+				localStorage.tag="";
+				username.hide();
+				$("#login").show();
+				$("#register").show();
+				var Login=$("<")
+			});
+			$("us").click(function(){
+				window.location.href="us.html";
 			});
 		</script>
 	</body>

@@ -97,6 +97,7 @@
 					username.hide();
 					$("#login").show();
 					$("#register").show();
+					window.location.href="loginPage.html";
 				});
 				$("#search").bind("keyup",function(event){
 					if(event.keyCode=="13")
@@ -1143,7 +1144,7 @@
 					},
 					error:function(e){
 						if(e.status==401){
-							window.location.href="csdn.html"
+							window.location.href="csdn.html";
 						}
 						
 						console.log(e);

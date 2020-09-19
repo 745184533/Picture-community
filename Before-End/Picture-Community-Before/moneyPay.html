@@ -120,6 +120,7 @@
 				username.hide();
 				$("#login").show();
 				$("#register").show();
+				window.location.href="loginPage.html";
 			});
 			$("#search").bind("keyup",function(event){
 				if(event.keyCode=="13")
@@ -270,24 +271,27 @@
 						header.attr("class","header-style");
 						$("#mark").append(header);
 						arr.forEach(function(item,index){
-							var jilu=$("<div></div>");
-							jilu.css("height","80px");
-							jilu.css("width","90%");
-							jilu.css("margin-left","31.5px");
-							jilu.attr("class","mark-style");
-							$("#mark").append(jilu);
-							var data=$("<div></div>").text("时间: "+item.pay_time);
-							data.css("height","30px");
-							data.css("padding-left","40px");
-							data.css("color","black");
-							data.css("padding-top","10px")
-							var number=$("<div></div>").text("充值金额"+item.coin);
-							number.css("padding-left","40px");
-							number.css("margin-top","10px");
-							number.css("height","30px");
-							number.css("color","black");
-							jilu.append(data);
-							jilu.append(number);
+							if(item.coin!=0)
+							{
+								var jilu=$("<div></div>");
+								jilu.css("height","80px");
+								jilu.css("width","90%");
+								jilu.css("margin-left","31.5px");
+								jilu.attr("class","mark-style");
+								$("#mark").append(jilu);
+								var data=$("<div></div>").text("时间: "+item.pay_time);
+								data.css("height","30px");
+								data.css("padding-left","40px");
+								data.css("color","black");
+								data.css("padding-top","10px");
+								var number=$("<div></div>").text("充值金额"+item.coin);
+								number.css("padding-left","40px");
+								number.css("margin-top","10px");
+								number.css("height","30px");
+								number.css("color","black");
+								jilu.append(data);
+								jilu.append(number);
+							}
 						});
 					}
 					else
@@ -361,46 +365,48 @@
 			function payMoney(){
 				var paymoney=$('#id_paymoney').val();
 				var balance=$('#userbalance').val();
-				console.log(paymoney);
-				$.ajax({
-					"url": "http://172.81.239.44/Wallet/depositWallet?userId="+userId+"&amount="+paymoney,
-					"method": "POST",
-					"timeout": 0,
-					//"data": JSON.stringify({"userId":userId,"content":paymoney}),
-					success:function(response){
-						if(response.success==true)
-						{
-							console.log("成功");
-							
-							$.ajax({
-								"url": "http://172.81.239.44/Wallet/getWalletInfo?userId="+userId,
-								"method": "GET",
-								"timeout": 0,
-								//"data": JSON.stringify({"userId":userId}),
-								success:function(data){
-									if(data.success==true)
-									{
-										$('#userbalance').text(data.nowCoin);
-										//money=data.nowCoin;
+				if(paymoney!=0)
+				{
+					$.ajax({
+						"url": "http://172.81.239.44/Wallet/depositWallet?userId="+userId+"&amount="+paymoney,
+						"method": "POST",
+						"timeout": 0,
+						//"data": JSON.stringify({"userId":userId,"content":paymoney}),
+						success:function(response){
+							if(response.success==true)
+							{
+								console.log("成功");
+								
+								$.ajax({
+									"url": "http://172.81.239.44/Wallet/getWalletInfo?userId="+userId,
+									"method": "GET",
+									"timeout": 0,
+									//"data": JSON.stringify({"userId":userId}),
+									success:function(data){
+										if(data.success==true)
+										{
+											$('#userbalance').text(data.nowCoin);
+											//money=data.nowCoin;
+										}
+										else
+										{
+											//window.location.href="loginPage.html";
+										}
+									},
+									error:function(response){
+									  alert("未登录");
+									  //window.location.href="loginPage.html";
 									}
-									else
-									{
-										//window.location.href="loginPage.html";
-									}
-								},
-								error:function(response){
-								  alert("未登录");
-								  //window.location.href="loginPage.html";
-								}
-							});
+								});
+								
+							}
 							
+						},
+						error:function(response){
+						  alert("刷新重试");
 						}
-						
-					},
-					error:function(response){
-					  alert("刷新重试");
-					}
-				});
+					});
+				}
 			};
 
 			

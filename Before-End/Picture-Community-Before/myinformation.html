@@ -1118,41 +1118,28 @@
 
 
 		<script>
-			var usid=5;
-			usid = localStorage.userId;
-		if(localStorage.userId!=undefined)
-		{
-		
-			console.log(localStorage.userId);
-			$("#login").hide();
-			$("#register").hide();
-			var username=$("<span></span>").text("您好！"+localStorage.userName);
-			username.css("position","absolute");
-			username.css("left","-15px");
-			username.css("top","-1px");
-			$("#navbar").append(username);
-			username.click(function(){
-				//跳转
-				window.location.href="个人图片主页.html";
-			})
-		}
+			var userId=localStorage.userId;
+			userId = localStorage.userId;
 			function getInfo() {
-				
-			
 				$.ajax({
-					"url": "http://172.81.239.44/Account/getUserInfo?userId="+usid,
+					"url": "http://172.81.239.44/Account/getUserInfo?userId="+userId,
 					"method": "GET",
 					"timeout": 0,
 					
 					success:function(response){
-						
-						//var obj = eval('(' + response + ')');
-						$('#id_username').val(response.userName);
-						$('#id_first_name').val(response.name);
-						$('#id_email').val(response.email);
-						$("#id_about_me").val(response.message);
-						console.log(response.userName);
-						console.log(response);
+						if(response.success==true)
+						{
+							$('#id_username').val(response.userName);
+							$('#id_first_name').val(response.name);
+							$('#id_email').val(response.email);
+							$("#id_about_me").val(response.message);
+							console.log(response.userName);
+							console.log(response);
+						}
+						else
+						{
+							window.location.href="loginPage.html";
+						}
 					},
 					error:function(e){
 						if(e.status==401){
@@ -1179,7 +1166,7 @@
 				  "headers": {
 				    "Content-Type": "application/json"
 				  },
-				  "data": JSON.stringify({"userId":usid,"userName":usname,"name":nam,"birthday":"2020-09-13T11:50:53.104Z","email":emai,"message":messag}),
+				  "data": JSON.stringify({"userId":userId,"userName":usname,"name":nam,"birthday":"2020-09-13T11:50:53.104Z","email":emai,"message":messag}),
 				};
 				
 				$.ajax(settings).done(function (response) {

@@ -80,7 +80,7 @@ $.ajax(settings).done(function (response) {
        $(".tag").html("none");
     }
      
-   if(imageHeight>600||imageWidth>1000){//设置图片显示尺寸
+   //if(imageHeight>600||imageWidth>1000){//设置图片显示尺寸
      if(rate1>=rate2){
        $(".picture").css("width",600*rate2);
      }
@@ -89,13 +89,13 @@ $.ajax(settings).done(function (response) {
        var padding=(600-1000/rate2)/2;
        $(".pictureShow").css("padding-top",padding);
      }
-   }
-   else{
+   //}
+   /*else{
      var padding=(600-imageHeight)/2;
      $(".pictureShow").css("padding-top",padding);
      $(".picture").css("width",imageWidth);
      $(".picture").css("height",imageHeight);
-   }
+   }*/
 
    is_good=response.picLike;//当前用户是否点赞
    is_collect=response.picStar;//当前用户是否收藏

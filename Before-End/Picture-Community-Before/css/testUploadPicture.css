@@ -1,0 +1,102 @@
+/*背景层*/
+#popLayer {
+    display: none;
+    background-color: #B3B3B3;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width:100%;
+    height:100%;
+    z-index: 10;/* 设置背景层和弹出层的上下位置，值越大越靠上显示 */
+    -moz-opacity: 0.8;/* 提供给mozilla firefox的css属性，用来控制透明度 */
+    opacity:.80;/* 控制透明度 */
+    filter: alpha(opacity=80);/* 只支持IE6、7、8、9 */
+}
+
+/*弹出层*/
+.popBox {
+    display: none;
+    background-color: #FFFFFF;
+    z-index: 11;
+    width: 450px;
+    height: 500px;
+    position:fixed;
+    overflow: auto; /*当内容在可显示内容之外，生产自用的滚动条，与position: fixed一起用*/
+    top:0;
+    right:0;
+    left:0;
+    bottom:0;
+    margin:auto;
+    border:10px solid rgba(255,255,255,.5);
+    background-clip:padding-box;
+}
+
+.popBox .close{
+    text-align: right;
+    margin-right: 5px;
+    background-color: #F8F8F8;
+}
+
+/*关闭按钮*/
+.popBox .close a {
+    text-decoration: none;
+    color: #2D2C3B;
+}
+
+.radio-label {
+    display: inline-block;
+    position: relative;
+}
+.radio-label input[type="checkbox"] {
+    appearance: none; /*清楚默认样式*/
+    -webkit-appearance: none;
+    /* opacity: 0; */
+    outline: none;
+    position: absolute;
+    z-index: 2;
+    width: 6px;
+    height: 6px;
+    top: 10px;
+    left: 10px;
+    border-radius: 50%;
+    background: #b4b4b4;
+}
+.radio-label label {
+    display: inline-block;
+    min-width: 50px;
+    height: 24px;
+    line-height:24px;
+    text-align: center;
+    padding-right: 10px;
+    border-radius: 5px;
+    padding-left: 25px;
+    color: #fff;
+    background-color: #c9c9c9;
+}
+.radio-label input[type="checkbox"]:checked {
+    opacity: 0;
+}
+.radio-label input[type="checkbox"]:checked + label {
+    color: #fff;
+    background-color: #3597db;
+}
+.radio-label input[type="checkbox"]:checked + label::after {
+    content: "";
+    position: absolute;
+    left: 12px;
+    top: 5px;
+    width: 5px;
+    height: 12px;
+    border-right: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    transform: rotate(45deg);
+}
+.iconq {
+    font-size: 25px;
+    position: absolute;
+    right: -11px;
+    bottom: -11px;
+    z-index: 1;
+    opacity: 0;
+}

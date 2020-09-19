@@ -277,7 +277,6 @@ D:\github\Picture-community\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\Syst
 D:\github\Picture-community\Back-End\PicCommunitity\obj\Debug\netcoreapp3.1\PicCommunitity.csproj.CoreCompileInputs.cache
 D:\github\Picture-community\Back-End\PicCommunitity\obj\Debug\netcoreapp3.1\PicCommunitity.MvcApplicationPartsAssemblyInfo.cs
 D:\github\Picture-community\Back-End\PicCommunitity\obj\Debug\netcoreapp3.1\PicCommunitity.MvcApplicationPartsAssemblyInfo.cache
-E:\Github\Picture-community\Back-End\PicCommunitity\obj\Debug\netcoreapp3.1\PicCommunitity.csprojAssemblyReference.cache
 D:\MyTools\WorkPages\项目\Picture-communityStart\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\appsettings.Development.json
 D:\MyTools\WorkPages\项目\Picture-communityStart\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\appsettings.json
 D:\MyTools\WorkPages\项目\Picture-communityStart\Back-End\PicCommunitity\bin\Debug\netcoreapp3.1\Properties\launchSettings.json

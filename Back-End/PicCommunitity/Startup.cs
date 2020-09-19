@@ -41,7 +41,8 @@ namespace PicCommunitity
             services.AddCors(options =>
             {
                 options.AddPolicy("any",
-                builder =>  builder.WithOrigins("http://localhost:44362").AllowAnyHeader().
+                builder =>  builder.WithOrigins("http://localhost:44362",
+                "http://localhost:63342").AllowAnyHeader().
                 AllowAnyOrigin().AllowAnyMethod());
 
             });

@@ -30,7 +30,7 @@ namespace PicCommunitity.Controllers
         /// <param name="picId"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        [Authorize]
+        ////[Authorize]
         [Route("likePicture")]
         [HttpPost]
         public IActionResult likePicute(string userId,string picId,string type)
@@ -75,7 +75,7 @@ namespace PicCommunitity.Controllers
         /// <param name="userId"></param>
         /// <param name="picId"></param>
         /// <returns></returns>
-        [Authorize]
+        ////[Authorize]
         [Route("favoritePicture")]
         [HttpPost]
         public IActionResult favoritePicture(string userId,string picId)
@@ -110,7 +110,7 @@ namespace PicCommunitity.Controllers
         /// </summary>
         /// <param name="Comment"></param>
         /// <returns></returns>
-        [Authorize]
+        ////[Authorize]
         [Route("comment")]
         [HttpPost]
         public IActionResult comment([FromBody]comment Comment)
@@ -315,7 +315,7 @@ namespace PicCommunitity.Controllers
         ///<summary>
         ///收费并且下载图片。
         /// </summary>
-        [Authorize]
+        ////[Authorize]
         [Route("Download")]
         [HttpGet]
         public IActionResult Download(string userId,string picId)
@@ -391,7 +391,7 @@ namespace PicCommunitity.Controllers
             var returnList = new List<picInfo> { };
             
             var picList = context.picture.ToList();
-            int nowPici = context.picture.Count() - 3 * requestTimes - 1;
+            int nowPici = services.getPicNum() - 3 * requestTimes - 1;
             for (int i = 0; i < 3 && nowPici >= 0; ++i)
             {//返回三张pic
                 var pic = picList[nowPici];

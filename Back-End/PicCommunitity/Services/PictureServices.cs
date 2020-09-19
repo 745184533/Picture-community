@@ -91,6 +91,18 @@ namespace PicCommunitity.Services
 
         }
 
+        public int getPicNum()
+        {
+            return context.tableCount.Find(1).picture;
+        }
+        public int getUserNum()
+        {
+            return context.tableCount.Find(1).users;
+        }
+        public int getBlogNum()
+        {
+            return context.tableCount.Find(1).blog;
+        }
 
     }
 }

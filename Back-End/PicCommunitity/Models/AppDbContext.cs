@@ -35,6 +35,7 @@ namespace PicCommunitity.Models
         public DbSet<wallet> wallet { get; set; }
 
         public DbSet<download> download { get; set; }
+        public DbSet<tableCount> tableCount{ get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

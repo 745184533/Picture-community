@@ -389,7 +389,7 @@
 							  		window.location.href="个人图片主页.html";
 							  	})
 							  	btnZ.click(function(){
-							  		if(localStorage.id!=null)
+							  		if(localStorage.userId!=null&&localStorage.userId!="")
 							  		{
 										
 										$.ajax({
@@ -426,7 +426,7 @@
 							  		}
 							  	});
 							  	btnS.click(function(){
-							  		if(localStorage.id!=null)
+							  		if(localStorage.userId!=null&&localStorage.userId!="")
 							  		{
 							  			$.ajax({
 							  			  "url": "http://172.81.239.44/Picture/favoritePicture?userId="+userid+"&picId="+item.picId,

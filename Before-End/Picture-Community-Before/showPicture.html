@@ -233,40 +233,41 @@
 
     $('#search').val(localStorage.tag);
 
-        /*导航栏显示登陆状态*/
-        if (localStorage.id != null) {
-            $("#navbar").empty();
-            var username = $("<span></span>").text("您好！" + "username");
-            $("#navbar").append(username);
-            username.click(function () {
-                //跳转
-                window.location.href = "个人图片主页.html";
-            })
-        }
+    /*导航栏显示登陆状态*/
+    if (localStorage.id != null) {
+        $("#navbar").empty();
+        var username = $("<span></span>").text("您好！" + "username");
+        $("#navbar").append(username);
+        username.click(function () {
+            //跳转
+            window.location.href = "个人图片主页.html";
+        })
+    }
 
-        /*提供按钮使得页面到顶部*/
-        $(function () {
-            $(window).scroll(function () {  //只要窗口滚动,就触发下面代码
-                var scrollt = document.documentElement.scrollTop + document.body.scrollTop; //获取滚动后的高度
-                if (scrollt > 200) {  //判断滚动后高度超过200px,就显示
-                    $("#back_top").fadeIn(400); //淡入
-                } else {
-                    $("#back_top").stop().fadeOut(400); //如果返回或者没有超过,就淡出.必须加上stop()停止之前动画,否则会出现闪动
-                }
-            });
-
-            $("#back_top").click(function () { //当点击标签的时候,使用animate在200毫秒的时间内,滚到顶部
-                $("html,body").animate({scrollTop: "0px"}, 200);
-            });
+    /*提供按钮使得页面到顶部*/
+    $(function () {
+        $(window).scroll(function () {  //只要窗口滚动,就触发下面代码
+            var scrollt = document.documentElement.scrollTop + document.body.scrollTop; //获取滚动后的高度
+            if (scrollt > 200) {  //判断滚动后高度超过200px,就显示
+                $("#back_top").fadeIn(400); //淡入
+            } else {
+                $("#back_top").stop().fadeOut(400); //如果返回或者没有超过,就淡出.必须加上stop()停止之前动画,否则会出现闪动
+            }
         });
-        /*图片点击进入图片详情页面*/
-        /*$("img.show").click(function () {
-            window.location.href = "pictureShow.html";
-            localStorage.setItem('src', $(this).attr("src"));
-        })*/
 
-        /*请求相应tag的图片数据*/
-        // var form = new FormData();
+        $("#back_top").click(function () { //当点击标签的时候,使用animate在200毫秒的时间内,滚到顶部
+            $("html,body").animate({scrollTop: "0px"}, 200);
+        });
+    });
+    /*图片点击进入图片详情页面*/
+    $("img.show").click(function () {
+        window.location.href = "pictureShow.html";
+        localStorage.setItem('src', $(this).attr("src"));
+    })
+
+    /*请求相应tag的图片数据*/
+    // var form = new FormData();
+    if(localStorage.search_type=="searchTag"){
         $.ajax({
             "url": "http://172.81.239.44/Picture/searchByTag?tag=" + search_tag,
             "method": "GET",
@@ -285,26 +286,45 @@
                     img.setAttribute("class", "content");
                     div.appendChild(img);
                     container.appendChild(div);
-                    img.onclick=function(){
-                         window.location.href = "pictureShow.html";
-                         localStorage.setItem('picId', item.picId);
-                    }
-                })
-            }
-        })
 
-        $("#search").bind("keyup", function (event) {
-            if (event.keyCode == "13") {
-                localStorage.tag = $("#search").val();
-                console.log(localStorage.tag);
-                window.location.href = "showPicture.html";
-                document.getElementById("search").value = "";
+                })
+                localStorage.tag="";
             }
         })
+    }
+
+    if(localStorage.search_type=="searchSimilar"){
+        $("search").val("");
+        localStorage.tag="";
+        var container = document.querySelector('section');
+        //var get_picture = localStorage.pic_Lists;
+        //console.log(get_picture[1]);
+       // var obj = eval('(' +  + ')');
+        var read=JSON.parse(localStorage.getItem('pic_Lists'));
+        console.log(read);
+        read.forEach(function(item){
+            var div = document.createElement('div');
+            div.setAttribute("class", "show");
+            var img = document.createElement('img');
+            img.src = item;
+            img.setAttribute("class", "content");
+            div.appendChild(img);
+            container.appendChild(div);
+        })
+        localStorage.setItem("pic_Lists","");
+    }
+
+    $("#search").bind("keyup", function (event) {
+        if (event.keyCode == "13") {
+            localStorage.tag = $("#search").val();
+            console.log(localStorage.tag);
+            window.location.href = "showPicture.html";
+            document.getElementById("search").value = "";
+            localStorage.search_type="searchTag";
+        }
+    })
 
 
 </script>
-
 </body>
 </html>
-

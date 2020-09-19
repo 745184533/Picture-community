@@ -228,15 +228,19 @@ function check_search(){
                 var obj = eval('(' + data + ')');
                 var arr = obj.picList;
                 var array=[];
+                var picIdarray=[];
                 //console.log(arr);
                 arr.forEach(function(item,index) {
                     console.log(item.picUrl);
                     array.push(item.picUrl);
+                    picIdarray.push(item.picId);
                 })
                 console.log(array);
+                console.log(picIdarray);
                 //localStorage.pic_Lists=array;
                 //console.log(array[1]);
                 localStorage.setItem("pic_Lists",JSON.stringify(array));
+                localStorage.setItem("pic_id_arry",JSON.stringify(picIdarray));
 
                 localStorage.setItem("search_type","searchSimilar");
                 closeBox_search();

@@ -24,7 +24,8 @@ token=localStorage.Token;//获取token
 //localStorage.setItem('picId','2');
 //localStorage.setItem('userId','5');
 user_id=localStorage.userId;//获取用户昵称
-if(user_id!=null){//判断用户是否登录
+
+if(user_id!=""&&user_id!=null){//判断用户是否登录
   is_login=true;
 }
 else{

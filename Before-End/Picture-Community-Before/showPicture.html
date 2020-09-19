@@ -339,8 +339,10 @@
         //console.log(get_picture[1]);
         // var obj = eval('(' +  + ')');
         var read=JSON.parse(localStorage.getItem('pic_Lists'));
+        var pic_id_array=JSON.parse(localStorage.getItem('pic_id_arry'));
         console.log(read);
-        read.forEach(function(item){
+        console.log(pic_id_array);
+        read.forEach(function(item,index){
             var div = document.createElement('div');
             div.setAttribute("class", "show");
             var img = document.createElement('img');
@@ -350,7 +352,7 @@
             container.appendChild(div);
             img.onclick=function(){
                 window.location.href = "pictureShow.html";
-                localStorage.setItem('picId', item.picId);
+                localStorage.setItem('picId', pic_id_array[index]);
             }
         })
         localStorage.setItem("pic_Lists","");

@@ -49,10 +49,18 @@
     <div class="close">
         <a href="javascript:void(0)" onclick="closeBox()">关闭</a>
     </div>
-
     <!--上传图片标题-->
-    <div  style="text-align: center;font-size: 25px">上传图片到图库</div>
+    <div style="text-align: center;font-size: 25px">上传图片到图库</div>
     <br>
+    <!--上传图片-->
+    <div class="layui-form-item" style="padding-left:10px;padding-right:10px">
+        <div class="layui-input-block">
+            <input type="hidden" id="img_url">
+            <input type="file" onchange="showImg()" id="img_file">
+            <img src="" alt="" id="img_id" style="height: 150px">
+            <div class="tag_show"></div>
+        </div>
+    </div>
 
     <!--给上传的图片添加图片简介-->
     <form class="layui-form">
@@ -72,11 +80,11 @@
                 <input type="text" class="layui-input" id="tag1">
             </div>
             <div class="layui-form-item">
-                <label class="layui-input-inline">标签2(选填)：</label>
+                <label class="layui-input-inline">标签2(必填)：</label>
                 <input type="text" class="layui-input" id="tag2">
             </div>
             <div class="layui-form-item">
-                <label class="layui-input-inline">标签3(选填)：</label>
+                <label class="layui-input-inline">标签3(必填)：</label>
                 <input type="text" class="layui-input" id="tag3">
             </div>
         </div>
@@ -85,10 +93,8 @@
     <!--给上传的图片添加定价-->
     <form class="layui-form">
         <div style="padding: 10px;">
-            <div class="layui-form-item">
-                <label class="layui-input-inline">定价(必填)：</label>
-                <input type="text" class="layui-input" id="price">
-            </div>
+            <label class="layui-input-inline">定价(必填)：</label>
+            <input type="text" class="layui-input" id="price">
         </div>
     </form>
     <br>
@@ -99,15 +105,7 @@
         <input type="checkbox" name="agreement" value="agree_2" id="agree_2" onclick="checkAgree()">我保证所上传的图片并非盗用或涉及其他非法行为。
     </form>
     <br>
-    <!--上传图片-->
-    <div class="layui-form-item" style="padding-left:10px;padding-right:10px">
-        <div class="layui-input-block">
-            <input type="hidden" id="img_url">
-            <input type="file" onchange="showImg()" id="img_file">
-            <img src="" alt="" id="img_id" style="height: 150px">
-        </div>
-    </div>
-    <br>
+
     <!--提交图片按钮-->
     <div style="text-align: center">
         <button id="submit" disabled="disabled" onclick="check()">提交图片</button>
@@ -123,7 +121,7 @@
         <a href="javascript:void(0)" onclick="closeBox_search()">关闭</a>
     </div>
     <!--上传图片标题-->
-    <div  style="text-align: center;font-size: 25px">上传图片找相似</div>
+    <div style="text-align: center;font-size: 25px">上传图片找相似</div>
     <br>
     <!--上传图片-->
     <div class="layui-form-item" style="padding-left:10px;padding-right:10px">
@@ -234,13 +232,19 @@
     $('#search').val(localStorage.tag);
 
     /*导航栏显示登陆状态*/
-    if (localStorage.id != null) {
-        $("#navbar").empty();
-        var username = $("<span></span>").text("您好！" + "username");
+    if(localStorage.userId!=undefined)
+    {
+        console.log(localStorage.userId);
+        $("#login").hide();
+        $("#register").hide();
+        var username=$("<span></span>").text("您好！"+localStorage.userName);
+        username.css("position","absolute");
+        username.css("left","-15px");
+        username.css("top","-1px");
         $("#navbar").append(username);
-        username.click(function () {
+        username.click(function(){
             //跳转
-            window.location.href = "个人图片主页.html";
+            window.location.href="个人图片主页.html";
         })
     }
 

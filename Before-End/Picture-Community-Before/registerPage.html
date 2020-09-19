@@ -80,16 +80,16 @@
 		</div>
 	</div>
 			
-			<script>
-				$("#search").bind("keyup",function(event){
-					if(event.keyCode=="13")
-					{
-						localStorage.tag=$("#search").val();
-						window.location.href="showPicture.html";
-						document.getElementById("search").value="";
-					}
-				});
-			</script>
+	<script>
+		$("#search").bind("keyup",function(event){
+			if(event.keyCode=="13")
+			{
+				localStorage.tag=$("#search").val();
+				window.location.href="showPicture.html";
+				document.getElementById("search").value="";
+			}
+		});
+	</script>
 	
 <!--====================================================content==================================================-->
 	<div id="content" class="clearfix">

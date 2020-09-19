@@ -13,6 +13,9 @@
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/page.css">
 	<link rel="stylesheet" type="text/css" href="css/conciseStyle.css">
+	<link rel="stylesheet" type="text/css" href="css/page凯.css">
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 	<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script><![endif]-->
 </head>
 
@@ -25,7 +28,9 @@
 			<div class="navbar-nav">
 				<ul class="nav nav-tabs" role="tablist">
 					<li role="presentation" style="margin: 0 40px 0 0;" >
-						<span style="height: 40px;line-height: 40px;font-weight: bold;font-size: 18px;" id="mainPage">图片社区</span>
+						<span style="height: 40px;line-height: 40px;font-weight: bold;font-size: 18px;" id="mainPage">
+							<a href="new凯.html" style="text-decoration: none;">图片社区</a>
+						</span>
 					</li>
 					<li role="presentation" style="margin: 0 20px 0 0;position: absolute;top:0px;left: 150px;display: flex;">
 						<div style="width: 40px;height: 40px;background-color: white;border:none;border-bottom: 1px solid #0A88D3 ; border-top: 1px solid #0A88D3 ;">
@@ -46,20 +51,26 @@
 								<th>About</th>
 							</tr>
 							<tr>
-								<td id="blog">博客</td>
+								<td id="blog">
+									<a href="csdn.html" style="text-decoration: none;">博客</a>
+								</td>
 							</tr>
 							<tr>
-								
-								<td id="exit">注销</td>
+								<td id="exit">
+									<a style="text-decoration: none;">注销</a>	
+								</td>
 							</tr>
 							<tr>
-								<td id="us">关于我们</td>
+								<td id="us">
+									<a href="us.html" style="text-decoration: none;">关于我们</a>
+									
+								</td>
 							</tr>
 						</table>
 					</li>
 					<div id="navbar" style="position: absolute;left: 1200px; top:10px; display: flex;">
-						<li style="margin: 0 40px 0 20px;"><a id="login" style="color: black;" href="loginPage.html">登录</a></li>
-						<li style="margin: 0 40px 0 20px;"><a id="register" style="color: black;" href="registerPage.html">注册</a></li>
+						<li style="margin: 0 40px 0 20px;"><a id="login" style="color: black;text-decoration: none;" href="loginPage.html">登录</a></li>
+						<li style="margin: 0 40px 0 20px;"><a id="register" style="color: black;text-decoration: none;" href="registerPage.html">注册</a></li>
 					</div>
 				</ul>
 			</div>
@@ -87,12 +98,6 @@
 		{
 			$("#exit").hide();
 		}
-		$("#mainPage").click(function(){
-			window.location.href="new凯.html";
-		});
-		$("blog").click(function(){
-			window.location.href="blog.html";
-		});
 		$("#exit").click(function(){
 			localStorage.Token="";
 			localStorage.picId="";
@@ -102,15 +107,6 @@
 			username.hide();
 			$("#login").show();
 			$("#register").show();
-		});
-		$("#us").click(function(){
-			window.location.href="us.html";
-		});
-		$("#login").click(function(){
-			window.location.href="loginPage.html";
-		});
-		$("#register").click(function(){
-			window.location.href="registerPage.html";
 		});
 		$("#search").bind("keyup",function(event){
 			if(event.keyCode=="13")
@@ -126,7 +122,7 @@
 <!--====================================================content==================================================-->
 	<div id="content" class="clearfix">
 		<div class="pure-u-1 pure-u-md-3-4">
-			<h1>隐私政策</h1>
+			<h1 style="text-align: center;">隐私政策</h1>
 			<p>以下信息将帮助您了解我们在访问和使用图片社区时如何收集、使用、传播和保护您提供的数据。</p>
 			<h2 style="margin:40px 0 10px">适用范围</h2>
 			<div>
@@ -152,7 +148,5 @@
 		</div>
 	</footer>
 
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
 	</body>
 </html>

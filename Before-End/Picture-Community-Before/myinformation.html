@@ -1172,6 +1172,8 @@
 				
 				$.ajax(settings).done(function (response) {
 					alert("保存成功！");
+					localStorage.userName=$('#id_username').val();
+					
 				  console.log(response);
 				});
 			});

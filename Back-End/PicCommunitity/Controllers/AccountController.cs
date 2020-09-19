@@ -82,7 +82,7 @@ namespace PicCommunitity.Controllers
             {//没有该账号密码存在
                 //创建user
                 var user = new users { };
-                user.u_id = (context.users.Count() + 1).ToString();
+                user.u_id = (services.getUserNum() + 1).ToString();
                 user.u_name = RUser.userName;
                 user.u_password = RUser.userPassword;
                 user.u_status = "AC";
@@ -91,6 +91,11 @@ namespace PicCommunitity.Controllers
                 context.users.Add(user);
                 await context.SaveChangesAsync();
 
+                //添加用户数
+                var tableCount = context.tableCount.Find(1);
+                tableCount.users += 1;
+                context.tableCount.Attach(tableCount);
+                context.SaveChanges();
                 //创建相应userInfo
                 var newUserInfo = new userInfo
                 { 
@@ -154,7 +159,7 @@ namespace PicCommunitity.Controllers
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        [Authorize]
+        //[Authorize]
         [Route("getUserInfo")]
         [HttpGet]
         public IActionResult getUserInfo(string userId)
@@ -199,7 +204,7 @@ namespace PicCommunitity.Controllers
         /// </summary>
         /// <param name="info"></param>
         /// <returns></returns>
-        [Authorize]
+        //[Authorize]
         [Route("saveUserInfo")]
         [HttpPost]
         public IActionResult saveUserInfo([FromBody] UserInfo info)
@@ -224,7 +229,7 @@ namespace PicCommunitity.Controllers
         /// <summary>
         /// 获得用户个人图片主页信息，点赞数等
         /// </summary>
-        [Authorize]
+        //[Authorize]
         [Route("getProfileInfo")]
         [HttpGet]
         public IActionResult getProfileInfo(string userId)
@@ -244,7 +249,7 @@ namespace PicCommunitity.Controllers
         ///获取用户个人图片主页的图片信息
         /// 
         /// </summary>
-        [Authorize]
+        //[Authorize]
         [Route("getProfilePicture")]
         [HttpGet]
         public IActionResult getProfilePicture(string userId)
@@ -310,7 +315,7 @@ namespace PicCommunitity.Controllers
         /// <param name="fansId"></param>
         /// <param name="followId"></param>
         /// <returns></returns>
-        [Authorize]
+        //[Authorize]
         [Route("followUser")]
         [HttpPost]
         public IActionResult followUser(string fansId, string followId)
@@ -341,7 +346,7 @@ namespace PicCommunitity.Controllers
         ///<summary>
         ///下载图片
         /// </summary>
-        [Authorize]
+        ////[Authorize]
         [Route("Upload")]
         [HttpPost]
         public async Task<IActionResult> Upload([FromForm] IFormCollection forms)
@@ -449,7 +454,7 @@ namespace PicCommunitity.Controllers
 
             picture tempPicture = new picture
             {
-                p_id = (context.picture.Count() + 1).ToString(),
+                p_id = (context.tableCount.Find(1).picture + 1).ToString(),
                 p_url = fileFullName,
                 p_info = information,//还是要能用http访问，不是https
                 p_height=height,
@@ -460,6 +465,11 @@ namespace PicCommunitity.Controllers
                 dislikes=0,
                 comm_num=0
             };
+            //添加图片数量
+            var tableCount = context.tableCount.Find(1);
+            tableCount.picture += 1;
+            context.tableCount.Attach(tableCount);
+            context.SaveChanges();
 
             //承接前一步异步保存。
             context.picture.Add(tempPicture);
@@ -638,7 +648,7 @@ namespace PicCommunitity.Controllers
         ///第一回合上传
         /// 
         /// </summary>
-        [Authorize]
+        //[Authorize]
         [Route("Upload1")]
         [HttpPost]
         public async Task<IActionResult> Upload1([FromForm] IFormCollection forms)
@@ -646,7 +656,7 @@ namespace PicCommunitity.Controllers
             StringValues userID = "";
             forms.TryGetValue("userId", out userID);
 
-            var PictureId = context.picture.Count() + 1;
+            var PictureId = context.tableCount.Find(1).picture + 1;
  
             var files = Request.Form.Files;
             long size = files.Sum(f => f.Length);
@@ -710,7 +720,7 @@ namespace PicCommunitity.Controllers
 
             picture tempPicture = new picture
             {
-                p_id = (context.picture.Count() + 1).ToString(),
+                p_id = (context.tableCount.Find(1).picture + 1).ToString(),
                 p_url = fileFullName,
                 p_height = height,
                 p_width = width,
@@ -735,7 +745,11 @@ namespace PicCommunitity.Controllers
             context.publishPicture.Add(tempPublish);
             await context.SaveChangesAsync();
 
-
+            //添加图片数量
+            var tableCount = context.tableCount.Find(1);
+            tableCount.picture += 1;
+            context.tableCount.Attach(tableCount);
+            context.SaveChanges();
 
             string[] AITag = PictureServices.getTag(Tanfile);
             string message = $"{files.Count} file(s) /{size} bytes uploaded successfully!";
@@ -757,7 +771,7 @@ namespace PicCommunitity.Controllers
         ///第二回合上传
         /// 
         /// </summary>
-        [Authorize]
+        //[Authorize]
         [Route("Upload2")]
         [HttpPost]
         public async Task<IActionResult> Upload2([FromForm] IFormCollection forms)

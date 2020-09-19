@@ -25,7 +25,7 @@ namespace PicCommunitity.Controllers
             this.services = new WalletServices(context);
         }
 
-        [Authorize]
+        ////[Authorize]
         [Route("getWalletInfo")]
         [HttpGet]
         public IActionResult getWalletInfo(string userId)
@@ -43,7 +43,7 @@ namespace PicCommunitity.Controllers
         }
 
 
-        [Authorize]
+        ////[Authorize]
         [Route("depositWallet")]
         [HttpPost]
         public IActionResult depositWallet(string userId, int amount)
@@ -75,7 +75,7 @@ namespace PicCommunitity.Controllers
             });
         }
 
-        [Authorize]
+        ////[Authorize]
         [Route("getDepositRecord")]
         [HttpGet]
         public IActionResult getDepositRecord(string userId)
@@ -102,7 +102,7 @@ namespace PicCommunitity.Controllers
         }
 
 
-        [Authorize]
+        ////[Authorize]
         [Route("getConsumeRecord")]
         [HttpGet]
         public IActionResult getConsumeRecord(string userId)

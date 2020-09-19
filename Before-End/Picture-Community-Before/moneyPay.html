@@ -29,7 +29,12 @@
 		<title></title>
 	</head>
 	<body>
-		
+		<svg id="bg_svg" viewBox="0 0 640 427" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid slice">
+			<filter id="blur">
+				<feGaussianBlur stdDeviation="5"></feGaussianBlur>
+			</filter>
+			<image xlink:href="https://cdn.pixabay.com/photo/2020/05/26/13/22/puffins-5223057_640.jpg" width="640" height="427" filter="url(#blur)"></image>
+		</svg>
 		<!-- 导航栏 -->
 		<div class="title-style">
 			<div class="nav-style">
@@ -230,7 +235,7 @@
 			
 			//账户余额显示
 			$.ajax({
-				"url": "http://172.81.239.44/Wallet/getWalletInfo?usId"+userId,
+				"url": "http://172.81.239.44/Wallet/getWalletInfo?userId="+userId,
 				"method": "GET",
 				"timeout": 0,
 				//"data": JSON.stringify({"userId":userId}),
@@ -253,7 +258,7 @@
 			
 			//充值记录
 			$.ajax({
-				"url": "http://172.81.239.44/Wallet/getDepositRecord?userId"+userId,
+				"url": "http://172.81.239.44/Wallet/getDepositRecord?userId="+userId,
 				"method": "GET",
 				"timeout": 0,
 				//"data": JSON.stringify({"userId":userId}),
@@ -304,7 +309,7 @@
 			
 			//交易记录
 			$.ajax({
-				"url": "http://172.81.239.44/Wallet/getConsumeRecord?userId"+userId,
+				"url": "http://172.81.239.44/Wallet/getConsumeRecord?userId="+userId,
 				"method": "GET",
 				"timeout": 0,
 				//"data": JSON.stringify({"userId":"2"}),
@@ -312,7 +317,7 @@
 					if(response.success==true)
 					{
 						var arr=response.list;
-						var header=$("<span></span>").text("交易记录");
+						var header=$("<span></span>").text("消费记录");
 						//var obj=eval('('+response+')');
 						header.css("color","black");
 						header.css("font-size","20px");
@@ -332,7 +337,7 @@
 							data.css("padding-left","40px");
 							data.css("color","black");
 							data.css("padding-top","10px");
-							var number=$("<div></div>").text("交易金额"+item.coin);
+							var number=$("<div></div>").text("消费金额"+item.coin);
 							number.css("padding-left","40px");
 							number.css("margin-top","10px");
 							number.css("height","30px");
@@ -371,7 +376,7 @@
 							console.log("成功");
 							
 							$.ajax({
-								"url": "http://172.81.239.44/Wallet/getWalletInfo?userId=1",
+								"url": "http://172.81.239.44/Wallet/getWalletInfo?userId="+userId,
 								"method": "GET",
 								"timeout": 0,
 								//"data": JSON.stringify({"userId":userId}),

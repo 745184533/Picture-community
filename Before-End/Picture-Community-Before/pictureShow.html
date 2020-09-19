@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>picture</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/pictureShow.css">
+<<<<<<< HEAD
+	<!--<link rel="stylesheet" type="text/css" href="css/uploadPicture.css">-->
+=======
+	<link rel="stylesheet" type="text/css" href="css/uploadPicture.css">
+	<link rel="stylesheet" type="text/css" href="css/page凯.css"/>
+>>>>>>> b85d803c60a0edf30d9166b3e9015d2627ed3afe
+	<link href="css/mfb.min.css" rel="stylesheet">
+	<!--<script type="text/javascript" src="js/uploadPicture.js"></script>-->
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script src="js/vue.js"></script>
+	<script src="js/modernizr.touch.js"></script>
+	<script src="js/mfb.min.js"></script>
+        
+	
+</head>
+<body class="body">
+<<<<<<< HEAD
+	
+	
+	<div class="title-style">
+			<div class="nav-style">
+=======
+	<!--背景层-->
+	<div id="popLayer"></div>
+	<!--弹出框-->
+	<div class="popBox" id="popBox_upload">
+		<!--关闭按钮-->
+		<div class="close">
+			<a href="javascript:void(0)" onclick="closeBox()">关闭</a>
+		</div>
+		<!--上传图片标题-->
+		<div class="content" style="text-align: center;font-size: 25px">上传图片到图库系统</div>
+		<br>
+		<!--给上传的图片添加标签-->
+		<form class="layui-form">
+			<div style="padding: 10px;">
+				<div class="layui-form-item">
+					<label class="layui-input-inline">标签1(必填)：</label>
+					<input type="text" class="layui-input" id="tag1">
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-input-inline">标签2(选填)：</label>
+					<input type="text" class="layui-input" id="tag2">
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-input-inline">标签3(选填)：</label>
+					<input type="text" class="layui-input" id="tag3">
+				</div>
+			</div>
+		</form>
+		<br>
+		<!--复选框，遵循上传图片协议-->
+		<form style="padding-left:10px;padding-right:10px">
+			<input type="checkbox" name="agreement" value="agree_1" id="agree_1" onclick="checkAgree()">我同意放弃所上传图片的所有权，图片归图库系统所有。<br>
+			<input type="checkbox" name="agreement" value="agree_2" id="agree_2" onclick="checkAgree()">我保证所上传的图片并非盗用或涉及其他非法行为。
+		</form>
+		<br>
+		<!--上传图片-->
+		<div class="layui-form-item" style="padding-left:10px;padding-right:10px">
+			<div class="layui-input-block">
+				<input type="hidden" id="img_url">
+				<input type="file" onchange="showImg()" id="img_file">
+				<img src="" alt="" id="img_id" style="height: 150px">
+			</div>
+		</div>
+		<br>
+		<!--提交图片按钮-->
+		<div style="text-align: center">
+			<button id="submit" disabled="disabled" onclick="check()">提交图片</button>
+		</div>
+	</div>
+	
+	
+	<!-- 导航栏 -->
+	<div class="title-style">
+		<div class="nav-style">
+			<div class="navbar-nav">
+				<ul class="nav nav-tabs" role="tablist">
+					<li role="presentation" style="margin: 0 40px 0 0;" >
+						<span style="height: 40px;line-height: 40px;font-weight: bold;font-size: 18px;" id="mainPage">图片社区</span>
+					</li>
+					<li role="presentation" style="margin: 0 20px 0 0;position: absolute;top:0px;left: 150px;display: flex;">
+						<div style="width: 40px;height: 40px;background-color: white;border:none;border-bottom: 1px solid #0A88D3 ; border-top: 1px solid #0A88D3 ;">
+							<svg width="40px" height="40px" viewBox="0 0 16 16" class="bi bi-search" style="padding-left: 10px; padding-top:15px;background-color: white;position: absolute;top:-5px" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+								<path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+								<path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+							</svg>
+						</div>
+						<input type="text" id="search" style="width: 300px;height: 40px;font-size: 16px;border: none;border-top: 1px solid #0A88D3 ;border-bottom: #0A88D3 1px solid;"/>
+					</li>
+					<li role="presentation" class="dropdown" style="margin: 0 200px 0 910px;">
+					    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+					      aria-haspopup="true" aria-expanded="true">探索
+						<span class="caret"></span>
+					    </button>
+						<table class="dropdown-menu" aria-labelledby="dropdownMenu1">
+							<tr>
+								<th>About</th>
+							</tr>
+							<tr>
+								<td id="blog">博客</td>
+							</tr>
+							<tr>
+								
+								<td id="exit">注销</td>
+							</tr>
+							<tr>
+								<td id="us">关于我们</td>
+							</tr>
+						</table>
+					</li>
+					<div id="navbar" style="position: absolute;left: 1200px; top:10px; display: flex;">
+						<li style="margin: 0 40px 0 20px;"><a id="login" style="color: black;" href="loginPage.html">登录</a></li>
+						<li style="margin: 0 40px 0 20px;"><a id="register" style="color: black;" href="registerPage.html">注册</a></li>
+					</div>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	<script>
+		if(localStorage.userId!=undefined)
+		{
+			console.log(localStorage.userId);
+			$("#login").hide();
+			$("#register").hide();
+			$("#exit").hide();
+			var username=$("<span></span>").text("您好！"+localStorage.userName);
+			username.css("position","absolute");
+			username.css("left","-15px");
+			username.css("top","-1px");
+			$("#navbar").append(username);
+			username.click(function(){
+				//跳转
+				window.location.href="个人图片主页.html";
+			})
+		}
+		else
+		{
+			$("#exit").hide();
+		}
+		$("#mainPage").click(function(){
+			window.location.href="new凯.html";
+		});
+		$("blog").click(function(){
+			window.location.href="blog.html";
+		});
+		$("#exit").click(function(){
+			localStorage.Token="";
+			localStorage.picId="";
+			localStorage.userId="";
+			localStorage.tag="";
+			localStorage.userName="";
+			username.hide();
+			$("#login").show();
+			$("#register").show();
+		});
+		$("#us").click(function(){
+			window.location.href="us.html";
+		});
+		$("#login").click(function(){
+			window.location.href="loginPage.html";
+		});
+		$("#register").click(function(){
+			window.location.href="registerPage.html";
+		});
+		$("#search").bind("keyup",function(event){
+			if(event.keyCode=="13")
+			{
+				localStorage.tag=$("#search").val();
+				window.location.href="showPicture.html";
+				document.getElementById("search").value="";
+			}
+		});
+	</script>
+		
+	<!-- <div class="title-style">
+		<div class="nav-style">
+>>>>>>> b85d803c60a0edf30d9166b3e9015d2627ed3afe
+				<div class="navbar-nav">
+					<ul class="nav nav-tabs" role="tablist">
+						<li role="presentation" style="margin: 0 40px 0 0;" >
+							<span style="height: 40px;line-height: 40px;font-weight: bold;font-size: 18px;" id="mainPage">图片社区</span>
+						</li>
+						<li role="presentation" style="margin: 0 20px 0 0;position: absolute;top:0px;left: 150px;display: flex;">
+							<div style="width: 40px;height: 40px;background-color: white;border:none;border-bottom: 1px solid #0A88D3 ; border-top: 1px solid #0A88D3 ;">
+								<svg width="40px" height="40px" viewBox="0 0 16 16" class="bi bi-search" style="padding-left: 10px; padding-top:15px;background-color: white;position: absolute;top:-5px" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+									<path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+									<path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+								</svg>
+							</div>
+							<input type="text" id="search" style="width: 300px;height: 40px;font-size: 16px;border: none;border-top: 1px solid #0A88D3 ;border-bottom: #0A88D3 1px solid;"/>
+						</li>
+						<li role="presentation" class="dropdown" style="margin: 0 200px 0 910px;">
+						    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+						      aria-haspopup="true" aria-expanded="true">探索
+							<span class="caret"></span>
+						    </button>
+							<table class="dropdown-menu" aria-labelledby="dropdownMenu1">
+								<tr>
+									<th>About</th>
+								</tr>
+								<tr>
+									<td id="blog">博客</td>
+								</tr>
+								<tr>
+									
+									<td id="exit">注销</td>
+								</tr>
+								<tr>
+									<td id="us">关于我们</td>
+								</tr>
+							</table>
+						</li>
+						<div id="navbar" style="position: absolute;left: 1200px; top:10px; display: flex;">
+							<li style="margin: 0 40px 0 20px;"><a id="login" style="color: black;" href="loginPage.html">登录</a></li>
+							<li style="margin: 0 40px 0 20px;"><a id="register" style="color: black;" href="registerPage.html">注册</a></li>
+						</div>
+						<li style="margin: 0 10px 0 0; padding-top: 10px;"><font id="#" style="color: black;" onclick="popBox()">
+						</li>	
+					</ul>
+				</div>
+			</div>
+<<<<<<< HEAD
+		</div>
+
+	
+	
+=======
+	</div>
+	
+	
+	<!--====================================================content==================================================-->
+	<div class="clear"></div>
+>>>>>>> b85d803c60a0edf30d9166b3e9015d2627ed3afe
+	<div class="pop_up">
+			<div class="pop_up1">
+				<div class="txt">
+					您是否确定用0个硬币购买本图片？
+				</div>
+				<button class="btn btn-default" id="confirm">确定</button>
+				<button class="btn btn-default" id="cancel">取消</button>
+			</div>
+	</div>
+	<div class="pictureShow">
+			<img src="" alt="img/loading.gif" class="picture">
+	</div>
+	<div class="publisher_info">
+			<!--<label>此处展示发布者信息，包括头像、昵称、收藏、点赞，以下皆为示范。</label>-->
+			<div class="publisher_info1">
+				<img src="img/head.png">
+				<label></label>
+				<button type="button" class="btn btn-default"></button>
+			</div>
+			<div class="line"></div>
+			<div class="good_collect">
+				<label class="label1">点赞</label>
+				<label for="good" class="good_label">&#10084</label>
+				<input type="button" class="btn btn-default" id="good" value="">
+				<label class="label2">收藏</label>
+				<label for="collect" class="collect_label">&#9733</label>
+				<input type="button" class="btn btn-default" id="collect" value="">
+				<div class="clear"></div>
+			</div>
+			<div class="download">
+				<label for="download">
+					购买&下载<input type="button" name="pay" value="0" class="btn btn-default" id="download">
+					<img src="img/coin.png">
+				</label><br>
+				<a class=download_img >下载图片</a>
+				
+				
+				
+			</div>
+			
+	</div>
+	<div class="clear"></div>
+	<div class="comment">
+	<div class="comments">
+
+			<div class="comment1">
+				<div class="area">评论区域</div>
+			<!--<label>此处为评论区</label><br>
+			<img src="img/head.png">-->
+			<div class="comment_publisher">
+			<label></label>
+			</div>
+
+			<div class="comment_submit">
+            <form>
+				<textarea type="text" name="comment" placeholder="请输入您的评论(不多于50字)..." id="comment"></textarea><br>
+				<button type="button" class="btn btn-default" id="submit">提交</button>
+			</form>
+			</div>
+			</div>
+	</div>
+	<div class="other_comment">
+		<div class="restrict">登录后可添加评论...</div>
+		<div class="tit">图片评论</div>
+		<div class="other_comments">
+			
+		</div>
+	</div>
+	</div>
+	<div class="picture_info">
+			<!--<label>此处显示图片信息，包括图片类型、图片尺寸(像素)、上传时间、下载量、类别(标签)，以下皆为示范。</label>-->
+			<table border="3" width="450px">
+				<tr>
+                    <td align="center">图片简介</td>
+                    <td align="center" class="brief"></td>
+                </tr>
+                <tr>
+                    <td align="center">图片类型</td>
+                    <td align="center">JPG</td>
+                </tr>
+                <tr>
+                    <td align="center">图片尺寸(像素)</td>
+                    <td align="center" class="pixel"></td>
+                </tr>
+                <tr>
+                    <td align="center">标签</td>
+                    <td align="center" class="tag"></td>
+                </tr>
+                <tr>
+                    <td align="center">上传时间</td>
+                    <td align="center" class="time"></td>
+                </tr>
+                <tr>
+                    <td align="center">下载量</td>
+                    <td align="center" class="downloads"></td>
+                </tr>
+            </table>
+	</div>
+	
+	
+
+	
+	<script type="text/javascript" src="js/pictureShow.js"></script>
+	<script>
+			if(localStorage.userId!=undefined)
+			{
+				console.log(localStorage.userId);
+				$("#login").hide();
+				$("#register").hide();
+				$("#exit").hide();
+				var username=$("<span></span>").text("您好！"+localStorage.userName);
+				username.css("position","absolute");
+				username.css("left","-15px");
+				username.css("top","-1px");
+				$("#navbar").append(username);
+				username.click(function(){
+					//跳转
+					window.location.href="个人图片主页.html";
+				})
+			}
+			else
+			{
+				$("#exit").hide();
+			}
+			$("#mainPage").click(function(){
+				window.location.href="new凯.html";
+			});
+			$("blog").click(function(){
+				window.location.href="blog.html";
+			});
+			$("#exit").click(function(){
+				localStorage.Token="";
+				localStorage.picId="";
+				localStorage.userId="";
+				localStorage.tag="";
+				localStorage.userName="";
+				username.hide();
+				$("#login").show();
+				$("#register").show();
+			});
+			$("#us").click(function(){
+				window.location.href="us.html";
+			});
+			$("#login").click(function(){
+				window.location.href="loginPage.html";
+			});
+			$("#register").click(function(){
+				window.location.href="registerPage.html";
+			});
+			$("#search").bind("keyup",function(event){
+				if(event.keyCode=="13")
+				{
+					localStorage.tag=$("#search").val();
+					window.location.href="showPicture.html";
+					document.getElementById("search").value="";
+				}
+			});
+		</script>
+
+
+	
+
+</body>
+</html>

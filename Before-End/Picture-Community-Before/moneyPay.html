@@ -238,9 +238,6 @@
 				"url": "http://172.81.239.44/Wallet/getWalletInfo",
 				"method": "GET",
 				"timeout": 0,
-				// "headers": {
-				//     "Authorization": "Bearer "+localStorage.token
-				// },
 				"data": JSON.stringify({"userId":userId}),
 				success:function(response){
 					if(response.success==true)
@@ -263,9 +260,6 @@
 				"url": "http://172.81.239.44/Wallet/getDepositRecord",
 				"method": "GET",
 				"timeout": 0,
-				// "headers": {
-				//     "Authorization": "Bearer "+localStorage.token
-				// },
 				"data": JSON.stringify({"userId":userId}),
 				success:function(response){
 					if(response.success==true)
@@ -316,9 +310,6 @@
 				"url": "http://172.81.239.44/Wallet/getDepositRecord",
 				"method": "GET",
 				"timeout": 0,
-				// "headers": {
-				//     "Authorization": "Bearer "+localStorage.token
-				// },
 				"data": JSON.stringify({"userId":"2"}),
 				success:function(response){
 					if(response.success==true)
@@ -372,9 +363,6 @@
 					"url": "http://172.81.239.44/Wallet/depositWallet",
 					"method": "POST",
 					"timeout": 0,
-					"headers": {
-					    "Authorization": "Bearer "+localStorage.token
-					},
 					"data": JSON.stringify({"userId":userId,"content":paymoney}),
 					success:function(response){
 						if(response.success==true)

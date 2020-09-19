@@ -304,6 +304,7 @@
     {
         $("#exit").hide();
     }
+
     $("#exit").click(function(){
         localStorage.Token="";
         localStorage.picId="";
@@ -334,49 +335,49 @@
                 var arr=data.returnList;
                 // console.log(arr);
                 // console.log(arr[0].picUrl);
-                arr.forEach(function(item,index){
-                    var picSpan=$("<span></span>");
-                    var btnZ=$("<span></span>").text("点赞");
-                    var btnS=$("<span></span>").text("收藏");
-                    var btnC=$("<span></span>").text("评论");
-                    var btnU=$("<span></span>").text(item.publisherName);
-                    var spanZ=$("<span></span>").text(item.likeNum);
-                    var spanS=$("<span></span>").text(item.starNum);
-                    var spanC=$("<span></span>").text(item.commNum);
-                    var w=index%3;
-                    var Left=60+w*480;
-                    var Top=510+x*300;
-                    picSpan.css("height","300px");
-                    picSpan.css("width","450px");
-                    picSpan.css("left",Left+"px");
-                    picSpan.css("top",Top+"px");
-                    picSpan.css("position","absolute")
-                    var pic=$("<img></img>");
-                    pic.attr("src",item.picUrl);
-                    pic.css("height","280px");
-                    pic.css("width","430px");
-                    pic.css("padding","10px");
-                    btnZ.css("left","220px");
-                    btnZ.css("top","240px");
-                    btnZ.css("position","absolute");
-                    btnS.css("left","285px");
-                    btnS.css("top","240px");
-                    btnS.css("position","absolute");
-                    btnC.css("position","absolute");
-                    btnC.css("left","350px");
-                    btnC.css("top","240px");
-                    btnU.css("position","absolute");
-                    btnU.css("left","50px");
-                    btnU.css("top","240px");
-                    spanZ.css("position","absolute");
-                    spanZ.css("left","260px");
-                    spanZ.css("top","240px");
-                    spanS.css("position","absolute");
-                    spanS.css("left","325px");
-                    spanS.css("top","240px");
-                    spanC.css("position","absolute");
-                    spanC.css("left","390px");
-                    spanC.css("top","240px");
+                arr.forEach(function(item,index) {
+                    var picSpan = $("<span></span>");
+                    var btnZ = $("<span></span>").text("点赞");
+                    var btnS = $("<span></span>").text("收藏");
+                    var btnC = $("<span></span>").text("评论");
+                    var btnU = $("<span></span>").text(item.publisherName);
+                    var spanZ = $("<span></span>").text(item.likeNum);
+                    var spanS = $("<span></span>").text(item.starNum);
+                    var spanC = $("<span></span>").text(item.commNum);
+                    var w = index % 3;
+                    var Left = 60 + w * 480;
+                    var Top = 510 + x * 300;
+                    picSpan.css("height", "300px");
+                    picSpan.css("width", "450px");
+                    picSpan.css("left", Left + "px");
+                    picSpan.css("top", Top + "px");
+                    picSpan.css("position", "absolute")
+                    var pic = $("<img></img>");
+                    pic.attr("src", item.picUrl);
+                    pic.css("height", "280px");
+                    pic.css("width", "430px");
+                    pic.css("padding", "10px");
+                    btnZ.css("left", "220px");
+                    btnZ.css("top", "240px");
+                    btnZ.css("position", "absolute");
+                    btnS.css("left", "285px");
+                    btnS.css("top", "240px");
+                    btnS.css("position", "absolute");
+                    btnC.css("position", "absolute");
+                    btnC.css("left", "350px");
+                    btnC.css("top", "240px");
+                    btnU.css("position", "absolute");
+                    btnU.css("left", "50px");
+                    btnU.css("top", "240px");
+                    spanZ.css("position", "absolute");
+                    spanZ.css("left", "260px");
+                    spanZ.css("top", "240px");
+                    spanS.css("position", "absolute");
+                    spanS.css("left", "325px");
+                    spanS.css("top", "240px");
+                    spanC.css("position", "absolute");
+                    spanC.css("left", "390px");
+                    spanC.css("top", "240px");
                     picSpan.append(pic);
                     picSpan.append(btnU);
                     picSpan.append(btnZ);
@@ -386,65 +387,88 @@
                     picSpan.append(btnC);
                     picSpan.append(spanC);
                     $("#picture").append(picSpan);
-                    pic.click(function(){
+                    pic.click(function () {
                         //跳转
-                        window.location.href="pictureShow.html";
+                        localStorage.picId = item.picId;
+                        window.location.href = "pictureShow.html";
                     });
-                    btnU.click(function(){
+                    btnU.click(function () {
                         //跳转
-                        window.location.href="个人图片主页.html";
+                        localStorage.userId = item.userId;
+                        window.location.href = "个人图片主页.html";
                     })
-                    btnZ.click(function(){
-                        if(localStorage.id!=null)
-                        {
+                    btnZ.click(function () {
+                        if (localStorage.userId != null && localStorage.userId != "") {
+
                             $.ajax({
-                                "url": "http://172.81.239.44/Picture/likePicture?userId="+userid+"&picId="+item.picId+"&type=LK",
+                                "url": "http://172.81.239.44/Picture/likePicture?userId=" + userid + "&picId=" + item.picId + "&type=LK",
                                 "method": "POST",
                                 "timeout": 0,
-                                success:function(){
-                                    spanZ.text(item.likeNum);
+                                success: function () {
+                                    var id1 = localStorage.userId;
+                                    $.ajax({
+                                        "url": "http://172.81.239.44/Picture/getPicViewInfo?userID=" + id1 + "&picID=" + item.picId,
+                                        "method": "GET",
+                                        "timeout": 0,
+
+                                        success: function (data) {
+                                            spanZ.text(data.numberLike);
+                                        },
+                                        error: function (e) {
+                                            if (e.status == 401)
+                                                window.location.href = "loginPage.html";
+                                        }
+                                    });
                                 },
-                                error:function(e){
-                                    console.log(e);
+                                error: function (e) {
+                                    if (e.status == 401)
+                                        window.location.href = "loginPage.html";
                                 }
                             });
 
-                        }
-                        else
-                        {
+                        } else {
                             //跳转
-                            window.location.href="loginPage.html";
+                            window.location.href = "loginPage.html";
                         }
                     });
-                    btnS.click(function(){
-                        if(localStorage.id!=null)
-                        {
+                    btnS.click(function () {
+                        if (localStorage.userId != null && localStorage.userId != "") {
                             $.ajax({
-                                "url": "http://172.81.239.44/Picture/favoritePicture?userId="+userid+"&picId="+item.picId,
+                                "url": "http://172.81.239.44/Picture/favoritePicture?userId=" + userid + "&picId=" + item.picId,
                                 "method": "POST",
                                 "timeout": 0,
-                                success:function(){
-                                    spanS.text(item.starNum);
+                                success: function () {
+                                    console.log("成功");
+                                    var id1 = localStorage.id
+                                    $.ajax({
+                                        "url": "http://172.81.239.44/Picture/getPicViewInfo?userID=" + id1 + "&picID=" + item.picId,
+                                        "method": "GET",
+                                        "timeout": 0,
+                                        success: function (data) {
+                                            spanS.text(data.numberFavorite);
+                                        },
+                                        error: function (e) {
+                                            if (e.status == 401)
+                                                window.location.href = "loginPage.html";
+                                        }
+                                    });
                                 },
-                                error:function(e){
-                                    console.log(e);
+                                error: function (e) {
+                                    if (e.status == 401)
+                                        window.location.href = "loginPage.html";
                                 }
                             });
-                        }
-                        else
-                        {
+                        } else {
                             //跳转
-                            window.location.href="loginPage.html";
+                            window.location.href = "loginPage.html";
                         }
                     });
-                    btnC.click(function(){
+                    btnC.click(function () {
                         //跳转
-                        localStorage.picId=item.picId;
-                        window.location.href="pictureShow.html";
+                        localStorage.picId = item.picId;
+                        window.location.href = "pictureShow.html";
                     });
-                    $("#picture").append(picSpan);
-                });
-
+                })
             }
         });
     }

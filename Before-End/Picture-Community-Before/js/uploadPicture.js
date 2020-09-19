@@ -137,7 +137,7 @@ function check(){
         alert("提交失败！标签必须从上述10个标签里选3个填,并且不能重复！");
         return;
     }
-    else if((array_tags.indexOf(tag)==array_tags.indexOf(tag_1)) || (array_tags.indexOf(tag_1)==array_tags.indexOf(tag_2)) || (array_tag.indexOf(tag)==array_tag.indexOf(tag_2))){
+    else if((array_tags.indexOf(tag)==array_tags.indexOf(tag_1)) || (array_tags.indexOf(tag_1)==array_tags.indexOf(tag_2)) || (array_tags.indexOf(tag)==array_tags.indexOf(tag_2))){
         alert("提交失败！3个标签都不能重复！");
         return;
     }

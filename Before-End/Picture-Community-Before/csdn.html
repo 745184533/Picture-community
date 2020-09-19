@@ -4,14 +4,120 @@
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
 		<link rel="stylesheet" type="text/css" href="css/page.css"/>
+		<link rel="stylesheet" type="text/css" href="css/page凯.css"/>
 		<script src="js/jquery.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/information.css" />
 		<link rel="stylesheet" type="text/css" href="css/csdn.css"/>
-		<title>博客</title>
+		<title>图片社区</title>
 	</head>
 	<body>
-		<div class="wrapper"></div>
+		
+		
+		
+		<!-- 导航栏 -->
 		<div class="title-style">
+			<div class="nav-style">
+				<div class="navbar-nav">
+					<ul class="nav nav-tabs" role="tablist">
+						<li role="presentation" style="margin: 0 40px 0 0;" >
+							<span style="height: 40px;line-height: 40px;font-weight: bold;font-size: 18px;" id="mainPage">图片社区</span>
+						</li>
+						<li role="presentation" style="margin: 0 20px 0 0;position: absolute;top:0px;left: 150px;display: flex;">
+							<div style="width: 40px;height: 40px;background-color: white;border:none;border-bottom: 1px solid #0A88D3 ; border-top: 1px solid #0A88D3 ;">
+								<svg width="40px" height="40px" viewBox="0 0 16 16" class="bi bi-search" style="padding-left: 10px; padding-top:15px;background-color: white;position: absolute;top:-5px" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+									<path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+									<path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+								</svg>
+							</div>
+							<input type="text" id="search" style="width: 300px;height: 40px;font-size: 16px;border: none;border-top: 1px solid #0A88D3 ;border-bottom: #0A88D3 1px solid;"/>
+						</li>
+						<li role="presentation" class="dropdown" style="margin: 0 200px 0 910px;">
+						    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+						      aria-haspopup="true" aria-expanded="true">探索
+							<span class="caret"></span>
+						    </button>
+							<table class="dropdown-menu" aria-labelledby="dropdownMenu1">
+								<tr>
+									<th>About</th>
+								</tr>
+								<tr>
+									<td id="blog">博客</td>
+								</tr>
+								<tr>
+									
+									<td id="exit">注销</td>
+								</tr>
+								<tr>
+									<td id="us">关于我们</td>
+								</tr>
+							</table>
+						</li>
+						<div id="navbar" style="position: absolute;left: 1200px; top:10px; display: flex;">
+							<li style="margin: 0 40px 0 20px;"><a id="login" style="color: black;" href="loginPage.html">登录</a></li>
+							<li style="margin: 0 40px 0 20px;"><a id="register" style="color: black;" href="registerPage.html">注册</a></li>
+						</div>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<script>
+			if(localStorage.userId!=undefined)
+			{
+				console.log(localStorage.userId);
+				$("#login").hide();
+				$("#register").hide();
+				$("#exit").hide();
+				var username=$("<span></span>").text("您好！"+localStorage.userName);
+				username.css("position","absolute");
+				username.css("left","-15px");
+				username.css("top","-1px");
+				$("#navbar").append(username);
+				username.click(function(){
+					//跳转
+					window.location.href="个人图片主页.html";
+				})
+			}
+			else
+			{
+				$("#exit").hide();
+			}
+			$("#mainPage").click(function(){
+				window.location.href="new凯.html";
+			});
+			$("blog").click(function(){
+				window.location.href="blog.html";
+			});
+			$("#exit").click(function(){
+				localStorage.Token="";
+				localStorage.picId="";
+				localStorage.userId="";
+				localStorage.tag="";
+				localStorage.userName="";
+				username.hide();
+				$("#login").show();
+				$("#register").show();
+			});
+			$("#us").click(function(){
+				window.location.href="us.html";
+			});
+			$("#login").click(function(){
+				window.location.href="loginPage.html";
+			});
+			$("#register").click(function(){
+				window.location.href="registerPage.html";
+			});
+			$("#search").bind("keyup",function(event){
+				if(event.keyCode=="13")
+				{
+					localStorage.tag=$("#search").val();
+					window.location.href="showPicture.html";
+					document.getElementById("search").value="";
+				}
+			});
+		</script>
+			
+		<!-- <div class="title-style">
 			<div class="nav-style">
 				<div class="navbar-nav">
 					<ul class="nav nav-tabs" role="tablist">
@@ -52,7 +158,9 @@
 					</ul>
 				</div>
 			</div>
-		</div>
+		</div> -->
+		
+		
 		<div id="content" class="clearfix">
 		<div style="margin: 30px auto;">
 			<div id="account_tabs" class="tab_menu hide-xs hide-sm hide-md" style="margin:auto;border-top:0">
@@ -97,17 +205,32 @@
 		</div>
 
 		<center style="width:100%">
-			<button class="btn-success" onclick="writtingblog()" style="width:100px;height:60px;border-radius:5px; font-size: 18px; letter-spacing: 2px;margin: 20px auto;">写博客</button>
+			<button class="btn-success" onclick="writtingblog()" style="width:100px;height:50px;border-radius:50px; font-size: 18px; letter-spacing: 2px;margin: 20px auto;">写博客</button>
 		</center>
 				
 							<div id="writting"></div>
 						
 				<script>
-			localStorage.id=5;
-				var username="gyq";
-				username=localStorage.userName;
-				username=""+username;
+			//localStorage.id=5;
+				var usernam="gyq";
+				usernam=localStorage.userName;
+				usernam=""+usernam;
+			if(localStorage.userId!=undefined)
+			{
 			
+				console.log(localStorage.userId);
+				$("#login").hide();
+				$("#register").hide();
+				var username=$("<span></span>").text("您好！"+localStorage.userName);
+				username.css("position","absolute");
+				username.css("left","-15px");
+				username.css("top","-1px");
+				$("#navbar").append(username);
+				username.click(function(){
+					//跳转
+					window.location.href="个人图片主页.html";
+				})
+			}
 				
 				function getblog(){
 					$.ajax({
@@ -183,7 +306,7 @@
 										  "headers": {
 										    "Content-Type": "application/json"
 										  },
-										  "data": JSON.stringify({"userId":username,"content":value}),
+										  "data": JSON.stringify({"userId":usernam,"content":value}),
 										};
 										
 										$.ajax(settings).done(function (response) {

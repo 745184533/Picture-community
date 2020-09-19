@@ -49,10 +49,18 @@
     <div class="close">
         <a href="javascript:void(0)" onclick="closeBox()">关闭</a>
     </div>
-
     <!--上传图片标题-->
-    <div  style="text-align: center;font-size: 25px">上传图片到图库</div>
+    <div style="text-align: center;font-size: 25px">上传图片到图库</div>
     <br>
+    <!--上传图片-->
+    <div class="layui-form-item" style="padding-left:10px;padding-right:10px">
+        <div class="layui-input-block">
+            <input type="hidden" id="img_url">
+            <input type="file" onchange="showImg()" id="img_file">
+            <img src="" alt="" id="img_id" style="height: 150px">
+            <div class="tag_show"></div>
+        </div>
+    </div>
 
     <!--给上传的图片添加图片简介-->
     <form class="layui-form">
@@ -72,11 +80,11 @@
                 <input type="text" class="layui-input" id="tag1">
             </div>
             <div class="layui-form-item">
-                <label class="layui-input-inline">标签2(选填)：</label>
+                <label class="layui-input-inline">标签2(必填)：</label>
                 <input type="text" class="layui-input" id="tag2">
             </div>
             <div class="layui-form-item">
-                <label class="layui-input-inline">标签3(选填)：</label>
+                <label class="layui-input-inline">标签3(必填)：</label>
                 <input type="text" class="layui-input" id="tag3">
             </div>
         </div>
@@ -85,10 +93,8 @@
     <!--给上传的图片添加定价-->
     <form class="layui-form">
         <div style="padding: 10px;">
-            <div class="layui-form-item">
-                <label class="layui-input-inline">定价(必填)：</label>
-                <input type="text" class="layui-input" id="price">
-            </div>
+            <label class="layui-input-inline">定价(必填)：</label>
+            <input type="text" class="layui-input" id="price">
         </div>
     </form>
     <br>
@@ -99,15 +105,7 @@
         <input type="checkbox" name="agreement" value="agree_2" id="agree_2" onclick="checkAgree()">我保证所上传的图片并非盗用或涉及其他非法行为。
     </form>
     <br>
-    <!--上传图片-->
-    <div class="layui-form-item" style="padding-left:10px;padding-right:10px">
-        <div class="layui-input-block">
-            <input type="hidden" id="img_url">
-            <input type="file" onchange="showImg()" id="img_file">
-            <img src="" alt="" id="img_id" style="height: 150px">
-        </div>
-    </div>
-    <br>
+
     <!--提交图片按钮-->
     <div style="text-align: center">
         <button id="submit" disabled="disabled" onclick="check()">提交图片</button>
@@ -123,7 +121,7 @@
         <a href="javascript:void(0)" onclick="closeBox_search()">关闭</a>
     </div>
     <!--上传图片标题-->
-    <div  style="text-align: center;font-size: 25px">上传图片找相似</div>
+    <div style="text-align: center;font-size: 25px">上传图片找相似</div>
     <br>
     <!--上传图片-->
     <div class="layui-form-item" style="padding-left:10px;padding-right:10px">
@@ -233,40 +231,47 @@
 
     $('#search').val(localStorage.tag);
 
-        /*导航栏显示登陆状态*/
-        if (localStorage.id != null) {
-            $("#navbar").empty();
-            var username = $("<span></span>").text("您好！" + "username");
-            $("#navbar").append(username);
-            username.click(function () {
-                //跳转
-                window.location.href = "个人图片主页.html";
-            })
-        }
+    /*导航栏显示登陆状态*/
+    if(localStorage.userId!=undefined)
+    {
+        console.log(localStorage.userId);
+        $("#login").hide();
+        $("#register").hide();
+        var username=$("<span></span>").text("您好！"+localStorage.userName);
+        username.css("position","absolute");
+        username.css("left","-15px");
+        username.css("top","-1px");
+        $("#navbar").append(username);
+        username.click(function(){
+            //跳转
+            window.location.href="个人图片主页.html";
+        })
+    }
 
-        /*提供按钮使得页面到顶部*/
-        $(function () {
-            $(window).scroll(function () {  //只要窗口滚动,就触发下面代码
-                var scrollt = document.documentElement.scrollTop + document.body.scrollTop; //获取滚动后的高度
-                if (scrollt > 200) {  //判断滚动后高度超过200px,就显示
-                    $("#back_top").fadeIn(400); //淡入
-                } else {
-                    $("#back_top").stop().fadeOut(400); //如果返回或者没有超过,就淡出.必须加上stop()停止之前动画,否则会出现闪动
-                }
-            });
-
-            $("#back_top").click(function () { //当点击标签的时候,使用animate在200毫秒的时间内,滚到顶部
-                $("html,body").animate({scrollTop: "0px"}, 200);
-            });
+    /*提供按钮使得页面到顶部*/
+    $(function () {
+        $(window).scroll(function () {  //只要窗口滚动,就触发下面代码
+            var scrollt = document.documentElement.scrollTop + document.body.scrollTop; //获取滚动后的高度
+            if (scrollt > 200) {  //判断滚动后高度超过200px,就显示
+                $("#back_top").fadeIn(400); //淡入
+            } else {
+                $("#back_top").stop().fadeOut(400); //如果返回或者没有超过,就淡出.必须加上stop()停止之前动画,否则会出现闪动
+            }
         });
-        /*图片点击进入图片详情页面*/
-        /*$("img.show").click(function () {
-            window.location.href = "pictureShow.html";
-            localStorage.setItem('src', $(this).attr("src"));
-        })*/
 
-        /*请求相应tag的图片数据*/
-        // var form = new FormData();
+        $("#back_top").click(function () { //当点击标签的时候,使用animate在200毫秒的时间内,滚到顶部
+            $("html,body").animate({scrollTop: "0px"}, 200);
+        });
+    });
+    /*图片点击进入图片详情页面*/
+    $("img.show").click(function () {
+        window.location.href = "pictureShow.html";
+        localStorage.setItem('src', $(this).attr("src"));
+    })
+
+    /*请求相应tag的图片数据*/
+    // var form = new FormData();
+    if(localStorage.search_type=="searchTag"){
         $.ajax({
             "url": "http://172.81.239.44/Picture/searchByTag?tag=" + search_tag,
             "method": "GET",
@@ -285,26 +290,45 @@
                     img.setAttribute("class", "content");
                     div.appendChild(img);
                     container.appendChild(div);
-                    img.onclick=function(){
-                         window.location.href = "pictureShow.html";
-                         localStorage.setItem('picId', item.picId);
-                    }
-                })
-            }
-        })
 
-        $("#search").bind("keyup", function (event) {
-            if (event.keyCode == "13") {
-                localStorage.tag = $("#search").val();
-                console.log(localStorage.tag);
-                window.location.href = "showPicture.html";
-                document.getElementById("search").value = "";
+                })
+                localStorage.tag="";
             }
         })
+    }
+
+    if(localStorage.search_type=="searchSimilar"){
+        $("search").val("");
+        localStorage.tag="";
+        var container = document.querySelector('section');
+        //var get_picture = localStorage.pic_Lists;
+        //console.log(get_picture[1]);
+       // var obj = eval('(' +  + ')');
+        var read=JSON.parse(localStorage.getItem('pic_Lists'));
+        console.log(read);
+        read.forEach(function(item){
+            var div = document.createElement('div');
+            div.setAttribute("class", "show");
+            var img = document.createElement('img');
+            img.src = item;
+            img.setAttribute("class", "content");
+            div.appendChild(img);
+            container.appendChild(div);
+        })
+        localStorage.setItem("pic_Lists","");
+    }
+
+    $("#search").bind("keyup", function (event) {
+        if (event.keyCode == "13") {
+            localStorage.tag = $("#search").val();
+            console.log(localStorage.tag);
+            window.location.href = "showPicture.html";
+            document.getElementById("search").value = "";
+            localStorage.search_type="searchTag";
+        }
+    })
 
 
 </script>
-
 </body>
 </html>
-

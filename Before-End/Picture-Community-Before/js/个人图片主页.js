@@ -1,29 +1,32 @@
 // JavaScript Document$(function(){
-localStorage.setItem("picId","1");
-localStorage.setItem("userId","2");
-
-
+//localStorage.setItem("picId","1");
+//localStorage.setItem("userId","2");
+var token=localStorage.Token;//获取token
+var user_id=localStorage.userId;//取当前用户的id
+var user_name=localStorage.userName;//取当前用户昵称
+console.log("userId:"+user_id);
+console.log("userName:"+user_name);
 //var source=localStorage.getItem("scr");
-var picId=localStorage.getItem("picId");
-var userId=localStorage.getItem("userId");
+//var picId=localStorage.getItem("picId");
+//var userId=localStorage.getItem("userId");
 var settings = {
-  "url": "http://172.81.239.44/Account/getUserInfo?userId=2",
+  "url": "http://172.81.239.44/Account/getUserInfo?userId="+user_id,
   "method": "GET",
   "timeout": 0,
-  "headers":{"Authorization":"Bearer "+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI4NTRjZGZmOS03ODQ2LTRjYzAtOWNjMy01ZjhkOTJjMmY5NjAiLCJuYW1lIjoicm9vdCIsIm5iZiI6MTYwMDQxOTI1MiwiZXhwIjoxNjAwNDE5ODUyLCJpc3MiOiJqd3RJc3N1ZXJ0ZXN0IiwiYXVkIjoiand0QXVkaWVuY2V0ZXN0In0.e7tPDpt2RFxEsqL_cLsp8K32JJbQSAY-RGAeuw95R9w"},
+  "headers":{"Authorization":"Bearer "+token},
 };
 
 $.ajax(settings).done(function (response) {
   console.log(response);
 	console.log(response.userName);
-	$("#user").append("<h3>"+response.userName+"</h3>");
+	$("#user").append("<h3>"+user_name+"</h3>");
 });
 
 var settings = {
-  "url": "http://172.81.239.44/Account/getProfileInfo?userId=2",
+  "url": "http://172.81.239.44/Account/getProfileInfo?userId="+user_id,
   "method": "GET",
   "timeout": 0,
-  "headers":{"Authorization":"Bearer "+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI4NTRjZGZmOS03ODQ2LTRjYzAtOWNjMy01ZjhkOTJjMmY5NjAiLCJuYW1lIjoicm9vdCIsIm5iZiI6MTYwMDQxOTI1MiwiZXhwIjoxNjAwNDE5ODUyLCJpc3MiOiJqd3RJc3N1ZXJ0ZXN0IiwiYXVkIjoiand0QXVkaWVuY2V0ZXN0In0.e7tPDpt2RFxEsqL_cLsp8K32JJbQSAY-RGAeuw95R9w"},
+  "headers":{"Authorization":"Bearer "+token},
 };
 
 $.ajax(settings).done(function (response) {
@@ -67,14 +70,14 @@ $.ajax(settings).done(function(response) {
 });
 */
 	var settings = {
-  "url": "http://172.81.239.44/Account/getProfilePicture?userId=1",
+  "url": "http://172.81.239.44/Account/getProfilePicture?userId="+user_id,
   "method": "GET",
   "timeout": 0,
-  "headers":{"Authorization":"Bearer "+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI4NTRjZGZmOS03ODQ2LTRjYzAtOWNjMy01ZjhkOTJjMmY5NjAiLCJuYW1lIjoicm9vdCIsIm5iZiI6MTYwMDQxOTI1MiwiZXhwIjoxNjAwNDE5ODUyLCJpc3MiOiJqd3RJc3N1ZXJ0ZXN0IiwiYXVkIjoiand0QXVkaWVuY2V0ZXN0In0.e7tPDpt2RFxEsqL_cLsp8K32JJbQSAY-RGAeuw95R9w"},
+  "headers":{"Authorization":"Bearer "+token},
 };
 $.ajax(settings).done(function(response) {
   console.log(response);
-	var arr=response.upload;
+	var arr=response.favorite;
 	var container=document.querySelector("#page2");
 	arr.forEach(function(item,index){
 			var div=document.createElement('div');

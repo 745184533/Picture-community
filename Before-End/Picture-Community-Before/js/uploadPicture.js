@@ -1,3 +1,7 @@
+var userid=localStorage.userId;
+console.log(userid);
+var array_tags=[];
+
 /*点击弹出按钮*/
 function popBox() {
     var popBox = document.getElementById("popBox_upload");
@@ -24,9 +28,10 @@ function showImg(){
     }
     //获取文件
     var file =  document.getElementById('img_file').files[0];
-    if(!/\.(jpg)$/.test(file.name)){
-        alert("系统只接受jpg格式的图片！请重新上传！");
-        $('#img_id').attr("src", '');
+    console.log(file);
+    var imageType = /^image\//;
+    if(!imageType.test(file.type)){
+        alert("提交失败！请选择图片！");
         return;
     }
 
@@ -34,7 +39,54 @@ function showImg(){
     re.onload = function(re){
         $('#img_id').attr("src", re.target.result);//图片路径设置为读取的图片
     }
+
+    showTag();
 }
+
+function showTag(){
+    var file =  document.getElementById('img_file').files[0];
+
+    var form = new FormData();
+    form.append("userId", localStorage.userId);
+    form.append("", file);
+    $.ajax({
+        "url": "http://172.81.239.44/Account/Upload1",
+        "method": "POST",
+        "timeout": 0,
+        "processData": false,
+        "mimeType": "multipart/form-data",
+        "contentType": false,
+        "data": form,
+        /*"headers":{
+            "Authorization":"Bearer "+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJiN2JhYjJmNS1hZGEyLTQxZmItYmE3My02YjY1OWE2N2UzYTUiLCJuYW1lIjoicm9vdCIsIm5iZiI6MTYwMDQxOTI0NCwiZXhwIjoxNjAwNDE5ODQ0LCJpc3MiOiJqd3RJc3N1ZXJ0ZXN0IiwiYXVkIjoiand0QXVkaWVuY2V0ZXN0In0.zFGry7hviglkwLrJyGlPU-tISpdWqmHQAIjOTJh53NY",
+        },*/
+        success:function(data){
+            console.log(data);
+            var obj=eval('('+data+')');
+            var arr=obj.tags;
+            array_tags=obj.tags;
+            localStorage.setItem("pictureId",obj.pictureId);
+            console.log(arr);
+            var container = document.querySelector('.tag_show');
+            arr.forEach(function(item,index){
+                var i=index+1;
+                var div=document.createElement('div');
+                div.setAttribute("class","radio-label")
+                var myCheckBox=document.createElement('input');
+                myCheckBox.setAttribute("type","checkbox");
+                myCheckBox.setAttribute("name","tag");
+                myCheckBox.setAttribute("id","tag"+i);
+                var myLabel=document.createElement('label');
+                myLabel.setAttribute("for","tag"+i);
+                myLabel.innerText=item;
+                div.appendChild(myCheckBox);
+                div.appendChild(myLabel);
+                container.appendChild(div);
+            })
+        }
+    });
+}
+
 
 /*监听遵循协议按钮，若两者都选，则提交按钮可用*/
 function checkAgree(){
@@ -45,23 +97,68 @@ function checkAgree(){
         document.getElementById("submit").setAttribute("disabled", true);
 }
 
-/*提交后检查，图片格式是否为jpg,标签1是否为空*/
+/*提交后检查,是否为图片,标签是否为空,图片简介是否为空,定价是否为数字且合理,标签是否重复*/
 function check(){
     var file =  document.getElementById('img_file').files[0];
-    if(!/\.(jpg)$/.test(file.name)){
-        alert("提交失败！图片格式必须为jpg！");
+    var imageType = /^image\//;
+    if(!imageType.test(file.type)){
+        alert("提交失败！请选择图片！\n并请检查其他必填项是否填写！");
         return;
     }
+    var intro_pic=$("#intro").val();
     var tag=$("#tag1").val();
-    if(tag == null || tag ==""){
-        alert("提交失败！标签1不能为空！");
+    var tag_1=$("#tag2").val();
+    var tag_2=$("#tag3").val();
+    var price_pic=$("#price").val();
+
+    if(intro_pic == null || intro_pic == ""){
+        alert("提交失败！图片简介不能为空！\n并请检查其他必填项是否填写！");
         return;
     }
+    else if(tag == null || tag ==""){
+        alert("提交失败！标签1不能为空！\n并请检查其他必填项是否填写！");
+        return;
+    }
+    else if(tag_1 == null || tag_1==""){
+        alert("提交失败！标签2不能为空！\n并请检查其他必填项是否填写！");
+        return;
+    }
+    else if(tag_2 == null || tag_2==""){
+        alert("提交失败！标签3不能为空！\n并请检查其他必填项是否填写！");
+        return;
+    }
+    else if(isNaN(price_pic) || price_pic>10000 || price_pic == "" || price_pic<0){
+        alert("提交失败！定价请填入数字,且范围在0-10000之间！");
+        return;
+    }
+
     else{
-        alert("提交成功！");
-        closeBox();
+        var form = new FormData();
+        form.append("tag", tag);
+        form.append("tag1", tag_1);
+        form.append("tag2", tag_2);
+        form.append("userId", userId);
+        form.append("p_info", intro_pic);
+        form.append("pictureId",localStorage.pictureId);
+        form.append("price", price_pic);
+        //console.log(fileInput.files[0]);
+        $.ajax({
+            "url": "http://172.81.239.44/Account/Upload2",
+            "method": "POST",
+            "timeout": 0,
+            "processData": false,
+            "mimeType": "multipart/form-data",
+            "contentType": false,
+            "data": form,
+            success:function(data){
+                alert("提交成功！");
+                closeBox();
+            }
+        })
+
     }
 }
+
 
 /*相似图片上传，全部类似的js部分*/
 /*点击弹出按钮*/
@@ -89,9 +186,10 @@ function showImg_search(){
     }
     //获取文件
     var file =  document.getElementById('img_file_search').files[0];
-    if(!/\.(jpg)$/.test(file.name)){
-        alert("系统只接受jpg格式的图片！请重新上传！");
-        $('#img_id_search').attr("src", '');
+    console.log(file);
+    var imageType = /^image\//;
+    if(!imageType.test(file.type)){
+        alert("提交失败！请选择图片！");
         return;
     }
 
@@ -101,15 +199,52 @@ function showImg_search(){
     }
 }
 
-/*提交后检查，图片格式是否为jpg*/
+/*提交后检查，是否上传为图片*/
 function check_search(){
     var file =  document.getElementById('img_file_search').files[0];
-    if(!/\.(jpg)$/.test(file.name)){
-        alert("提交失败！图片格式必须为jpg！");
+    //console.log(file);
+    var imageType = /^image\//;
+    if(!imageType.test(file.type)){
+        alert("提交失败！请选择图片！");
         return;
     }
     else{
-        alert("提交成功！");
-        closeBox_search();
+        var file =  document.getElementById('img_file_search').files[0];
+        var form=new FormData();
+        form.append("", file);
+        console.log(file);
+        $.ajax({
+            "url": "http://172.81.239.44/Account/SimilarPicture",
+            "method": "POST",
+            "timeout": 0,
+            "processData": false,
+            "mimeType": "multipart/form-data",
+            "contentType": false,
+            "data": form,
+            success: function (data) {
+                console.log(data);
+                var obj = eval('(' + data + ')');
+                var arr = obj.picList;
+                var array=[];
+                //console.log(arr);
+                arr.forEach(function(item,index) {
+                    console.log(item.picUrl);
+                    array.push(item.picUrl);
+                })
+                console.log(array);
+                //localStorage.pic_Lists=array;
+                //console.log(array[1]);
+                localStorage.setItem("pic_Lists",JSON.stringify(array));
+
+                localStorage.setItem("search_type","searchSimilar");
+                closeBox_search();
+                window.location.href="showPicture.html";
+
+            },
+            error:function (e){
+                console.log(e);
+            }
+        })
+
     }
 }

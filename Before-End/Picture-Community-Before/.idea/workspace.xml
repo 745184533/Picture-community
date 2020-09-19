@@ -41,6 +41,7 @@
       <workItem from="1600482624691" duration="3580000" />
       <workItem from="1600493512272" duration="1912000" />
       <workItem from="1600500703919" duration="1872000" />
+      <workItem from="1600522976858" duration="342000" />
     </task>
     <servers />
   </component>
@@ -48,9 +49,13 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="421" y="135" key="FileChooserDialogImpl" timestamp="1600495652697">
+    <state x="421" y="135" key="FileChooserDialogImpl" timestamp="1600518051433">
       <screen x="0" y="0" width="1280" height="760" />
     </state>
-    <state x="421" y="135" key="FileChooserDialogImpl/0.0.1280.760@0.0.1280.760" timestamp="1600495652697" />
+    <state x="421" y="135" key="FileChooserDialogImpl/0.0.1280.760@0.0.1280.760" timestamp="1600518051433" />
+    <state x="366" y="294" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1600522958174">
+      <screen x="0" y="0" width="1280" height="760" />
+    </state>
+    <state x="366" y="294" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.760@0.0.1280.760" timestamp="1600522958174" />
   </component>
 </project>

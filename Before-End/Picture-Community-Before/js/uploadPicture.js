@@ -133,8 +133,14 @@ function check(){
         alert("提交失败！定价请填入数字,且范围在0-10000之间！");
         return;
     }
-
-
+    else if(array_tags.indexOf(tag)==-1 || array_tags.indexOf(tag_1)==-1 || array_tags.indexOf(tag_2)==-1){
+        alert("提交失败！标签必须从上述10个标签里选3个填,并且不能重复！");
+        return;
+    }
+    else if((array_tags.indexOf(tag)==array_tags.indexOf(tag_1)) || (array_tags.indexOf(tag_1)==array_tags.indexOf(tag_2)) || (array_tag.indexOf(tag)==array_tag.indexOf(tag_2))){
+        alert("提交失败！3个标签都不能重复！");
+        return;
+    }
     else{
         var form = new FormData();
         form.append("tag", tag);

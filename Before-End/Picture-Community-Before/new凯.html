@@ -299,6 +299,7 @@
 				console.log(localStorage.userId);
 				$("#login").hide();
 				$("#register").hide();
+				$("#exit").hide();
 				var username=$("<span></span>").text("您好！"+localStorage.userName);
 				username.css("position","absolute");
 				username.css("left","-15px");
@@ -308,6 +309,10 @@
 					//跳转
 					window.location.href="个人图片主页.html";
 				})
+			}
+			else
+			{
+				$("#exit").hide();
 			}
 			var head=0;
 			var userid=localStorage.userId;
@@ -479,41 +484,82 @@
 					});	
 			}
 
-			function check()
+			function check_search()
 			{
-				var intro=$("#intro").val();
-				var tag=$("#tag1").val();
-				var tag1=$("#tag2").val();
-				var tag2=$("#tag3").val();
-				var price=$("#price").val();
-				var file =  document.getElementById('img_file').files[0];
-				var form = new FormData();
-				form.append("",file);
-				form.append("tag", tag);
-				form.append("tag1", tag1);
-				form.append("tag2", tag2);
-				form.append("userId", "2");
-				form.append("p_info", intro);
-				
+				var array=[];
+				var file =  document.getElementById('img_file_search').files[0];
+				var form=new FormData();
+				form.append("", file);
+				console.log(file);
 				$.ajax({
-				  "url": "http://172.81.239.44/Account/Upload",
-				  "method": "POST",
-				  "timeout": 0,
-				  "processData": false,
-				  "mimeType": "multipart/form-data",
-				  "contentType": false,
-				  "data": form,
-				  success:function(){
-					  console("成功");
-					  alert("上传成功");
-				  },
-				  error:function(e){
-					  console.log("失败");
-					  console.log(e.status);
-				  }
+				    "url": "http://172.81.239.44/Account/SimilarPicture",
+				    "method": "POST",
+				    "timeout": 0,
+				    "processData": false,
+				    "mimeType": "multipart/form-data",
+				    "contentType": false,
+				    "data": form,
+				    success: function (data) {
+				        console.log(data);
+				        var obj = eval('(' + data + ')');
+				        var arr = obj.picList;
+						arr.forEach(function(item,index){
+							//console.log(item.picUrl);
+							array.push(item.picUrl);
+						})
+						localStorage.setItem('pic_Lists',JSON.stringify(array));
+						var read=JSON.parse(localStorage.getItem('pic_Lists'));
+						console.log(read,read.length);
+						console.log(read[1]);
+						console.log(localStorage.pic_Lists[1]);
+				    },
+				    error:function (e){
+				        console.log(e);
+				    }
+				})
+			}
+			// function check(){
+			// 	var file =  document.getElementById('img_file').files[0];
+			// 	var intro_pic=$("#intro").val();
+			// 	var tag=$("#tag1").val();
+			// 	var tag_1=$("#tag2").val();
+			// 	var tag_2=$("#tag3").val();
+			// 	var price_pic=$("#price").val();
+			// }
+			// var btn=$("<button></button>").text("上传");
+			function check(){
+				var file =  document.getElementById('img_file').files[0];
+				var intro_pic=$("#intro").val();
+				var tag=$("#tag1").val();
+				var tag_1=$("#tag2").val();
+				var tag_2=$("#tag3").val();
+				var price_pic=$("#price").val();
+				var form = new FormData();
+				form.append("tag", tag);
+				form.append("tag1", tag_1);
+				form.append("tag2", tag_2);
+				form.append("userId", "2");
+				form.append("price", price_pic);
+				form.append("p_info", intro_pic);
+				form.append("", file);
+				$.ajax({
+					
+					  "url": "http://172.81.239.44/Account/Upload",
+					  "method": "POST",
+					  "timeout": 0,
+					  "processData": false,
+					  "mimeType": "multipart/form-data",
+					  "contentType": false,
+					  "data": form,
+					  success:function(){
+						  console.log("成功");
+					  },
+					  error:function(e){
+						  console.log(e);
+					  }
+					
 				});
 			}
-
 			var button=$("<button></button>");
 			button.attr("class","Btn");
 			button.text("获取更多");
@@ -556,14 +602,15 @@
 					document.getElementById("search").value="";
 				}
 			});
-			$("blog").click(function(){
-				window.location.href="blog.html";
+			$("#blog").click(function(){
+				window.location.href="csdn.html";
 			});
 			$("#exit").click(function(){
 				localStorage.Token="";
 				localStorage.picId="";
-				localStorage.id="";
+				localStorage.userId="";
 				localStorage.tag="";
+				localStorage.userName="";
 				username.hide();
 				$("#login").show();
 				$("#register").show();

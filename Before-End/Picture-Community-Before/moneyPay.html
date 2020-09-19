@@ -3,10 +3,12 @@
 	<head>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
-		<link rel="stylesheet" type="text/css" href="css/page.css"/>
+		<link rel="stylesheet" type="text/css" href="css/page凯.css"/>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
 		<link rel="stylesheet" type="text/css" href="css/moneyPay.css"/>
 		<link rel="stylesheet" type="text/css" href="css/information.css"/>
 		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
 		<title>图片社区</title>
 		<style>
 			.mark-style{
@@ -34,7 +36,9 @@
 				<div class="navbar-nav">
 					<ul class="nav nav-tabs" role="tablist">
 						<li role="presentation" style="margin: 0 40px 0 0;" >
-							<span style="height: 40px;line-height: 40px;font-weight: bold;font-size: 18px;" id="mainPage">图片社区</span>
+							<span style="height: 40px;line-height: 40px;font-weight: bold;font-size: 18px;" id="mainPage">
+								<a href="new凯.html" style="text-decoration: none;">图片社区</a>
+							</span>
 						</li>
 						<li role="presentation" style="margin: 0 20px 0 0;position: absolute;top:0px;left: 150px;display: flex;">
 							<div style="width: 40px;height: 40px;background-color: white;border:none;border-bottom: 1px solid #0A88D3 ; border-top: 1px solid #0A88D3 ;">
@@ -55,20 +59,26 @@
 									<th>About</th>
 								</tr>
 								<tr>
-									<td id="blog">博客</td>
+									<td id="blog">
+										<a href="csdn.html" style="text-decoration: none;">博客</a>
+									</td>
 								</tr>
 								<tr>
-									
-									<td id="exit">注销</td>
+									<td id="exit">
+										<a style="text-decoration: none;">注销</a>	
+									</td>
 								</tr>
 								<tr>
-									<td id="us">关于我们</td>
+									<td id="us">
+										<a href="us.html" style="text-decoration: none;">关于我们</a>
+										
+									</td>
 								</tr>
 							</table>
 						</li>
 						<div id="navbar" style="position: absolute;left: 1200px; top:10px; display: flex;">
-							<li style="margin: 0 40px 0 20px;"><a id="login" style="color: black;" href="loginPage.html">登录</a></li>
-							<li style="margin: 0 40px 0 20px;"><a id="register" style="color: black;" href="registerPage.html">注册</a></li>
+							<li style="margin: 0 40px 0 20px;"><a id="login" style="color: black;text-decoration: none;" href="loginPage.html">登录</a></li>
+							<li style="margin: 0 40px 0 20px;"><a id="register" style="color: black;text-decoration: none;" href="registerPage.html">注册</a></li>
 						</div>
 					</ul>
 				</div>
@@ -96,12 +106,6 @@
 			{
 				$("#exit").hide();
 			}
-			$("#mainPage").click(function(){
-				window.location.href="new凯.html";
-			});
-			$("blog").click(function(){
-				window.location.href="blog.html";
-			});
 			$("#exit").click(function(){
 				localStorage.Token="";
 				localStorage.picId="";
@@ -111,15 +115,6 @@
 				username.hide();
 				$("#login").show();
 				$("#register").show();
-			});
-			$("#us").click(function(){
-				window.location.href="us.html";
-			});
-			$("#login").click(function(){
-				window.location.href="loginPage.html";
-			});
-			$("#register").click(function(){
-				window.location.href="registerPage.html";
 			});
 			$("#search").bind("keyup",function(event){
 				if(event.keyCode=="13")
@@ -193,7 +188,7 @@
 									</div>
 									<!-- 账户余额 -->
 									<div class="social_auth" style="margin: 0 0 30px;text-align: center;">
-										当前账户余额：<a id="userbalance">0</a>币
+										当前账户余额：<a id="userbalance">0</a> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;币
 									</div>
 									<form id="login_form" spellcheck="false" class="right_side pure-form">
 										<!-- 充值金额 -->
@@ -204,7 +199,7 @@
 										<!-- 充值按钮 -->
 										<div style="text-align: center;">
 											<div></div>
-											<input style="text-align:center;width: 300px;" class="pure-button button-green" type="submit" value="B币充值" onclick="payMoney()">
+											<input style="text-align:center;width: 300px;" class="pure-button button-green"  value="B币充值" onclick="payMoney()">
 										</div>
 									</form>
 									
@@ -227,44 +222,46 @@
 		</div>
 		
 		<script>
-			var userName=localStorage.username;
+			var userName=localStorage.userName;
 			var userId=localStorage.userId;
 			var token=localStorage.Token;
-			
-			$('#id_username').text=userName;
+			var money;
+			$('#id_username').text(userName);
 			
 			//账户余额显示
 			$.ajax({
-				"url": "http://172.81.239.44/Wallet/getWalletInfo",
+				"url": "http://172.81.239.44/Wallet/getWalletInfo?usId"+userId,
 				"method": "GET",
 				"timeout": 0,
-				"data": JSON.stringify({"userId":userId}),
+				//"data": JSON.stringify({"userId":userId}),
 				success:function(response){
 					if(response.success==true)
 					{
-						$('userbalance').text=responce.nowCoin;
+						$('#userbalance').text(response.nowCoin);
+						money=response.nowCoin;
 					}
 					else
 					{
-						window.location.href="loginPage.html";
+						//window.location.href="loginPage.html";
 					}
 				},
 				error:function(response){
 				  alert("未登录");
-				  window.location.href="loginPage.html";
+				  //window.location.href="loginPage.html";
 				}
 			});
 			
 			//充值记录
 			$.ajax({
-				"url": "http://172.81.239.44/Wallet/getDepositRecord",
+				"url": "http://172.81.239.44/Wallet/getDepositRecord?userId"+userId,
 				"method": "GET",
 				"timeout": 0,
-				"data": JSON.stringify({"userId":userId}),
+				//"data": JSON.stringify({"userId":userId}),
 				success:function(response){
 					if(response.success==true)
 					{
 						var arr=response.list;
+						console.log(arr);
 						var header=$("<span></span>").text("充值记录");
 						header.css("color","black");
 						header.css("font-size","20px");
@@ -277,12 +274,12 @@
 							jilu.css("margin-left","31.5px");
 							jilu.attr("class","mark-style");
 							$("#mark").append(jilu);
-							var data=$("<div></div>").text("时间: "+"item.data");
+							var data=$("<div></div>").text("时间: "+item.pay_time);
 							data.css("height","30px");
 							data.css("padding-left","40px");
 							data.css("color","black");
 							data.css("padding-top","10px")
-							var number=$("<div></div>").text("充值金额"+"item.number");
+							var number=$("<div></div>").text("充值金额"+item.coin);
 							number.css("padding-left","40px");
 							number.css("margin-top","10px");
 							number.css("height","30px");
@@ -307,19 +304,22 @@
 			
 			//交易记录
 			$.ajax({
-				"url": "http://172.81.239.44/Wallet/getDepositRecord",
+				"url": "http://172.81.239.44/Wallet/getConsumeRecord?userId"+userId,
 				"method": "GET",
 				"timeout": 0,
-				"data": JSON.stringify({"userId":"2"}),
+				//"data": JSON.stringify({"userId":"2"}),
 				success:function(response){
 					if(response.success==true)
 					{
-						// var arr=response.list;
+						var arr=response.list;
 						var header=$("<span></span>").text("交易记录");
+						//var obj=eval('('+response+')');
 						header.css("color","black");
 						header.css("font-size","20px");
 						header.attr("class","header-style");
 						$("#mark").append(header);
+						//var arr=obj.List;
+						console.log(arr);
 						arr.forEach(function(item,index){
 							var jilu=$("<div></div>");
 							jilu.css("height","80px");
@@ -327,12 +327,12 @@
 							jilu.css("margin-left","31.5px");
 							jilu.attr("class","mark-style");
 							$("#mark").append(jilu);
-							var data=$("<div></div>").text("时间: "+"item.data");
+							var data=$("<div></div>").text("时间: "+item.pay_time);
 							data.css("height","30px");
 							data.css("padding-left","40px");
 							data.css("color","black");
-							data.css("padding-top","10px")
-							var number=$("<div></div>").text("交易金额"+"item.number");
+							data.css("padding-top","10px");
+							var number=$("<div></div>").text("交易金额"+item.coin);
 							number.css("padding-left","40px");
 							number.css("margin-top","10px");
 							number.css("height","30px");
@@ -359,21 +359,41 @@
 			function payMoney(){
 				var paymoney=$('#id_paymoney').val();
 				var balance=$('#userbalance').val();
+				console.log(paymoney);
 				$.ajax({
-					"url": "http://172.81.239.44/Wallet/depositWallet",
+					"url": "http://172.81.239.44/Wallet/depositWallet?userId="+userId+"&amount="+paymoney,
 					"method": "POST",
 					"timeout": 0,
-					"data": JSON.stringify({"userId":userId,"content":paymoney}),
+					//"data": JSON.stringify({"userId":userId,"content":paymoney}),
 					success:function(response){
 						if(response.success==true)
 						{
-							balance.text=responce.nowCoin;
+							console.log("成功");
+							
+							$.ajax({
+								"url": "http://172.81.239.44/Wallet/getWalletInfo?userId=1",
+								"method": "GET",
+								"timeout": 0,
+								//"data": JSON.stringify({"userId":userId}),
+								success:function(data){
+									if(data.success==true)
+									{
+										$('#userbalance').text(data.nowCoin);
+										//money=data.nowCoin;
+									}
+									else
+									{
+										//window.location.href="loginPage.html";
+									}
+								},
+								error:function(response){
+								  alert("未登录");
+								  //window.location.href="loginPage.html";
+								}
+							});
 							
 						}
-						else
-						{
-							window.location.href="loginPage.html";
-						}
+						
 					},
 					error:function(response){
 					  alert("刷新重试");
@@ -385,7 +405,5 @@
 			
 		</script>
 		
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/jquery.min.js"></script>
 	</body>
 </html>

@@ -1,6 +1,6 @@
 
 body{
-	background:url(../img/back.jpg) no-repeat center 0 fixed;
+	background:url(../img/table_bg.png);
 }
 
 .csdn-box{
@@ -43,8 +43,29 @@ body{
 	 font-size: 18px; 
 	 letter-spacing: 2px;
 	 margin:0 10px 10px 10px;
-	 background-color:#55ff00;
+	 background-color:#02BE6E;
 	float:right;
 	text-align: center;
 }
-
+.btn-success{
+	padding: 12px 10px !important;
+	margin: 0 0 10px;
+	width: 100%;
+	max-width: none !important;
+	border: 1px solid #ccc;
+	box-shadow: inset 0 1px 3px #ddd;
+	color: #fff!important;
+	background-color: #02be6e!important;
+	text-decoration: none!important;
+	border-radius: 50px!important;
+	zoom: 1;
+	line-height: normal;
+	white-space: nowrap;
+	vertical-align: middle;
+	-webkit-user-drag: none;
+	user-select: none;
+	box-sizing: border-box;
+	font-family: inherit;
+	font-size: 100%;
+	outline: none;
+}

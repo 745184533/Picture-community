@@ -1,4 +1,4 @@
-var userid=localStorage.userId;
+var userid = localStorage.getItem("userId");
 console.log(userid);
 var array_tags=[];
 
@@ -21,6 +21,8 @@ function closeBox() {
 /*上传图片并展示*/
 function showImg(){
     //判断是否支持FileReader
+    $('#mydiv').empty();
+    $('#img_id').attr("src", '');//图片路径设置为读取的图片
     if (window.FileReader) {
         var re = new FileReader();
     } else {
@@ -45,7 +47,6 @@ function showImg(){
 
 function showTag(){
     var file =  document.getElementById('img_file').files[0];
-
     var form = new FormData();
     form.append("userId", localStorage.userId);
     form.append("", file);
@@ -75,7 +76,7 @@ function showTag(){
                 var myCheckBox=document.createElement('input');
                 myCheckBox.setAttribute("type","checkbox");
                 myCheckBox.setAttribute("name","tag");
-                myCheckBox.setAttribute("id","tag"+i);
+                //myCheckBox.setAttribute("id","tag"+i);
                 var myLabel=document.createElement('label');
                 myLabel.setAttribute("for","tag"+i);
                 myLabel.innerText=item;
@@ -109,6 +110,7 @@ function check(){
     var tag=$("#tag1").val();
     var tag_1=$("#tag2").val();
     var tag_2=$("#tag3").val();
+    console.log(tag,tag_1,tag_2);
     var price_pic=$("#price").val();
 
     if(intro_pic == null || intro_pic == ""){
@@ -132,16 +134,16 @@ function check(){
         return;
     }
 
+
     else{
         var form = new FormData();
         form.append("tag", tag);
         form.append("tag1", tag_1);
         form.append("tag2", tag_2);
-        form.append("userId", userId);
+        form.append("userId", localStorage.userId);
         form.append("p_info", intro_pic);
         form.append("pictureId",localStorage.pictureId);
         form.append("price", price_pic);
-        //console.log(fileInput.files[0]);
         $.ajax({
             "url": "http://172.81.239.44/Account/Upload2",
             "method": "POST",
@@ -152,13 +154,13 @@ function check(){
             "data": form,
             success:function(data){
                 alert("提交成功！");
+                $('#mydiv').empty();
                 closeBox();
             }
         })
 
     }
 }
-
 
 /*相似图片上传，全部类似的js部分*/
 /*点击弹出按钮*/

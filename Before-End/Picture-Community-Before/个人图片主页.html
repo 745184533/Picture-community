@@ -13,53 +13,99 @@
 </head>
 <body>
 	<!-- 导航栏 -->
-	<div class="title-style">
-		<div class="nav-style">
-			<div class="navbar-nav">
-				<ul class="nav nav-tabs" role="tablist">
-					<li role="presentation" style="margin: 0 40px 0 0;" >
-						<span style="height: 40px;line-height: 40px;font-weight: bold;font-size: 18px;" id="mainPage">图片社区</span>
-					</li>
-					<li role="presentation" style="margin: 0 20px 0 0;position: absolute;top:0px;left: 150px;display: flex;">
-						<div style="width: 40px;height: 40px;background-color: white;border:none;border-bottom: 1px solid #0A88D3 ; border-top: 1px solid #0A88D3 ;">
-							<svg width="40px" height="40px" viewBox="0 0 16 16" class="bi bi-search" style="padding-left: 10px; padding-top:15px;background-color: white;position: absolute;top:-5px" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-								<path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
-								<path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
-							</svg>
+		<div class="title-style">
+			<div class="nav-style">
+				<div class="navbar-nav">
+					<ul class="nav nav-tabs" role="tablist">
+						<li role="presentation" style="margin: 0 40px 0 0;" >
+							<span style="height: 40px;line-height: 40px;font-weight: bold;font-size: 18px;" id="mainPage">
+								<a href="new凯.html" style="text-decoration: none;">图片社区</a>
+							</span>
+						</li>
+						<li role="presentation" style="margin: 0 20px 0 0;position: absolute;top:0px;left: 150px;display: flex;">
+							<div style="width: 40px;height: 40px;background-color: white;border:none;border-bottom: 1px solid #0A88D3 ; border-top: 1px solid #0A88D3 ;">
+								<svg width="40px" height="40px" viewBox="0 0 16 16" class="bi bi-search" style="padding-left: 10px; padding-top:15px;background-color: white;position: absolute;top:-5px" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+									<path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+									<path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+								</svg>
+							</div>
+							<input type="text" id="search" style="width: 300px;height: 40px;font-size: 16px;border: none;border-top: 1px solid #0A88D3 ;border-bottom: #0A88D3 1px solid;"/>
+						</li>
+						<li role="presentation" class="dropdown" style="margin: 0 200px 0 910px;">
+						    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+						      aria-haspopup="true" aria-expanded="true">探索
+							<span class="caret"></span>
+						    </button>
+							<table class="dropdown-menu" aria-labelledby="dropdownMenu1">
+								<tr>
+									<th>About</th>
+								</tr>
+								<tr>
+									<td id="blog">
+										<a href="csdn.html" style="text-decoration: none;">博客</a>
+									</td>
+								</tr>
+								<tr>
+									<td id="exit">
+										<a style="text-decoration: none;">注销</a>	
+									</td>
+								</tr>
+								<tr>
+									<td id="us">
+										<a href="us.html" style="text-decoration: none;">关于我们</a>
+										
+									</td>
+								</tr>
+							</table>
+						</li>
+						<div id="navbar" style="position: absolute;left: 1200px; top:10px; display: flex;">
+							<li style="margin: 0 40px 0 20px;"><a id="login" style="color: black;text-decoration: none;" href="loginPage.html">登录</a></li>
+							<li style="margin: 0 40px 0 20px;"><a id="register" style="color: black;text-decoration: none;" href="registerPage.html">注册</a></li>
 						</div>
-						<input type="text" id="search" style="width: 300px;height: 40px;font-size: 16px;border: none;border-top: 1px solid #0A88D3 ;border-bottom: #0A88D3 1px solid;"/>
-					</li>
-					<li role="presentation" class="dropdown" style="margin: 0 200px 0 910px;">
-					    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
-					      aria-haspopup="true" aria-expanded="true">探索
-						<span class="caret"></span>
-					    </button>
-						<table class="dropdown-menu" aria-labelledby="dropdownMenu1">
-							<tr>
-								<th>About</th>
-							</tr>
-							<tr>
-								<td id="blog">博客</td>
-							</tr>
-							<tr>
-								
-								<td id="exit">注销</td>
-							</tr>
-							<tr>
-								<td id="us">关于我们</td>
-							</tr>
-						</table>
-					</li>
-					<div id="navbar" style="position: absolute;left: 1200px; top:10px; display: flex;">
-						<li style="margin: 0 40px 0 20px;"><a id="login" style="color: black;" href="loginPage.html">登录</a></li>
-						<li style="margin: 0 40px 0 20px;"><a id="register" style="color: black;" href="registerPage.html">注册</a></li>
-
-					</div>
-				</ul>
+					</ul>
+				</div>
 			</div>
 		</div>
-	</div>
-	
+		
+		<script>
+			if(localStorage.userId!=undefined)
+			{
+				console.log(localStorage.userId);
+				$("#login").hide();
+				$("#register").hide();
+				$("#exit").hide();
+				var username=$("<span></span>").text("您好！"+localStorage.userName);
+				username.css("position","absolute");
+				username.css("left","-15px");
+				username.css("top","-1px");
+				$("#navbar").append(username);
+				username.click(function(){
+					//跳转
+					window.location.href="个人图片主页.html";
+				})
+			}
+			else
+			{
+				$("#exit").hide();
+			}
+			$("#exit").click(function(){
+				localStorage.Token="";
+				localStorage.picId="";
+				localStorage.userId="";
+				localStorage.tag="";
+				localStorage.userName="";
+				username.hide();
+				$("#login").show();
+				$("#register").show();
+			});
+			$("#search").bind("keyup",function(event){
+				if(event.keyCode=="13")
+				{
+					localStorage.tag=$("#search").val();
+					window.location.href="showPicture.html";
+					document.getElementById("search").value="";
+				}
+			});
 	<script>
 		if(localStorage.userId!=undefined)
 		{
@@ -135,42 +181,7 @@
 	  <div class="layout">
 	  <input name="nav" type="radio" class="nav collection-radio" id="collection" checked="checked">
 	<div class="page collection">
-		<div class="page-contents" id="page1"> 
-			<script>
-	var settings = {
-  "url": "http://172.81.239.44/Account/getProfilePicture?userId="+user_id,
-  "method": "GET",
-  "timeout": 0,
-  "headers":{"Authorization":"Bearer "+token},
-};
-$.ajax(settings).done(function(response) {
-  console.log(response);
-	var arr=response.upload;
-	var container=document.querySelector("#page1");
-	arr.forEach(function(item,index){
-		var div=document.createElement('div');
-		div.setAttribute("class","thumbnail");
-		var img=document.createElement('img');
-		var pictitle=document.createElement('p');
-		pictitle.innerHTML="<h4>"+item.thatpicture.p_info+"</h4>";
-		pictitle.setAttribute("margin-top","10px");
-		pictitle.setAttribute("tag","h4");
-		//pictitle.setAttribute("size","6");
-		//pictitle.setAttribute("color","#52BAD5");
-		console.log(item.thatpicture.p_info);
-		img.src=item.thatpicture.p_url;
-		img.setAttribute("class","cards");
-		img.setAttribute("id","img1");
-		img.onclick=function(){
-					window.location.href="pictureShow.html";
-					localStorage.setItem('picId',item.thatpicture.p_id);
-				}
-		div.appendChild(img);
-		div.appendChild(pictitle);
-		container.appendChild(div);
-})
-});
-				</script>
+		<div class="page-contents" id="page2"> 
 		</div></div>
 	  	  <label class="nav" for="collection">
 		  <span>    My pictures
@@ -179,49 +190,7 @@ $.ajax(settings).done(function(response) {
 		  </label>
 	  <input name="nav" type="radio" class="upload-radio" id="upload">
 	  <div class="page upload">
-		  <div class="page-contents" id="page2">
-			  <!--
-    <div class="thumbnail"> <a href="#"><img src=" " alt="" width="2000" class="cards" id=picture1/></a>
-      <h4>TITLE</h4>
-      <p class="tag"> </p>
-      <p class="text_column"> </p>
-    </div>
-    <div class="thumbnail"> <a href="#"><img src="img/Reflection 1.jpg" alt="" width="2000" class="cards"/></a>
-      <h4>TITLE</h4>
-      <p class="tag"> </p>
-      <p class="text_column"> </p>
-    </div>
-    <div class="thumbnail"> <a href="#"><img src="img/Reflection 2.jpg"="" width="2000" class="cards"/></a>
-      <h4>TITLE</h4>
-      <p class="tag"> </p>
-      <p class="text_column"> </p>
-    </div>
-    <div class="thumbnail"> <a href="#"><img src="img/Reflection 4.jpg" alt="" width="2000" class="cards"/></a>
-      <h4>TITLE</h4>
-      <p class="tag"> </p>
-      <p class="text_column"> </p>
-    </div>
-		<div class="thumbnail"> <a href="#"><img src="img/Reflection 3.jpg" alt="" width="2000" class="cards"/></a>
-      <h4>TITLE</h4>
-      <p class="tag"> </p>
-      <p class="text_column"> </p>
-    </div>
-    <div class="thumbnail"> <a href="#"><img src="img/Reflection 1.jpg" alt="" width="2000" class="cards"/></a>
-      <h4>TITLE</h4>
-      <p class="tag"> </p>
-      <p class="text_column"> </p>
-    </div>
-    <div class="thumbnail"> <a href="#"><img src="img/Reflection 2.jpg"="" width="2000" class="cards"/></a>
-      <h4>TITLE</h4>
-      <p class="tag"> </p>
-      <p class="text_column"> </p>
-    </div>
-    <div class="thumbnail"> <a href="#"><img src="img/Reflection 4.jpg" alt="" width="2000" class="cards"/></a>
-      <h4>TITLE</h4>
-      <p class="tag"> </p>
-      <p class="text_column"> </p>
-    </div>
--->
+		  <div class="page-contents" id="page1">
 			  </div>
 		  </div>
 	  <label class="nav" for="upload">
@@ -232,8 +201,8 @@ $.ajax(settings).done(function(response) {
 	<script src="js/个人图片主页.js"></script>
   <!-- Footer Section -->
   <footer id="contact">
-    <p class="hero_header">想要分享你的精彩瞬间？</p>
-    <div style="text-align:center;"><a href="#"><div class="button"> 上传图片 </div></a></div>
+    <p class="hero_header">Look for more wondeful pictures？</p>
+    <div style="text-align:center;"><a href="new凯.html"><div class="button"> EXPLORE </div></a></div>
   </footer>
   <!-- Copyrights Section -->
   <div class="copyright">&copy;2020 - <strong></strong></div>

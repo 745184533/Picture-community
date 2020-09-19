@@ -69,6 +69,9 @@ $.ajax(settings).done(function(response) {
 })
 });
 */
+
+
+
 	var settings = {
   "url": "http://172.81.239.44/Account/getProfilePicture?userId="+user_id,
   "method": "GET",
@@ -78,15 +81,61 @@ $.ajax(settings).done(function(response) {
 $.ajax(settings).done(function(response) {
   console.log(response);
 	var arr=response.favorite;
-	var container=document.querySelector("#page2");
+	var container=document.querySelector("#page1");
 	arr.forEach(function(item,index){
-			var div=document.createElement('div');
-			div.setAttribute("class","thumbnail");
-			var img=document.createElement('img');
-			img.src=item.thatpicture.p_url;
-			img.setAttribute("class","cards");
-			div.appendChild(img);
-			container.appendChild(div);
+		var div=document.createElement('div');
+		div.setAttribute("class","thumbnail");
+		var img=document.createElement('img');
+		var pictitle=document.createElement('p');
+		pictitle.innerHTML="<h4>"+item.thatpicture.p_info+"</h4>";
+		pictitle.setAttribute("margin-top","10px");
+		pictitle.setAttribute("tag","h4");
+		//pictitle.setAttribute("size","6");
+		//pictitle.setAttribute("color","#52BAD5");
+		console.log(item.thatpicture.p_info);
+		img.src=item.thatpicture.p_url;
+		img.setAttribute("class","cards");
+		//img.setAttribute("id","img1");
+		img.onclick=function(){
+					window.location.href="pictureShow.html";
+					localStorage.setItem('picId',item.thatpicture.p_id);
+				}
+		div.appendChild(img);
+		div.appendChild(pictitle);
+		container.appendChild(div);
 })
 });
 
+var settings = {
+  "url": "http://172.81.239.44/Account/getProfilePicture?userId="+user_id,
+  "method": "GET",
+  "timeout": 0,
+  "headers":{"Authorization":"Bearer "+token},
+};
+$.ajax(settings).done(function(response) {
+  console.log(response);
+	var arr=response.upload;
+	var container=document.querySelector("#page2");
+	arr.forEach(function(item,index){
+		var div=document.createElement('div');
+		div.setAttribute("class","thumbnail");
+		var img=document.createElement('img');
+		var pictitle=document.createElement('p');
+		pictitle.innerHTML="<h4>"+item.thatpicture.p_info+"</h4>";
+		pictitle.setAttribute("margin-top","10px");
+		pictitle.setAttribute("tag","h4");
+		//pictitle.setAttribute("size","6");
+		//pictitle.setAttribute("color","#52BAD5");
+		console.log(item.thatpicture.p_info);
+		img.src=item.thatpicture.p_url;
+		img.setAttribute("class","cards");
+		//img.setAttribute("id","img1");
+		img.onclick=function(){
+					window.location.href="pictureShow.html";
+					localStorage.setItem('picId',item.thatpicture.p_id);
+				}
+		div.appendChild(img);
+		div.appendChild(pictitle);
+		container.appendChild(div);
+})
+});

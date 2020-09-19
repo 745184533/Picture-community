@@ -23,16 +23,16 @@ token=localStorage.Token;//获取token
 
 //localStorage.setItem('picId','2');
 //localStorage.setItem('userId','5');
-
-if(localStorage.getItem("userId")!=null){//判断用户是否登录
+user_id=localStorage.userId;//获取用户昵称
+if(user_id!=null){//判断用户是否登录
   is_login=true;
 }
 else{
   is_login=false;
-  localStorage.setItem('userId','1');
+  user_id="1";
 }
 
-user_id=localStorage.userId;//取当前用户的id
+
 user_name=localStorage.userName;//取当前用户昵称
 pic_id=localStorage.getItem("picId");//取图片id
 console.log("islogin?"+is_login);
@@ -109,12 +109,10 @@ $.ajax(settings).done(function (response) {
    $(".publisher_info1 label").html(publisher_name);//发布者昵称
    
    if(is_login==true){//设置导航栏
-     $("#login").css("display", "none");
-     $("#register").css("display", "none");
-     $(".headimg").css("display","inline")
+     
      $(".comments").css("display","block");
      $(".restrict").css("display","none");
-     $(".headimg label").html("Hello,"+user_name+"!");
+    
      $(".comment_publisher label").html("@"+user_name);
      if(is_good==false){//设置点赞状态
         $(".good_label").css("color","#a8a2a2");
@@ -136,9 +134,7 @@ $.ajax(settings).done(function (response) {
       }
     }
     else{//未登录时
-      $("#login").css("display", "inline");
-      $("#register").css("display", "inline");
-      $(".headimg").css("display","none");
+      
       $(".comments").css("display","none");
       $(".restrict").css("display","block");
       $(".good_label").css("color","#a8a2a2");
@@ -150,7 +146,7 @@ $.ajax(settings).done(function (response) {
            
 });
 
-if(is_login==true){
+/*if(is_login==true){
   var settings = {
     "url": "http://172.81.239.44/Account/getUserInfo?userId="+user_id,
     "method": "GET",
@@ -163,7 +159,7 @@ if(is_login==true){
     $(".headimg label").html("Hello,"+user_name+"!");
     $(".comment_publisher label").html("@"+user_name);
   });
-}
+}*/
  
  
  showComments();//展示图片评论
@@ -239,6 +235,8 @@ $("#good").click(function() {//点赞和取消点赞
    }
    else{
     alert("请先登录！！！");
+    window.location.href="loginPage.html";
+    //window.open("loginPage.html");
    }
 
 });
@@ -289,6 +287,8 @@ $("#collect").click(function() {//收藏和取消收藏
    }
    else{
     alert("请先登录！！！");
+    window.location.href="loginPage.html";
+    //window.open("loginPage.html");
    }
     
 
@@ -338,6 +338,8 @@ $(".publisher_info1 button").click(function(){//关注和取消关注
   }
   else{
     alert("请先登录！！！");
+    window.location.href="loginPage.html";
+    //window.open("loginPage.html");
   }
    
 
@@ -366,16 +368,7 @@ $("#download").click(function(){//下载
           if(is_download==true){
              alert("您已经购买本图片，可以直接下载！");
              window.open(source);
-             //$(".download a").css("display","block");
-             //$(".download a").attr("herf",source);
-             //downFile(source,"img.jpg");
-             
-             //downloadIamge(source,"img.jpg");
-
-             //$(".download a").attr("hidden","false");
-              /*var $a = $("<a>下载</a>").attr("href", source).attr("download", "img");
-              $(".download label").append($a);
-              $a[0].click();*/
+            
           }
           else{
             alert("这是您自己发布的图片!");
@@ -388,6 +381,8 @@ $("#download").click(function(){//下载
     }
     else{
       alert("请先登录！！！");
+      window.location.href="loginPage.html";
+      //window.open("loginPage.html");
     }
     
 })

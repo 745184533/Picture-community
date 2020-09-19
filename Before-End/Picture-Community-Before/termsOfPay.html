@@ -19,68 +19,109 @@
 <body class="registerBody">
 
 <!--=====================================================header==================================================-->
-
+	<!-- 导航栏 -->
 	<div class="title-style">
 		<div class="nav-style">
 			<div class="navbar-nav">
 				<ul class="nav nav-tabs" role="tablist">
-					<li role="presentation" class="navtitle">
-						<span class="navlogo">图片社区</span>
-						</li>
-				    <li role="presentation" class="active" style="margin: 0 40px 0 0;" >
-						<a href="#照片" aria-controls="home" role="tab" data-toggle="tab"style="color: black;">照片</a>
-						</li>
-				    <li role="presentation" class="navtitle">
-						<a href="#插画" aria-controls="home" role="tab" data-toggle="tab"style="color: black;">插画</a>
-						</li>
-					<li role="presentation" class="navtitle">
-						<a href="#向量" aria-controls="home" role="tab" data-toggle="tab"style="color: black;">向量</a>
-						</li>
-					<li role="presentation" class="dropdown">
+					<li role="presentation" style="margin: 0 40px 0 0;" >
+						<span style="height: 40px;line-height: 40px;font-weight: bold;font-size: 18px;" id="mainPage">图片社区</span>
+					</li>
+					<li role="presentation" style="margin: 0 20px 0 0;position: absolute;top:0px;left: 150px;display: flex;">
+						<div style="width: 40px;height: 40px;background-color: white;border:none;border-bottom: 1px solid #0A88D3 ; border-top: 1px solid #0A88D3 ;">
+							<svg width="40px" height="40px" viewBox="0 0 16 16" class="bi bi-search" style="padding-left: 10px; padding-top:15px;background-color: white;position: absolute;top:-5px" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+								<path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+								<path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+							</svg>
+						</div>
+						<input type="text" id="search" style="width: 300px;height: 40px;font-size: 16px;border: none;border-top: 1px solid #0A88D3 ;border-bottom: #0A88D3 1px solid;"/>
+					</li>
+					<li role="presentation" class="dropdown" style="margin: 0 200px 0 910px;">
 					    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
-					      aria-haspopup="true" aria-expanded="true">探索<span class="caret"></span>
+					      aria-haspopup="true" aria-expanded="true">探索
+						<span class="caret"></span>
 					    </button>
 						<table class="dropdown-menu" aria-labelledby="dropdownMenu1">
 							<tr>
-								<th>Media</th>
-								<th>Community</th>
 								<th>About</th>
 							</tr>
 							<tr>
-								<td><a>小编精选</a></td>
-								<td><a>博客</a></td>
-								<td><a>服务条款</a></td>
+								<td id="blog">博客</td>
 							</tr>
 							<tr>
-								<td><a>Popular Images</a></td>
-								<td><a>论坛</a></td>
-								<td><a>隐私政策</a></td>
+								
+								<td id="exit">注销</td>
 							</tr>
 							<tr>
-								<td><a>Popular Videos</a></td>
-								<td><a>Artists</a></td>
-								<td><a>关于我们</a></td>
+								<td id="us">关于我们</td>
 							</tr>
 						</table>
 					</li>
-					<li class="navtitle" style="margin: 0 40px 0 0;">
-						<a href="loginPage.html" style="color: black;">登录</a>
-					</li>
-					<li class="navtitle" style="margin: 0 40px 0 0;">
-						<a href="registerPage.html" style="color: black;">注册</a>
-					</li>
-					<li style="margin: 0 20px 0 0;">
-						<a href="#上传" style="color: black;">
-						<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-upload" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-						    <path fill-rule="evenodd" d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
-						    <path fill-rule="evenodd" d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
-					    </svg>上传</a>
-					</li>
+					<div id="navbar" style="position: absolute;left: 1200px; top:10px; display: flex;">
+						<li style="margin: 0 40px 0 20px;"><a id="login" style="color: black;" href="loginPage.html">登录</a></li>
+						<li style="margin: 0 40px 0 20px;"><a id="register" style="color: black;" href="registerPage.html">注册</a></li>
+					</div>
 				</ul>
 			</div>
 		</div>
 	</div>
-
+	
+	<script>
+		if(localStorage.userId!=undefined)
+		{
+			console.log(localStorage.userId);
+			$("#login").hide();
+			$("#register").hide();
+			$("#exit").hide();
+			var username=$("<span></span>").text("您好！"+localStorage.userName);
+			username.css("position","absolute");
+			username.css("left","-15px");
+			username.css("top","-1px");
+			$("#navbar").append(username);
+			username.click(function(){
+				//跳转
+				window.location.href="个人图片主页.html";
+			})
+		}
+		else
+		{
+			$("#exit").hide();
+		}
+		$("#mainPage").click(function(){
+			window.location.href="new凯.html";
+		});
+		$("blog").click(function(){
+			window.location.href="blog.html";
+		});
+		$("#exit").click(function(){
+			localStorage.Token="";
+			localStorage.picId="";
+			localStorage.userId="";
+			localStorage.tag="";
+			localStorage.userName="";
+			username.hide();
+			$("#login").show();
+			$("#register").show();
+		});
+		$("#us").click(function(){
+			window.location.href="us.html";
+		});
+		$("#login").click(function(){
+			window.location.href="loginPage.html";
+		});
+		$("#register").click(function(){
+			window.location.href="registerPage.html";
+		});
+		$("#search").bind("keyup",function(event){
+			if(event.keyCode=="13")
+			{
+				localStorage.tag=$("#search").val();
+				window.location.href="showPicture.html";
+				document.getElementById("search").value="";
+			}
+		});
+	</script>
+	
 <!--====================================================content==================================================-->
 	<div id="content" class="clearfix">
 		<div class="pure-u-1 pure-u-md-3-4">

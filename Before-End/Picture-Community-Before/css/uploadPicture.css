@@ -43,3 +43,60 @@
     text-decoration: none;
     color: #2D2C3B;
 }
+
+.radio-label {
+    display: inline-block;
+    position: relative;
+}
+.radio-label input[type="checkbox"] {
+    appearance: none; /*清楚默认样式*/
+    -webkit-appearance: none;
+    /* opacity: 0; */
+    outline: none;
+    position: absolute;
+    z-index: 2;
+    width: 6px;
+    height: 6px;
+    top: 10px;
+    left: 10px;
+    border-radius: 50%;
+    background: #b4b4b4;
+}
+.radio-label label {
+    display: inline-block;
+    min-width: 50px;
+    height: 24px;
+    line-height:24px;
+    text-align: center;
+    padding-right: 10px;
+    border-radius: 5px;
+    padding-left: 25px;
+    color: #fff;
+    background-color: #c9c9c9;
+}
+.radio-label input[type="checkbox"]:checked {
+    opacity: 0;
+}
+.radio-label input[type="checkbox"]:checked + label {
+    color: #fff;
+    background-color: #3597db;
+}
+.radio-label input[type="checkbox"]:checked + label::after {
+    content: "";
+    position: absolute;
+    left: 12px;
+    top: 5px;
+    width: 5px;
+    height: 12px;
+    border-right: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    transform: rotate(45deg);
+}
+.iconq {
+    font-size: 25px;
+    position: absolute;
+    right: -11px;
+    bottom: -11px;
+    z-index: 1;
+    opacity: 0;
+}

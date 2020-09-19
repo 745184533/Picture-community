@@ -52,6 +52,7 @@
 					<div id="navbar" style="position: absolute;left: 1200px; top:10px; display: flex;">
 						<li style="margin: 0 40px 0 20px;"><a id="login" style="color: black;" href="loginPage.html">登录</a></li>
 						<li style="margin: 0 40px 0 20px;"><a id="register" style="color: black;" href="registerPage.html">注册</a></li>
+
 					</div>
 					<li style="margin: 0 10px 0 0; padding-top: 10px;"><font id="#" style="color: black;" onclick="popBox()">
 					</li>	
@@ -126,10 +127,10 @@
     <img src="img/profile.png" alt="" class="profile">
 		     <h3 id="user"> </h3>
    <div class="state">
-	   <img src="img/iconfinder_multimedia-19_2849817.png" alt="" class="icon" title="收藏数" style="vertical-align:middle"><font size="6" color="white" id=icon1></font>
-	   <img src="img/iconfinder_multimedia-05_2849831.png" alt="" class="icon" title="关注者" style="vertical-align:middle"><font size="6" color="white" id=icon2></font>
-	   <img src="img/iconfinder_multimedia-10_2849826.png" alt="" class="icon" title="获赞数" style="vertical-align:middle"><font size="6" color="white" id=icon3></font>
-	   <img src="img/iconfinder_multimedia-14_2849822.png" alt="" class="icon" title="评论数" style="vertical-align:middle"><font size="6" color="white" id=icon4></font>
+	   <img src="img/iconfinder_multimedia-19_2849817.png" alt="" class="icon" title="收藏数" style="vertical-align:middle"><font size="8" color="white" id=icon1></font>
+	   <img src="img/iconfinder_multimedia-05_2849831.png" alt="" class="icon" title="关注者" style="vertical-align:middle"><font size="8" color="white" id=icon2></font>
+	   <img src="img/iconfinder_multimedia-10_2849826.png" alt="" class="icon" title="获赞数" style="vertical-align:middle"><font size="8" color="white" id=icon3></font>
+	   <img src="img/iconfinder_multimedia-14_2849822.png" alt="" class="icon" title="评论数" style="vertical-align:middle"><font size="8" color="white" id=icon4></font>
 	   </div></div>
   </section>
   <!-- Stats Gallery Section -->
@@ -140,10 +141,10 @@
 		<div class="page-contents" id="page1"> 
 			<script>
 	var settings = {
-  "url": "http://172.81.239.44/Account/getProfilePicture?userId=1",
+  "url": "http://172.81.239.44/Account/getProfilePicture?userId="+user_id,
   "method": "GET",
   "timeout": 0,
-  "headers":{"Authorization":"Bearer "+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI4NTRjZGZmOS03ODQ2LTRjYzAtOWNjMy01ZjhkOTJjMmY5NjAiLCJuYW1lIjoicm9vdCIsIm5iZiI6MTYwMDQxOTI1MiwiZXhwIjoxNjAwNDE5ODUyLCJpc3MiOiJqd3RJc3N1ZXJ0ZXN0IiwiYXVkIjoiand0QXVkaWVuY2V0ZXN0In0.e7tPDpt2RFxEsqL_cLsp8K32JJbQSAY-RGAeuw95R9w"},
+  "headers":{"Authorization":"Bearer "+token},
 };
 $.ajax(settings).done(function(response) {
   console.log(response);
@@ -175,7 +176,7 @@ $.ajax(settings).done(function(response) {
 				</script>
 		</div></div>
 	  	  <label class="nav" for="collection">
-		  <span>    我的收藏
+		  <span>    My pictures
 			  
 			  </span>
 		  </label>
@@ -227,7 +228,7 @@ $.ajax(settings).done(function(response) {
 			  </div>
 		  </div>
 	  <label class="nav" for="upload">
-		  <span>我上传的图片</span>
+		  <span>My collection</span>
 		  </label>
 	  </div>
 		</div>

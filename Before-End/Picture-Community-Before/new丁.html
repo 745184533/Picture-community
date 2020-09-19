@@ -136,7 +136,7 @@
             <ul class="nav nav-tabs" role="tablist">
                 <li role="presentation" style="margin: 0 40px 0 0;" >
 							<span style="height: 40px;line-height: 40px;font-weight: bold;font-size: 18px;" id="mainPage">
-								<a href="new凯.html" style="text-decoration: none;">图片社区</a>
+								<a href="new丁.html" style="text-decoration: none;">图片社区</a>
 							</span>
                 </li>
                 <li role="presentation" style="margin: 0 20px 0 0;position: absolute;top:0px;left: 150px;display: flex;">
@@ -179,6 +179,11 @@
                     <li style="margin: 0 40px 0 20px;"><a id="login" style="color: black;text-decoration: none;" href="loginPage.html">登录</a></li>
                     <li style="margin: 0 40px 0 20px;"><a id="register" style="color: black;text-decoration: none;" href="registerPage.html">注册</a></li>
                 </div>
+				<li style="margin: 0 10px 0 0; padding-top: 10px;"id="upload1"><font id="#" style="color: black;" onclick="popBox()">
+					<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-upload" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+					    <path fill-rule="evenodd" d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+					    <path fill-rule="evenodd" d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+				    </svg>上传</font></li>
             </ul>
         </div>
     </div>
@@ -317,10 +322,10 @@
     });
     /*没登录的时候，跳转到登录界面*/
     $("#upload1").click(function(){
-        if(localStorage.userId==undefined)
-        {
-            window.location.href="loginPage.html";
-        }
+    	if(localStorage.userId==undefined||localStorage.userId=="")
+    	{
+    		window.location.href="loginPage.html";
+    	}
     })
     var head=0;
     var userid=localStorage.userId;
@@ -493,17 +498,18 @@
         button.hide();
         for(var i=0;i<4;i++)
         {
-            getpic(4+i+head);
+            getpic(i+head);
             if(i==3)
             {
                 head=head+4;
+				var top1=head*300;
                 $("#btnblock").css("top",top1+"px");
                 button.show();
             }
         }
     });
     $("#mainPage").click(function(){
-        window.location.href="new凯.html"
+        window.location.href="new丁.html"
     })
     $("#search_nav").bind("keyup", function (event) {
         if (event.keyCode == "13") {

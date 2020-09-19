@@ -1128,17 +1128,32 @@
 		<script>
 			var usid=5;
 			usid = localStorage.userId;
+		if(localStorage.userId!=undefined)
+		{
 		
+			console.log(localStorage.userId);
+			$("#login").hide();
+			$("#register").hide();
+			var username=$("<span></span>").text("您好！"+localStorage.userName);
+			username.css("position","absolute");
+			username.css("left","-15px");
+			username.css("top","-1px");
+			$("#navbar").append(username);
+			username.click(function(){
+				//跳转
+				window.location.href="个人图片主页.html";
+			})
+		}
 			function getInfo() {
 				
 			
 				$.ajax({
-					"url": "http://172.81.239.44/Account/getUserInfo?userId=5",
+					"url": "http://172.81.239.44/Account/getUserInfo?userId="+usid,
 					"method": "GET",
 					"timeout": 0,
 					
 					success:function(response){
-						console.log("?");
+						
 						//var obj = eval('(' + response + ')');
 						$('#id_username').val(response.userName);
 						$('#id_first_name').val(response.name);
@@ -1176,6 +1191,7 @@
 				};
 				
 				$.ajax(settings).done(function (response) {
+					alert("保存成功！");
 				  console.log(response);
 				});
 			});

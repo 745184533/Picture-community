@@ -11,7 +11,7 @@
 		<link rel="stylesheet" type="text/css" href="css/csdn.css"/>
 		<title>图片社区</title>
 	</head>
-	<body>
+	<body background="img/002.jpg">
 		
 		
 		
@@ -113,58 +113,56 @@
 		
 		
 		<div id="content" class="clearfix">
-		<div style="margin: 30px auto;">
-			<div id="account_tabs" class="tab_menu hide-xs hide-sm hide-md" style="margin:auto;border-top:0">
-				<div style="max-width:1440px;margin:auto;padding:0 5px;text-align:left">
-					<a style="float:right" href="个人图片主页.html">
-						<font style="vertical-align: inherit;">
-							<font style="vertical-align: inherit;">我的简历
+			<div style="margin: 30px auto;">
+				<div id="account_tabs" class="tab_menu hide-xs hide-sm hide-md" style="margin:auto;border-top:0">
+					<div style="max-width:1440px;margin:auto;padding:0 5px;text-align:left">
+						<a style="float:right" href="个人图片主页.html">
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;">我的简历
+								</font>
 							</font>
-						</font>
-					</a>
-					<a href="pictureShow.html">
-						<font style="vertical-align: inherit;">
-							<font style="vertical-align: inherit;">图片
+						</a>
+						<a href="pictureShow.html">
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;">图片
+								</font>
 							</font>
-						</font>
-					</a>
-					<a href="csdn.html" class="selected">
-						<font style="vertical-align: inherit;">
-							<font style="vertical-align: inherit;">博客
+						</a>
+						<a href="csdn.html" class="selected">
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;">博客
+								</font>
 							</font>
-						</font>
-					</a>
-					<a href="moneyPay.html">
-						<font style="vertical-align: inherit;">
-							<font style="vertical-align: inherit;">钱包
+						</a>
+						<a href="moneyPay.html">
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;">钱包
+								</font>
 							</font>
-						</font>
-					</a>
-					<a href="myinformation.html">
-						<font style="vertical-align: inherit;">
-							<font style="vertical-align: inherit;">设置
+						</a>
+						<a href="myinformation.html">
+							<font style="vertical-align: inherit;">
+								<font style="vertical-align: inherit;">设置
+								</font>
 							</font>
-						</font>
-					</a>
+						</a>
+					</div>
 				</div>
 			</div>
-		</div>
-		</div>
-		</div><!--wrapp-->
-		<div style="clear:both"></div>
-		<div class="csdn-box" id="csdnbox1">
+			<div class="csdn-box" id="csdnbox1">
+				
+			</div>
+			<center style="width:100%">
+				<button class="btn-success" onclick="writtingblog()" style="text-align: center;width: 200px;">写博客</button>
+			</center>	
+			<div id="writting"></div>
 		</div>
 
-		<center style="width:100%">
-			<button class="btn-success" onclick="writtingblog()" style="text-align: center;width: 200px;">写博客</button>
-		</center>
-				
-							<div id="writting"></div>
 						
-				<script>
+			<script>
 			//localStorage.id=5;
 				var usernam="gyq";
-				usernam=localStorage.userName;
+				usernam=localStorage.userId;
 				usernam=""+usernam;
 			if(localStorage.userId!=undefined)
 			{

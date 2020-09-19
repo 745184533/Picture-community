@@ -1,5 +1,4 @@
-localStorage.setItem('userId', '123123');
-var userid = localStorage.getItem("userId");
+var userid=localStorage.userId;
 console.log(userid);
 var array_tags=[];
 
@@ -48,7 +47,7 @@ function showTag(){
     var file =  document.getElementById('img_file').files[0];
 
     var form = new FormData();
-    form.append("userId", "1");
+    form.append("userId", localStorage.userId);
     form.append("", file);
     $.ajax({
         "url": "http://172.81.239.44/Account/Upload1",
@@ -132,10 +131,6 @@ function check(){
         alert("提交失败！定价请填入数字,且范围在0-10000之间！");
         return;
     }
-    else if((!array_tags.include(tag)) || (!array_tags.include(tag_1) || (!array_tags.include(tag_2)))){
-        alert("提交失败！标签必须在上述10个tag中且不能重复！");
-        return;
-    }
 
     else{
         var form = new FormData();
@@ -144,7 +139,7 @@ function check(){
         form.append("tag2", tag_2);
         form.append("userId", userId);
         form.append("p_info", intro_pic);
-        form.append("pictureId",185);
+        form.append("pictureId",localStorage.pictureId);
         form.append("price", price_pic);
         //console.log(fileInput.files[0]);
         $.ajax({

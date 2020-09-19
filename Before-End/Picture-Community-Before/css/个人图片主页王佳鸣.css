@@ -294,7 +294,7 @@ label.nav svg {
   grid-column-end: span 3;
   padding: 0px 20px;
   display: flex;
-  align-items: center;
+  /*align-items: center;*/
 }
 .layout{
 	display:grid;
@@ -389,6 +389,7 @@ input[type="radio"]:checked + .page .page-contents > * {
   margin: 40px;
 cursor: pointer;
 }
+
 /* Mobile */
 @media (max-width: 320px) {
 .logo {

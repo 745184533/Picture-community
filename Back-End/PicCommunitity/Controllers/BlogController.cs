@@ -30,13 +30,14 @@ namespace PicCommunitity.Controllers
             //得到最新的十条博客
             var list = context.blog.ToList();
             var returnList = new List<ReturnBlogInfo> { };
-            var blogNum = context.blog.Count();
-            for (var i = blogNum - 1 - 10 * times; i >= blogNum -11- 10* times && i >= 0; --i)
+            var blogNum = context.tableCount.Find(1).blog;
+            for (var i = blogNum - 1 - 10 * times; i >= blogNum - 11 - 10 * times && i >= 0; --i)
             {
                 var nowBlogUser = context.ownBlog.FirstOrDefault(b => b.b_id == list[i].b_id);
                 var nowBlogUserInfo = context.userInfo.FirstOrDefault(u => u.u_id == nowBlogUser.u_id);
                 var newReturnBlogInfo = new ReturnBlogInfo
                 {
+
                     blogDate = list[i].b_date,
                     blogId = list[i].b_id,
                     content = list[i].b_text,
@@ -57,7 +58,7 @@ namespace PicCommunitity.Controllers
         }
 
 
-        [Authorize]
+        ////[Authorize]
         [Route("writeBlog")]
         [HttpPost]
         public IActionResult writeBlog([FromBody] BlogInfo Blog)
@@ -65,17 +66,22 @@ namespace PicCommunitity.Controllers
             var nowblog = new blog
             {
                 b_date = DateTime.Now,
-                b_id = (context.blog.Count() + 1).ToString(),
+                b_id = (context.tableCount.Find(1).blog + 1).ToString(),
                 b_text = Blog.content,
                 b_type = "tt"
             };
             context.blog.Add(nowblog);
             context.SaveChanges();
+            //添加blog数量
+            var tableCount = context.tableCount.Find(1);
+            tableCount.blog += 1;
+            context.tableCount.Attach(tableCount);
+            context.SaveChanges();
             //添加联系集
             var newOwnBlog = new ownBlog
             {
                 u_id = Blog.userId,
-                b_id = (context.blog.Count()).ToString()
+                b_id = (context.tableCount.Find(1).blog).ToString()
             };
             context.ownBlog.Add(newOwnBlog);
             context.SaveChanges();

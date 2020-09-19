@@ -21,12 +21,16 @@
 <script>
     function submit() {
         var form = new FormData();
-        var file = document.getElementById('img_file').files[0];
-        form.append("",file);
         form.append("userId", "1");
+        form.append("pictureId", "100");
+        form.append("p_info", "ssss");
+        form.append("price", "100");
+        form.append("tag", "black");
+        form.append("tag1", "wet");
+        form.append("tag2", "white");
 
         var settings = {
-            "url": "http://172.81.239.44/Account/Upload1",
+            "url": "http://172.81.239.44/Account/Upload2",
             "method": "POST",
             "timeout": 0,
             "processData": false,

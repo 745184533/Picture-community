@@ -357,7 +357,6 @@ E:\Github\Picture-community\Back-End\PicCommunitity\bin\Release\netcoreapp3.1\Sy
 E:\Github\Picture-community\Back-End\PicCommunitity\bin\Release\netcoreapp3.1\System.Security.Cryptography.ProtectedData.dll
 E:\Github\Picture-community\Back-End\PicCommunitity\bin\Release\netcoreapp3.1\System.Xml.XPath.XmlDocument.dll
 E:\Github\Picture-community\Back-End\PicCommunitity\bin\Release\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-E:\Github\Picture-community\Back-End\PicCommunitity\obj\Release\netcoreapp3.1\PicCommunitity.csprojAssemblyReference.cache
 E:\Github\Picture-community\Back-End\PicCommunitity\obj\Release\netcoreapp3.1\PicCommunitity.AssemblyInfoInputs.cache
 E:\Github\Picture-community\Back-End\PicCommunitity\obj\Release\netcoreapp3.1\PicCommunitity.AssemblyInfo.cs
 E:\Github\Picture-community\Back-End\PicCommunitity\obj\Release\netcoreapp3.1\PicCommunitity.csproj.CoreCompileInputs.cache
@@ -481,3 +480,5 @@ D:\Picture-community\Back-End\PicCommunitity\obj\Release\netcoreapp3.1\PicCommun
 D:\Picture-community\Back-End\PicCommunitity\obj\Release\netcoreapp3.1\PicCommunitity.pdb
 D:\Picture-community\Back-End\PicCommunitity\obj\Release\netcoreapp3.1\PicCommunitity.genruntimeconfig.cache
 D:\Picture-community\Back-End\PicCommunitity\bin\Release\netcoreapp3.1\PicCommunitity.xml
+E:\Github\Picture-community\Back-End\PicCommunitity\bin\Release\netcoreapp3.1\PicCommunitity.xml
+E:\Github\Picture-community\Back-End\PicCommunitity\obj\Release\netcoreapp3.1\PicCommunitity.csprojAssemblyReference.cache

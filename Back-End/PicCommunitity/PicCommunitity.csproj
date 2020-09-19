@@ -11,10 +11,11 @@
     <DocumentationFile>E:\Github\Picture-community\Back-End\PicCommunitity\PicCommunitity.xml</DocumentationFile>
     <PlatformTarget>x64</PlatformTarget>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <OutputPath>E:\Github\Picture-community\Back-End\PicCommunitity\PicCommunitity.xml</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>D:\Picture-community\Back-End\PicCommunitity\PicCommunitity.xml</DocumentationFile>
+    <DocumentationFile>E:\Github\Picture-community\Back-End\PicCommunitity\PicCommunitity.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

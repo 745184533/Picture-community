@@ -159,7 +159,7 @@
 							<li style="margin: 0 40px 0 20px;"><a id="login" style="color: black;">登录</a></li>
 							<li style="margin: 0 40px 0 20px;"><a id="register" style="color: black;">注册</a></li>
 						</div>
-						<li style="margin: 0 10px 0 0; padding-top: 10px;"><font id="#" style="color: black;" onclick="popBox()">
+						<li style="margin: 0 10px 0 0; padding-top: 10px;"id="upload1"><font id="#" style="color: black;" onclick="popBox()">
 							<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-upload" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 							    <path fill-rule="evenodd" d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
 							    <path fill-rule="evenodd" d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
@@ -293,13 +293,13 @@
 			// 			window.location.href="loginPage.html";
 			//    }
 			// });
-			if(localStorage.userId!=undefined)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+			if(localStorage.userId!=undefined&&localStorage.userId!="")                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
 			{
 			
 				console.log(localStorage.userId);
 				$("#login").hide();
 				$("#register").hide();
-				$("#exit").hide();
+				$("#exit").show();
 				var username=$("<span></span>").text("您好！"+localStorage.userName);
 				username.css("position","absolute");
 				username.css("left","-15px");
@@ -396,18 +396,13 @@
 										  "url": "http://172.81.239.44/Picture/likePicture?userId="+userid+"&picId="+item.picId+"&type=LK",
 										  "method": "POST",
 										  "timeout": 0,
-										  "headers": {
-										      "Authorization": "bearer "+localStorage.Token
-										    },
 										  success:function(){
 											var	id1=localStorage.userId;
 											  $.ajax({
 											     "url": "http://172.81.239.44/Picture/getPicViewInfo?userID="+id1+"&picID="+item.picId,
 											     "method": "GET",
 											     "timeout": 0,
-												 "headers": {
-												     "Authorization": "bearer "+localStorage.Token
-												   },
+												 
 											     success:function(data){
 													 spanZ.text(data.numberLike);
 											     },
@@ -437,9 +432,6 @@
 							  			  "url": "http://172.81.239.44/Picture/favoritePicture?userId="+userid+"&picId="+item.picId,
 							  			  "method": "POST",
 							  			  "timeout": 0,
-										 "headers": {
-										     "Authorization": "bearer "+localStorage.Token
-										   },
 							  			  success:function(){
 											  console.log("成功");
 							  				  var id1=localStorage.id
@@ -447,10 +439,6 @@
 							  				     "url": "http://172.81.239.44/Picture/getPicViewInfo?userID="+id1+"&picID="+item.picId,
 							  				     "method": "GET",
 							  				     "timeout": 0,
-												 "headers": {
-												     "Authorization": "bearer "+localStorage.Token
-												   },
-												  
 							  				     success:function(data){
 							  						 spanS.text(data.numberFavorite);
 							  				     },
@@ -560,6 +548,12 @@
 					
 			// 	});
 			// }
+			$("#upload1").click(function(){
+				if(localStorage.userId==undefined||localStorage.userId=="")
+				{
+					window.location.href="loginPage.html";
+				}
+			})
 			var button=$("<button></button>");
 			button.attr("class","Btn");
 			button.text("获取更多");

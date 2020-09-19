@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="150004bc-c4ab-48c0-98e7-6c106321ef47" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/uploadPicture.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/uploadPicture.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new丁.html" beforeDir="false" afterPath="$PROJECT_DIR$/new丁.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/showPicture.html" beforeDir="false" afterPath="$PROJECT_DIR$/showPicture.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,10 +41,18 @@
       <option name="presentableId" value="Default" />
       <updated>1600482623647</updated>
       <workItem from="1600482624691" duration="3580000" />
+      <workItem from="1600493512272" duration="1912000" />
+      <workItem from="1600500703919" duration="336000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="421" y="135" key="FileChooserDialogImpl" timestamp="1600495652697">
+      <screen x="0" y="0" width="1280" height="760" />
+    </state>
+    <state x="421" y="135" key="FileChooserDialogImpl/0.0.1280.760@0.0.1280.760" timestamp="1600495652697" />
   </component>
 </project>

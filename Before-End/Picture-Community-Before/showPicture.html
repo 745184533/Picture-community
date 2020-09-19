@@ -326,14 +326,14 @@
                     }
 
                 })
-                localStorage.tag="";
+                //localStorage.tag="";
             }
         })
     }
 
     if(localStorage.search_type=="searchSimilar"){
         $("search").val("");
-        localStorage.tag="";
+        //localStorage.tag="";
         var container = document.querySelector('section');
         //var get_picture = localStorage.pic_Lists;
         //console.log(get_picture[1]);
@@ -355,7 +355,7 @@
                 localStorage.setItem('picId', pic_id_array[index]);
             }
         })
-        localStorage.setItem("pic_Lists","");
+        //localStorage.setItem("pic_Lists","");
     }
 
     $("#search_nav").bind("keyup", function (event) {

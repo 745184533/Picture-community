@@ -88,12 +88,13 @@
 			// var arr=localStorage.picIds;
 			// console.log(arr[1]);
 			// console.log(arr.length);
-			if(localStorage.userId!=undefined)
+			if(localStorage.userId!=undefined&&localStorage.userId!="")
 			{
+			
 				console.log(localStorage.userId);
 				$("#login").hide();
 				$("#register").hide();
-				$("#exit").hide();
+				$("#exit").show();
 				var username=$("<span></span>").text("您好！"+localStorage.userName);
 				username.css("position","absolute");
 				username.css("left","-15px");

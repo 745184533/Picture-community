@@ -78,12 +78,12 @@
 	</div>
 	
 	<script>
-		if(localStorage.userId!=undefined)
+		if(localStorage.userId!=undefined&&localStorage.userId!="")
 		{
 			console.log(localStorage.userId);
 			$("#login").hide();
 			$("#register").hide();
-			$("#exit").hide();
+			$("#exit").show();
 			var username=$("<span></span>").text("您好！"+localStorage.userName);
 			username.css("position","absolute");
 			username.css("left","-15px");

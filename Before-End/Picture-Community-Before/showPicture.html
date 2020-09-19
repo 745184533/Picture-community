@@ -239,20 +239,21 @@
     $('#search').val(localStorage.tag);
 
     /*导航栏显示登陆状态*/
-    if(localStorage.userId!=undefined)
+    if(localStorage.userId!=undefined&&localStorage.userId!="")
     {
-        console.log(localStorage.userId);
-        $("#login").hide();
-        $("#register").hide();
-        var username=$("<span></span>").text("您好！"+localStorage.userName);
-        username.css("position","absolute");
-        username.css("left","-15px");
-        username.css("top","-1px");
-        $("#navbar").append(username);
-        username.click(function(){
-            //跳转
-            window.location.href="个人图片主页.html";
-        })
+    	console.log(localStorage.userId);
+    	$("#login").hide();
+    	$("#register").hide();
+    	$("#exit").show();
+    	var username=$("<span></span>").text("您好！"+localStorage.userName);
+    	username.css("position","absolute");
+    	username.css("left","-15px");
+    	username.css("top","-1px");
+    	$("#navbar").append(username);
+    	username.click(function(){
+    		//跳转
+    		window.location.href="个人图片主页.html";
+    	})
     }
     else
     {
